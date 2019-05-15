@@ -1,6 +1,6 @@
 > PlatON不是一个狭义的区块链平台，PlatON更应该被认为是大规模计算网络，一个基于密码学算法构建的Trustless计算基础设施。
 
-<img src="zh-cn/basics/images/architecture-cn.png"  alt="architecture" />
+![architecture](./images/architecture-cn.png)
 
 ### 区块链的挑战
 ["不可能三角"](https://github.com/ethereum/wiki/wiki/Sharding-FAQs) 提出了区块链的三个核心问题：可扩展性、去中心化和安全性。另外随着Google、Facebook、万豪酒店等公司数据“泄露门”的发生，以及欧盟《一般数据保护条例》（GDPR）的实施，隐私问题也日益成为区块链的第四个重要问题。从目前现状看，当人们谈论到区块链的大规模应用时，核心还是关注两个问题：可扩展性和隐私性。

@@ -11,7 +11,7 @@ Window环境支持以下三种安装方式：
 用管理员身份启动`PowerShell`,然后使用`choco`命令安装`platonnetwork-all`：
 
 ```
-> choco install platonnetwork-all --version=0.6.0
+> choco install platonnetwork-all
 ```
 
 `platon`，`ethkey`等将默认被安装到`C:\ProgramData\chocolatey\bin`目录，并加入`PATH`环境变量。
@@ -19,8 +19,8 @@ Window环境支持以下三种安装方式：
 
 ## 二进制包安装
 1. 创建`PlatON`工作目录`%PLATON%`
-2. 从[这里](https://download.platon.network/0.6/platon-mpclib-windows-x86_x64-0.6.0.zip)下载MPC依赖包，并解压到`%PLATON%\mpclib`
-3. 从[这里](https://download.platon.network/0.6/platon-windows-x86_64-0.6.0-with-mv.zip)下载带MPC及VC功能的`PlatON`二进制包，并解压到工作目录`%PLATON%`
+2. 从[这里](https://download.platon.network/latest/platon-mpclib-windows-x86_x64.zip)下载MPC依赖包，并解压到`%PLATON%\mpclib`
+3. 从[这里](https://download.platon.network/latest/platon-windows-x86_64-with-mv.zip)下载带MPC及VC功能的`PlatON`二进制包，并解压到工作目录`%PLATON%`
    解压内容如下：
 
    - `platon` PlatON客户端
@@ -94,4 +94,4 @@ Window环境支持以下三种安装方式：
 编译完成之后在`PlatON-Go/build/bin`目录下会生成`platon`、`ethkey`和`ctool`的执行文件，将此三个可执行文件拷贝到工作目录`%PLATON%`。
 
 ### 5. 依赖包安装
-从[这里](https://download.platon.network/0.6/platon-mpclib-windows-x86_x64-0.6.0.zip)下载MPC依赖包，并解压到目录`%PLATON%\mpclib`
+从[这里](https://download.platon.network/latest/platon-windows-x86_64-with-mv.zip)下载MPC依赖包，并解压到目录`%PLATON%\mpclib`

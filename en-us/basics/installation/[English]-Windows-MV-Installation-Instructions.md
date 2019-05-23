@@ -12,14 +12,14 @@ We use the Chocolatey package manager to install the required build tools. If yo
 
 Start PowerShell as an administrator and install PlatON using the choco command:
 ```
-> choco install platonnetwork-all --version=0.6.0
+> choco install platonnetwork-all
 ```
 After complation, you will find `platon,ethkey` in the default installation path `C:\ProgramData\chocolatey\bin`.
 
 ### Binary package based Installation
 1. Create `PlatON` working directory `%PLATON%` 
-2. Download the dependency package from [here](https://download.platon.network/0.6/platon-mpclib-windows-x86_x64-0.6.0.zip) and extract it to `%PLATON%\mpclib`
-3. Download the `PlatON` binary package with privacy and verifiable contracts from [here](https://download.platon.network/0.6/platon-windows-x86_64-0.6.0-with-mv.zip) and extract it to the working directory `%PLATON%`
+2. Download the dependency package from [here](https://download.platon.network/latest/platon-mpclib-windows-x86_x64.zip) and extract it to `%PLATON%\mpclib`
+3. Download the `PlatON` binary package with privacy and verifiable contracts from [here](https://download.platon.network/latest/platon-windows-x86_64-with-mv.zip) and extract it to the working directory `%PLATON%`
 
 The extracted files should be as following:
 
@@ -85,4 +85,4 @@ Run the following scripts in the source directory `PlatON-GO` to generate the `p
 After compilation, the `platon`、 `ethkey` and `ctool` executable files will be generated in the `PlatON-Go/build/bin` directory，and then copy these executable files to your own working directory.
 
 #### 5. Dependency package installation
-Download the dependency package from [here](https://download.platon.network/0.6/platon-mpclib-windows-x86_x64-0.6.0.zip) and extract it to `%PLATON%\mpclib`.
+Download the dependency package from [here](https://download.platon.network/latest/platon-mpclib-windows-x86_x64.zip) and extract it to `%PLATON%\mpclib`.

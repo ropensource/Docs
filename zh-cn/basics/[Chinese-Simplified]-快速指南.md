@@ -12,7 +12,7 @@ PlatON支持Linux、Windows、Docker多种运行环境，各环境安装指南�
 
 贝莱世界测试网络现已开放。想要连接到测试网络，可以通过下列方式：
 
-* 请下载 [Samurai 钱包](https://download.platon.network/0.6/Samurai-windows-x86_64-0.6.0.exe)客户端，并移步[这里](/zh-cn/user-interfaces/[Chinese-Simplified]-Samurai-钱包.md)根据提示安装后连接。
+* 请下载 [Samurai 钱包](https://download.platon.network/latest/Samurai-windows-x86_64.exe)客户端，并移步[这里](/zh-cn/user-interfaces/[Chinese-Simplified]-Samurai-钱包.md)根据提示安装后连接。
 * 使用交互式命令行工具 [了解更多](/zh-cn/user-interfaces/cmd-line-interface/_javascript-console.md)。
 
 ### 搭建私有网络

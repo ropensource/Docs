@@ -80,7 +80,7 @@
     ```
     
 ### 合约骨架生成工具
-1. 安装包下载 https://download.platon.network/0.6/client-sdk-0.6.0.zip
+1. 安装包下载 https://download.platon.network/latest/client-sdk.zip
 2. 解压后说明
 ```
 .
@@ -165,7 +165,7 @@ PLATON_ABI(demo::FirstDemo, getName)
 ```
 
 ## 合约骨架生成
-1. 以下操作使用（[FirstDemo.wasm](https://download.platon.network/0.6/doc/FirstDemo.wasm)）和（[FirstDemo.cpp.abi.json](https://download.platon.network/0.6/doc/FirstDemo.cpp.abi.json)）作为骨架生成示例。关于wasm智能合约的编写及其ABI(wasm文件)和BIN(json文件)生成方法请参考 [WASM合约指南](/zh-cn/development/%5BChinese-Simplified%5D-Wasm合约开发指南.md)。
+1. 以下操作使用（[FirstDemo.wasm](https://download.platon.network/latest/doc/FirstDemo.wasm)）和（[FirstDemo.cpp.abi.json](https://download.platon.network/latest/doc/FirstDemo.cpp.abi.json)）作为骨架生成示例。关于wasm智能合约的编写及其ABI(wasm文件)和BIN(json文件)生成方法请参考 [WASM合约指南](/zh-cn/development/%5BChinese-Simplified%5D-Wasm合约开发指南.md)。
 2. 使用合约骨架生成工具生成Java合约骨架：
 ```
 client-sdk wasm generate --javaTypes </path/to/FirstDemo.wasm> </path/to/FirstDemo.cpp.abi.json> -o </path/to/src/main/java> -p <com.your.organisation.name> -t WASM
@@ -256,7 +256,7 @@ CandidateContract contract = CandidateContract.load(web3j, credentials, new Defa
 | Extra | String | 附加数据,json格式字符串类型 |
 | value | BigInteger | 质押金额 |
 
-备注：质押金额必须大于等于1000000E,value >= 1000000E
+备注：质押金额必须大于等于1000000Energon,value >= 1000000Energon
 
 Extra描述
 ```
@@ -308,7 +308,7 @@ extra.put("nodeDiscription", "xxxx-nodeDiscription");
 extra.put("nodeDepartment", "xxxx-nodeDepartment");  
 //官网
 extra.put("officialWebsite", "https://www.platon.network/");  
-//质押金额, 单位 wei
+//质押金额, 单位 E
 BigInteger value = new BigInteger("200000000000000000000".replaceAll(" ", ""));
   
 //调用接口
@@ -330,7 +330,7 @@ for (CandidateDepositEventEventResponse event : events) {
 | **参数名** | **类型** | **参数说明** |
 | ------ | ------ | ------ |
 | nodeId | String  | 节点id, 16进制格式,0x开头 |
-| withdraw | BigInteger |  退款金额 (单位:wei) |
+| withdraw | BigInteger |  退款金额 (单位:E) |
 
 
 **返回事件**
@@ -352,7 +352,7 @@ param1描述
 ```
 //节点id
 String nodeId = "0x6bad331aa2ec6096b2b6034570e1761d687575b38c3afc3a3b5f892dac4c86d0fc59ead0f0933ae041c0b6b43a7261f1529bad5189be4fba343875548dc9efd3"; 
-//退款金额, 单位 wei
+//退款金额, 单位 E
 BigInteger value = new BigInteger("100");
 
 //调用接口
@@ -700,7 +700,7 @@ TicketContract contract = TicketContract.load(web3j, credentials, new DefaultWas
 
 **返回**
 
-- String：当前票价(单位为e)
+- String：当前票价(单位为E)
 
 合约使用：
 ```
@@ -733,7 +733,7 @@ logger.debug("{}",detail);
 | **参数名** | **类型** | **参数说明** |
 | ------ | ------ | ------ |
 | count | BigInteger  | 购票数量 |
-| price | BigInteger | 选票单价(单位为e) |
+| price | BigInteger | 选票单价(单位为E) |
 | nodeId | String |  候选人节点Id,16进制格式, 0x开头  |
 
 

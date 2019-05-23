@@ -17,7 +17,7 @@ Window环境支持以下三种安装方式：
 用管理员身份启动`PowerShell`,然后使用`choco`命令安装`platonnetwork`：
 
 ```
-> choco install platonnetwork --version=0.6.0
+> choco install platonnetwork
 ```
 
 `platon`，`ethkey`等将默认被安装到`C:\ProgramData\chocolatey\bin`目录。
@@ -25,7 +25,7 @@ Window环境支持以下三种安装方式：
 
 ### 官方二进制下载安装
 
-Windows版本的`PlatON`二进制包下载地址：<https://download.platon.network/0.6/platon-windows-x86_64-0.6.0.zip>
+Windows版本的`PlatON`二进制包下载地址：<https://download.platon.network/latest/platon-windows-x86_64.zip>
 
 下载后无需安装，直接解压即可使用。
 

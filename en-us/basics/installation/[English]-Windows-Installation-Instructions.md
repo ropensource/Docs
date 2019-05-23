@@ -12,12 +12,12 @@ We use the Chocolatey package manager to install the required build tools. If yo
 
 Start PowerShell as an administrator and install PlatON using the choco command:
 ```
-> choco install platonnetwork --version=0.6.0
+> choco install platonnetwork 
 ```
 After complation, you will find `platon,ethkey` in the default installation path `C:\ProgramData\chocolatey\bin`.
 
 ### Binary package based Installation
-Windows version of the Platon binary can been download from [here](https://download.platon.network/0.6/platon-windows-x86_64-0.6.0.zip). No installation is required after downloading, and it can be used directly by decompression.
+Windows version of the Platon binary can been download from [here](https://download.platon.network/latest/platon-windows-x86_64.zip). No installation is required after downloading, and it can be used directly by decompression.
 
 The extracted files should be as following:
 

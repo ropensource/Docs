@@ -48,10 +48,10 @@ $ sudo apt-get install platon
 
 ```bash
 # 下载
-$ wget https://download.platon.network/0.6/platon-ubuntu-amd64-0.6.0.tar.gz
+$ wget https://download.platon.network/latest/platon-ubuntu-amd64.tar.gz
 
 # 解压
-$ tar -xvzf platon-ubuntu-amd64-0.6.0.tar.gz
+$ tar -xvzf platon-ubuntu-amd64.tar.gz
 ```
 
 解压内容如下：
@@ -65,10 +65,10 @@ $ tar -xvzf platon-ubuntu-amd64-0.6.0.tar.gz
 
 ```bash
 # 下载安装包 
-$ wget https://download.platon.network/0.6/platon-ubuntu-amd64-0.6.0.deb
+$ wget https://download.platon.network/latest/platon-ubuntu-amd64.deb
 
 # 安装
-$ sudo dpkg -i platon-ubuntu-amd64-0.6.0.deb
+$ sudo dpkg -i platon-ubuntu-amd64.deb
 ```
 
 安装完成后，可执行程序将安装到： `/usr/bin/`。

@@ -424,7 +424,7 @@ If the above information is shown, then mpc is initialized successfully.
 
 ## Enable VC function for a node
 
-More about VC please click [here] (/en-us/development/[English]-Verifiable-Contract).
+More about VC please click [here](/en-us/development/[English]-Verifiable-Contract).
 
 Add the following parameters when starting the node:
 

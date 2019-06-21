@@ -46,10 +46,10 @@ After the installation, the binaries and other components of the package should 
 
 ```bash
 # Download
-$ wget https://download.platon.network/0.6/platon-ubuntu-amd64-0.6.0.tar.gz
+$ wget https://download.platon.network/latest/platon-ubuntu-amd64.tar.gz
 
 # 解压
-$ tar -xvzf platon-ubuntu-amd64-0.6.0.tar.gz
+$ tar -xvzf platon-ubuntu-amd64.tar.gz
 ```
 
 The extracted files should be as following:
@@ -63,10 +63,10 @@ The extracted files should be as following:
 
 ```bash
 # Download the `.deb` package
-$ wget https://download.platon.network/0.6/platon-ubuntu-amd64-0.6.0.deb
+$ wget https://download.platon.network/latest/platon-ubuntu-amd64.deb
 
 #installation
-$ sudo dpkg -i platon-ubuntu-amd64-0.6.0.deb
+$ sudo dpkg -i platon-ubuntu-amd64.deb
 ```
 
 After the installation, the binaries and other components of the package should be installed to `/usr/bin`

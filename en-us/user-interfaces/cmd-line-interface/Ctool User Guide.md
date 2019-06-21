@@ -70,7 +70,7 @@ $ ctool.exe invoke -addr "0x43355c787c50b647c425f594b441d4bd751951c1" --func 'sa
 Further assume that, in the previous step we used the contract method **sayHello**. Then we will read the values stored by this method. This action of inquiry is called a **call**. Assume the test contract contains **char \* getWorld()**, then the deployment is as follows:
 
 ``` 
-$ ctool.exe invoke -addr "0x43355c787c50b647c425f594b441d4bd751951c1" --func 'getWorld()' --abi ./demo.cpp.abi.json --config ./config.json
+$ ctool.exe invoke -addr"0x43355c787c50b647c425f594b441d4bd751951c1" --func 'getWorld()' --abi ./demo.cpp.abi.json --config ./config.json
 ```
 The expected resulting output on the screen is: **HelloWorld**.
 

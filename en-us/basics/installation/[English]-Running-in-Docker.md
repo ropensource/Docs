@@ -9,7 +9,7 @@ The docker installation is relatively simple, you can refer to the following two
 - Pull Platon Image
 
 ```bash
-$ sudo docker pull platonnetwork/platon:tag #e.g: platonnetwork/platon:0.6.0
+$ sudo docker pull platonnetwork/platon:tag #e.g: platonnetwork/platon:0.6.1
 ```
 
 - Run Platon Container
@@ -21,7 +21,7 @@ $ sudo docker run -d platonnetwork/platon:tag
 
 To open port mapping, execute the following commands:
 ```bash
-$ sudo docker run -d -e PLATONIP="192.168.120.20" -p 6789:6789  -p 16789:16789 --name platon platonnetwork/platon:0.6.0
+$ sudo docker run -d -e PLATONIP="192.168.120.20" -p 6789:6789  -p 16789:16789 --name platon platonnetwork/platon:0.6.1
 ```
 `PLATONIP` is the local server address.
 

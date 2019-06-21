@@ -36,10 +36,10 @@ Please refer to [here](#Dependency-package-Installation) to install related depe
 
 ```bash
 # Download
-$ wget https://download.platon.network/0.6/platon-ubuntu-amd64-0.6.0-with-mv.tar.gz 
+$ wget https://download.platon.network/latest/platon-ubuntu-amd64-with-mv.tar.gz 
 
 # Decompression  
-$ tar -xvzf platon-ubuntu-amd64-0.6.0-with-mv.tar.gz 
+$ tar -xvzf platon-ubuntu-amd64-with-mv.tar.gz
 ```
 
 The extracted files should be as following:
@@ -59,10 +59,10 @@ Please refer to [here](#Dependency-package-installation) to install related depe
 
 ```bash
 # Download the `.deb` package
-$ wget https://download.platon.network/0.6/platon-all-ubuntu-amd64-0.6.0.deb 
+$ wget https://download.platon.network/latest/platon-all-ubuntu-amd64.deb 
 
 #installation
-$ sudo dpkg -i platon-all-ubuntu-amd64-0.6.0.deb
+$ sudo dpkg -i platon-all-ubuntu-amd64.deb 
 ```
 
 After the installation, the binaries and other components of the package should be installed to `/usr/bin`
@@ -117,22 +117,22 @@ The following three installation modes are provided. The binary package and debi
 
 ```
 # Download lib installation package
-$ wget https://download.platon.network/0.5/platon-mpclib-ubuntu-amd64-0.5.0.deb
+$ wget https://download.platon.network/latest/platon-mpclib-ubuntu-amd64.deb
 
 # Install lib
-$ sudo dpkg -i platon-mpclib-ubuntu-amd64-0.5.0.deb
+$ sudo dpkg -i platon-mpclib-ubuntu-amd64.deb
 ```
 
 - **Binary package based installation**
 
 ```bash
 # Download 
-$ wget https://download.platon.network/0.5/platon-mpclib-ubuntu-amd64-0.5.0.tar.gz
+$ wget https://download.platon.network/latest/platon-mpclib-ubuntu-amd64.tar.gz
 
 # Decompression 
-$ tar -xvzf platon-mpclib-ubuntu-amd64-0.5.0.tar.gz
+$ tar -xvzf platon-mpclib-ubuntu-amd64.tar.gz
 
-$ mv platon-mpclib-ubuntu-amd64-0.5.0 platon-mpclib
+$ mv platon-mpclib-ubuntu-amd64 platon-mpclib
 
 #Add the extracted path to the environment variable
 $ grep "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/path/to/platon-mpclib" ~/.bashrc || echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/path/to/platon-mpclib" >> ~/.bashrc

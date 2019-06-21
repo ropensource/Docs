@@ -17,7 +17,7 @@ Window环境支持以下三种安装方式：
 用管理员身份启动`PowerShell`,然后使用`choco`命令安装`platonnetwork`：
 
 ```
-> choco install platonnetwork --version=0.6.0
+> choco install platonnetwork
 ```
 
 `platon`，`ethkey`等将默认被安装到`C:\ProgramData\chocolatey\bin`目录。
@@ -25,7 +25,7 @@ Window环境支持以下三种安装方式：
 
 ### 官方二进制下载安装
 
-Windows版本的`PlatON`二进制包下载地址：<https://download.platon.network/0.6/platon-windows-x86_64-0.6.0.zip>
+Windows版本的`PlatON`二进制包下载地址：<https://download.platon.network/latest/platon-windows-x86_64.zip>
 
 下载后无需安装，直接解压即可使用。
 
@@ -62,7 +62,7 @@ Windows版本的`PlatON`二进制包下载地址：<https://download.platon.netw
 > choco install cmake
 ```
 
-利用`chocolatey`包管理器安装的软件大部分有默认的安装路径，部分软件可能会有各种各样的路径，这取决于软件的发布者。安装这些包将修改Path环境变量。最后安装路径可查看PATH。安装完之后请确保已安装的Go版本为1.7（或更高版本）。
+利用`chocolatey`包管理器安装的软件大部分有默认的安装路径，部分软件可能会有各种各样的路径，这取决于软件的发布者。安装这些包将修改Path环境变量。最后安装路径可查看PATH，某些机器环境可能在 PATH 中找不到这些工具的安装路径，此时需手动添加。安装完之后请确保已安装的Go版本为1.7（或更高版本）。
 
 #### 2. 获取`PlatON`源码
 

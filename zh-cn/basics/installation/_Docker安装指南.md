@@ -12,7 +12,7 @@ docker安装比较简单，可参考以下两种安装方式：
 - 拉取platon镜像
 
 ```bash
-$ sudo docker pull platonnetwork/platon:tag #例如: platonnetwork/platon:0.6.0
+$ sudo docker pull platonnetwork/platon:tag #例如: platonnetwork/platon:0.6.1
 ```
 
 - 运行platon容器
@@ -26,7 +26,7 @@ $ sudo docker run -d platonnetwork/platon:tag
 若想开启端口映射，可执行以下命令：
 
 ```bash
-$ sudo docker run -d -e PLATONIP="192.168.120.20" -p 6789:6789  -p 16789:16789 --name platon platonnetwork/platon:0.6.0
+$ sudo docker run -d -e PLATONIP="192.168.120.20" -p 6789:6789  -p 16789:16789 --name platon platonnetwork/platon:0.6.1
 ```
 
 其中，`PLATONIP`为本机服务器地址。

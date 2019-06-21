@@ -420,7 +420,7 @@ Extra描述
 | **参数名** | **类型** | **参数说明** |
 | ------ | ------ | ------ |
 | nodeId | String  | 节点id, 16进制格式， 0x开头 |
-| withdraw | BigInteger |  退款金额 (单位：wei) |
+| withdraw | BigInteger |  退款金额 (单位：E) |
 | sender  | String  | 账户地址                   |
 | privateKey  | String  | 私钥，需要与账户地址对应                   |
 | gasPrice  | BigUInt  | 手续费用，Energon价格                   |
@@ -446,7 +446,7 @@ param1描述
 ```
     func CandidateApplyWithdraw(){
         let nodeId = "0x6bad331aa2ec6096b2b6034570e1761d687575b38c3afc3a3b5f892dac4c86d0fc59ead0f0933ae041c0b6b43a7261f1529bad5189be4fba343875548dc9efd3";
-        //退款金额, 单位 wei
+        //退款金额, 单位 E
         let value = BigUInt("500")!
         //must be owner
         let owner = "f8f3978c14f585c920718c27853e2380d6f5db36"
@@ -924,7 +924,7 @@ func GetVerifiersList(){
 
 **返回**
 
-- String：当前票价(单位为e)
+- String：当前票价(单位为E)
 
 合约方法
 

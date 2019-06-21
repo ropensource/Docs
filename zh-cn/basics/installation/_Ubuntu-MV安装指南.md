@@ -38,10 +38,10 @@ $ sudo apt-get install platon-all
 ### 2.安装PlatON客户端
 ```bash
 # 下载
-$ wget https://download.platon.network/0.6/platon-ubuntu-amd64-0.6.0-with-mv.tar.gz
+$ wget https://download.platon.network/latest/platon-ubuntu-amd64-with-mv.tar.gz
 
 # 解压
-$ tar -xvzf platon-ubuntu-amd64-0.6.0-with-mv.tar.gz
+$ tar -xvzf platon-ubuntu-amd64-with-mv.tar.gz
 ```
 解压内容如下：
 
@@ -61,10 +61,10 @@ $ tar -xvzf platon-ubuntu-amd64-0.6.0-with-mv.tar.gz
 ```bash
 
 # 下载PlatON安装包 
-$ wget https://download.platon.network/0.6/platon-all-ubuntu-amd64-0.6.0.deb
+$ wget https://download.platon.network/latest/platon-all-ubuntu-amd64.deb
 
 # 安装
-$ sudo dpkg -i platon-all-ubuntu-amd64-0.6.0.deb
+$ sudo dpkg -i platon-all-ubuntu-amd64.deb
 ```
 
 安装完成后，可执行程序将安装到： `/usr/bin/`。
@@ -117,22 +117,22 @@ $ make all-with-mv
 
 ```
 # 下载MPC lib安装包 
-$ wget https://download.platon.network/0.5/platon-mpclib-ubuntu-amd64-0.5.0.deb
+$ wget https://download.platon.network/latest/platon-mpclib-ubuntu-amd64.deb
 
 # 安装MPC lib
-$ sudo dpkg -i platon-mpclib-ubuntu-amd64-0.5.0.deb
+$ sudo dpkg -i platon-mpclib-ubuntu-amd64.deb
 ```
 
 - **二进制包安装方式：**
 
 ```bash
 # 下载MPC依赖库
-$ wget https://download.platon.network/0.5/platon-mpclib-ubuntu-amd64-0.5.0.tar.gz
+$ wget https://download.platon.network/latest/platon-mpclib-ubuntu-amd64.tar.gz
 
 # 解压
-$ tar -xvzf platon-mpclib-ubuntu-amd64-0.5.0.tar.gz
+$ tar -xvzf platon-mpclib-ubuntu-amd64.tar.gz
 
-$ mv platon-mpclib-ubuntu-amd64-0.5.0 platon-mpclib
+$ mv platon-mpclib-ubuntu-amd64 platon-mpclib
 
 #将解压后的该路径添加到环境变量
 $ grep "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/path/to/platon-mpclib" ~/.bashrc || echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/path/to/platon-mpclib" >> ~/.bashrc
@@ -162,3 +162,5 @@ $ sudo apt-get install libboost-all-dev
 $ sudo apt-get install llvm-6.0-dev llvm-6.0 libclang-6.0-dev 
 $ sudo apt-get install libgmpxx4ldbl libgmp-dev libprocps4-dev libssl-dev
 ```
+
+

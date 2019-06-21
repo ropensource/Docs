@@ -16,15 +16,10 @@ You can create an account using **PlatON** commands:
 
 ```
 D:\platon-node> mkdir data
-
 D:\platon-node> platon.exe --datadir .\data account new
-
 Your new account is locked with a password. Please give a password. Do not forget this password.
-
 Passphrase:
-
 Repeat passphrase:
-
 Address: {550ae58b051a8e942f858ef22019c1c622292f7e}
 ```
 
@@ -32,15 +27,10 @@ Address: {550ae58b051a8e942f858ef22019c1c622292f7e}
 
 ```
 $ mkdir -p data
-
 $ ./platon --datadir ./data account new
-
 Your new account is locked with a password. Please give a password. Do not forget this password.
-
 Passphrase:
-
 Repeat passphrase:
-
 Address: {550ae58b051a8e942f858ef22019c1c622292f7e}
 ```
 
@@ -85,61 +75,40 @@ Type **platon -help** for more information on options.
 1. Enter **platon** control panel using **http**
  - Windows command line:
 
- ```
+```
  D:\platon-node> platon.exe attach http://localhost:6789
 ```
 
  - Linux command line:
 
- ```
+```
  $ ./platon attach http://localhost:6789
- ``` 
+``` 
 
 2. See whether the node list added the test network nodes
 
 ```
 > admin.peers
-
 [{
-
     caps: ["eth/62", "eth/63"],
-
     id: "23aa343260d06e04107d1cd9a7d12c54cc238719a1523ffe42640210c913218b5940d41511c5adb716da38844a85cdab8b7db0600d242e24168d7df10aebd324",
-
     name: "PlatONnetwork/V0.6_testsn/v0.6.0-stable-0f651de0/linux-amd64/go1.11",
-
     network: {
-
       consensus: false,
-
       inbound: false,
-
       localAddress: "192.168.18.181:51828",
-
       remoteAddress: "54.252.202.130:16789",
-
       static: false,
-
       trusted: false
-
     },
-
     protocols: {
-
       eth: {
-
         head: "0x104fe03d2b2f0b783e808ea7fcd52566d7cde9f36c4a06e950795e0459db5551",
-
         number: 74822,
-
         version: 63
-
       }
-
     }
-
 },
-
 ...
 
 ]

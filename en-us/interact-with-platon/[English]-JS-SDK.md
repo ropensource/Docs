@@ -891,7 +891,7 @@ const Web3 = require('web3'),
     sign = require('./sign'),// sign logic, detailed code following
     abi = require('../abi/ticketContract.json'),//abi file of ticket pool (tobe updated)
     getTransactionReceipt = require('./getTransactionReceipt'),// detailed code following
-    ticketContractAddress='0x1000000000000000000000000000000000000002';//票池合约地址
+    ticketContractAddress='0x1000000000000000000000000000000000000002';//contract address for staking tickets
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:6789'));
 

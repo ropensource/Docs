@@ -386,7 +386,7 @@ module.exports = getTransactionReceipt
 
 | Parameter |Type|Attribute|Description|
 | :------: |:------: |:------: | :------: |
-|nodeId|String|required|Hexadecimal node ID, starting wiht 0x|
+|nodeId|String|required|Hexadecimal node ID, starting with 0x|
 |owner|String|optional|staking and refund address, hexadecimal, starting wiht 0x|
 |fee|String|required|mining reward ratio, with 10000 as denominator (eg: 5% gives a fee of 500)|
 |host|String|required|node IP|
@@ -468,6 +468,454 @@ getTransactionReceipt(hash, (code, data) => {
     }
 });
 ````
+
+##### CandidateApplyWithdraw
+
+> Node staking refund application. After successful application, the node's ranking will change accordingly in the candidate pool. The address of application initiator must be the same as the refund address
+
+###### Parameter description
+
+|Parameters|Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|nodeId|String|required|hexadecimal node ID, starting with 0x|
+|withdraw|String|required|refund amount (unit: E)|
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+param1 description
+```
+{
+    "Ret":boolean,                         //Boolean return value, true for success, false for failure
+    "Data":string                          //return data
+    "ErrMsg":string                        //error message when failed
+}
+```
+
+###### Example
+
+````js
+const privateKey = '099cad12189e848f70570196df434717c1ccc04f421da6ab651f38297a065cb7';
+const nodeId = '0xeebeaa496d954f8ee864e6460719755398f1e5b36e7a0c911f527fe3247b02a0a4db17aa59c5235e923602df1aeb26042149b8d2fd71cf990046b08d3b323b9a', //[64]byte node ID (public key)
+    withdraw = Number(web3.toWei(5, 'ether'));
+const data = candidateContract.CandidateApplyWithdraw.getPlatONData(nodeId, withdraw, {
+    transactionType:1002
+});
+const hash = web3.eth.sendRawTransaction(sign(privateKey, getParams(data)))
+
+getTransactionReceipt(hash, (code, data) => {
+    console.log(code, data)
+    if (code == 0) {
+        let res = candidateContract.decodePlatONLog(data.logs[0], 'CandidateApplyWithdrawEvent');
+        if (res.length && res[0]) {
+            res = JSON.parse(res[0])
+            if (res.ErrMsg == 'success') {
+                console.log(`Node staking refund application successful`);
+            } else {
+                console.log(`Node staking refund application unsuccessful`);
+            }
+        } else {
+            console.log(`Node staking refund application unsuccessful`)
+        }
+    } else {
+        console.warn(`Node staking refund application error`)
+    }
+})
+````
+
+##### CandidateWithdraw
+
+> Node staking withdrawal. After successful call the system, the system will withdraw all requested refund into the owner's account.
+
+###### Parameter description
+
+|Parameters|Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|nodeId|String|required|hexadecimal node ID, starting with 0x|
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+param1 description
+```
+{
+    "Ret":boolean,                         //Boolean return value, true for success, false for failure
+    "Data":string                          //return data
+    "ErrMsg":string                        //error message when failed
+}
+```
+
+###### Example
+
+````js
+const privateKey = '099cad12189e848f70570196df434717c1ccc04f421da6ab651f38297a065cb7';
+const nodeId = '0xeebeaa496d954f8ee864e6460719755398f1e5b36e7a0c911f527fe3247b02a0a4db17aa59c5235e923602df1aeb26042149b8d2fd71cf990046b08d3b323b9a' //[64]byte node ID (public key)
+const data = candidateContract.CandidateWithdraw.getPlatONData(nodeId, {
+    transactionType:1003
+});
+const hash = web3.eth.sendRawTransaction(sign(privateKey, getParams(data)))
+console.log('hash', hash)
+getTransactionReceipt(hash, (code, data) => {
+    console.log(code, data)
+    if (code == 0) {
+        let res = candidateContract.decodePlatONLog(data.logs[0], 'CandidateWithdrawEvent');
+        if (res.length && res[0]) {
+            res = JSON.parse(res[0])
+            if (res.ErrMsg == 'success') {
+                console.log(`Node staking withdraw successful`);
+            } else {
+                console.log(`Node staking withdraw unsuccessful`);
+            }
+        } else {
+            console.log(`Node staking withdraw unsuccessful`)
+        }
+    } else {
+        console.warn(`Node staking withdraw error`);
+    }
+})
+````
+
+##### SetCandidateExtra
+
+> Set the node's additional information. The address of application initiator must be the same as the refund address. from==owner (to be confirmed)
+
+###### Parameter description
+
+|Parameters|Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|Extra|String|required|additional data in json format|
+
+`Extra` parameter description
+```
+{
+    "nodeName":string,                     //node name
+    "officialWebsite":string,              //official web site, http | https
+    "nodePortrait":string,                 //node logo http | https
+    "nodeDiscription":string,              //node description
+    "nodeDepartment":string                //node organization name
+}
+```
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+param1 description
+```
+{
+    "Ret":boolean,                         //Boolean return value, true for success, false for failure
+    "Data":string                          //return data
+    "ErrMsg":string                        //error message when failed
+}
+```
+
+###### Example
+
+````js
+const privateKey = '099cad12189e848f70570196df434717c1ccc04f421da6ab651f38297a065cb7';
+let nodeId = '0xeebeaa496d954f8ee864e6460719755398f1e5b36e7a0c911f527fe3247b02a0a4db17aa59c5235e923602df1aeb26042149b8d2fd71cf990046b08d3b323b9a', //[64]byte node ID (public key)
+    owner = wallet.address, //[20]byte staking and refund address
+    time = Date.now(),
+    Extra =JSON.stringify({
+        nodeName: 'My node name',
+        nodeDiscription: 'My node description' + time,
+        nodeDepartment: 'My institute name' + time,
+        officialWebsite: 'www.platon.network',
+        nodePortrait: 'URL',
+        time: time, //time of join
+    }) //string additional data (limited in length with value to be determined)
+
+Extra = web3.toUnicode(Extra);
+
+const data = candidateContract.SetCandidateExtra.getPlatONData(nodeId, Extra, {
+    transactionType:1004
+});
+const hash = web3.eth.sendRawTransaction(sign(privateKey, getParams(data)))
+
+getTransactionReceipt(hash, (code, data) => {
+    console.log(code, data)
+    let res = candidateContract.decodePlatONLog(data.logs[0]);
+    if (res && res[0]) {
+        res = JSON.parse(res[0])
+        if (res.ErrMsg == 'success') {
+            console.log(`Setting node additional information successful`);
+        } else {
+            console.log(`Setting node additional information unsuccessful`);
+        }
+    } else {
+        console.log(`Setting node additional information unsuccessful`)
+    }
+})
+````
+
+##### GetCandidateWithdrawInfos
+
+> Gets the withdraw records that the node has applied for.
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|nodeId|String|required|Hexadecimal node ID, starting with 0x|
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+param1 description
+```
+{
+    "Ret": true,
+    "ErrMsg": "success",
+    "Infos": [{                        //withdrawal records
+        "Balance": 100,                //withdrawal value
+        "LockNumber": 13112,           //withdrawal request block height
+        "LockBlockCycle": 1            //withdrawal value's lock cycle
+    }]
+}
+```
+
+###### Example
+
+````js
+const nodeId = '0xeebeaa496d954f8ee864e6460719755398f1e5b36e7a0c911f527fe3247b02a0a4db17aa59c5235e923602df1aeb26042149b8d2fd71cf990046b08d3b323b9a' //[64]byte node ID (public key)
+const data = candidateContract.GetCandidateWithdrawInfos.getPlatONData(nodeId)
+
+const result = web3.eth.call({
+    from: wallet.address,
+    to: candidateContract.address,
+    data: data,
+});
+
+const result1 = candidateContract.decodePlatONCall(result);
+const result2 = toObj(result1.data)
+console.log('Result of withdraw records of current node:', result2);
+````
+
+##### GetCandidateDetails
+
+> Get details of group of candidates
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|nodeId|String|required|A string created by concatenating multiple nodeId with ‘:’, where node ID is an hexadecimal string starting with 0x|
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+param1 description
+```
+{
+        "code":0,                         //error code
+        "data":"[]"                    //json formatted string
+}
+```
+Sample data description
+```
+"[{
+    //Deposit value
+    "Deposit": 200,
+    //Block height when deposit value last updated
+    "BlockNumber": 12206,
+    //Transaction index of the current block
+    "TxIndex": 0,
+    //Node Id
+    "CandidateId": "6bad331aa2ec6096b2b6034570e1761d687575b38c3afc3a3b5f892dac4c86d0fc59ead0f0933ae041c0b6b43a7261f1529bad5189be4fba343875548dc9efd3",
+    //Node IP
+    "Host": "192.168.9.76",
+    //Node P2P port number
+    "Port": "26794",
+    //Deposit refund address
+    "Owner": "0xf8f3978c14f585c920718c27853e2380d6f5db36",
+    //Additional data
+    "Extra": "{\"nodeName\":\"xxxx-noedeName\",\"officialWebsite\":\"xxxx-officialWebsite\",\"nodePortrait\":\"group2/M00/00/12/wKgJVlw0XSyAY78cAAH3BKJzz9Y83.jpeg\",\"nodeDiscription\":\"xxxx-nodeDiscription1\",\"nodeDepartment\":\"xxxx-nodeDepartment\"}",
+    // mining reward ratio, with 10000 as denominator (eg: 5% gives a fee of 500)
+    "Fee": 500
+    //Hash of witness tickets transaction (updated, tobe removed)
+    "TxHash": "0xfa0914bc939e76b40f378200cdb2603d342e09553d916aa4e6bee8fbbe273944"
+}]"
+```
+
+###### 示例
+
+````js
+const nodeId = '0x0abaf3219f454f3d07b6cbcf3c10b6b4ccf605202868e2043b6f5db12b745df0604ef01ef4cb523adc6d9e14b83a76dd09f862e3fe77205d8ac83df707969b47:0xe0b6af6cc2e10b2b74540b87098083d48343805a3ff09c655eab0b20dba2b2851aea79ee75b6e150bde58ead0be03ee4a8619ea1dfaf529cbb8ff55ca23531ed'// multiple addresses seperated by ":"
+
+const data = candidateContract.GetCandidateDetails.getPlatONData(nodeId)
+
+const result = web3.eth.call({
+    from: wallet.address,
+    to: candidateContract.address,
+    data: data,
+});
+
+const result1 = candidateContract.decodePlatONCall(result);
+const result2 = toObj(result1.data)
+console.log('Candidates details retrieved:', result2);
+````
+
+##### GetCandidateList
+
+> Get a list of all qualifying candidate nodes
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| json formated string|
+
+Sample param1 value:
+```
+[[{
+    "Deposit":10000000000000000000000000,
+    "BlockNumber":3909,
+    "TxIndex":0,"CandidateId":"0abaf3219f454f3d07b6cbcf3c10b6b4ccf605202868e2043b6f5db12b745df0604ef01ef4cb523adc6d9e14b83a76dd09f862e3fe77205d8ac83df707969b47",
+    "Host":"192.168.9.76",
+    "Port":"16789",
+    "Owner":"0x493301712671ada506ba6ca7891f436d29185821",
+    "Extra":"{\"nodeName\":\"innerdevnet9.76-16789\",\"officialWebsite\":\"\",\"time\":1556161028879,\"nodePortrait\":\"1\",\"nodeDiscription\":\"A test network node deployed in Southeast Asia\",\"nodeDepartment\":\"Southeast Asia test node\"}",
+    "Fee":500,
+    "TxHash":"0x0000000000000000000000000000000000000000000000000000000000000000","TOwner":"0x0000000000000000000000000000000000000000"}],
+    [{
+        "Deposit":10000000000000000000000000,
+        "BlockNumber":3911,
+        "TxIndex":0,"CandidateId":"e0b6af6cc2e10b2b74540b87098083d48343805a3ff09c655eab0b20dba2b2851aea79ee75b6e150bde58ead0be03ee4a8619ea1dfaf529cbb8ff55ca23531ed",
+        "Host":"192.168.9.76",
+        "Port":"16790",
+        "Owner":"0x493301712671ada506ba6ca7891f436d29185821",
+        "Extra":"{\"nodeName\":\"innerdevnet9.76-16790\",\"officialWebsite\":\"\",\"time\":1556161031038,\"nodePortrait\":\"2\",\"nodeDiscription\":\"A test network node deployed in Singapore\",\"nodeDepartment\":\"Singapore test node\"}",
+        "Fee":1000,
+        "TxHash":"0x0000000000000000000000000000000000000000000000000000000000000000","TOwner":"0x0000000000000000000000000000000000000000"}]]
+```
+
+###### Example
+````js
+const data = candidateContract.GetCandidateList.getPlatONData()
+
+    const result = web3.eth.call({
+        from: wallet.address,
+        to: candidateContract.address,
+        data: data,
+    });
+
+const result1 = candidateContract.decodePlatONCall(result);
+const result2 = toObj(result1.data)
+console.log(`Result of all qualified candidate nodes:`, result2);
+````
+
+##### GetVerifiersList
+
+> Get list of all verifiers of current consensus
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+Sample data of param1:
+
+```
+[{
+    "Deposit": 11100000000000000000,
+    "BlockNumber": 13721,
+    "TxIndex": 0,
+    "CandidateId": "c0e69057ec222ab257f68ca79d0e74fdb720261bcdbdfa83502d509a5ad032b29d57c6273f1c62f51d689644b4d446064a7c8279ff9abd01fa846a3555395535",
+    "Host": "192.168.9.76",
+    "Port": "26793",
+    "Owner": "0x3ef573e439071c87fe54287f07fe1fd8614f134c",
+    "From": "0x3ef573e439071c87fe54287f07fe1fd8614f134c",
+    "Extra": "{\"nodeName\":\"xxxx-noedeName\",\"officialWebsite\":\"xxxx-officialWebsite\",\"nodePortrait\":\"group2/M00/00/12/wKgJVlw0XSyAY78cAAH3BKJzz9Y83.jpeg\",\"nodeDiscription\":\"xxxx-nodeDiscription1\",\"nodeDepartment\":\"xxxx-nodeDepartment\"}",
+    "Fee": 9900
+}, {
+    "Deposit": 200,
+    "BlockNumber": 12206,
+    "TxIndex": 0,
+    "CandidateId": "6bad331aa2ec6096b2b6034570e1761d687575b38c3afc3a3b5f892dac4c86d0fc59ead0f0933ae041c0b6b43a7261f1529bad5189be4fba343875548dc9efd3",
+    "Host": "192.168.9.76",
+    "Port": "26794",
+    "Owner": "0xf8f3978c14f585c920718c27853e2380d6f5db36",
+    "From": "0x493301712671ada506ba6ca7891f436d29185821",
+    "Extra": "{\"nodeName\":\"xxxx-noedeName\",\"officialWebsite\":\"xxxx-officialWebsite\",\"nodePortrait\":\"group2/M00/00/12/wKgJVlw0XSyAY78cAAH3BKJzz9Y83.jpeg\",\"nodeDiscription\":\"xxxx-nodeDiscription1\",\"nodeDepartment\":\"xxxx-nodeDepartment\"}",
+    "Fee": 500
+}]
+```
+
+###### Example
+
+````js
+ const data = candidateContract.GetVerifiersList.getPlatONData()
+
+const result = web3.eth.call({
+    from: wallet.address,
+    to: candidateContract.address,
+    data: data,
+});
+
+const result1 = candidateContract.decodePlatONCall(result);
+const result2 = toObj(result1.data)
+console.log('Result of all verifiers of current consensus:', result2);
+````
+
+##### TicketContract
+
+> Contract interface of ticket pool in PlatON economic model
+
+##### Loading contract
+
+````js
+const Web3 = require('web3'),
+    wallet = require('../owner.json'),//wallet file
+    sign = require('./sign'),// sign logic, detailed code following
+    abi = require('../abi/ticketContract.json'),//abi file of ticket pool (tobe updated)
+    getTransactionReceipt = require('./getTransactionReceipt'),// detailed code following
+    ticketContractAddress='0x1000000000000000000000000000000000000002';//票池合约地址
+
+const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:6789'));
+
+const calcContract = web3.eth.contract(abi),
+    ticketContract = calcContract.at(ticketContractAddress);
+
+function getParams(data = '', value = "0x0") {
+    const nonce = web3.eth.getTransactionCount(wallet.address);
+
+    value = web3.toHex(value)
+
+    const params = {
+        from:'0xf8f3978c14f585c920718c27853e2380d6f5db36',//钱包地址
+        gasPrice: 22 * 10e9,
+        gas: 80000,
+        to: ticketContract.address,
+        value,
+        data,
+        nonce
+    }
+    return params;
+}
+````
+
 
 --- continue ---
 

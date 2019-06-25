@@ -761,7 +761,7 @@ data描述
     "Extra": "{\"nodeName\":\"xxxx-noedeName\",\"officialWebsite\":\"xxxx-officialWebsite\",\"nodePortrait\":\"group2/M00/00/12/wKgJVlw0XSyAY78cAAH3BKJzz9Y83.jpeg\",\"nodeDiscription\":\"xxxx-nodeDiscription1\",\"nodeDepartment\":\"xxxx-nodeDepartment\"}",
     //出块奖励佣金比，以10000为基数(eg：5%，则fee=500)
     "Fee": 500
-    //幸运票所在交易Hash
+    //见证票所在交易Hash
     "TxHash": "0xfa0914bc939e76b40f378200cdb2603d342e09553d916aa4e6bee8fbbe273944"
 }]"
 ```

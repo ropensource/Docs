@@ -1,5 +1,5 @@
 
-[Download PDF](https://www.platon.network/static/pdf/en/PlatON%20Blue%20Paper%20on%20Economics_EN.pdf "Blue Paper")
+[Download PDF](https://www.platon.network/static/pdf/en/PlatON_Blue_Paper_on_Economics_EN.pdf "Blue Paper")
 
 <center>
 

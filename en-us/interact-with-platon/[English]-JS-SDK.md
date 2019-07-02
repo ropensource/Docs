@@ -1,6 +1,6 @@
 # Index - under construction now
 
-- []
+- [TOC]
 
 ## Overview
 > Javascript SDK is a development toolset for PlatON public chain that PlatON provided for js devlopers.
@@ -916,6 +916,666 @@ function getParams(data = '', value = "0x0") {
 }
 ````
 
+Prepare file ./sign.js
 
---- continue ---
+````js
+const Tx = require('ethereumjs-tx');
+
+module.exports = (privateKey, data) => {
+    if (!privateKey || !data) {
+        throw new Error(`sign parameter error`);
+    }
+
+    const key = new Buffer(privateKey, 'hex'),
+        tx = new Tx(data);
+
+    tx.sign(key);
+
+    const serializeTx = tx.serialize(),
+        result = '0x' + serializeTx.toString('hex');
+
+    return result;
+};
+````
+
+Prepare file ./getTransactionReceipt.js
+
+````js
+const Web3 = require('web3'),
+    config = require('../config/config.json');
+const web3 = new Web3 (new Web3.providers.HttpProvider (config.provider));
+
+let wrapCount = 60;
+function getTransactionReceipt(hash, fn) {
+    let id = '',
+        result = web3.eth.getTransactionReceipt(hash),
+        data = {};
+    if (result && result.transactionHash && hash == result.transactionHash) {
+        clearTimeout(id);
+        if (result.logs.length != 0) {
+            fn(0, result);
+        } else {
+            fn(1001, 'Contract error, failed');
+        }
+    } else {
+        if (wrapCount--) {
+            id = setTimeout(() => {
+                getTransactionReceipt(hash, fn);
+            }, 1000);
+        } else {
+            fn(1000, 'timeout');
+            id = '';
+        }
+    }
+}
+
+module.exports = getTransactionReceipt
+````
+
+##### GetTicketPrice
+
+> Get current price of ticket, unit in 'E'
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+Sample data of param1:
+
+```
+{
+	"code":Number,                   // error code
+	"data":String                    // current price of ticket (E)
+}
+```
+
+###### Example
+
+````js
+const data = ticketContract.GetTicketPrice.getPlatONData()
+
+const result = web3.eth.call({
+    from: wallet.address,
+    to: ticketContract.address,
+    data: data,
+});
+
+const result1 = ticketContract.decodePlatONCall(result);
+console.log('getTicketPrice result:', result1.data);
+````
+
+##### GetPoolRemainder
+
+> Get the number of remaining tickets
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+Sample data of param1:
+```
+{
+	"code":Number,                   // error code
+	"data":String                    // remaining amount
+}
+```
+
+###### Example
+
+````js
+console.log('getPoolRemainder')
+const data = ticketContract.GetPoolRemainder.getPlatONData()
+
+const result = web3.eth.call({
+    from: wallet.address,
+    to: ticketContract.address,
+    data: data,
+});
+
+const result1 = ticketContract.decodePlatONCall(result);
+console.log('getPoolRemainder result:', result1.data);
+````
+
+##### VoteTicket
+
+> Purchase tickets to vote for (existing) candidate. The transaction value should be quantity * price
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|count|Number|required|number of tickets to purchase|
+|price|Number|required|price of ticet(unit `E`)|
+|nodeId|String|required|node id, hexadecimal, starting with `0x`|
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+Sample data of param1:
+
+```
+{
+	"Ret":boolean,                         // Return value, true means success, false means fail
+	"ErrMsg":string                        // Error messages in case of fail
+	"Data":string                          // Data return（number of successful votes  + ":" + deal price）
+}
+```
+
+###### Example
+
+````js
+const privateKey = '099cad12189e848f70570196df434717c1ccc04f421da6ab651f38297a065cb7';
+
+const
+    count = 1,// number of ticket
+    price = 100000000000000000000,// current ticket price which can be retrieved by call GetTicketPrice 
+    nodeId = '0x0abaf3219f454f3d07b6cbcf3c10b6b4ccf605202868e2043b6f5db12b745df0604ef01ef4cb523adc6d9e14b83a76dd09f862e3fe77205d8ac83df707969b47'// node ID
+
+const data = ticketContract.VoteTicket.getPlatONData(count, price, nodeId, {
+    transactionType: 1000// transaction type
+});
+
+const value = price * count
+
+const hash = web3.eth.sendRawTransaction(
+    sign(privateKey, getParams(data, value))
+);
+
+getTransactionReceipt(hash, (code, data) => {
+    let res = ticketContract.decodePlatONLog(data.logs[0]);
+    if (res.length && res[0]) {
+        res = JSON.parse(res[0]);
+        if (res.ErrMsg == 'success') {
+            if (res.Data) {
+                const arr = res.Data.split(':')
+                console.log(`number of successful votes:${arr[0]},deal price:${arr[1]}`)
+            }
+        } else {
+            console.warn(`failed to purchase tickets`);
+        }
+    } else {
+        console.warn(`failed to purchase tickets`);
+    }
+});
+````
+
+##### GetCandidateTicketCount
+
+> Get patch valid ticket count of candidates
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|nodeIds|String|required| Hexadecimal node ID of the candidate, starting with `0x`. Multiple node ID cancatenating with ':'|
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String|string in json format|
+
+Sample data of param1:
+```
+{
+	"code":0,                              // error code
+	"data":"{"nodeId1":10,"nodeId2":1}"    // number of tickets
+}
+```
+
+###### Example
+
+````js
+const nodeIds = '0x0abaf3219f454f3d07b6cbcf3c10b6b4ccf605202868e2043b6f5db12b745df0604ef01ef4cb523adc6d9e14b83a76dd09f862e3fe77205d8ac83df707969b47:0xe0b6af6cc2e10b2b74540b87098083d48343805a3ff09c655eab0b20dba2b2851aea79ee75b6e150bde58ead0be03ee4a8619ea1dfaf529cbb8ff55ca23531ed'// Multiple node ID cancatenating with ':'
+
+const data = ticketContract.GetCandidateTicketCount.getPlatONData(nodeIds)
+
+const result = web3.eth.call({
+    from: wallet.address,
+    to: ticketContract.address,
+    data: data,
+});
+
+const result1 = ticketContract.decodePlatONCall(result);
+console.log('GetCandidateTicketCount result:', result1);
+````
+
+##### GetTicketCountByTxHash
+
+> Get patch ticket count by transaction hashs
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|txHashs|String|required| Hexadecimal list of transaction hash numbers, starting with `0x`. Multiple transaction hashs cancatenating with ':'|
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+Sample data of param1:
+```
+{
+	"code":0,                              // error code
+	"data":"{"txHash1":10,"txHash2":1}"    // number of valid tickets
+}
+```
+
+###### Example
+
+````js
+const txHashs = '0x1e869a12c54dbab0889ab3588425bf1908956ec5fd757a457a8d4f16a2bd7b94:0x85414b7d2dfc20ee10318c2c5e39fbca4533bc26bac9b488f7fdcd447b5eace8'// Multiple transaction hashs cancatenating with ':'
+
+const data = ticketContract.GetTicketCountByTxHash.getPlatONData(txHashs)
+
+const result = web3.eth.call({
+    from: wallet.address,
+    to: ticketContract.address,
+    data: data,
+});
+
+const result1 = ticketContract.decodePlatONCall(result);
+console.log('GetTicketCountByTxHash result:', result1);
+````
+
+##### GetCandidateEpoch
+
+> Get epoch of a specific candidate
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|nodeId|String|required| Hexadecimal node ID of the candidate, starting with `0x`|
+
+**Return value or Callback**
+
+| Parameter |Type|Description|
+| :------: |:------: |:------: |
+|param1|String| data array of log parsing|
+
+Sample data of param1:
+```
+{
+	"code":0,                        // error code
+	"data":String                    // error msg, when error return
+}
+```
+
+###### Example
+
+````js
+const nodeId = '0x4f6c8fd10bfb512793f81a3594120c76b6991d3d06c0cc652035cbfae3fcd7cdc3f3d7a82021dfdb9ea99f014755ec1a640d832a0362b47be688bb31d504f62d'// node ID of candidate
+
+const data = ticketContract.GetCandidateEpoch.getPlatONData(nodeId)
+
+const result = web3.eth.call({
+    from: wallet.address,
+    to: ticketContract.address,
+    data: data,
+});
+
+const result1 = ticketContract.decodePlatONCall(result);
+console.log('getCandidateEpoch result:', result1);
+````
+
+### web3
+
+----
+
+### web3 eth related (standard SON RPC)
+- For api usage please refer to [web3j github](https://github.com/ethereum/wiki/wiki/JavaScript-API)
+
+### Newly added interfaces
+
+#### contract
+
+##### interface declaration
+
+    web3.eth.contract(abi)
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|abi|Array|required|Application binary object|
+
+**Return value or Callback**
+
+`Object` - contract object
+
+##### Example
+
+````js
+const abi=[
+    {
+        "name": "initWallet",
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "string"
+            },{
+                "name": "required",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [],
+        "constant": "false",
+        "type": "function"
+    },{
+        "name": "submitTransaction",
+        "inputs": [
+            {
+                "name": "destination",
+                "type": "string"
+            },{
+                "name": "from",
+                "type": "string"
+            },{
+                "name": "value",
+                "type": "uint64"
+            },{
+                "name": "data",
+                "type": "string"
+            },{
+                "name": "len",
+                "type": "uint64"
+            },{
+                "name": "time",
+                "type": "uint64"
+            },{
+                "name": "fee",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint64"
+            }
+        ],
+        "constant": "false",
+        "type": "function"
+    },{
+        "name": "confirmTransaction",
+        "inputs": [
+            {
+                "name": "transactionId",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [],
+        "constant": "false",
+        "type": "function"
+    },{
+        "name": "revokeConfirmation",
+        "inputs": [
+            {
+                "name": "transactionId",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [],
+        "constant": "false",
+        "type": "function"
+    },{
+        "name": "executeTransaction",
+        "inputs": [
+            {
+                "name": "transactionId",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [],
+        "constant": "false",
+        "type": "function"
+    },{
+        "name": "isConfirmed",
+        "inputs": [
+            {
+                "name": "transactionId",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "int32"
+            }
+        ],
+        "constant": "true",
+        "type": "function"
+    },{
+        "name": "getRequired",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint64"
+            }
+        ],
+        "constant": "true",
+        "type": "function"
+    },{
+        "name": "getConfirmationCount",
+        "inputs": [
+            {
+                "name": "transactionId",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint64"
+            }
+        ],
+        "constant": "true",
+        "type": "function"
+    },{
+        "name": "getTransactionCount",
+        "inputs": [
+            {
+                "name": "pending",
+                "type": "int32"
+            },{
+                "name": "executed",
+                "type": "int32"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint64"
+            }
+        ],
+        "constant": "true",
+        "type": "function"
+    },{
+        "name": "getTransactionList",
+        "inputs": [
+            {
+                "name": "from",
+                "type": "uint64"
+            },{
+                "name": "to",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "constant": "true",
+        "type": "function"
+    },{
+        "name": "getOwners",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "constant": "true",
+        "type": "function"
+    },{
+        "name": "getConfirmations",
+        "inputs": [
+            {
+                "name": "transactionId",
+                "type": "uint64"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "constant": "true",
+        "type": "function"
+    },
+    {
+        "name": "getTransactionIds",
+        "inputs": [
+            {
+                "name": "from",
+                "type": "uint64"
+            },{
+                "name": "to",
+                "type": "uint64"
+            },{
+                "name": "pending",
+                "type": "int32"
+            },{
+                "name": "executed",
+                "type": "int32"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "constant": "true",
+        "type": "function"
+    }
+]
+
+const MyContract = web3.eth.contract(abi);
+
+const myContractInstance = MyContract.at('0x91b0ac240b62de2f0152cac322c6c5eafe730a84');
+
+````
+
+````js
+var MyContract = web3.eth.contract(abi);
+
+// instantiate by address
+var contractInstance = MyContract.at([address]);
+
+// deploy new contract
+var contractInstance = MyContract.new([contructorParam1] [, contructorParam2], {data: '0x12345...', from: myAccount, gas: 1000000});
+
+// Get the data to deploy the contract manually
+var contractData = MyContract.new.getData([contructorParam1] [, contructorParam2], {data: '0x12345...'});
+// contractData = '0x12345643213456000000000023434234'
+````
+
+#### contract.getPlatONData
+
+##### interface declaration
+
+    MyContract.myMethod.getPlatONData(param1 [, param2, ...])
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|param1/param2/...|String/Number|required| 0 or more functions as parameters|
+
+**Return value or Callback**
+`Object` - a contract object
+
+##### Example
+
+to be added.
+
+#### contract.decodePlatONCall
+
+> Return the result by analyzing call with the output's type under fnName in abi
+
+##### interface declaration
+
+    MyContract.decodePlatONCall( callResult, [fnName])
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|callResult|String|required|application binary interface object|
+|fnName|String|optional|if not set, callResult will use string to analyze callResult. If set, it will find that the name in abi equals to outputs under fnName, and analyze based on outputs.type.|
+
+
+**Return value or Callback**
+
+`code` - 0  indicate success
+`data` - data after analyze
+
+##### Example
+
+````js
+    MyContract.decodePlatONCall( '0x',)
+````
+
+#### contract.decodePlatONLog
+
+> Analyze a part of logs in transaction receipt
+
+##### interface declaration
+
+    MyContract.decodePlatONLog(log)
+
+###### Parameter description
+
+| Parameter |Type|Attribute|Description|
+| :------: |:------: |:------: | :------: |
+|log||Object|a part of logs in transaction receipt|
+
+**Return value or Callback**
+`Array` - analyzed log array
+
+##### Example
+
+````js
+const data=web3.eth.getTransactionReceipt('0xb1335d4db521ddc0b390448f919e5b5af1258b29e7ab4e0d68b0ef315af0cf5f');
+
+let res = myContractInstance.decodePlatONLog(data.logs[0]);
+````
+
+- End -
 

@@ -1227,8 +1227,8 @@ console.log('GetTicketCountByTxHash result:', result1);
 param1描述
 ```
 {
-	"code":0,                          //错误码
-	"data":":string                    //错误信息，失败时存在
+	"code":0,                        //错误码
+	"data":String                    //错误信息，失败时存在
 }
 ```
 

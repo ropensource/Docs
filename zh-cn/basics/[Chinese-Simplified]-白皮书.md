@@ -26,4 +26,4 @@ PlatON 是一次根植于基本哲学理念的践行，从技术层面展开为�
 
 基于我们的信念与积累，在历经了两年之久的酝酿与反复验证之后正式推出 PlatON，我们将根据路线图逐一实现和打磨每一个细节。PlatON 是一次对于未来计算架构的展望与实践，是一次对于区块链技术和计算复杂性领域的致敬与超越，致力于为下一个世代的分布式密码经济体提供共享的、运营商级的服务，更是对人类全数字化时代公共基础设施治理服务的全面阐释，以此拥抱扑面而来的新时代。 
 
-本文聚焦于 PlatON 在第一个历史阶段的技术架构、网络架构、计算框架等，给出了相 关服务和应用的实现。详细内容请参考[完整白皮书](https://www.platon.network/static/pdf/zh/PlatON_A%20High-Efficiency%20Trustless%20Computing%20Network_Whitepaper_ZH.pdf)。
+本文聚焦于 PlatON 在第一个历史阶段的技术架构、网络架构、计算框架等，给出了相 关服务和应用的实现。详细内容请参考[完整白皮书](https://www.platon.network/static-new/pdf/zh/PlatON_A_High-Efficiency_Trustless_Computing_Network_Whitepaper_ZH.pdf)。

@@ -1,4 +1,4 @@
-**[PlatScan](https://platscan.platon.network/)**是PlatON Network区块链资源管理与分析平台，提供了PlatON Network区块链（及其测试网）数据查询、浏览、分析的服务，您可以查询地址，区块，交易，验证节点，治理提案的信息以及在PlatON Network上进行的其他活动。
+**[PlatScan](https://platscan.test.platon.network/)**是PlatON Network区块链资源管理与分析平台，提供了PlatON Network区块链（及其测试网）数据查询、浏览、分析的服务，您可以查询地址，区块，交易，验证节点，治理提案的信息以及在PlatON Network上进行的其他活动。
 
 **请注意，PlatScan不是钱包服务提供商。我们不会存储您的私钥，也无法控制PlatON Network上发生的交易。**
 

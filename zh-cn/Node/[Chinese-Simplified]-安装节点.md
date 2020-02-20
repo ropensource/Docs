@@ -118,6 +118,8 @@ go run build/ci.go install ./cmd/ctool
 
 ## Ubuntu下PPA源安装
 
+目前只支持Ubuntu 18.04.1以上版本的PPA，请选择正确的Ubuntu版本。
+
 添加PPA：
 
 ```bash

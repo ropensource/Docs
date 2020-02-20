@@ -21,7 +21,7 @@ Ubuntu编译环境要求：
 ##### 获取源码
 
 ```
-git clone  -b develop https://github.com/PlatONnetwork/PlatON-Go.git --recursive 
+git clone  -b release-0.8.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive 
 ```
 
 ##### 编译

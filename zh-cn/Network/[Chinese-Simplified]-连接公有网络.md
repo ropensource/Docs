@@ -27,7 +27,7 @@ PlatON目前有2个公有网络，一个是还未正式上线的、独立运行�
 ```
 ./platon --identity platon --datadir ./data --port 16789 --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/nodeblskey --verbosity 3 --rpcaddr 0.0.0.0  --syncmode "full"
 ```
-如果要启动归档节点，请执行以下命令：
+如果要启动归档节点加入贝莱世界，请执行以下命令：
 ```
 ./platon --identity platon --datadir ./data --port 16789 --db.nogc --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/nodeblskey --verbosity 3 --rpcaddr 0.0.0.0  --syncmode "full"
 ```

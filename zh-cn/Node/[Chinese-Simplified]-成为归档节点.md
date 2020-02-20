@@ -27,13 +27,9 @@ Error: missing trie node f7e7f0f53eb6dc23d18f8285553c916fdd410e484b611d53883e2a0
 
 
 ## 如何成为归档节点
-节点在启动时需要在启动命令中加入参数`--db.nogc`,加入主网络的启动命令参考如下:
 
-（如果加入的是贝莱世界，命令行需要加上--testnet参数）
+成为归档节点的步骤跟验证节点一样，请参考[成为验证节点](/zh-cn/Node/[Chinese-Simplified]-成为验证节点.md)。
 
-```
-platon --identity platon  --datadir ~/platon-node/data --port 16789 --rpc --rpcaddr 127.0.0.1 --rpcport 6789 --rpcapi platon,debug,personal,admin,net,web3,txpool --maxpeers 25 --verbosity 3 --nodekey ~/platon-node/data/nodekey --cbft.blskey ~/platon-node/data/blskey  --db.nogc
-```
 > [!NOTE|style:flat|label:注意]
 >
-> ~/platon-node为节点默认的数据目录
+> 启动节点加入网络时在命令行中加入--db.nogc

@@ -12,7 +12,7 @@
 
 Ubuntu编译环境要求：
 
-- 系统版本：`Ubuntu 16.04.1 及以上`
+- 系统版本：`Ubuntu 18.04.1 及以上`
 - git：`2.19.1及以上`
 - 编译器：`gcc(4.9.2+)`、`g++(5.0+)`
 - go语言开发包：`go(1.7+)`
@@ -118,48 +118,22 @@ go run build/ci.go install ./cmd/ctool
 
 ## Ubuntu下PPA源安装
 
-添加`PPA`源，然后安装`PlatON`客户端，注意，在ubuntu18.04和ubuntu16.04上的安装方式有些差别：
-
-- Ubuntu16.04
-
 添加PPA：
 
 ```bash
-sudo add-apt-repository ppa:platonnetwork/platon;
-sudo apt-get update
-```
-
-安装PlatON：
-
-```shell
-sudo apt-get install platon
-```
-
-- Ubuntu18.04
-
-添加PPA：
-
-```bash
-sudo add-apt-repository ppa:platonnetwork/platon;
-cd /etc/apt/sources.list.d
-```
-
-将文件中bionic改为xenial：
-
-```
-sudo vi platonnetwork-ubuntu-platon-bionic.list
+sudo add-apt-repository ppa:platonnetwork/platon
 ```
 
 执行更新：
 
-```
+```bash
 sudo apt-get update
 ```
 
 安装PlatON：
 
-```
-sudo apt-get install platon
+```bash
+sudo apt-get install platon0.8.0
 ```
 
 安装完成后，可执行程序将安装到： `/usr/bin/`。

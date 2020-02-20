@@ -1,7 +1,7 @@
 
 ## 钱包文件
 
-如果节点参与共识，首先需要有一个可以存收益的账户，我们可以用节点客户端文件生成一个钱包文件，以下以在'data'目录下的keystore文件夹下生成钱包为例：
+可以用节点客户端文件生成一个钱包文件，以下以在'data'目录下的keystore文件夹下生成钱包为例，可以在节点工作目录（如`~/platon-node`）执行以下命令：
 
 - Windows
 
@@ -46,6 +46,7 @@ Address: {550ae58b051a8e942f858ef22019c1c622292f7e}
 
 每个节点在网络中都有一个唯一的身份标识以便彼此区分，这个身份标识是一个公私钥对，可以在节点工作目录（如`~/platon-node`）下通过以下命令生成：
 ```
+mkdir -p data
 keytool genkeypair | tee >(grep "PrivateKey" | awk '{print $2}' > ./data/nodekey) >(grep "PublicKey" | awk '{print $3}' > ./data/nodeid)
 ```
 
@@ -70,6 +71,7 @@ PublicKey :  064a22d0bbf537125f1beeab0efcf77b0a62680d44f5b66a2d12574b159601e662e
 PlatON节点除了需要节点公私钥外还需要一种被称为BLS公私钥的密钥对，这个密钥对在共识协议中将被使用，密钥对可以在节点工作目录（如`~/platon-node`）下通过以下命令生成：
 
 ```
+mkdir -p data
 keytool genblskeypair | tee >(grep "PrivateKey" | awk '{print $2}' > ./data/blskey) >(grep "PublicKey" | awk '{print $3}' > ./data/blspub)
 ```
 

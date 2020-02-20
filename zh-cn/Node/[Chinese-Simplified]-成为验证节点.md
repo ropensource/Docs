@@ -121,7 +121,7 @@ MTool对质押等交易提供两种签名方式：在线签名和离线签名。
 
 > [!NOTE|style:flat|label:注意]
 >
-> 离线交易的签名须离线完成，操作流程参考[文档](zh-cn/Tool/[Chinese-Simplified]-离线MTool使用手册#基本操作流程)。
+> 离线交易的签名须离线完成，操作流程参考[离线MTool使用手册](zh-cn/Tool/[Chinese-Simplified]-离线MTool使用手册#基本操作流程)。
 > 利用节点工具 MTool 执行节点质押与委托等操作，对于有能力的开发者，可以在 Java SDK 和 Javascript SDK 基础上面开发自己的节点工具，SDK请参考文档。
 > -  [Java-SDK](zh-cn/Development/[Chinese-Simplified]-Java-SDK.md)
 > - [JavaScript-API](zh-cn/Development/[Chinese-Simplified]-JS-SDK.md)

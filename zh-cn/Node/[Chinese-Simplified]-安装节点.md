@@ -6,7 +6,7 @@
 - PPA方式安装
   - [Ubuntu安装](#Ubuntu下PPA源安装)
 
-当节点安装完成后，需要启动节点加入网络，请参考[网络章节](/zh-cn/Network/[Chinese-Simplified]-连接公有网络)。需要成为验证节点，请参考成为[成为验证节点章节](/zh-cn/Network/[Chinese-Simplified]-成为验证节点.md)。
+当节点安装完成后，需要启动节点加入网络，请参考[网络章节](/zh-cn/Network/[Chinese-Simplified]-连接公有网络)。需要成为验证节点，请参考成为[成为验证节点章节](/zh-cn/Node/[Chinese-Simplified]-成为验证节点.md)。
 
 ## Ubuntu源码编译安装
 

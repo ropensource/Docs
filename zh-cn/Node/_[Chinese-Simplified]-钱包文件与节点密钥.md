@@ -46,7 +46,7 @@ Address: {550ae58b051a8e942f858ef22019c1c622292f7e}
 
 每个节点在网络中都有一个唯一的身份标识以便彼此区分，这个身份标识是一个公私钥对，可以在节点工作目录（如`~/platon-node`）下通过以下命令生成：
 ```
-keytool genkeypair | tee >(grep "PrivateKey" | awk '{print $2}' > $node_dir/data/nodekey) >(grep "PublicKey" | awk '{print $3}' > $node_dir/data/nodeid)
+keytool genkeypair | tee >(grep "PrivateKey" | awk '{print $2}' > ./data/nodekey) >(grep "PublicKey" | awk '{print $3}' > ./data/nodeid)
 ```
 
 输出结果如下:
@@ -70,7 +70,7 @@ PublicKey :  064a22d0bbf537125f1beeab0efcf77b0a62680d44f5b66a2d12574b159601e662e
 PlatON节点除了需要节点公私钥外还需要一种被称为BLS公私钥的密钥对，这个密钥对在共识协议中将被使用，密钥对可以在节点工作目录（如`~/platon-node`）下通过以下命令生成：
 
 ```
-keytool genblskeypair | tee >(grep "PrivateKey" | awk '{print $2}' > $node_dir/data/blskey) >(grep "PublicKey" | awk '{print $3}' > $node_dir/data/blspub)
+keytool genblskeypair | tee >(grep "PrivateKey" | awk '{print $2}' > ./data/blskey) >(grep "PublicKey" | awk '{print $3}' > ./data/blspub)
 ```
 
 输出结果:

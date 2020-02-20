@@ -119,9 +119,30 @@ PlatON中，参与验证节点进行出块要创建两个钱包。如果已经�
 
 操作步骤如下：
 
-**step1.** 浏览器复制链接 <https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/opensource/scripts/validator_conf.bat> 或者 <http://47.91.153.183/opensource/scripts/validator_conf.bat> 下载脚本。
+**step1.**  windows键 + x ，点击 Windows PowerShell(管理员)(A)，弹出窗口选择是，调出管理员：powershell 窗口，复制以下2条命令执行。
 
-**step2.** 鼠标右键点击 validator_conf.bat， 选择以管理员身份运行:
+```bash
+$env:chocolateyUseWindowsCompression = 'true'
+Set-ExecutionPolicy -ExecutionPolicy Bypass
+```
+
+提示：
+
+```plain
+执行策略更改
+执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies 帮助主题所述。是否要更改执行策略?
+[Y] 是(Y)  [A] 全是(A)  [N] 否(N)  [L] 全否(L)  [S] 暂停(S)  [?] 帮助 (默认值为“N”):
+```
+
+请输入：y，并按回车键结束。
+
+**step2.** 浏览器复制链接 <https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/opensource/scripts/choco_install.bat> 或者 <http://47.91.153.183/opensource/scripts/choco_install.bat> 下载脚本。
+
+**step3.** 鼠标右键点击 choco_install.bat， 选择以管理员身份运行。
+
+**step4.** 浏览器复制链接 <https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/opensource/scripts/validator_conf.bat> 或者 <http://47.91.153.183/opensource/scripts/validator_conf.bat> 下载脚本。
+
+**step5.** 鼠标右键点击 validator_conf.bat， 选择以管理员身份运行:
 
 > [!NOTE|style:flat|label:注意]
 >

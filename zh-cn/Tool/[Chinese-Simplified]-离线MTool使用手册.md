@@ -275,13 +275,9 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass
 
 请输入：y，并按回车键结束。
 
-**step2.** 浏览器复制链接 <https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/opensource/scripts/choco_install.bat> 或者 <http://47.91.153.183/opensource/scripts/choco_install.bat> 下载脚本。
+**step2.** 浏览器复制链接 <https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/opensource/scripts/validator_conf.bat> 或者 <http://47.91.153.183/opensource/scripts/validator_conf.bat> 下载脚本。
 
-**step3.** 鼠标右键点击 choco_install.bat， 选择以管理员身份运行。
-
-**step4.** 浏览器复制链接 <https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/opensource/scripts/validator_conf.bat> 或者 <http://47.91.153.183/opensource/scripts/validator_conf.bat> 下载脚本。
-
-**step5.** 鼠标右键点击 validator_conf.bat， 选择以管理员身份运行:
+**step3.** 鼠标右键点击 validator_conf.bat， 选择以管理员身份运行:
 
 > [!NOTE|style:flat|label:注意]
 >

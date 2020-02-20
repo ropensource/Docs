@@ -157,13 +157,13 @@ mkdir data0 data1
 
 按照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点密钥)章节生成了2对节点私钥和节点BLS私钥。
 
-分别将2个节点的nodekey和nodeblskey保存到'data0'和'data1'
+分别将2个节点的nodekey和blskey保存到'data0'和'data1'
 
 ```
 echo {node0-nodekey} > ./data0/nodekey 
-echo {node0-nodeblskey} > ./data0/nodeblskey 
+echo {node0-blskey} > ./data0/blskey 
 echo {node1-nodekey} > ./data1/nodekey 
-echo {node1-nodeblskey} > ./data1/nodeblskey 
+echo {node1-blskey} > ./data1/blskey 
 ```
 
 **3.编辑创世文件**
@@ -208,9 +208,9 @@ echo {node1-nodeblskey} > ./data1/nodeblskey
 初始化成功后，分别用nohup方式启动节点0和节点1：
 
 ```
-nohup ./platon --identity "platon" --datadir ./data0 --port 16789 --rpcaddr 0.0.0.0 --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodiscover --nodekey ./data0/nodekey --cbft.blskey ./data0/nodeblskey &
+nohup ./platon --identity "platon" --datadir ./data0 --port 16789 --rpcaddr 0.0.0.0 --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodiscover --nodekey ./data0/nodekey --cbft.blskey ./data0/blskey &
 
-nohup ./platon --identity "platon" --datadir ./data1 --port 16790 --rpcaddr 0.0.0.0 --rpcport 6790 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodiscover --nodekey ./data1/nodekey --cbft.blskey ./data1/nodeblskey &
+nohup ./platon --identity "platon" --datadir ./data1 --port 16790 --rpcaddr 0.0.0.0 --rpcport 6790 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodiscover --nodekey ./data1/nodekey --cbft.blskey ./data1/blskey &
 
 ```
 

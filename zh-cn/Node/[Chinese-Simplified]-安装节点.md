@@ -123,7 +123,7 @@ go run build/ci.go install ./cmd/ctool
 添加PPA：
 
 ```bash
-sudo add-apt-repository ppa:platonnetwork/platon
+sudo add-apt-repository ppa:ppatwo/platon
 ```
 
 执行更新：

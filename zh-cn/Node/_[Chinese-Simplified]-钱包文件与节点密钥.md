@@ -1,4 +1,45 @@
 
+## 钱包文件
+
+如果节点参与共识，首先需要有一个可以存收益的账户，我们可以用节点客户端文件生成一个钱包文件，以下以在'data'目录下的keystore文件夹下生成钱包为例：
+
+- Windows
+
+```
+mkdir data
+platon.exe --datadir .\data account new
+```
+
+在出现如下提示后输入2次口令对钱包文件进行加密
+
+```
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Passphrase:
+Repeat passphrase:
+Address: {550ae58b051a8e942f858ef22019c1c622292f7e}
+```
+
+- Ubuntu
+
+```
+mkdir -p data
+./platon --datadir ./data account new
+```
+
+在出现如下提示后输入2次口令对钱包文件进行加密
+
+```
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Passphrase:
+Repeat passphrase:
+Address: {550ae58b051a8e942f858ef22019c1c622292f7e}
+```
+
+输出结果'Address'即为生成的账户地址。
+> 注意：钱包文件和口令对于生成的该账户地址非常重要，丢失钱包文件或者忘记口令都将导致该账户内的令牌丢失，请对钱包文件做好备份并牢记口令。
+
+说明：以上Windows操作和Ubuntu操作十分类似，Windows下操作除可执行文件多'.ext'外只有路径表达方式不同等细微差别，故后续描述仅以Ubuntu操作为例，对于Windows下的操作不再赘述。
+
 ## 节点密钥
 
 ### 节点公私钥

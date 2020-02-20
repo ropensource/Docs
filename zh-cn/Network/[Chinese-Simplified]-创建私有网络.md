@@ -5,14 +5,14 @@
 `PlatON`支持单节点模式和集群模式运行私有网络， 同样，搭建私有网络前请确保服务器本地具备以下条件：
 
 1. 已经按照[PlatON安装指南](/zh-cn/Node/[Chinese-Simplified]-安装节点.md)安装好PlatON环境。
-2. 已经按照[节点秘钥](/zh-cn/Node/_[Chinese-Simplified]-环境准备.md#节点秘钥)章节在'~/platon-node/data'目录下生成了节点私钥和节点BLS私钥。
+2. 已经按照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点密钥)章节在'~/platon-node/data'目录下生成了节点私钥和节点BLS私钥。
 
 
 ## 单节点
 
 **1.生成创世块配置文件`platon.json`**
 
-在工作目录下创建创世区块文件，拷贝以下内容，修改 `your-node-pubkey` 为[环境准备](/zh-cn/Node/_[Chinese-Simplified]-环境准备.md#节点公私钥)生成的 ***节点公钥*** ，`your-node-blspubkey` 为[环境准备](/zh-cn/Node/_[Chinese-Simplified]-环境准备.md#节点BLS公私钥)生成的 ***节点bls公钥*** ，使本地节点成为共识节点参与共识。修改 `your-account-address` 为[环境准备](/zh-cn/Node/_[Chinese-Simplified]-环境准备.md#钱包文件)生成的 ***Address***。`platon.json`内容如下：
+在工作目录下创建创世区块文件，拷贝以下内容，修改 `your-node-pubkey` 为[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点公私钥)生成的 ***节点公钥*** ，`your-node-blspubkey` 为[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点BLS公私钥)生成的 ***节点bls公钥*** ，使本地节点成为共识节点参与共识。修改 `your-account-address` 为[钱包文件](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#钱包文件)生成的 ***Address***。`platon.json`内容如下：
 
 ```
 {
@@ -153,9 +153,9 @@ mkdir data0 data1
 ```
 
 
-**2.生成秘钥对**
+**2.生成密钥对**
 
-按照[节点秘钥](/zh-cn/Node/_[Chinese-Simplified]-环境准备.md#节点秘钥)章节生成了2对节点私钥和节点BLS私钥。
+按照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点密钥)章节生成了2对节点私钥和节点BLS私钥。
 
 分别将2个节点的nodekey和nodeblskey保存到'data0'和'data1'
 
@@ -173,7 +173,7 @@ echo {node1-nodeblskey} > ./data1/nodeblskey
 将两个节点的节点信息加入 **initialNodes** 数组中，因为我们生成的是两个节点组成的集群环境，所以数组长度为2。
 需要修改`platon.json`文件：
 请将以下文件内容'node0-nodekey'、'node1-nodekey'、'node0-blspubkey'和'node1-blspubkey'分别替换为上一步生成的节点公钥和节点bls公钥。
-'your-account-address'替换为[钱包文件](/zh-cn/Node/_[Chinese-Simplified]-环境准备.md#钱包文件)章节生成的钱包地址。
+'your-account-address'替换为[钱包文件](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#钱包文件)章节生成的钱包地址。
 
 
 ```

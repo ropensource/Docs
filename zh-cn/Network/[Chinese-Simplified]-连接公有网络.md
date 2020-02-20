@@ -22,10 +22,14 @@ PlatON目前有2个公有网络，一个是还未正式上线的、独立运行�
 
 任何人、任何组织都可以加入PlatON测试网络贝莱世界。
 
-执行以下命令即可加入贝莱世界：
+执行以下命令即可启动验证节点加入贝莱世界：
 
 ```
 ./platon --identity platon --datadir ./data --port 16789 --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/nodeblskey --verbosity 3 --rpcaddr 0.0.0.0  --syncmode "full"
+```
+如果要启动归档节点，请执行以下命令：
+```
+./platon --identity platon --datadir ./data --port 16789 --db.nogc --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/nodeblskey --verbosity 3 --rpcaddr 0.0.0.0  --syncmode "full"
 ```
 
 ***提示：***

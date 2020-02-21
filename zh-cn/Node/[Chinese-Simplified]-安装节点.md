@@ -101,6 +101,7 @@ cd PlatON-Go
 ```
 ./build/build_deps.sh
 ```
+由于编译依赖bls库，需要把PlatON-Go\crypto\bls\bls_win\lib配置到系统的path环境变量里面。
 
 在源码目录`PlatON-Go`下执行以下编译命令可生成`platon`、`keytool`、`ctool`可执行文件，如下：
 

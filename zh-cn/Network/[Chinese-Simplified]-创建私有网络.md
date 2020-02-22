@@ -4,7 +4,7 @@
 
 `PlatON`支持单节点模式和集群模式运行私有网络， 同样，搭建私有网络前请确保服务器本地具备以下条件：
 
-1. 已经按照[PlatON安装指南](/zh-cn/Node/[Chinese-Simplified]-安装节点.md)安装好PlatON环境。
+1. 已经按照[PlatON安装指南](/zh-cn/Node/_[Chinese-Simplified]-安装节点.md)安装好PlatON环境。
 2. 已经按照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点密钥)章节在'~/platon-node/data'目录下生成了节点私钥和节点BLS私钥。
 
 

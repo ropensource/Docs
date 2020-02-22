@@ -8,7 +8,7 @@ PlatON目前有2个公有网络，一个是还未正式上线的、独立运行�
 
 在加入PlatON公有网络前请确保服务器本地具备以下条件：
 
-1. 已经按照[PlatON安装指南](/zh-cn/Node/[Chinese-Simplified]-安装节点.md)安装好PlatON环境或编译好PlatON可执行文件'platon'和'keytool'。
+1. 已经按照[PlatON安装指南](/zh-cn/Node/_[Chinese-Simplified]-安装节点.md)安装好PlatON环境或编译好PlatON可执行文件'platon'和'keytool'。
 2. 已经按照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点密钥)章节在'~/platon-node/data'目录下生成了节点私钥和节点BLS私钥。
 
 

@@ -54,7 +54,7 @@ remote前面符号的说明:
   ( * ）当前作为优先主同步对象的远程节点或服务器
 
 ###  安装节点
-节点服务器须为Ubuntu 18.04，请按照[安装节点](zh-cn/Node/[Chinese-Simplified]-安装节点.md)中Ubuntu的部分进行操作。
+节点服务器须为Ubuntu 18.04，请按照[安装节点](zh-cn/Node/_[Chinese-Simplified]-安装节点.md)中Ubuntu的部分进行操作。
 
 ### 生成节点密钥与共识密钥
 节点在启动时需要节点公私钥与BLS公私钥，BLS公私钥在共识协议中将被使用。

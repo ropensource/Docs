@@ -259,6 +259,8 @@ $mtool-client account balance -a $address --config $MTOOLDIR/validator/validator
 
 ​		如果共识节点部署完成，并且已经同步区块成功，您就可以使用MTool进行质押操作。质押资金申请完成后，确保质押账户余额足够，根据用户情况替换{质押金额}，质押最低门槛为100万LAT。
 
+注意：请保持质押账户里面有足够LATs，以备后续发起节点管理的交易有足够的交易手续费，比如升级提案的投票，解质押等交易。
+
 - 执行命令
 
 ```bash

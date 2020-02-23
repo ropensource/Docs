@@ -29,7 +29,7 @@
 			"period": 20000,
 			"validatorMode": "ppos"
 		},
-		"genesisVersion": 2048
+		"genesisVersion": 2304
 	},
 	"economicModel": {
 		"common": {

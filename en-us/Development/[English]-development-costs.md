@@ -86,7 +86,7 @@ Ethereum
 
 **Sample Code**
 
-[Click to view code](https://github.com/ropensource/Docs/tree/master/en-us/Development/SmartDevelopment.assets/account.sol)
+[Click to view code](https://github.com/PlatONnetwork/Docs/blob/master/zh-cn/Development/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91.assets/account.sol)
 
 
 ByteCode
@@ -119,7 +119,7 @@ Ethereum
 
 **Sample Code**
 
-[Click to view code](https://github.com/ropensource/Docs/tree/master/en-us/Development/SmartDevelopment.assets/token.sol)
+[Click to view code](https://github.com/PlatONnetwork/Docs/blob/master/zh-cn/Development/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91.assets/token.sol)
 
 
 ByteCode

@@ -15,7 +15,7 @@ Gas 主要由两个部分组成：GasLimit(限制)和GasPrice(单价)。其中 `
 
 交易设置的 `GasPrice` 越高，则交易的执行优先级更高，交易成本也会更大。每笔交易在完成后，剩余未使用的Gas都会退回到发送者的地址账户中。有一点要特别注意，如果因为 `GasLimit` 设置过低导致交易执行失败，此时的 Gas 不会被回退到用户地址，用户依然需要为这次失败的交易支付能量成本。因此，无论交易是否执行成功，交易发送者都需要向旷工支付一定的计算费用。
 
-在 `PlatON` 网络中，最高 Gas 的限制为 `4,700,000`，最低为 `22,000`，过低或者过高都会导致交易失败。在部署大型合约或者运行复杂功能时，可以将Gas的限制调高，例如：`1,000,000`。如果是普通转账则设置为最低值即可。具体的值需要根据合约的规模及复杂度进行估算，在合约发布前可以调用接口 `platon_estimateGas` 进行大概估算，避免因不足而导致失败。 [点击查看JSON-RPC参考文档](https://github.com/PlatONnetwork/GalaxyRally/blob/master/technologies/4.SDKs/JSONRPC-SDK.md)
+在 `PlatON` 网络中，最高 Gas 的限制为 `4,700,000`，最低为 `22,000`，过低或者过高都会导致交易失败。在部署大型合约或者运行复杂功能时，可以将Gas的限制调高，例如：`1,000,000`。如果是普通转账则设置为最低值即可。具体的值需要根据合约的规模及复杂度进行估算，在合约发布前可以调用接口 `platon_estimateGas` 进行大概估算，避免因不足而导致失败。 [点击查看JSON-RPC参考文档](https://github.com/PlatONnetwork/Docs/blob/master/en-us/Development/%5BEnglish%5D-JSONRPC-SDK.md)
 
 **LAT 单位转换**
 

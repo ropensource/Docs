@@ -4,7 +4,7 @@
 	- [众筹合约](/zh-cn/Development/[Chinese-Simplified]-众筹合约.md)
 	- [合约开发成本](/zh-cn/Development/[Chinese-Simplified]-合约开发成本.md)
 	- [最佳实践](/zh-cn/Development/[Chinese-Simplified]-最佳实践.md)
-	- [合约安全开发指南](/zh-cn/Development/[Chinese-Simplified]-合约安全开发指南)
+	- [Contract Security Development Guide](/en-us/Development/[English]-Contract-Security-Considerations.md)
 - [SDK](/zh-cn/Development/[Chinese-Simplified]-SDK.md)
 	- [Java SDK开发指南](/zh-cn/Development/[Chinese-Simplified]-Java-SDK.md)
 	- [JS SDK开发指南](/zh-cn/Development/[Chinese-Simplified]-JS-SDK.md)

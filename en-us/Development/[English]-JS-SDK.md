@@ -3393,24 +3393,26 @@ web3.utils.padLeft('Hello', 20, 'x');
 
 ***
 
-## 内置合约调用指南
+## Built-in Contract Call
 
-### 概述
-通过对调用对象 ppos（经济模型相关内置合约） 的 call 或者 send 函数将传进来的参数转换为 rpc 接口 platon_call 或者 platon_sendRawTransaction 调用所需要的参数，然后将交易发送至链上。以及完成 call 与 send 调用入参需要的一些辅助函数。
+### Overview
 
-### 简要使用
-在调用`const web3 = new Web3('http://127.0.0.1:6789');`实例化一个web3的时候，系统会自动在 web3 后面附加一个 ppos 对象。也就是说你可以直接使用web3.ppos 调用 ppos 有的一些方法。但是如果要使用ppos对象发送上链的交易，那么除了在实例化`web3`的时候传进去的 provider，还至少需要发送交易签名需要的私钥以及链id，其中的链id可通过rpc接口`admin_nodeInfo`返回的`'chainId': xxx`获取。
+The `call` or `send` function of ppos (the built-in contract related to the economic model) is used to convert the parameters passed into the parameters required by the rpc interface `platon_call` or `platon_sendRawTransaction` call, and then send the transaction to the node. And some helper functions needed to complete the call and send parameters.
 
-当然，为了满足在能任意实例多个ppos(比如我要实例3个ppos给不同的链上同时发送交易调用)，我还会在web3对象上附上一个PPOS对象(注意全部是大写)。你可以调用`new PPOS(setting)`实例化一个ppos对象。一个调用示例如下：
+### Usage
+
+When you call `const web3 = new Web3('http://127.0.0.1:6789');` to instantiate a web3, the system will automatically append a ppos object after `web3`. In other words, you can use `web3.ppos` to call some methods of` ppos`. But if you want to use the ppos object to send transactions on the chain, in addition to the `provider` passed in when instantiating` web3`, you need to send at least the private key and chain id required for transaction signing, where the chain id can be passed through rpc Get `chainId 'returned by interface` admin_nodeInfo`: xxx`
+
+Of course, in order to satisfy multiple ppos that can be instantiated arbitrarily (for example, I want to instantiate 3 ppos to different chains to send transaction calls at the same time), I will also attach a PPOS object to the web3 object (note all capitalization). You can call `new PPOS (setting)` to instantiate a ppos object. An example call is as follows:
 
 ```JavaScript
 (async () => {
     const Web3 = require('web3');
     const web3 = new Web3('http://192.168.120.164:6789');
-    const ppos = web3.ppos; // 后面例子我都以 ppos 为对象。就不写成 web3.ppos 了。
+    const ppos = web3.ppos; 
 
-    // 更新 ppos 的配置，发送上链交易必须要做这一步
-    // 由于在实例化web3的时候已传入了 provider, 可以不传入provider了。
+    // Update the configuration of ppos, this step must be done to send on-chain transactions.
+    // Since the provider has been passed in when instantiating web3, it is not necessary to pass in the provider.
     ppos.updateSetting({
         privateKey: 'acc73b693b79bbb56f89f63ccc3a0c00bf1b8380111965bfe8ab22e32045600c',
         chainId: 100,
@@ -3418,7 +3420,7 @@ web3.utils.padLeft('Hello', 20, 'x');
 
     let data, reply;
 
-    // 传参以对象形式发送交易： 1000. createStaking() : 发起质押
+    // Passing parameters to send transactions in the form of objects: 1000. createStaking (): initiate a pledge.
     const benefitAddress = '0xe6F2ce1aaF9EBf2fE3fbA8763bABaDf25e3fb5FA';
     const nodeId = '80f1fcee54de74dbf7587450f31c31c0e057bedd4faaa2a10c179d52c900ca01f0fb255a630c49d83b39f970d175c42b12a341a37504be248d76ecf592d32bc0';
     const amount = '10000000000000000000000000000';
@@ -3433,10 +3435,10 @@ web3.utils.padLeft('Hello', 20, 'x');
         website: 'www.platon.network',
         details: 'staking',
         amount: ppos.bigNumBuf(amount),
-        programVersion: undefined, // rpc 获取
-        programVersionSign: undefined, // rpc 获取
+        programVersion: undefined, // rpc get
+        programVersionSign: undefined, // rpc get 
         blsPubKey: ppos.hexStrBuf(blsPubKey),
-        blsProof: undefined, // rpc 获取
+        blsProof: undefined, // rpc get 
     }
     let pv = await ppos.rpc('admin_getProgramVersion');
     let blsProof = await ppos.rpc('admin_getSchnorrNIZKProve');
@@ -3446,7 +3448,7 @@ web3.utils.padLeft('Hello', 20, 'x');
     reply = await ppos.send(data);
     console.log('createStaking params object reply: ', JSON.stringify(reply, null, 2));
 
-    // 传参以数组形式发送交易： 1000. createStaking() : 发起质押
+    // Sending transactions as an array： 1000. createStaking() : Initiate a pledge.
     data = [
         1000,
         0,
@@ -3462,23 +3464,23 @@ web3.utils.padLeft('Hello', 20, 'x');
         ppos.hexStrBuf(blsPubKey),
         ppos.hexStrBuf(blsProof)
     ];
-    // 由于上面已调用过，交易会上链，但是业务会失败
+    //Since it has been called above, the trade fair is on the chain, but the business will fail.
     reply = await ppos.send(data);
     console.log('createStaking params array reply: ', reply);
 
-    // 传参以对象形式调用： 1102. getCandidateList() : 查询所有实时的候选人列表
+    // Passing parameters as objects： 1102. getCandidateList() : Query all real-time candidate lists.
     data = {
         funcType: 1102,
     }
     reply = await ppos.call(data);
     console.log('getCandidateList params object reply: ', reply);
 
-    // 传参以数组形式调用： 1102. getCandidateList() : 查询所有实时的候选人列表
+    //Passing parameters as an array： 1102. getCandidateList() : Query all real-time candidate lists.
     data = [1102];
     reply = await ppos.call(data);
     console.log('getCandidateList params array reply: ', reply);
 
-    // 重新实例化一个ppos1对象出来调用
+    // Re-instantiate a ppos1 object and call it.
     const ppos1 = new web3.PPOS({
         provider: 'http://127.0.0.1:6789',
         privateKey: '9f9b18c72f8e5154a9c59af2a35f73d1bdad37b049387fc6cea2bac89804293b',
@@ -3488,7 +3490,7 @@ web3.utils.padLeft('Hello', 20, 'x');
 })()
 ```
 
-日志信息输出如下。为了节省篇幅，有删减
+The log information is output as follows. In order to save space, there are cuts:
 
 ```
 createStaking params object reply:  {
@@ -3575,16 +3577,18 @@ getCandidateList params array reply:  {
   ErrMsg: 'ok' }
 ```
 
-### API 调用详细说明
+### API Usage
 
-#### `updateSetting(setting)`
+#### updateSetting(setting)
+
 更新 ppos 对象的配置参数。如果你只需要发送call调用，那么只需要传入 provider 即可。如果你在实例化 web3 的时候已经传入了 provider。那么会ppos的provider默认就是你实例化web3传进来的provider。当然你也可以随时更新provider。
 
 如果你要发送send交易，那么除了provider，还必须要传入发送交易所需要的私钥以及链id。当然，发送交易需要设置的gas, gasPrice, retry, interval这四个参数详细请见`async send(params, [other])`说明。
 
 对传入的参数，你可以选择部分更新，比如你对一个ppos对象，发送某个交易时想使用私钥A，那么你在调用`send(params, [other])`之前执行 `ppos.updateSetting({privateKey: youPrivateKeyA})`更新私钥即可。一旦更新之后，将会覆盖当前配置，后面调用发送交易接口，将默认以最后一次更新的配置。
 
-入参说明：
+Parameters:
+
 * setting Object
   * provider String 链接
   * privateKey String 私钥
@@ -3594,9 +3598,13 @@ getCandidateList params array reply:  {
   * retry Number 查询交易收据对象次数。
   * interval Number 查询交易收据对象的间隔，单位为ms。
 
-无出参。
+Returns:
 
-调用示例
+none 
+
+
+Example:
+
 ```JavaScript
 // 同时更新 privateKey，chainId
 ppos.updateSetting({
@@ -3612,40 +3620,49 @@ ppos.updateSetting({
 
 ***
 
-#### `getSetting()`
-查询你配置的参数
+#### getSetting()
 
-无入参
+Querying configured parameters.
 
-出参
-* setting Object
-  * provider String 链接
-  * privateKey String 私钥
-  * chainId String 链id
-  * gas String 燃料最大消耗
-  * gasPrice String 燃料价格
-  * retry Number 查询交易收据对象次数。
-  * interval Number 查询交易收据对象的间隔，单位为ms。
+Parameters:
 
-调用示例
+none
+
+Returns:
+
+* `setting` - `Object`
+  * `provider` - `String`: Network RPC link.
+  * `privateKey` - `String`: private key.
+  * `chainId` - `String`: id of chain.
+  * `gas` - `String`: Maximum limit of gas.
+  * `gasPrice` - `String`: Unit price of Gas.
+  * `retry` - `Number`: Number of retries for query receipt.
+  * `interval` - `Number`: Query the interval of the transaction receipt object, the unit is ms.
+
+Example:
+
 ```JavaScript
 let setting = ppos.getSetting();
 ```
 
 ***
 
-#### `async rpc(method, [params])`
+#### async rpc(method, [params])
+
 发起 rpc 请求。一个辅助函数，因为在调用ppos发送交易的过程中，有些参数需要通过rpc来获取，所以特意封装了一个rpc供调用。注意此接口为async函数，需要加await返回调用结果，否则返回一个Promise对象。
 
-入参说明：
-* method String 方法名
-* params Array 调用rpc接口需要的参数，如果调用此rpc端口不需要参数，则此参数可以省略。
+Parameters:
+
+* `method` - `String`: 方法名
+* `params` - `Array`: 调用rpc接口需要的参数，如果调用此rpc端口不需要参数，则此参数可以省略。
   
 
-出参
-* reply rpc调用返回的结果
+Returns:
 
-调用示例
+* `reply`: rpc调用返回的结果
+
+Example:
+
 ```JavaScript
 // 获取程序版本
 let reply = await ppos.rpc('admin_getProgramVersion'); 
@@ -3659,36 +3676,42 @@ let reply = await ppos.rpc('platon_getBalance', ["0x714de266a0effa39fcaca1442b92
 
 ***
 
-#### `bigNumBuf(intStr)`
+#### bigNumBuf(intStr)
+
 将一个字符串的十进制大整数转为一个RLP编码能接受的buffer对象。一个辅助函数。因为JavaScript的正数范围只能最大表示为2^53，为了RLP能对大整数进行编码，需要将字符串的十进制大整数转换为相应的Buffer。注意，此接口暂时只能对十进制的大整数转为Buffer，如果是十六进制的字符串，您需要先将他转为十进制的字符串。
 
-入参说明：
-* intStr String 字符串十进制大整数。
+Parameters:
+
+* `intStr` - `String`: 字符串十进制大整数。
   
+Returns:
 
-出参
-* buffer Buffer 一个缓存区。
+* `buffer` - `Buffer`: 一个缓存区。
 
-调用示例
+Example:
+
 ```JavaScript
 let buffer = ppos.bigNumBuf('1000000000000000000000000000000000000000000'); 
 ```
 
 ***
 
-#### `hexStrBuf(hexStr)`
+#### hexStrBuf(hexStr)
+
 将一个十六进制的字符串转为一个RLP编码能接受的buffer对象。一个辅助函数。在ppos发送交易的过程中，我们很多参数需要作为bytes传送而不是string，比如 `nodeId 64bytes 被质押的节点Id(也叫候选人的节点Id)`。而写代码时候的nodeId只能以字符串的形式表现。需要将他转为一个 64 bytes 的 Buffer。
 
 注意：如果你传进去的字符串以 0x 或者 0X 开头，系统会默认为你是表示一个十六进制字符串不对开头的这两个字母进行编码。如果你确实要对 0x 或者 0X 编码，那你必须在字符串前面再加前缀 0x。比如，你要对全字符串 0x31c0e0 (4 bytes) 进行编码，那么必须传入 0x0x31c0e0 。
 
-入参说明：
-* hexStr String 一个十六进制的字符串。
+Parameters:
+
+* `hexStr` - `String`: 一个十六进制的字符串。
   
+Returns:
 
-出参
-* buffer Buffer 一个缓存区。
+* `buffer` - `Buffer`: 一个缓存区。
 
-调用示例
+Example:
+
 ```JavaScript
 const nodeId = '80f1fcee54de74dbf7587450f31c31c0e057bedd4faaa2a10c179d52c900ca01f0fb255a630c49d83b39f970d175c42b12a341a37504be248d76ecf592d32bc0';
 let buffer = ppos.hexStrBuf(nodeId); 
@@ -3696,18 +3719,20 @@ let buffer = ppos.hexStrBuf(nodeId);
 
 ***
 
-#### `async call(params)`
+#### async call(params)
+
 发送一个 ppos 的call查询调用。不上链。所以你需要自行区分是否是查询或者是发送交易。入参可以选择对象或者数组。如果你选择传入对象，那么你需要使用规定的字符串key，但是对key要求不做顺序。你可以这样写`{a: 1, b: 'hello'}` 或者 `{b: 'hello', a: 1}`都没问题。
 
 如果你选择以数组作为入参，那么你**必须严格按照入参的顺序依次将参数放到数组里面**。注意，对一些字符串大整数以及需要传入的bytes，请选择上面提供的接口`bigNumBuf(intStr)`跟`hexStrBuf(hexStr)`自行进行转换再传入。
 
 注意此接口为async函数，需要加await返回调用结果，否则返回一个Promise对象。
 
-入参说明：
-* params Object | Array 调用参数。
-  
+Parameters:
 
-出参
+* `params` - `Object|Array`: 调用参数。
+  
+Returns:
+
 * reply Object call调用的返回的结果。注意，我已将将返回的结果转为了Object对象。
   * Code Number 调用返回码，0表示调用结果正常。
   * Data Array | Object | String | Number... 根据调用结果返回相应类型
@@ -3720,7 +3745,8 @@ let buffer = ppos.hexStrBuf(nodeId);
 |funcType|uint16(2bytes)|代表方法类型码(1103)|
 |addr|common.address(20bytes)|委托人的账户地址|
 
-调用示例
+Example:
+
 ```JavaScript
 let params, reply;
 
@@ -3738,7 +3764,8 @@ reply = await ppos.call(params);
 
 ***
 
-#### `async send(params, [other])`
+#### async send(params, [other])
+
 发送一个 ppos 的send发送交易调用。上链。所以你需要自行区分是否是查询或者是发送交易。入参可以选择对象或者数组。传入规则请看上述`async call(params)`调用。
 
 由于是一个交易，将会涉及到调用交易需要的一些参数，比如gas，gasPrice。当交易发送出去之后，为了确认交易是否上链，需要不断的通过交易哈希去轮询链上的结果。这就有个轮询次数 retry 与每次轮询之间的间隔 interval。
@@ -3747,7 +3774,8 @@ reply = await ppos.call(params);
 
 注意此接口为async函数，需要加await返回调用结果，否则返回一个Promise对象。
 
-入参说明：
+Parameters:
+
 * params Object|Array 调用参数。
 * other Object 其他参数
   * gas String 燃油限制，默认 '0x76c0000'。
@@ -3755,21 +3783,22 @@ reply = await ppos.call(params);
   * retry Number 查询交易收据对象次数，默认 600 次。
   * interval Number 查询交易收据对象的间隔，单位为ms。默认 100 ms。
 
-出参
-* reply Object 调用成功！send调用方法返回指定交易的收据对象
-  * status - Boolean: 成功的交易返回true，如果EVM回滚了该交易则返回false
-  * blockHash 32 Bytes - String: 交易所在块的哈希值
-  * blockNumber - Number: 交易所在块的编号
-  * transactionHash 32 Bytes - String: 交易的哈希值
-  * transactionIndex - Number: 交易在块中的索引位置
-  * from - String: 交易发送方的地址
-  * to - String: 交易接收方的地址，对于创建合约的交易，该值为null
-  * contractAddress - String: 对于创建合约的交易，该值为创建的合约地址，否则为null
-  * cumulativeGasUsed - Number: 该交易执行时所在块的gas累计总用量
-  * gasUsed- Number: 该交易的gas总量
-  * logs - Array: 该交易产生的日志对象数组
+Returns:
 
-* errMsg String 调用失败！如果发送交易返回之后没有回执，则返回错误信息`no hash`。如果发送交易之后有回执，但是在规定的时间内没有查到收据对象，则返回 `getTransactionReceipt txHash ${hash} interval ${interval}ms by ${retry} retry failed`
+1. `reply` - `Object`: 调用成功！send调用方法返回指定交易的收据对象
+	* `status` - `Boolean`: 成功的交易返回true，如果EVM回滚了该交易则返回false
+	* `blockHash` 32 Bytes - `String`: 交易所在块的哈希值
+	* `blockNumber` - `Number`: 交易所在块的编号
+	* `transactionHash` 32 Bytes - `String`: 交易的哈希值
+	* `transactionIndex` - `Number`: 交易在块中的索引位置
+	* `from` - `String`: 交易发送方的地址
+	* `to` - `String`: 交易接收方的地址，对于创建合约的交易，该值为null
+	* `contractAddress` - `String`: 对于创建合约的交易，该值为创建的合约地址，否则为null
+	* `cumulativeGasUsed` - `Number`: 该交易执行时所在块的gas累计总用量
+	* `gasUsed` - `Number`: 该交易的gas总量
+	* `logs` - `Array`: 该交易产生的日志对象数组
+
+2. `errMsg` - `String`: 调用失败！如果发送交易返回之后没有回执，则返回错误信息`no hash`。如果发送交易之后有回执，但是在规定的时间内没有查到收据对象，则返回 `getTransactionReceipt txHash ${hash} interval ${interval}ms by ${retry} retry failed`
 
 以调用 `发起委托`这个接口，入参顺序从上到下，入参如下所示：
 
@@ -3780,8 +3809,8 @@ reply = await ppos.call(params);
 |nodeId|64bytes|被质押的节点的NodeId|
 |amount|big.Int(bytes)|委托的金额(按照最小单位算，1LAT = 10^18 von)|
 
+Example:
 
-调用示例
 ```JavaScript
 const nodeId = "f71e1bc638456363a66c4769284290ef3ccff03aba4a22fb60ffaed60b77f614bfd173532c3575abe254c366df6f4d6248b929cb9398aaac00cbcc959f7b2b7c";
 let params, others, reply;
@@ -3808,12 +3837,11 @@ params = [1004, 0, ppos.hexStrBuf(nodeId), ppos.bigNumBuf("100000000000000000000
 reply = await ppos.send(params, other);
 ```
 
-### 内置合约入参详细说明
+### 质押模块
 
-#### 质押
+#### 发起质押
 
-* 发起质押，send 发送交易。
-
+send发送交易
 
 |参数|类型|说明|
 |---|---|---|
@@ -3831,7 +3859,9 @@ reply = await ppos.send(params, other);
 |blsPubKey|96bytes|bls的公钥|
 |blsProof|64bytes|bls的证明,通过拉取证明接口获取|
 
-* 修改质押信息，send 发送交易。
+#### 修改质押信息
+
+send 发送交易。
 
 |参数|类型|说明|
 |---|---|---|
@@ -3844,9 +3874,11 @@ reply = await ppos.send(params, other);
 |details|string|节点的描述(有长度限制，表示该节点的描述)|
 
 
-* 增持质押，send 发送交易。
+#### 增持质押
 
-入参：
+send 发送交易。
+
+Parameters:
 
 |参数|类型|说明|
 |---|---|---|
@@ -3856,14 +3888,18 @@ reply = await ppos.send(params, other);
 |amount|*big.Int(bytes)|增持的von|
 
 
-* 撤销质押(一次性发起全部撤销，多次到账)，send 发送交易。
+#### 撤销质押
+
+(一次性发起全部撤销，多次到账)，send 发送交易。
 
 |参数|类型|说明|
 |---|---|---|
 |funcType|uint16(2bytes)|代表方法类型码(1003)|
 |nodeId|64bytes|被质押的节点的NodeId|
 
-* 发起委托，send 发送交易。
+#### 发起委托
+
+send 发送交易。
 
 |参数|类型|说明|
 |---|---|---|
@@ -3872,7 +3908,9 @@ reply = await ppos.send(params, other);
 |nodeId|64bytes|被质押的节点的NodeId|
 |amount|*big.Int(bytes)|委托的金额(按照最小单位算，1LAT = 10**18 von)|
 
-* 减持/撤销委托(全部减持就是撤销)，send 发送交易。
+#### 减持/撤销委托
+
+(全部减持就是撤销)，send 发送交易。
 
 |参数|类型|说明|
 |---|---|---|
@@ -3881,9 +3919,11 @@ reply = await ppos.send(params, other);
 |nodeId|64bytes|被质押的节点的NodeId|
 |amount|*big.Int(bytes)|减持委托的金额(按照最小单位算，1LAT = 10**18 von)|
 
-* 查询当前结算周期的验证人队列，call 查询
+#### 查询当前结算周期的验证人队列
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
@@ -3899,7 +3939,9 @@ reply = await ppos.send(params, other);
 
 > 注：以下查询接口（platon_call调用的接口）如无特殊声明，返回参数都按照上述格式返回
 
-返参： 列表
+Returns: 
+
+List
 
 |名称|类型|说明|
 |---|---|---|
@@ -3916,15 +3958,17 @@ reply = await ppos.send(params, other);
 |Details|string|节点的描述(有长度限制，表示该节点的描述)|
 |ValidatorTerm|uint32(4bytes)|验证人的任期(在结算周期的101个验证人快照中永远是0，只有在共识轮的验证人时才会被有值，刚被选出来时也是0，继续留任时则+1)|
 
-* 查询当前共识周期的验证人列表，call 查询
+#### 查询当前共识周期的验证人列表
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
 |funcType|uint16(2bytes)|代表方法类型码(1101)|
 
-返参： 列表
+Returns: List
 
 |名称|类型|说明|
 |---|---|---|
@@ -3941,15 +3985,17 @@ reply = await ppos.send(params, other);
 |Details|string|节点的描述(有长度限制，表示该节点的描述)|
 |ValidatorTerm|uint32(4bytes)|验证人的任期(在结算周期的101个验证人快照中永远是0，只有在共识轮的验证人时才会被有值，刚被选出来时也是0，继续留任时则+1)|
 
-* 查询所有实时的候选人列表，call 查询
+#### 查询所有实时的候选人列表
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
 |funcType|uint16(2bytes)|代表方法类型码(1102)|
 
-返参： 列表
+Returns:List
 
 |名称|类型|说明|
 |---|---|---|
@@ -3971,16 +4017,18 @@ reply = await ppos.send(params, other);
 |Website|string|节点的第三方主页(有长度限制，表示该节点的主页)|
 |Details|string|节点的描述(有长度限制，表示该节点的描述)|
 
-* 查询当前账户地址所委托的节点的NodeID和质押Id，call 查询
+#### 查询当前账户地址所委托的节点的NodeID和质押Id
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
 |funcType|uint16(2bytes)|代表方法类型码(1103)|
 |addr|common.address(20bytes)|委托人的账户地址|
 
-返参： 列表
+Returns: List
 
 |名称|类型|说明|
 |---|---|---|
@@ -3989,9 +4037,11 @@ reply = await ppos.send(params, other);
 |StakingBlockNum|uint64(8bytes)|发起质押时的区块高度|
 
 
-* 查询当前单个委托信息，call 查询
+#### 查询当前单个委托信息
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
@@ -4000,7 +4050,7 @@ reply = await ppos.send(params, other);
 |delAddr|20bytes|委托人账户地址|
 |nodeId|64bytes|验证人的节点Id|
 
-返参： 列表
+Returns: List
 
 |名称|类型|说明|
 |---|---|---|
@@ -4014,16 +4064,18 @@ reply = await ppos.send(params, other);
 |RestrictingPlanHes|string(0x十六进制字符串)|发起委托账户的锁仓金额的犹豫期委托的von|
 |Reduction|string(0x十六进制字符串)|处于撤销计划中的von|
 
-* 查询当前节点的质押信息，call 查询
+#### 查询当前节点的质押信息
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
 |funcType|uint16|代表方法类型码(1105)|
 |nodeId|64bytes|验证人的节点Id|
 
-返参： 列表
+Returns: List
 
 |名称|类型|说明|
 |---|---|---|
@@ -4047,9 +4099,13 @@ reply = await ppos.send(params, other);
 
 
 
-#### 治理
+### 治理模块
 
-* 提交文本提案，send 发送交易。
+#### 提交文本提案
+
+send 发送交易。
+
+Parameters:
 
 |参数|类型|说明|
 |---|---|---|
@@ -4057,7 +4113,11 @@ reply = await ppos.send(params, other);
 |verifier|discover.NodeID(64bytes)|提交提案的验证人|
 |pIDID|string(uint64)|PIPID|
 
-* 提交升级提案，send 发送交易。
+#### 提交升级提案
+
+send 发送交易。
+
+Parameters:
 
 |参数|类型|说明|
 |---|---|---|
@@ -4068,7 +4128,11 @@ reply = await ppos.send(params, other);
 |endVotingRounds|uint64|投票共识轮数量。说明：假设提交提案的交易，被打包进块时的共识轮序号时round1，则提案投票截止块高，就是round1 + endVotingRounds这个共识轮的第230个块高（假设一个共识轮出块250，ppos揭榜提前20个块高，250，20都是可配置的 ），其中0 < endVotingRounds <= 4840（约为2周，实际论述根据配置可计算），且为整数）|
 
 
-* 提交取消提案，send 发送交易。
+#### 提交取消提案
+
+send 发送交易。
+
+Parameters:
 
 |参数|类型|说明|
 |---|---|---|
@@ -4079,7 +4143,11 @@ reply = await ppos.send(params, other);
 |tobeCanceledProposalID|common.hash(32bytes)|待取消的升级提案ID|
 
 
-* 给提案投票，send 发送交易。
+#### 给提案投票
+
+send 发送交易。
+
+Parameters:
 
 |参数|类型|说明|
 |---|---|---|
@@ -4090,7 +4158,11 @@ reply = await ppos.send(params, other);
 |programVersion|uint32(4bytes)|节点代码版本，有rpc的getProgramVersion接口获取|
 |versionSign|common.VesionSign(65bytes)|代码版本签名，有rpc的getProgramVersion接口获取|
 
-* 版本声明，send 发送交易。
+#### 版本声明
+
+send 发送交易。
+
+Parameters:
 
 |参数|类型|说明|
 |---|---|---|
@@ -4099,54 +4171,73 @@ reply = await ppos.send(params, other);
 |programVersion|uint32(4bytes)|声明的版本，有rpc的getProgramVersion接口获取|
 |versionSign|common.VesionSign(65bytes)|声明的版本签名，有rpc的getProgramVersion接口获取|
 
-* 查询提案，call 查询
+#### 查询提案
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
 |funcType|uint16(2bytes)|2100)|
 |proposalID|common.Hash(32bytes)|提案ID|
 
-返参：Proposal接口实现对象的json字符串
+Returns:
 
-* 查询提案结果，call 查询
+Proposal接口实现对象的json字符串
 
-入参：
+#### 查询提案结果
+
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
 |funcType|uint16(2bytes)|代表方法类型码(2101)|
 |proposalID|common.Hash(32bytes)|提案ID|
 
-返参：TallyResult对象的json字符串
+Returns:
 
-* 查询提案列表，call 查询
+TallyResult对象的json字符串
 
-入参：
+
+#### 查询提案列表
+
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
 |funcType|uint16(2bytes)|代表方法类型码(2102)|
 
-返参：Proposal接口实现对象列表的json字符串。
+Returns: 
+
+Proposal接口实现对象列表的json字符串。
 
 
-* 查询节点的链生效版本，call 查询
+#### 查询节点的链生效版本
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
 |funcType|uint16(2bytes)|代表方法类型码(2103)|
 
-返参：版本号的json字符串，如{65536}，表示版本是：1.0.0。
+Returns:
+
+版本号的json字符串，如{65536}，表示版本是：1.0.0。
 解析时，需要把ver转成4个字节。主版本：第二个字节；小版本：第三个字节，patch版本，第四个字节。
 
 
-* 查询提案的累积可投票人数，call 查询
+#### 查询提案的累积可投票人数
 
-入参：
+call 查询
+
+Parameters:
 
 |名称|类型|说明|
 |---|---|---|
@@ -4154,7 +4245,8 @@ reply = await ppos.send(params, other);
 |proposalID|common.Hash(32bytes)|提案ID|
 |blockHash|common.Hash(32bytes)|块hash|
 
-返参：
+Returns:
+
 是个[]uint16数组
 
 |名称|类型|说明|
@@ -4243,7 +4335,6 @@ reply = await ppos.send(params, other);
 |EndVotingBlock|8bytes|提案投票结束的块高，系统根据SubmitBlock，EndVotingRounds算出|
 |TobeCanceled|common.Hash(32bytes)|提案要取消的升级提案ID|
 
-
 **Vote 投票定义**
 
 |字段|类型|说明|
@@ -4264,10 +4355,13 @@ reply = await ppos.send(params, other);
 |status|byte|状态|
 |canceledBy|common.Hash(32bytes)|当status=0x06时，记录发起取消的ProposalID|
 
-#### 举报惩罚
+### 举报惩罚模块
 
-* 举报双签，send 发送交易。
+#### 举报双签
 
+send 发送交易。
+
+Parameters:
 
 | 参数     | 类型   | 描述                                    |
 | -------- | ------ | --------------------------------------- |
@@ -4275,9 +4369,11 @@ reply = await ppos.send(params, other);
 | typ      | uint8         | 代表双签类型，<br />1：prepareBlock，2：prepareVote，3：viewChange |
 | data     | string | 单个证据的json值，格式参照[RPC接口Evidences][evidences_interface] |
 
-* 查询节点是否已被举报过多签，call 查询
+#### 查询节点是否已被举报过多签
 
-入参：
+call 查询
+
+Parameters:
 
 | 参数        | 类型           | 描述                                                         |
 | ----------- | -------------- | ------------------------------------------------------------ |
@@ -4286,7 +4382,7 @@ reply = await ppos.send(params, other);
 | addr        | 20bytes        | 举报的节点地址                                               |
 | blockNumber | uint64         | 多签的块高                                                   |
 
-回参：
+Returns:
 
 | 类型   | 描述           |
 | ------ | -------------- |
@@ -4294,29 +4390,32 @@ reply = await ppos.send(params, other);
 
 
 
-#### 锁仓
+### 锁仓模块
 
-* 创建锁仓计划，send 发送交易。
+#### 创建锁仓计划
 
-入参：
+send 发送交易。
+
+Parameters:
 
 | 参数    | 类型           | 说明                                                         |
 | ------- | -------------- | ------------------------------------------------------------ |
 | account | 20bytes | `锁仓释放到账账户`                                           |
 | plan    | []RestrictingPlan | plan 为 RestrictingPlan 类型的列表（数组），RestrictingPlan 定义如下：<br>type RestrictingPlan struct { <br/>    Epoch uint64<br/>    Amount：\*big.Int<br/>}<br/>其中，Epoch：表示结算周期的倍数。与每个结算周期出块数的乘积表示在目标区块高度上释放锁定的资金。Epoch \* 每周期的区块数至少要大于最高不可逆区块高度。<br>Amount：表示目标区块上待释放的金额。 |
 
-* 获取锁仓信息，call 查询
+#### 获取锁仓信息
+
+call 查询
 
 注：本接口支持获取历史数据，请求时可附带块高，默认情况下查询最新块的数据。
 
-
-入参：
+Parameters:
 
 | 参数    | 类型    | 说明               |
 | ------- | ------- | ------------------ |
 | account | 20bytes | `锁仓释放到账账户` |
 
-返参：
+Returns:
 
 返回参数为下面字段的 json 格式字符串
 
@@ -4328,39 +4427,40 @@ reply = await ppos.send(params, other);
 | plans    | bytes           | 锁仓分录信息，json数组：[{"blockNumber":"","amount":""},...,{"blockNumber":"","amount":""}]。其中：<br/>blockNumber：\*big.Int，释放区块高度<br/>amount：\string(0x十六进制字符串)，释放金额 |
 
 ### 内置合约错误码说明
+
 | 错误码    | 说明            |
 | ------- | --------------- |
-|301000  | Wrong bls public key|
-|301001  | Wrong bls public key proof|
-|301002  | The Description length is wrong|
-|301003  | The program version sign is wrong|
-|301004  | The program version of the relates node's is too low|
-|301005  | DeclareVersion is failed on create staking|
-|301006  | The address must be the same as initiated staking|
-|301100  | Staking deposit too low|
-|301101  | This candidate is already exist|
-|301102  | This candidate is not exist|
-|301103  | This candidate status was invalided|
-|301104  | IncreaseStake von is too low|
-|301105  | Delegate deposit too low|
-|301106  | The account is not allowed to be used for delegating|
-|301107  | The candidate does not accept the delegation|
-|301108  | Withdrew delegation von is too low|
-|301109  | This delegation is not exist|
-|301110  | The von operation type is wrong|
-|301111  | The von of account is not enough|
-|301112  | The blockNumber is disordered|
-|301113  | The von of delegation is not enough|
-|301114  | Withdrew delegation von calculation is wrong|
-|301115  | The validator is not exist|
-|301116  | The fn params is wrong|
-|301117  | The slashing type is wrong|
-|301118  | Slashing amount is overflow|
-|301119  | Slashing candidate von calculate is wrong|
-|301200  | Getting verifierList is failed|
-|301201  | Getting validatorList is failed|
-|301202  | Getting candidateList is failed|
-|301203  | Getting related of delegate is failed|
-|301204  | Query candidate info failed|
-|301205  | Query delegate info failed|
+| 301000  | Wrong bls public key|
+| 301001  | Wrong bls public key proof|
+| 301002  | The Description length is wrong|
+| 301003  | The program version sign is wrong|
+| 301004  | The program version of the relates node's is too low|
+| 301005  | DeclareVersion is failed on create staking|
+| 301006  | The address must be the same as initiated staking|
+| 301100  | Staking deposit too low|
+| 301101  | This candidate is already exist|
+| 301102  | This candidate is not exist|
+| 301103  | This candidate status was invalided|
+| 301104  | IncreaseStake von is too low|
+| 301105  | Delegate deposit too low|
+| 301106  | The account is not allowed to be used for delegating|
+| 301107  | The candidate does not accept the delegation|
+| 301108  | Withdrew delegation von is too low|
+| 301109  | This delegation is not exist|
+| 301110  | The von operation type is wrong|
+| 301111  | The von of account is not enough|
+| 301112  | The blockNumber is disordered|
+| 301113  | The von of delegation is not enough|
+| 301114  | Withdrew delegation von calculation is wrong|
+| 301115  | The validator is not exist|
+| 301116  | The fn params is wrong|
+| 301117  | The slashing type is wrong|
+| 301118  | Slashing amount is overflow|
+| 301119  | Slashing candidate von calculate is wrong|
+| 301200  | Getting verifierList is failed|
+| 301201  | Getting validatorList is failed|
+| 301202  | Getting candidateList is failed|
+| 301203  | Getting related of delegate is failed|
+| 301204  | Query candidate info failed|
+| 301205  | Query delegate info failed|
 

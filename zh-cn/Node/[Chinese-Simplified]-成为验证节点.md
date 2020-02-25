@@ -14,7 +14,7 @@ PlatON 是实行民主治理的区块链项目，验证节点由所有 Energon �
 
 安装ntp，并且设置开机自启
 ```bash
-apt-get -y install ntp  &&  systemctl enable ntp
+sudo apt-get -y install ntp  &&  sudo systemctl enable ntp
 ```
 
 #### 查看同步情况

@@ -3147,22 +3147,22 @@ web3.utils.hexToUtf8('0x49206861766520313030e282ac');
 
 #### web3.utils.hexToAscii
 
-返回指定16进制值的ASCII字符串表示。
+Returns the ASCII string representation of a given HEX value.
 
 Method:
 
 ```
 web3.utils.hexToAscii(hex)
-web3.utils.toAscii(hex) // 别名，已弃用
+web3.utils.toAscii(hex) // ALIAS, deprecated
 ```
 
 Parameter:
 
-`hex` - String: 16进制字符串
+`hex` - `String`:  A HEX string to convert to a ASCII string.
 
 Returns:
 
-String: ASCII字符串
+`String`: The ASCII string.
 
 Example:
 
@@ -3175,23 +3175,23 @@ web3.utils.hexToAscii('0x4920686176652031303021');
 
 #### web3.utils.utf8ToHex
 
-返回指定UTF-8字符串的16进制表示。
+Returns the HEX representation of a given UTF-8 string.
 
 Method:
 
 ```
 web3.utils.utf8ToHex(string)
-web3.utils.stringToHex(string) // 别名
-web3.utils.fromUtf8(string) // 别名，已弃用
+web3.utils.stringToHex(string) // ALIAS
+web3.utils.fromUtf8(string) // ALIAS, deprecated
 ```
 
 Parameter:
 
-`string` - String: ·UTF-8字符串
+`string` - `String`: A UTF-8 string to convert to a HEX string.
 
 Returns:
 
-`String`: 16进制字符串
+`String`: The HEX string.
 
 Example:
 
@@ -3204,22 +3204,22 @@ web3.utils.utf8ToHex('I have 100€');
 
 #### web3.utils.asciiToHex
 
-返回指定ASCII字符串的16进制表示。
+Returns the HEX representation of a given ASCII string.
 
 Method:
 
 ```
 web3.utils.asciiToHex(string)
-web3.utils.fromAscii(string) // 别名，已弃用
+web3.utils.fromAscii(string) // ALIAS, deprecated
 ```
 
 Parameter:
 
-`string` - String: ASCII字符串
+`string` - `String`: A ASCII string to convert to a HEX string.
 
 返回值
 
-`String`: 16进制字符串
+`String`: The HEX string.
 
 Example:
 
@@ -3232,7 +3232,7 @@ web3.utils.asciiToHex('I have 100!');
 
 #### web3.utils.hexToBytes
 
-返回指定16进制字符串的字节数组表示。
+Returns a byte array from the given HEX string.
 
 Method:
 
@@ -3242,11 +3242,11 @@ web3.utils.hexToBytes(hex)
 
 Parameter:
 
-`hex` - String|HEX: 16进制字符串
+`hex` - `String|HEX`: A HEX to convert.
 
 Returns:
 
-`Array`: 字节数组
+`Array`: The byte array.
 
 Example:
 
@@ -3262,7 +3262,7 @@ web3.utils.hexToBytes(0x000000ea);
 
 #### web3.utils.toVon
 
-按对应货币转为以von为单位。可选择的单位如下：
+Converts any lat value value into von.
 
 * von
 * kvon
@@ -3298,13 +3298,13 @@ web3.utils.toVon(number [, unit])
 
 Parameter:
 
-*  `number` - String|Number|BN: 金额 
-*  `unit` - String，可选，默认值为`ether`
+*  `number` - `String|Number|BN`: The value. 
+*  `unit` - String，(optional, defaults to "lat"): The ether to convert from. 
 
 
 Returns:
 
-`String|BN`: 如果输入参数是数值或字符串，则返回字符串，否则返回BN.js对象
+`String|BN`: If a string is given it returns a number string, otherwise a [BN.js](https://github.com/indutny/bn.js/) instance.
 
 Example:
 
@@ -3317,7 +3317,7 @@ web3.utils.toVon('1', 'lat');
 
 #### web3.utils.fromVon
 
-将给定的以von为单位的值转换为其他单位的数值。
+Converts any von value into a lat value.
 
 Method:
 
@@ -3329,8 +3329,8 @@ Converts any von value into a lat value.
 
 Parameter:
 
-`number` - String|Number|BN: wei为单位的数值
-`unit` - String，可选，默认值为`lat`，可选的单位有：
+`number` - `String|Number|BN`: The value in von.
+`unit` - `String`，(optional, defaults to "lat"): The ether to convert to. Possible units are:
 
 * von
 * kvon
@@ -3346,7 +3346,7 @@ Parameter:
 
 Returns:
 
-`String|BN`: 如果输入参数是数值或字符串，则返回字符串，否则返回BN.js对象
+`String|BN`: It always returns a string number.
 
 Example:
 
@@ -3359,24 +3359,24 @@ web3.utils.fromVon('1', 'lat');
 
 #### web3.utils.padLeft
 
-将指定字符串使用0左补齐到指定长度。
+Adds a padding on the left of a string, Useful for adding paddings to HEX strings.
 
 Method:
 
 ```
 web3.utils.padLeft(string, characterAmount [, sign])
-web3.utils.leftPad(string, characterAmount [, sign]) // 别名
+web3.utils.leftPad(string, characterAmount [, sign]) // ALIAS
 ```
 
 Parameter:
 
-*  `string` - String: 要进行左补齐的字符串
-*  `characterAmount` - Number: 补齐后的总长度
-*  `sign` - String，可选，补齐字符，默认为"0"
+*  `string` - `String`: The string to add padding on the left.
+*  `characterAmount` - `Number`: The number of characters the total string should have.
+*  `sign` - `String`(optional): The character sign to use, defaults to `"0"`.
 
 Returns:
 
-`String`: 左补齐到指定长度的字符串
+`String`:  The padded string.
 
 Example:
 

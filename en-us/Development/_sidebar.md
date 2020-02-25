@@ -6,6 +6,6 @@
 	- [最佳实践](/zh-cn/Development/[Chinese-Simplified]-最佳实践.md)
 	- [Contract Security Development Guide](/en-us/Development/[English]-Contract-Security-Considerations.md)
 - [SDK](/zh-cn/Development/[Chinese-Simplified]-SDK.md)
-	- [Java SDK开发指南](/zh-cn/Development/[Chinese-Simplified]-Java-SDK.md)
+	- [Java SDK Development Guide](/en-us/Development/[English]-Java-SDK.md)
 	- [JS SDK开发指南](/zh-cn/Development/[Chinese-Simplified]-JS-SDK.md)
 

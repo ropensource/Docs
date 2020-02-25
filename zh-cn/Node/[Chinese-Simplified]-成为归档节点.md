@@ -39,7 +39,7 @@ Error: missing trie node f7e7f0f53eb6dc23d18f8285553c916fdd410e484b611d53883e2a0
 
 安装ntp，并且设置开机自启
 ```bash
-apt-get -y install ntp  &&  systemctl enable ntp
+sudo apt-get -y install ntp  &&  sudo systemctl enable ntp
 ```
 
 #### 查看同步情况

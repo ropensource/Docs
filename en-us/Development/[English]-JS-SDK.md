@@ -1,17 +1,17 @@
-## Web3.js 调用接口 
+## Web3.js Interface 
 
-通过 web3.js 提供的web3对象与底层链进行交互。底层实现上，它通过 RPC 调用与本地节点通信。web3.js可以与任何暴露了RPC接口的PlatON节点连接。
+Interact with nodes through web3 objects provided by web3.js. On the underlying implementation, it communicates with the local node through RPC calls. web3.js can connect to any PlatON node that exposes the RPC interface.
 
-### 准备工作
+### Usage
 
-首先请确保本地成功安装了nodeJS环境，由于该项目使用了[lerna](https://github.com/lerna/lerna)管理工具来优化托管在git\npm上的多package代码库的工作流，所以你在安装之前确保已经全局安装了lerna包。**如果没有，执行命令`npm i lerna -g`进行全局安装。**
+First, make sure the nodeJS environment is successfully installed locally. `WEB3.JS` uses the [lerna](https://github.com/lerna/lerna) management tool to optimize the workflow of the multi-package code base hosted on `git\ npm`, so you make sure before installing The lerna package has been installed globally. If not, execute the command `npm i lerna -g` for global installation. 
 
-然后你就可以通过 npm 包管理工具或者 yarn 包管理工具将client-sdk-js引入到项目工程中，通过如下步骤：
+Then you can integrate client-sdk-js into the project project through package management tools such as npm or yarn, the steps are as follows:
 
 - npm: `npm i PlatONnetwork/client-sdk-js`
 - yarn: `yarn add PlatONnetwork/client-sdk-js`
 
-然后需要创建web3的实例，设置一个provider。可参考如下代码：
+Create a web3 instance and set up a provider. You can refer to the following code:
 
 ```js
 // in node.js
@@ -27,26 +27,27 @@ console.log(web3);
 }
 ```
 
-成功引入后，现在可以使用web3的相关API了。
+After successful introduction, you can use the relevant API of web3.
 
 
-### 详细使用
+### API Reference
+
 #### web3.version
 
-`web3.version`属性记录了web3容器对象的版本。
+`web3.version`: Contains the current package version of the web3.js library.
 
-调用方法：
+Method:
 
 ```js
 Web3.version
 web3.version
 ```
 
-返回值：
+Returns:
 
-`String`: 当前版本字符串
+`String`: Current version number.
 
-示例代码：
+Example:
 
 ```js
 web3.version;
@@ -57,25 +58,24 @@ web3.version;
 
 #### web3.modules
 
-`web3.modules`属性返回一个包含所有子模块类的对象，可以用来
-手工实例化这些子模块类。
+`web3.modules` Will return an object with the classes of all major sub modules, to be able to instantiate them manually.
 
-调用方法：
+Method:
 
 ```js
 Web3.modules
 web3.modules
 ```
 
-返回值：
+Returns:
 
-`Object`: 子模块列表:
+`Object`: A list of module constructors:
 
-*  `Platon` - Function: Platon模块类，用来与以太坊网络进行交互。参见web3.platon。
-*  `Net` - Function: Net模块类，用来与网络属性进行交互。参见web3.platon.net。
-*  `Personal` - Function: Personal模块类，用来与以太坊账户进行交互。参见web3.platon.personal。
+*  `Platon` - Function: The PlatON module for interacting with the PlatON network see web3.platon for more.
+*  `Net` - Function: The Net module for interacting with network properties see web3.platon.net for more.
+*  `Personal` - Function: The Personal module for interacting with the PlatON accounts see web3.platon.personal for more.
 
-示例代码：
+Example:
 
 ```js
 web3.modules
@@ -90,9 +90,9 @@ web3.modules
 
 #### web3.setProvider
 
-`web3.setProvider()`方法用来修改指定模块的底层通讯服务提供器。
+`web3.setProvider()` Will change the provider for its module.
 
-调用：
+Method:
 
 ```
 web3.setProvider(myProvider)
@@ -100,27 +100,27 @@ web3.platon.setProvider(myProvider)
 ...
 ```
 
-注意：当在web3上直接调用`setProvider()`方法时，将为所有其他子模块设置服务提供器，例如web3.platon不受影响，因为该子模块始终使用独立的服务提供器。
+Notes: When called on the umbrella package web3 it will also set the provider for all sub modules web3.platon, web3.shh, etc EXCEPT web3.bzz which needs a separate provider at all times.
 
-参数：
+Parameter:
 
-`Object` - myProvider: 有效的服务提供器对象。
+`Object` - myProvider: a valid provider.
 
-返回值：
+Returns:
 
 `Boolean`
 
-示例代码：
+Example:
 
 ```js
 var Web3 = require('web3');
 var web3 = new Web3('http://localhost:8545');
-// 或者
+// or
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
-// 改变服务提供器
+// change provider
 web3.setProvider('ws://localhost:8546');
-// 或者
+// or
 web3.setProvider(new Web3.providers.WebsocketProvider('ws://localhost:8546'));
 ```
 
@@ -128,9 +128,9 @@ web3.setProvider(new Web3.providers.WebsocketProvider('ws://localhost:8546'));
 
 #### web3.providers
 
-返回当前有效的通信服务提供器。
+Contains the current available providers.
 
-调用：
+Method:
 
 ```
 web3.providers
@@ -138,20 +138,20 @@ web3.platon.providers
 ...
 ```
 
-返回值：
+Returns:
 
-`Object`， 参见以下服务提供器对象:
+`Object`， with the following providers:
 
-*  Object - HttpProvider: HTTP服务提供器已经被弃用，因为它不支持订阅。
-*  Object - WebsocketProvider:  Websocket服务提供器是用于传统的浏览器中的标准方法。
+*  Object - HttpProvider: The HTTP provider is deprecated, as it won’t work for subscriptions.
+*  Object - WebsocketProvider: The Websocket provider is the standard for usage in legacy browsers.
 
-示例代码：
+Example:
 
 ```js
 var Web3 = require('web3');
-// 使用指定的服务提供器（例如在Mist中）或实例化一个新的websocket提供器
+// // use the given Provider, e.g in Mist, or instantiate a new websocket provider.
 var web3 = new Web3(Web3.givenProvider || 'ws://remotenode.com:8546');
-// 或者
+// or
 var web3 = new Web3(Web3.givenProvider || new Web3.providers.WebsocketProvider('ws://remotenode.com:8546'));
 ```
 
@@ -159,10 +159,9 @@ var web3 = new Web3(Web3.givenProvider || new Web3.providers.WebsocketProvider('
 
 #### web3.givenProvider
 
-在以太坊兼容的浏览器中使用web3.js时，`web3.givenProvider`属性将返回浏览器设置的原生
-服务提供器，否则返回`null`。
+When using web3.js in an Ethereum compatible browser, it will set with the current native provider by that browser. Will return the given provider by the (browser) environment, otherwise null.
 
-调用：
+Method:
 
 ```
 web3.givenProvider
@@ -170,17 +169,17 @@ web3.platon.givenProvider
 ...
 ```
 
-返回值：
+Returns:
 
-`Object`: 浏览器设置好的提供器，或者null;
+`Object`:  The given provider set or null;
 
 ***
 
 #### web3.currentProvider
 
-`web3.currentProvider`属性返回当前在用的通信服务提供器，如果没有的话则返回`null`。
+`web3.currentProvider` Will return the current provider, otherwise null.
 
-调用：
+Method:
 
 ```
 web3.currentProvider
@@ -188,35 +187,36 @@ web3.platon.currentProvider
 ...
 ```
 
-返回值：
+Returns:
 
-`Object`： 当前在用的服务提供器，或者null。
+`Object`： The current provider set or null;
 
 ***
 
 #### web3.BatchRequest
 
-`web3.BatchRequest`类用来创建并执行批请求。
+`web3.BatchRequest` Class to create and execute batch requests.
 
-调用：
+Method:
 
 ```
 new web3.BatchRequest()
 new web3.platon.BatchRequest()
 ```
 
-参数：
+Parameter:
 
-无
+none
 
-返回值：
 
-一个对象，具有如下方法：
+Returns:
 
-*  `add(request)`: 将请求对象添加到批调用中
-*  `execute()`: 执行批请求
+Object: With the following methods:
 
-示例代码：
+*  `add(request)`: To add a request object to the batch call.
+*  `execute()`: Will execute the batch request.
+
+Example:
 
 ```js
 var contract = new web3.platon.Contract(abi, address);
@@ -231,25 +231,24 @@ batch.execute();
 
 #### web3.platon.defaultAccount
 
-`web3.platon.defaultAccount`属性记录了默认地址，在以下方法中如果没有指定`from`属性，
-将使用该属性的值作为默认的`from`属性值。
+`web3.platon.defaultAccount` This default address is used as the default "from" property, if no "from" property is specified in for the following methods:
 
 *  web3.platon.sendTransaction()
 *  web3.platon.call()
 *  new web3.platon.Contract() -> myContract.methods.myMethod().call()
 *  new web3.platon.Contract() -> myContract.methods.myMethod().send()
 
-调用：
+Method:
 
 ```
 web3.platon.defaultAccount
 ```
 
-属性：
+Property：
 
-`String` - 20 Bytes: 以太坊地址，你应当在节点或keystore中存有该地址的私钥。默认值为`undefined`
+`String` - 20 Bytes: 20 Bytes: Any PlatON address. You should have the private key for that address in your node or keystore. (Default is undefined)
 
-示例代码：
+Example:
 
 ```js
 web3.platon.defaultAccount;
@@ -263,7 +262,7 @@ web3.platon.defaultAccount = '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe';
 
 #### web3.platon.defaultBlock
 
-`web3.platon.defaultBlock`属性记录默认块，默认值为`latest`。该属性值用于以下方法调用：
+`web3.platon.defaultBlock` The default block is used for certain methods. 
 
 *  web3.platon.getBalance()
 *  web3.platon.getCode()
@@ -272,32 +271,32 @@ web3.platon.defaultAccount = '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe';
 *  web3.platon.call()
 *  new web3.platon.Contract() -> myContract.methods.myMethod().call()
 
-在以上方法中，可以传入`defaultBlock`参数来覆盖该属性值。
+You can override it by passing in the defaultBlock as last parameter. 
 
-调用：
+Method:
 
 ```
 web3.platon.defaultBlock
 ```
 
-属性：
+Property:
 
-默认块参数的值为以下列表中之一：
+Default block parameters can be one of the following:
 
-*  Number: 一个具体的块编号
-*  "genesis" - String: 创世块
-*  "latest" - String: 最后一个块，即当前的链头块
-*  "pending" - String: 当前挖掘中的块，其中包含挂起的交易
+*  Number: A block number
+*  "genesis" - String: The genesis block
+*  "latest" - String: The latest block (current head of the blockchain)
+*  "pending" - String: The currently mined block (including pending transactions)
 
-默认值为"latest"
+Default is "latest"
 
-示例代码：
+Example:
 
 ```js
 web3.platon.defaultBlock;
 > "latest"
 
-// 设置默认块属性
+// set the default block
 web3.platon.defaultBlock = 231;
 ```
 
@@ -305,19 +304,19 @@ web3.platon.defaultBlock = 231;
 
 #### web3.platon.getProtocolVersion
 
-返回节点旳以太坊协议版本。
+Returns the ethereum protocol version of the node.
 
-调用：
+Method:
 
 ```
 web3.platon.getProtocolVersion([callback])
 ```
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为协议版本字符串。
+Promise returns String: the protocol version.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getProtocolVersion().then(console.log);
@@ -328,26 +327,25 @@ web3.platon.getProtocolVersion().then(console.log);
 
 #### web3.platon.isSyncing
 
-`web3.platon.isSyncing()`方法用来检查节点当前是否已经与网络同步。
+`web3.platon.isSyncing()` Checks if the node is currently syncing and returns either a syncing object, or false.
 
-调用：
+Method:
 
 ```
 web3.platon.isSyncing([callback])
 ```
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为`Object`或`Boolean`。如果节点尚未与网络同步，
-则返回false，否则返回一个同步对象，具有以下属性：
+Promise returns Object|Boolean - A sync object when the node is currently syncing or false:
 
-*  startingBlock - Number: 同步起始块编号
-*  currentBlock - Number: 当前已同步块编号
-*  highestBlock - Number: 预估的目标同步块编号
-*  knownStates - Number: 预估的要下载的状态
-*  pulledStates - Number: 已经下载的状态
+*  startingBlock - Number: The block number where the sync started.
+*  currentBlock - Number: The block number where at which block the node currently synced to already.
+*  highestBlock - Number: The estimated block number to sync to.
+*  knownStates - Number: The estimated states to download.
+*  pulledStates - Number: The already downloaded states.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.isSyncing().then(console.log);
@@ -364,20 +362,19 @@ web3.platon.isSyncing().then(console.log);
 
 #### web3.platon.getGasPrice
 
-`web3.platon.getGasPrice()`方法用来获取当前gas价格，该价格由最近的若干块
-的gas价格中值决定。
+`web3.platon.getGasPrice()` Returns the current gas price oracle. The gas price is determined by the last few blocks median gas price.
 
-调用：
+Method:
 
 ```
 web3.platon.getGasPrice([callback])
 ```
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为表示当前gas价格的字符串，单位为wei。
+Promise returns String - Number string of the current gas price in von.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getGasPrice().then(console.log);
@@ -388,19 +385,19 @@ web3.platon.getGasPrice().then(console.log);
 
 #### web3.platon.getAccounts
 
-`web3.platon.getAccounts()`方法返回当前节点控制的账户列表。
+`web3.platon.getAccounts()` Returns a list of accounts the node controls.
 
-调用：
+Method:
 
 ```
 web3.platon.getAccounts([callback])
 ```
 
-返回值
+Returns:
 
-一个Promise对象，其解析值为账户地址数组。
+Promise returns Array - An array of addresses controlled by node.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getAccounts().then(console.log);
@@ -411,19 +408,19 @@ web3.platon.getAccounts().then(console.log);
 
 #### web3.platon.getBlockNumber
 
-`web3.platon.getBlockNumber()`方法返回当前块编号。
+`web3.platon.getBlockNumber()` Returns the current block number.
 
-调用：
+Method:
 
 ```
 web3.platon.getBlockNumber([callback])
 ```
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为最近一个块的编号，Number类型。
+Promise returns Number - The number of the most recent block.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getBlockNumber().then(console.log);
@@ -434,25 +431,25 @@ web3.platon.getBlockNumber().then(console.log);
 
 #### web3.platon.getBalance
 
-`web3.platon.getBalance()`方法用来获取指定块中特定账户地址的余额。
+`web3.platon.getBalance()` Get the balance of an address at a given block.
 
-调用：
+Method:
 
 ```
 web3.platon.getBalance(address [, defaultBlock] [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `address`：String - 要检查余额的账户地址
-*  `defaultBlock`：Number|String - 可选，使用该参数覆盖web3.platon.defaultBlock属性值
-*  `callback`：Function - 可选的回调函数，该回调的第一个参数为error对象，第二个参数为结果值
+*  `address`：String - The address to get the balance of.
+*  `defaultBlock`：Number|String -  (optional) If you pass this parameter it will not use the default block set with web3.platon.defaultBlock. Pre-defined block numbers as "latest", "earliest", "pending", and "genesis" can also be used.
+*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为指定账户地址的余额字符串，以wei为单位。
+Promise returns String - The current balance for the given address in von.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getBalance("0x407d73d8a49eeb85d32cf465507dd71d507100c1")
@@ -464,26 +461,26 @@ web3.platon.getBalance("0x407d73d8a49eeb85d32cf465507dd71d507100c1")
 
 #### web3.platon.getStorageAt
 
-`web3.platon.getStorageAt()`方法返回一个以太坊地址的指定位置存储内容。
+`web3.platon.getStorageAt()` Get the storage at a specific position of an address.
 
-调用：
+Method:
 
 ```
 web3.platon.getStorageAt(address, position [, defaultBlock] [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `address`：String - 要读取的地址
-*  `position`：Number - 存储中的索引编号
-*  `defaultBlock`：Number|String - 可选，使用该参数覆盖web3.platon.defaultBlock属性值
-*  `callback`：Function - 可选的回调函数, 其第一个参数为错误对象，第二个参数为结果。
+*  `address`：String - The address to get the storage from.
+*  `position`：Number - The index position of the storage.
+*  `defaultBlock`：Number|String -  (optional) If you pass this parameter it will not use the default block set with web3.platon.defaultBlock. Pre-defined block numbers as "latest", "earliest", "pending", and "genesis" can also be used.
+*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为存储中指定位置的内容。
+Promise returns String - The value in storage at the given position.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getStorageAt("0x407d73d8a49eeb85d32cf465507dd71d507100c1", 0)
@@ -495,25 +492,25 @@ web3.platon.getStorageAt("0x407d73d8a49eeb85d32cf465507dd71d507100c1", 0)
 
 #### web3.platon.getCode
 
-`web3.platon.getCode()`方法返回指定以太坊地址处的代码。
+`web3.platon.getCode()` Get the code at a specific address.
 
-调用：
+Method:
 
 ```
 web3.platon.getCode(address [, defaultBlock] [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `address`：String - 要读取代码的地址
-*  `defaultBlock`：Number|String - 可选，使用该参数覆盖web3.platon.defaultBlock属性值
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `address`：String - The address to get the code from.
+*  `defaultBlock`：Number|String - (optional) If you pass this parameter it will not use the default block set with web3.platon.defaultBlock. Pre-defined block numbers as "latest", "earliest", "pending", and "genesis" can also be used.
+*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为指定地址处的代码字符串。
+Promise returns String - The data at given address address.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getCode("0xd5677cf67b5aa051bb40496e68ad359eb97cfbf8")
@@ -525,44 +522,44 @@ web3.platon.getCode("0xd5677cf67b5aa051bb40496e68ad359eb97cfbf8")
 
 #### web3.platon.getBlock
 
-`web3.platon.getBlock()`方法返回指定块编号或块哈希对应的块。
+`web3.platon.getBlock()` Returns a block matching the block number or block hash.
 
-调用：
+Method:
 
 ```
 web3.platon.getBlock(blockHashOrBlockNumber [, returnTransactionObjects] [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `blockHashOrBlockNumber`：String|Number - 块编号或块哈希值，或者使用以下字符串："genesis"、"latest" 或 "pending" 。
-*  `returnTransactionObjects`：Boolean -  可选，默认值为false。当设置为true时,返回块中将包括所有交易详情，否则仅返回交易哈希。
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果。
+*  `blockHashOrBlockNumber`：String|Number - The block number or block hash. Or the string "genesis", "latest", "earliest", or "pending" as in the default block parameter.
+*  `returnTransactionObjects`：Boolean -   (optional, default false) If specified true, the returned block will contain all transactions as objects. By default it is false so, there is no need to explictly specify false. And, if false it will only contains the transaction hashes.
+*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为满足搜索条件的块对象，具有以下字段：
+Promise returns Object - The block object:
 
-*  number - Number: 块编号，处于pending状态的块为null
-*  hash 32 Bytes - String: 块哈希，处于pending状态的块为null
-*  parentHash 32 Bytes - String: 父块哈希
-*  nonce 8 Bytes - String: 生成的proof-of-work的哈希，处于pending状态的块为null
-*  sha3Uncles 32 Bytes - String: 块中叔伯数据的SHA3值
-*  logsBloom 256 Bytes - String: 块中日志的bloom filter，处于pending状态的块为null
-*  transactionsRoot 32 Bytes - String: 块中的交易树根节点
-*  stateRoot 32 Bytes - String: 块中的最终状态树根节点
-*  miner - String: 接收奖励的矿工地址
-*  difficulty - String: 该块的难度值
-*  totalDifficulty - String: 截至该块的全链总难度值
-*  extraData - String: 块 “extra data” 字段
-*  size - Number: 字节为单位的块大小
-*  gasLimit - Number: 该块允许的最大gas值
-*  gasUsed - Number: 该块中所有交易使用的gas总量
-*  timestamp - Number: 出块的unix时间戳
-*  transactions - Array: 交易对象数组，或者32字节长的交易哈希值，取决于returnTransactionObjects的设置
-*  uncles - Array: 叔伯块哈希值数组
+* `number` - `Number`: The block number. null when its pending block.
+* `hash` 32 Bytes - `String`: Hash of the block. null when its pending block.
+* `parentHash` 32 Bytes - `String`: Hash of the parent block.
+* `nonce` 8 Bytes - `String`: Hash of the generated proof-of-work. null when its pending block.
+* `sha3Uncles` 32 Bytes - `String`: SHA3 of the uncles data in the block.
+* `logsBloom` 256 Bytes - `String`: The bloom filter for the logs of the block. null when its pending block.
+* `transactionsRoot` 32 Bytes - `String`: The root of the transaction trie of the block
+* `stateRoot` 32 Bytes - `String`: The root of the final state trie of the block.
+* `miner` - `String`: The address of the beneficiary to whom the mining rewards were given.
+* `difficulty` - `String`: Integer of the difficulty for this block.
+* `totalDifficulty` - `String`: Integer of the total difficulty of the chain until this block.
+* `extraData` - `String`: The “extra data” field of this block.
+* `size` - `Number`: Integer the size of this block in bytes.
+* `gasLimit` - `Number`: The maximum gas allowed in this block.
+* `gasUsed` - `Number`: The total used gas by all transactions in this block.
+* `timestamp` - `Number`: The unix timestamp for when the block was collated.
+* `transactions` - `Array`: Array of transaction objects, or 32 Bytes transaction hashes depending on the returnTransactionObjects parameter.
+* `uncles` - `Array`: Array of uncle hashes.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getBlock(3150)
@@ -596,24 +593,24 @@ web3.platon.getBlock(3150)
 
 #### web3.platon.getBlockTransactionCount
 
-`web3.platon.getBlockTransactionCount()`方法返回指定块中的交易数量。
+`web3.platon.getBlockTransactionCount()` Returns the number of transaction in a given block.
 
-调用：
+Method:
 
 ```
 web3.platon.getBlockTransactionCount(blockHashOrBlockNumber [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `blockHashOrBlockNumber`：String|Number - 块编号或块的哈希值，或者使用以下字符串："genesis"、"latest" 或 "pending" 来指定块
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为执行结果。
+*  `blockHashOrBlockNumber`：String|Number - The block number or hash. Or the string "genesis", "latest", "earliest", or "pending" as in the default block parameter.
+*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为指定块中的交易数量，Number类型。
+`Promise` returns `Number` - The number of transactions in the given block.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getBlockTransactionCount("0x407d73d8a49eeb85d32cf465507dd71d507100c1")
@@ -625,36 +622,36 @@ web3.platon.getBlockTransactionCount("0x407d73d8a49eeb85d32cf465507dd71d507100c1
 
 #### web3.platon.getTransaction
 
-`web3.platon.getTransaction()`方法返回具有指定哈希值的交易对象。
+`web3.platon.getTransaction()` Returns a transaction matching the given transaction hash.
 
-调用：
+Method:
 
 ```
 web3.platon.getTransaction(transactionHash [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `transactionHash`：String - 交易的哈希值
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果。
+*  `transactionHash`：`String` - The transaction hash.
+*  `callback`：`Function` -  (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为具有给定哈希值的交易对象，该对象具有如下字段：
+`Promise` returns `Object` - A transaction object its hash `transactionHash`:
 
-*  hash 32 Bytes - String: 交易的哈希值
-*  nonce - Number: 交易发送方在此交易之前产生的交易数量
-*  blockHash 32 Bytes - String: 交易所在块的哈希值。如果交易处于pending状态，则该值为null
-*  blockNumber - Number: 交易所在块的编号，如果交易处于pending状态，则该值为null
-*  transactionIndex - Number: 交易在块中的索引位置，如果交易处于pending状态，则该值为null
-*  from - String: 交易发送方的地址
-*  to - String: 交易接收方的地址。对于创建合约的交易，该值为null
-*  value - String: 以wei为单位的转账金额
-*  gasPrice - String: 发送方承诺的gas价格，以wei为单位
-*  gas - Number: 发送方提供的gas用量
-*  input - String: 随交易发送的数据
+* `hash` 32 Bytes - `String:` Hash of the transaction.
+* `nonce` - `Number`: The number of transactions made by the sender prior to this one.
+* `blockHash` 32 Bytes - `String`: Hash of the block where this transaction was in. null when its pending.
+* `blockNumber` - `Number`: Block number where this transaction was in. null when its pending.
+* `transactionIndex` - `Number`: Integer of the transactions index position in the block. null when its pending.
+* `from` - `String`: Address of the sender.
+* `to` - `String`: Address of the receiver. null when its a contract creation transaction.
+* `value` - `String`: Value transferred in von.
+* `gasPrice` - `String`: Gas price provided by the sender in von.
+* `gas` - `Number`: Gas provided by the sender.
+* `input` - `String`: The data sent along with the transaction.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getTransaction('0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b§234')
@@ -678,25 +675,25 @@ web3.platon.getTransaction('0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4
 
 #### web3.platon.getTransactionFromBlock
 
-`web3.platon.getTransactionFromBlock()`方法返回指定块中特定索引号的交易对象。
+`web3.platon.getTransactionFromBlock()` Returns a transaction based on a block hash or number and the transactions index position.
 
-调用：
+Method:
 
 ```
 getTransactionFromBlock(hashStringOrNumber, indexNumber [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `hashStringOrNumber`：String - 块编号或块的哈希值，或者使用以下字符串："genesis、"latest" 或 "pending" 来指定块
-*  `indexNumber`：Number - 交易索引位置
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果交易对象
+*  `hashStringOrNumber`：String - A block number or hash. Or the string "genesis", "latest", "earliest", or "pending" as in the default block parameter.
+*  `indexNumber`：Number - The transactions index position.
+*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为交易对象，该对象具体内容描述参见web3.platon.getTransaction()
+`Promise` returns `Object` - A transaction object, see web3.eth.getTransaction:
 
-示例代码：
+Example:
 
 ```js
 var transaction = web3.platon.getTransactionFromBlock('0x4534534534', 2)
@@ -708,37 +705,39 @@ var transaction = web3.platon.getTransactionFromBlock('0x4534534534', 2)
 
 #### web3.platon.getTransactionReceipt
 
-`web3.platon.getTransactionReceipt()`方法返回指定交易的收据对象。
-如果交易处于pending状态，则返回null。
+`web3.platon.getTransactionReceipt()` Returns the receipt of a transaction by transaction hash.
 
-调用：
+Notes: The receipt is not available for pending transactions and returns null.
+
+Method:
 
 ```
 web3.platon.getTransactionReceipt(hash [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `hash`：String - 交易的哈希值
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `hash`：String - The transaction hash.
+*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为交易的收据对象或者null。收据对象具有如下字段：
+`Promise` returns `Object` - A transaction receipt object, or null when no receipt was found:
 
-*  `status` - Boolean: 成功的交易返回true，如果EVM回滚了该交易则返回false
-*  `blockHash` 32 Bytes - String: 交易所在块的哈希值
-*  `blockNumber` - Number: 交易所在块的编号
-*  `transactionHash` 32 Bytes - String: 交易的哈希值
-*  `transactionIndex` - Number: 交易在块中的索引位置
-*  `from` - String: 交易发送方的地址
-*  `to` - String: 交易接收方的地址，对于创建合约的交易，该值为null
-*  `contractAddress` - String: 对于创建合约的交易，该值为创建的合约地址，否则为null
-*  `cumulativeGasUsed` - Number: 该交易执行时所在块的gas累计总用量
-*  `gasUsed`- Number: 该交易的gas总量
-*  `logs` - Array: 该交易产生的日志对象数组
+* `status` - `Boolean`: TRUE if the transaction was successful, FALSE, if the EVM reverted the transaction.
+* `blockHash` 32 Bytes - `String`: Hash of the block where this transaction was in.
+* `blockNumber` - `Number`: Block number where this transaction was in.
+* `transactionHash` 32 Bytes - `String`: Hash of the transaction.
+* `transactionIndex`- `Number`: Integer of the transactions index position in the block.
+* `from` - `String`: Address of the sender.
+* `to` - `String`: Address of the receiver. null when its a contract creation transaction.
+* `contractAddress` - `String`: The contract address created, if the transaction was a contract creation, otherwise null.
+* `cumulativeGasUsed` - `Number`: The total amount of gas used when this transaction was executed in the block.
+* `gasUsed` - `Number`: The amount of gas used by this specific transaction alone.
+* `logs` - `Array`: Array of log objects, which this transaction generated.
 
-示例代码：
+
+Example:
 
 ```js
 var receipt = web3.platon.getTransactionReceipt('0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b')
@@ -762,25 +761,25 @@ var receipt = web3.platon.getTransactionReceipt('0x9fc76417374aa880d4449a1f7f31e
 
 #### web3.platon.getTransactionCount
 
-`web3.platon.getTransactionCount()`方法返回指定地址发出的交易数量。
+`web3.platon.getTransactionCount()` Get the numbers of transactions sent from this address.
 
-调用：
+Method:
 
 ```
 web3.platon.getTransactionCount(address [, defaultBlock] [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `address`：String - 要查询的账户地址
-*  `defaultBlock`：Number|String - 可选，设置该参数来覆盖web3.platon.defaultBlock属性值
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `address`：String - The address to get the numbers of transactions from.
+*  `defaultBlock`：Number|String -  (optional) If you pass this parameter it will not use the default block set with web3.platon.defaultBlock. Pre-defined block numbers as "latest", "earliest", "pending", and "genesis" can also be used.
+*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为指定地址发出的交易数量。
+`Promise` returns `Number` - The number of transactions sent from the given address.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getTransactionCount("0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
@@ -792,44 +791,44 @@ web3.platon.getTransactionCount("0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
 
 #### web3.platon.sendTransaction
 
-`web3.platon.sendTransaction()`方法向以太坊网络提交一个交易。
+`web3.platon.sendTransaction()` Sends a transaction to the network.
 
-调用：
+Method:
 
 ```
 web3.platon.sendTransaction(transactionObject [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `transactionObject`：Object - 要发送的交易对象，包含以下字段：
-   *  from - String|Number: 交易发送方账户地址，不设置该字段的话，则使用web3.platon.defaultAccount属性值。可设置为一个地址或本地钱包web3.platon.accounts.wallet中的索引序号
-   *  to - String: 可选，消息的目标地址，对于合约创建交易该字段为null
-   *  value - Number|String|BN|BigNumber: (optional) The value transferred for the transaction in wei, also the endowment if it’s a contract-creation transaction.
-   *  gas - Number: 可选，默认值：待定，用于交易的gas总量，未用完的gas会退还
-   *  gasPrice - Number|String|BN|BigNumber: 可选，该交易的gas价格，单位为wei，默认值为web3.platon.gasPrice属性值
-   *  data - String: 可选，可以是包含合约方法数据的ABI字符串，或者是合约创建交易中的初始化代码
-   *  nonce - Number: 可选，使用该字段覆盖使用相同nonce值的挂起交易
-*  callback - Function: 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `transactionObject`：`Object` - The transaction object to send:
+	* `from` - `String|Number`: The address for the sending account. Uses the web3.platon.defaultAccount property, if not specified. Or an address or index of a local wallet in web3.platon.accounts.wallet.
+	* `to` - `String`: (optional) The destination address of the message, left undefined for a contract-creation transaction.
+	* `value` - `Number|String|BN|BigNumber`: (optional) The value transferred for the transaction in wei, also the endowment if it’s a contract-creation transaction.
+	* `gas` - `Number`: (optional, default: To-Be-Determined) The amount of gas to use for the transaction (unused gas is refunded).
+	* `gasPrice` - `Number|String|BN|BigNumber`: (optional) The price of gas for this transaction in wei, defaults to web3.platon.gasPrice.
+	* `data` - `String`: (optional) Either a ABI byte string containing the data of the function call on a contract, or in the case of a contract-creation transaction the initialisation code.
+	* `nonce` - `Number`: (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+*  callback - Function: (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-`web3.platon.sendTransaction()`方法的返回值是32字节长的交易哈希值。
+`web3.platon.sendTransaction()` The callback will return the 32 bytes transaction hash.
 
-PromiEvent: 一个整合事件发生器的Promise对象，将在收到交易收据后得到解析。
+PromiEvent:  A promise combined event emitter. Will be resolved when the transaction receipt is available. Additionally the following events are available:
 
-*  "transactionHash" 返回String: 在交易发出并得到有效的交易哈希值后立刻触发
-*  "receipt" 返回Object: 当交易收据有效后立刻触发
-*  "confirmation" 返回Number, Object: 在每次确认后立刻触发，最多12次确认。确认编号为第一个参数，收据为第二个参数。从0号确认开始触发
-*  "error" 返回Error对象: 在发送交易的过程中如果出现错误则立刻触发。如果是out of gas错误，则传入第二个参数为交易收据
+*  "transactionHash" returns String: Is fired right after the transaction is sent and a transaction hash is available.
+*  "receipt"  returns `Object`: Is fired when the transaction receipt is available.
+*  "confirmation" returns Number, Object: Is fired for every confirmation up to the 12th confirmation. Receives the confirmation number as the first and the receipt as the second argument. Fired from confirmation 0 on, which is the block where its minded.
+*  "error" returns Error and Object|undefined: Is fired if an error occurs during sending. If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
 
-示例代码：
+Example:
 
 ```js
 // compiled solidity source code using https://remix.ethereum.org
 var code = "603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3";
 
-// 使用回调函数
+// using the callback
 web3.platon.sendTransaction({
     from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe',
     data: code // deploying a contracrt
@@ -837,7 +836,7 @@ web3.platon.sendTransaction({
     ...
 });
 
-// 使用promise
+// using the promise
 web3.platon.sendTransaction({
     from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe',
     to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
@@ -848,7 +847,7 @@ web3.platon.sendTransaction({
 });
 
 
-// 使用事件发生器
+// using the event emitter
 web3.platon.sendTransaction({
     from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe',
     to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
@@ -868,25 +867,26 @@ web3.platon.sendTransaction({
 
 #### web3.platon.sendSignedTransaction
 
-`web3.platon.sendSignedTransaction()`方法用来发送已经签名的交易，例如，可以使用`web3.platon.accounts.signTransaction()`
-方法进行签名。
+`web3.platon.sendSignedTransaction()` Sends an already signed transaction, generated for example using web3.platon.accounts.signTransaction.
 
-调用：
+Method:
 
 ```
 web3.platon.sendSignedTransaction(signedTransactionData [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `signedTransactionData`：String - 16进制格式的签名交易数据
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `signedTransactionData`：String - Signed transaction data in HEX format.
+*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-PromiEvent: 一个整合了事件发生器的Promise对象。当交易收据生效后得到解析。
+PromiEvent:  A promise combined event emitter. Will be resolved when the transaction receipt is available.
 
-示例代码：
+Please see the return values for web3.platon.sendTransaction for details.
+
+Example:
 
 ```js
 var Tx = require('ethereumjs-tx');
@@ -919,25 +919,25 @@ web3.platon.sendSignedTransaction('0x' + serializedTx.toString('hex'))
 
 #### web3.platon.sign
 
-`web3.platon.sign()`方法使用指定的账户对数据进行签名，该账户必须先解锁。
+`web3.platon.sign()` Signs data using a specific account. This account needs to be unlocked.
 
-调用：
+Method:
 
 ```
 web3.platon.sign(dataToSign, address [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `dataToSign`：String - 待签名的数据。对于字符串将首先使用`web3.utils.utf8ToHex()`方法将其转换为16进制
-*  `address`：String|Number - 用来签名的账户地址。或者本地钱包web3.platon.accounts.wallet中的地址或其序号
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `dataToSign`：String - Data to sign. If String it will be converted using web3.utils.utf8ToHex.
+*  `address`：String|Number - Address to sign data with. Or an address or index of a local wallet in web3.platon.accounts.wallet.
+*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为签名结果字符串。
+Promise returns String - The signature.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.sign("Hello world", "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
@@ -954,26 +954,25 @@ web3.platon.sign(web3.utils.utf8ToHex("Hello world"), "0x11f4d0A3c12e86B4b5F39B2
 
 #### web3.platon.signTransaction
 
-使用`web3.platon.signTransaction()`方法对交易进行签名，用来签名的账户地址需要首先解锁。
+`web3.platon.signTransaction()` Signs a transaction. This account needs to be unlocked.
 
-调用：
+Method:
 
 ```
 web3.platon.signTransaction(transactionObject, address [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `transactionObject`：Object - 要签名的交易数据
-*  `address`：String - 用于签名的账户地址
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `transactionObject`：`Object` - The transaction data to sign web3.eth.sendTransaction() for more.
+*  `address`：`String` - Address to sign transaction with.
+*  `callback`：`Function` - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为RLP编码的交易对象。该对象的raw属性可以用来通过`web3.platon.sendSignedTransaction()`
-方法来发送交易。
+Promise returns Object - The RLP encoded transaction. The raw property can be used to send the transaction using web3.platon.sendSignedTransaction.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.signTransaction({
@@ -1005,24 +1004,24 @@ web3.platon.signTransaction({
 
 #### web3.platon.estimateGas
 
-`web3.platon.estimateGas()`方法通过执行一个消息调用来估算交易的gas用量。
+`web3.platon.estimateGas()` Executes a message call or transaction and returns the amount of the gas used.
 
-调用：
+Method:
 
 ```
 web3.platon.estimateGas(callObject [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `callObject`：Object - 交易对象，其from属性可选
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `callObject`：Object - A transaction object see web3.platon.sendTransaction, with the difference that for calls the from property is optional as well.
+*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为模拟调用的gas用量。
+`Promise` returns `Number` - the used gas for the simulated call/transaction.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.estimateGas({
@@ -1037,38 +1036,38 @@ web3.platon.estimateGas({
 
 #### web3.platon.getPastLogs
 
-`web3.platon.getPastLogs()`方法根据指定的选项返回历史日志。
+`web3.platon.getPastLogs()` Gets past logs, matching the given options.
 
-调用：
+Method:
 
 ```
 web3.platon.getPastLogs(options [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `options`：Object - 过滤器对象，包含如下字段：
+*  `options`：Object - The filter options as follows:
    *  fromBlock - Number|String: The number of the earliest block ("latest" may be given to mean the most recent and "pending" currently mining, block). By default "latest".
    *  toBlock - Number|String: The number of the latest block ("latest" may be given to mean the most recent and "pending" currently mining, block). By default "latest".
    *  address - String|Array: An address or a list of addresses to only get logs from particular account(s).
    *  topics - Array: An array of values which must each appear in the log entries. The order is important, if you want to leave topics out use null, e.g. [null, '0x12...']. You can also pass an array for each topic with options for that topic e.g. [null, ['option1', 'option2']]
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为日志对象数组。
+`Promise` returns `Array` - Array of log objects.
 
-数组中的事件对象结构如下：
+The structure of the returned event `Object` in the `Array` looks as follows:
 
-*  address - String: 事件发生源地址
-*  data - String: 包含未索引的日志参数
-*  topics - Array: 包含最多4个32字节主题的数组，主题1-3包含日志的索引参数
-*  logIndex - Number: 事件在块中的索引位置
-*  transactionIndex - Number: 包含事件的交易的索引位置
-*  transactionHash 32 Bytes - String: 包含事件的交易的哈希值
-*  blockHash 32 Bytes - String: 包含事件的块的哈希值，如果处于pending状态，则为null
-*  blockNumber - Number: 包含事件的块编号，处于pending状态时该字段为null
+* `address` - `String`: From which this event originated from.
+* `data` - `String`: The data containing non-indexed log parameter.
+* `topics` - `Array`: An array with max 4 32 Byte topics, topic 1-3 contains indexed parameters of the log.
+* `logIndex` - `Number`: Integer of the event index position in the block.
+* `transactionIndex` - `Number`: Integer of the transaction’s index position, the event was created in.
+* `transactionHash` 32 Bytes - `String`: Hash of the transaction this event was created in.
+* `blockHash` 32 Bytes - `String`: Hash of the block where this event was created in. null when its still pending.
+* `blockNumber` - `Number`: The block number where this log was created in. null when still pending.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.getPastLogs({
@@ -1093,37 +1092,38 @@ web3.platon.getPastLogs({
 
 #### web3.platon.subscribe
 
-使用`web3.platon.subscribe()`方法来订阅区块链上的指定事件。
+The web3.platon.subscribe function lets you subscribe to specific events in the blockchain.
 
-调用：
+Method:
 
 ```
 web3.platon.subscribe(type [, options] [, callback]);
 ```
 
-参数：
+Parameter:
 
-*  `type`：String - 订阅类型
-*  `options`：Mixed - 可选的额外参数，依赖于订阅类型
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `type`：String - The subscription, you want to subscribe to.
+*  `options`：Mixed - (optional) Optional additional parameters, depending on the subscription type.
+*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription, and the subscription itself as 3 parameter.
 
-返回值：
+Returns:
 
-EventEmitter - 订阅实例对象，具有以下字段：
+EventEmitter -  A Subscription instance:
 
-*  subscription.id: 订阅id编号，用于标识一个订阅以及进行后续的取消订阅操作
-*  subscription.subscribe([callback]): 可用于使用相同的参数进行再次订阅
-*  subscription.unsubscribe([callback]): 取消订阅，如果成功取消的话，在回调函数中返回true
-*  subscription.arguments: 订阅参数，当重新订阅时使用
-*  on("data") 返回 Object: 每次有新的日志时都触发该事件，参数为日志对象
-*  on("changed") 返回 Object: 每次有日志从区块链上移除时触发该事件，被移除的日志对象将添加额外的属性："removed: true"
-*  on("error") 返回 Object: 当订阅中发生错误时，触发此事件
+* `subscription.id`: The subscription id, used to identify and unsubscribing the subscription.
+* `subscription.subscribe([callback])`: Can be used to re-subscribe with the same parameters.
+* `subscription.unsubscribe([callback])`: Unsubscribes the subscription and returns TRUE in the callback if successfull.
+* `subscription.arguments`: The subscription arguments, used when re-subscribing.
+* `on("data")` returns Object: 	Fires on each incoming log with the log object as argument.
+* `on("changed")` returns Object: Fires on each log which was removed from the blockchain. The log will have the additional property `"removed: true"`.
+* `on("error")` returns Object: Fires when an error in the subscription occurs.
+* `on("connected")` returns String: Fires once after the subscription successfully connected. Returns the subscription id.
 
-通知返回值：
+Notification returns:
 
-Mixed - 取决于具体的订阅类型
+Mixed -  depends on the subscription, see the different subscriptions for more.
 
-示例代码：
+Example:
 
 ```js
 var subscription = web3.platon.subscribe('logs', {
@@ -1145,24 +1145,23 @@ subscription.unsubscribe(function(error, success){
 
 #### web3.platon.clearSubscriptions
 
-`web3.platon.clearSubscriptions()`方法用来复位订阅状态。注意该方法不能
-复位其他包的订阅，例如web3-shh，因为这些包有自己的请求管理器。
+`web3.platon.clearSubscriptions()` Resets subscriptions. This will not reset subscriptions from other packages like web3-shh, as they use their own requestManager.
 
-调用：
+Method:
 
 ```
 web3.platon.clearSubscriptions(flag)
 ```
 
-参数:
+Parameters:
 
 *  `flag`：Boolean -  值为true则表示保持同步订阅
 
-返回值：
+Returns:
 
-`Boolean`：复位成功返回true，否则返回false
+`Boolean`： If true it keeps the "syncing" subscription.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.subscribe('logs', {} ,function(){ ... });
@@ -1176,34 +1175,32 @@ web3.platon.clearSubscriptions();
 
 #### web3.platon.subscribe("pendingTransactions")
 
-参数`pendingTransactions`表示订阅处于pending状态的交易。
+`pendingTransactions` Subscribes to incoming pending transactions.
 
-调用：
+Method:
 
 ```
 web3.platon.subscribe('pendingTransactions' [, callback]);
 ```
 
-参数：
+Parameter:
 
-*  `type`：String - "pendingTransactions"，订阅类型
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `type`：String - "pendingTransactions"，the type of the subscription.
+*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription.
 
-返回值：
+Returns:
 
-`EventEmitter`: 订阅实例对象，是一个事件发生器，定义有以下事件：
+`EventEmitter`: An subscription instance as an event emitter with the following events:
 
-*  "data" 返回 Object: 当接收到pending状态的交易时触发
-*  "error" 返回 Object: 当订阅中发生错误时触发
+*  "data" returns `String`: Fires on each incoming pending transaction and returns the transaction hash.
+*  "error" returns `Object`: Fires when an error in the subscription occurs.
 
-返回对象的结构，参见web3.platon.getTransaction()的返回值。
+Notification returns:
 
-通知返回值：
+*  Object|Null -  First parameter is an error object if the subscription failed.
+*  Object - Second parameter is the transaction hash.
 
-*  Object|Null - 第一个参数是一个错误对象，如果订阅成功则为null
-*  Object - 块头对象
-
-示例代码：
+Example:
 
 ```js
 var subscription = web3.platon.subscribe('pendingTransactions', function(error, result){
@@ -1225,49 +1222,50 @@ subscription.unsubscribe(function(error, success){
 
 #### web3.platon.subscribe('newBlockHeaders')
 
-使用`newBlockHeaders`参数订阅新的区块头生成事件。可用做检查区块链上变化的计时器。
+`newBlockHeaders` Subscribes to incoming block headers. This can be used as timer to check for changes on the blockchain.
 
-调用：
+Method:
 
 ```
 web3.platon.subscribe('newBlockHeaders' [, callback]);
 ```
 
-参数：
+Parameter:
 
-*  `type`：String - "newBlockHeaders", 订阅类型
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `type`：`String` - `"newBlockHeaders"`, the type of the subscription.
+*  `callback`：`Function` -  (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription.
 
-返回值：
+Returns:
 
-EventEmitter: 订阅对象实例，是一个事件发生器，定义有如下事件：
+`EventEmitter`: An subscription instance as an event emitter with the following events:
 
-*  "data" 返回 Object: 当收到新的区块头时触发
-*  "error" 返回 Object: 当订阅中出现错误时触发
+*  `"data"`  returns `Object`: Fires on each incoming block header.
+*  `"error"` returns `Object`: Fires when an error in the subscription occurs.
 
-返回的区块头对象结构如下：
+The structure of a returned block header is as follows:
 
-*  number - Number: 区块编号，对于pending的块该值为null
-*  hash 32 Bytes - String: 块的哈希值，挂起的块该值为null
-*  parentHash 32 Bytes - String: 父区块的哈希值
-*  nonce 8 Bytes - String: 生成的proof-of-work的哈希值。挂起块该值为null、
-*  sha3Uncles 32 Bytes - String: 块中叔伯数据的SHA3值
-*  logsBloom 256 Bytes - String: 块日志的bloom filter，块处于挂起状态时该值为null
-*  transactionsRoot 32 Bytes - String: 块交易树的根节点
-*  stateRoot 32 Bytes - String: 块状态树的根节点
-*  receiptRoot 32 Bytes - String: 收据根节点
-*  miner - String: 接收挖矿奖励的矿工地址
-*  extraData - String: 区块的额外数据字段
-*  gasLimit - Number: 该块允许的最大gas用量
-*  gasUsed - Number: 该块中所有交易使用的gas总用量
-*  timestamp - Number: 出块的unix时间戳
+* `number` - `Number`: The block number. null when its pending block.
+* `hash` 32 Bytes - `String`: Hash of the block. null when its pending block.
+* `parentHash` 32 Bytes - `String`: Hash of the parent block.
+* `nonce` 8 Bytes - `String`: Hash of the generated proof-of-work. null when its pending block.
+* `sha3Uncles` 32 Bytes - `String`: SHA3 of the uncles data in the block.
+* `logsBloom` 256 Bytes - `String`: The bloom filter for the logs of the block. null when its pending block.
+* `transactionsRoot` 32 Bytes - `String`: The root of the transaction trie of the block
+* `stateRoot` 32 Bytes - `String`: The root of the final state trie of the block.
+* `receiptsRoot` 32 Bytes - `String`: The root of the receipts.
+* `miner` - `String`: The address of the beneficiary to whom the mining rewards were given.
+* `extraData` - `String`: The “extra data” field of this block.
+* `gasLimit` - `Number`: The maximum gas allowed in this block.
+* `gasUsed` - `Number`: The total used gas by all transactions in this block.
+* `timestamp` - `Number`: The unix timestamp for when the block was collated.
 
-通知返回值：
 
-*  Object|Null - 如果订阅失败，则该参数为错误对象，否则为null
-*  Object - 区块头对象
+Notification returns:
 
-示例代码：
+* `Object|Null` - First parameter is an error object if the subscription failed.
+* `Object` - The block header object like above.
+
+Example:
 
 ```js
 var subscription = web3.platon.subscribe('newBlockHeaders', function(error, result){
@@ -1288,35 +1286,35 @@ subscription.unsubscribe(function(error, success){
 
 #### web3.platon.subscribe('syncing')
 
-使用`syncing`参数订阅同步事件。当节点同步时将返回一个同步对象，否则返回false。
+`syncing` Subscribe to syncing events. This will return an object when the node is syncing and when its finished syncing will return FALSE.
 
-调用：
+Method:
 
 ```
 web3.platon.subscribe('syncing' [, callback]);
 ```
 
-参数：
+Parameter:
 
-*  `type`：String - "syncing", 订阅类型
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `type`：String - `"syncing"`, the type of the subscription.
+*  `callback`：`Function` -  (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription.
 
-返回值：
+Returns:
 
-EventEmitter: 订阅对象实例，是一个事件发生器，定义有如下事件：
+`EventEmitter`: An subscription instance as an event emitter with the following events:
 
-*  "data" 返回 Object: 收到同步对象时触发
-*  "changed" 返回 Object: 当节点从同步状态转换为非同步状态时触发
-*  "error" 返回 Object: 当订阅中出现错误时触发
+* `"data"`  returns `Object`: Fires on each incoming sync object as argument.
+* `"changed"` returns `Object`: Fires when the synchronisation is started with true and when finished with false.
+* `"error"` returns `Object`: Fires when an error in the subscription occurs.
 
-要了解返回的事件对象的结构，可以查看`web3.platon.isSyncing()`方法的返回值。
+For the structure of a returned event Object see `web3.platon.isSyncing` return values.
 
-通知返回值：
+Notification returns:
 
-*  Object|Null - 当订阅失败时，该值为错误对象，否则为null
-*  Object|Boolean - 同步对象
+* `Object|Null` - First parameter is an error object if the subscription failed.
+* `Object|Boolean` - The syncing object, when started it will return true once or when finished it will return false once.
 
-示例代码：
+Example:
 
 ```js
 var subscription = web3.platon.subscribe('syncing', function(error, sync){
@@ -1345,39 +1343,39 @@ subscription.unsubscribe(function(error, success){
 
 #### web3.platon.subscribe('logs')
 
-使用`logs`参数订阅日志，并且可以指定条件进行过滤。
+Subscribes to incoming logs, filtered by the given options. If a valid numerical fromBlock options property is set, Web3 will retrieve logs beginning from this point, backfilling the response as necessary.
 
-调用：
+Method:
 
 ```
 web3.platon.subscribe('logs', options [, callback]);
 ```
 
-参数：
+Parameter:
 
-*  `"logs"` ：String, 订阅类型
-*  `options`：Object - 订阅选项，该对象包含如下字段：
-   *  fromBlock - Number: 最早块的编号，默认值为null
-   *  address - String|Array: 地址或地址列表，仅订阅来自这些账户地址的日志
-   *  topics - Array: 主题数组，仅订阅日志中包含这些主题的日志。
-*  `callback` - Function: 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+*  `"logs"` ：`String`, the type of the subscription.
+*  `options`：`Object` - The subscription options:
+   * `fromBlock` - `Number`: The number of the earliest block. By default null.
+   * `address` - `String|Array`: An address or a list of addresses to only get logs from particular account(s).
+   * `topics` - `Array`:  An array of values which must each appear in the log entries. The order is important, if you want to leave topics out use null, e.g. [null, '0x00...']. You can also pass another array for each topic with options for that topic e.g. [null, ['option1', 'option2']]
+*  `callback` - Function:  An array of values which must each appear in the log entries. The order is important, if you want to leave topics out use null, e.g. [null, '0x00...']. You can also pass another array for each topic with options for that topic e.g. [null, ['option1', 'option2']].
 
-返回值：
+Returns:
 
-EventEmitter: 订阅实例对象，是一个事件发生器，定义有如下事件：
+EventEmitter: An subscription instance as an event emitter with the following events:
 
-*  "data" 返回 Object: 接收到新日志时触发，参数为日志对象
-*  "changed" 返回 Object: 日志从链上移除时触发，该日志同时添加属性 "removed: true"
-*  "error" 返回 Object: 当订阅中出现错误时触发
+* `"data"` returns `Object`: Fires on each incoming log with the log object as argument.
+* `"changed"` 返回 `Object`: returns Object: Fires on each log which was removed from the blockchain. The log will have the additional property "removed: true".
+* `"error"`  returns `Object`: Fires when an error in the subscription occurs.
 
-要了解返回的事件对象的结果，可查阅`web3.platon.getPastEvents()`方法的返回值。
+For the structure of a returned event Object see web3.platon.getPastEvents return values.
 
-通知返回值：
+Notification returns:
 
-*  Object|Null - 订阅失败时该值为错误对象，否则为null
-*  Object - 日志对象，类似于`web3.platon.getPastEvents()`方法的返回值
+* `Object|Null` - First parameter is an error object if the subscription failed.
+* `Object` - The log object like in web3.platon.getPastEvents return values.
 
-示例代码：
+Example:
 
 ```js
 var subscription = web3.platon.subscribe('logs', {
@@ -1404,33 +1402,31 @@ subscription.unsubscribe(function(error, success){
 
 #### web3.platon.Contract
 
-`web3.platon.Contract`类简化了与以太坊区块链上智能合约的交互。创建合约对象时，
-只需指定相应智能合约的json接口，web3就可以自动地将所有的调用转换为底层
-基于RPC的ABI调用。
+The `web3.platon.Contract` object makes it easy to interact with smart contracts on the PlatON blockchain. When you create a new contract object you give it the json interface of the respective smart contract and web3 will auto convert all calls into low level ABI calls over RPC for you.
 
-通过web3的封装，与智能合约的交互就像与JavaScript对象一样简单。
+This allows you to interact with smart contracts as if they were JavaScript objects.
 
-实例化一个新的合约对象：
+To use it standalone:
 
 ```
 new web3.platon.Contract(jsonInterface[, address][, options])
 ```
 
-参数：
+Parameter:
 
-*  jsonInterface - Object: 要实例化的合约的json接口
-*  address - String: 可选，要调用的合约的地址，也可以在之后使用 myContract.options.address = '0x1234..' 来指定该地址
-*  options - Object : 可选，合约的配置对象，其中某些字段用作调用和交易的回调：
-   *  from - String: 交易发送方地址
-   *  gasPrice - String: 用于交易的gas价格，单位：wei
-   *  gas - Number: 交易可用的最大gas量，即gas limit
-   *  data - String: 合约的字节码，部署合约时需要
+* `jsonInterface` - `Object`: The json interface for the contract to instantiate
+* `address` - `String`: (optional): The address of the smart contract to call.
+* `options` - `Object` : (optional): The options of the contract. Some are used as fallbacks for calls and transactions:
+   * `from` - `String`: The address transactions should be made from.
+   * `gasPrice` - `String`: The gas price in von to use for transactions.
+   * `gas` - `Number`: The maximum gas provided for a transaction (gas limit).
+   * `data` - `String`: The byte code of the contract. Used when the contract gets deployed.
 
-返回值：
+Returns:
 
 `Object`: The contract instance with all its methods and events.
 
-示例代码：
+Example:
 
 ```js
 var myContract = new web3.platon.Contract([...], '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe', {
@@ -1441,26 +1437,26 @@ var myContract = new web3.platon.Contract([...], '0xde0B295669a9FD93d5F28D9Ec85E
 
 ***
 
-#### options合约实例的选项
+#### options
 
-合约实例的可选配置对象。当发送交易时，其from、gas和gasPrice被用作回调值。
+The options object for the contract instance. from, gas and gasPrice are used as fallback values when sending transactions.
 
-调用：
+Method:
 
 ```
 myContract.options
 ```
 
-`options`属性对象具有以下字段：
+`options` options:
 
-*  address - String: 合约的部署地址
-*  jsonInterface - Array: 合约的json接口
-*  data - String: 合约的字节码，合约部署时会用到
-*  from - String: 合约发送方账户地址
-*  gasPrice - String: 用于交易的gas价格，单位：wei
-*  gas - Number: 交易的gas用量上限，即gas limit
+* `address` - `String`: The address where the contract is deployed. 
+* `jsonInterface` - `Array`: The json interface of the contract.
+* `data` - `String`: The byte code of the contract.
+* `from` - `String`: The address transactions should be made from.
+* `gasPrice` - `String`: The gas price in von to use for transactions.
+* `gas` - `Number`: The maximum gas provided for a transaction (gas limit).
 
-示例代码：
+Example:
 
 ```js
 myContract.options;
@@ -1479,48 +1475,47 @@ myContract.options.gas = 5000000; // provide as fallback always 5M gas
 
 ***
 
-#### options.address - 合约地址
+#### options.address - contract address
 
-用于合约实例的地址，保存。web3.js从这个合约生成的所有交易，其to字段的值都是该地址。
-当设置该选项时，web3.js将以小写形式保存。
+The address used for this contract instance. All transactions generated by web3.js from this contract will contain this address as the “to”. The address will be stored in lowercase.
 
-调用：
+Method:
 
 ```
 myContract.options.address
 ```
 
-属性：
+Property:
 
-`address` - String|null: 合约实例对象的地址，如果未设置的话则为null
+`address` - `String|null`:  The address for this contract, or null if it’s not yet set.
 
-示例代码：
+Example:
 
 ```js
 myContract.options.address;
 > '0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae'
 
-// 设置一个新地址
+// set a new address
 myContract.options.address = '0x1234FFDD...';
 ```
 
 ***
 
-#### options.jsonInterface - 合约JSON接口
+#### options.jsonInterface
 
-`jsonInterface`配置项基于合约的ABI信息生成。
+`jsonInterface` The json interface object derived from the ABI of this contract.
 
-调用：
+Method:
 
 ```
 myContract.options.jsonInterface
 ```
 
-属性：
+Property:
 
-`jsonInterface` - Array: 合约的json接口。重新设置该属性将重新生成合约实例的方法和事件。
+`jsonInterface` - `Array`: The json interface for this contract. Re-setting this will regenerate the methods and events of the contract instance.
 
-示例代码：
+Example:
 
 ```js
 myContract.options.jsonInterface;
@@ -1535,40 +1530,39 @@ myContract.options.jsonInterface;
     "inputs": [{"name":"a","type":"uint256","indexed":true},{"name":"b","type":"bytes32","indexed":false}],
 }]
 
-// 设置一个新的接口
+// set a new interface
 myContract.options.jsonInterface = [...];
 ```
 
 ***
 
-#### deploy - 部署合约
+#### deploy
 
-调用合约的`deploy()`方法将其部署到区块链上。其返回的Promise对象
-将在成功部署后解析为新的合约实例。
+Call this function to deploy the contract to the blockchain. After successful deployment the promise will resolve with a new contract instance.
 
-调用：
+Method:
 
 ```
 myContract.deploy(options)
 ```
 
-参数：
+Parameter:
 
-`options` - Object: 用于部署的配置选项，包含以下字段：
+`options` - Object: The options used for deployment.
 
-*  data - String: 合约的字节码
-*  arguments - Array : 可选，在部署时将传入合约的构造函数
+* `data` - `String`: The byte code of the contract.
+* `arguments` - `Array`: (optional): The arguments which get passed to the constructor on deployment.
 
-返回值：
+Returns:
 
-`Object`: 交易对象，包含以下字段：
+`Object`: The transaction object:
 
-*  `arguments`: Array - 之前传入方法的参数，可修改
-*  `send`: Function - 用来部署合约，其返回的promise对象将解析为新的合约实例，而非交易收据！
-*  `estimateGas`: Function -  用来估算用于部署的gas用量
-*  `encodeABI`: Function - 用来编码部署的ABI数据，即合约数据 + 构造函数参数
+*  `arguments`: `Array` - The arguments passed to the method before. They can be changed.
+*  `send`: `Function` - Will deploy the contract. The promise will resolve with the new contract instance, instead of the receipt!
+*  `estimateGas`: `Function` - Will estimate the gas used for deploying.
+*  `encodeABI`: `Function` - Encodes the ABI of the deployment, which is contract data + constructor parameters
 
-示例代码：
+Example:
 
 ```js
 myContract.deploy({
@@ -1583,15 +1577,15 @@ myContract.deploy({
 .on('error', function(error){ ... })
 .on('transactionHash', function(transactionHash){ ... })
 .on('receipt', function(receipt){
-   console.log(receipt.contractAddress) // 收据中包含了新的合约地址
+   console.log(receipt.contractAddress) // contains the new contract address
 })
 .on('confirmation', function(confirmationNumber, receipt){ ... })
 .then(function(newContractInstance){
-    console.log(newContractInstance.options.address) // 新地址的合约实例
+    console.log(newContractInstance.options.address) // instance with the new contract address
 });
 
 
-// data是合约自身的一个可选配置项
+// When the data is already set as an option to the contract itself
 myContract.options.data = '0x12345...';
 
 myContract.deploy({
@@ -1607,7 +1601,7 @@ myContract.deploy({
 });
 
 
-// 编码
+// Simply encoding
 myContract.deploy({
     data: '0x12345...',
     arguments: [123, 'My String']
@@ -1616,7 +1610,7 @@ myContract.deploy({
 > '0x12345...0000012345678765432'
 
 
-// 估算gas
+// Gas estimation
 myContract.deploy({
     data: '0x12345...',
     arguments: [123, 'My String']
@@ -1628,53 +1622,53 @@ myContract.deploy({
 
 ***
 
-#### methods - 为合约方法创建交易
+#### methods
 
-为指定的合约方法创建一个交易对象，以便使用该交易对象进行调用、发送或估算gas。
+Creates a transaction object for that method, which then can be called, send, estimated.
 
-调用：
+Method:
 
 ```
 myContract.methods.myMethod([param1[, param2[, ...]]])
 ```
 
-可以使用以下语法获得指定方法的交易对象：
+The methods of this smart contract are available through:
 
-*  名称: myContract.methods.myMethod(123)
-*  带参名称: myContract.methods['myMethod(uint256)'](123)
-*  签名: myContract.methods['0x58cf5f10'](123)
+* The name: myContract.methods.myMethod(123)
+* The name with parameters: myContract.methods['myMethod(uint256)'](123)
+* The signature: myContract.methods['0x58cf5f10'](123)
 
-这样就可以支持从javascript合约对象调用同名但参数不同的合约方法。
+This allows calling functions with same name but different parameters from the JavaScript contract object.
 
-参数：
+Parameter:
 
-参数取决于在JSON接口中定义的合约方法
+Parameters of any method depend on the smart contracts methods, defined in the JSON interface.
 
-返回值：
+Returns:
 
-Object: 交易对象，包含以下字段：
+Object: The transaction object:
 
-*  `arguments`: Array - 之前传入方法的参数，可修改
-*  `call`: Function -  用来调用只读的合约方法，在EVM直接执行而不必发出交易，因此不会改变合约的状态
-*  `send`: Function -  用来向合约发送交易并执行方法，因此可以改变合约的状态
-*  `estimateGas`: Function - 用来估算方法在链上执行时的gas用量
-*  `encodeABI`: Function -  用来为合约方法进行ABI编码。
+*  `arguments`: Array - The arguments passed to the method before. They can be changed.
+*  `call`: Function -  Will call the “constant” method and execute its smart contract method in the EVM without sending a transaction (Can’t alter the smart contract state).
+*  `send`: Function - Will send a transaction to the smart contract and execute its method (Can alter the smart contract state).
+*  `estimateGas`: Function - Will estimate the gas used when the method would be executed on chain.
+*  `encodeABI`: Function -  Encodes the ABI for this method. This can be send using a transaction, call the method or passing into another smart contracts method as argument.
 
-示例代码：
+Example:
 
 ```js
-// 调用合约方法
+// calling a method
 myContract.methods.myMethod(123).call({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'}, function(error, result){
     ...
 });
 
-// 发送交易，使用Promise对象获取返回结果
+// or sending and using a promise
 myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
 .then(function(receipt){
     // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
 });
 
-// 发送交易，使用事件获取返回结果
+// or sending and using the events
 myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
 .on('transactionHash', function(hash){
     ...
@@ -1690,45 +1684,43 @@ myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4
 
 ***
 
-#### call - 调用合约方法
+#### methods.myMethod.call
 
-调用合约的只读方法，并在EVM中直接执行方法，不需要发送任何交易。因此不会改变合约的状态。
+Will call a “constant” method and execute its smart contract method in the EVM without sending any transaction. Note calling can not alter the smart contract state.
 
-调用：
+Method:
 
 ```
 myContract.methods.myMethod([param1[, param2[, ...]]]).call(options[, callback])
 ```
 
-参数：
+Parameter:
 
-*  `options` - Object : 选项，包含如下字段：
+*  `options` - Object :  (optional): The options used for calling.
    *  `from` - String (optional): The address the call “transaction” should be made from.
    *  gasPrice - String (optional): The gas price in wei to use for this call “transaction”.
    *  gas - Number (optional): The maximum gas provided for this call “transaction” (gas limit).
-*  `callback` - Function : 可选的回调函数，其第二个参数为合约方法的执行结果，第一个参数为错误对象
+*  `callback` - Function : (optional): This callback will be fired with the result of the smart contract method execution as the second argument, or with an error object as the first argument.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为合约方法的返回值，Mixed类型。如果合约方法返回多个值，则解析值为一个
-对象。
-
-示例代码：
+Promise returns Mixed: The return value(s) of the smart contract method. If it returns a single value, it’s returned as is. If it has multiple return values they are returned as an object with properties and indices:
+Example:
 
 ```js
-// 使用回调函数接收合约方法执行结果
+// using the callback
 myContract.methods.myMethod(123).call({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'}, function(error, result){
     ...
 });
 
-// 使用Promise接收合约方法执行结果
+// using the promise
 myContract.methods.myMethod(123).call({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
 .then(function(result){
     ...
 });
 ```
 
-下面合约中的方法返回多个值：
+MULTI-ARGUMENT RETURN:
 
 ```
 // Solidity
@@ -1739,8 +1731,6 @@ contract MyContract {
 }
 ```
 
-那么在web3.js中，`call`方法的返回值将是一个对象，即使用返回变量名作为键，
-也使用索引作为键：
 
 ```
 // web3.js
@@ -1755,7 +1745,7 @@ MyContract.methods.myFunction().call()
 }
 ```
 
-下面合约中的方法返回单个值：
+SINGLE-ARGUMENT RETURN:
 
 ```
 // Solidity
@@ -1766,7 +1756,7 @@ contract MyContract {
 }
 ```
 
-那么在web3.js中，`call`方法也将返回单个值：
+Then in web3.js, the `call` method will also return a single value:
 
 ```
 // web3.js
@@ -1778,38 +1768,37 @@ MyContract.methods.myFunction().call()
 
 ***
 
-#### send - 发送合约方法交易
+#### send - methods.myMethod.send
 
-向合约发送交易来执行指定方法，将改变合约的状态。
+Will send a transaction to the smart contract and execute its method. Note this can alter the smart contract state.
 
-调用：
+Method:
 
 ```
 myContract.methods.myMethod([param1[, param2[, ...]]]).send(options[, callback])
 ```
 
-参数：
+Parameter:
 
-*  options - Object: 选项，包含如下字段：
-   *  from - String: 交易发送方地址
-   *  gasPrice - String : 可选，用于本次交易的gas价格，单位：wei
-   *  gas - Number : 可选，本次交易的gas用量上限，即gas limit
-   *  value - Number|String|BN|BigNumber: 可选，交易转账金额，单位：wei
-*  callback - Function: 可选的回调参数，其参数为交易哈希值和错误对象
+* `options` - `Object`: The options used for sending.
+   * `from` - `String`: The address the transaction should be sent from.
+   * `gasPrice` - `String`:  (optional): The gas price in von to use for this transaction.
+   * `gas` - `Number`: (optional): The maximum gas provided for this transaction (gas limit).
+   * `value` - `Number|String|BN|BigNumber`: (optional): The value transferred for the transaction in von.
+* `callback` - `Function`: (optional): This callback will be fired first with the “transactionHash”, or with an error object as the first argument.
 
-返回值：
+Returns:
 
-回调函数中将返回32字节长的交易哈希值。
+The callback will return the 32 bytes transaction hash.
 
-PromiEvent: 一个Promise对象，当交易收据有效时或者发送交易时解析为新的合约实例。
-它同时也是一个事件发生器，声明有以下事件：
+PromiEvent: A promise combined event emitter. Will be resolved when the transaction receipt is available, OR if this send() is called from a someContract.deploy(), then the promise will resolve with the new contract instance. Additionally the following events are available:
 
-*  "transactionHash" 返回 String: 交易发送后得到有效交易哈希值时触发
-*  "receipt" 返回 Object: 交易收据有效时触发。
-*  "confirmation" 返回 Number, Object: 收到确认时触发
-*  "error" 返回 Error: 交易发送过程中如果出现错误则触发此事件。对于out of gas错误，其第二个参数为交易收据
+*  "transactionHash" returns `String`: is fired right after the transaction is sent and a transaction hash is available.
+*  "receipt" returns `Object`: is fired when the transaction receipt is available. Receipts from contracts will have no logs property, but instead an events property with event names as keys and events as properties. See getPastEvents return values for details about the returned event object.
+*  "confirmation" returns `Number`, Object: is fired for every confirmation up to the 24th confirmation. Receives the confirmation number as the first and the receipt as the second argument. Fired from confirmation 1 on, which is the block where it’s minded.
+*  "error" returns `Error and Object|undefined`: Is fired if an error occurs during sending. If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
 
-示例代码：
+Example:
 
 ```js
 // using the callback
@@ -1875,39 +1864,39 @@ myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4
 
 ***
 
-#### estimateGas - 估算合约方法gas用量
+#### estimateGas - methods.myMethod.estimateGas
 
-通过在EVM中执行方法来估算链上执行是需要的gas用量。得到的估算值可能与之后实际发送
-交易的gas用量有差异，因为合约的状态可能在两个时刻存在差异。
+Will call estimate the gas a method execution will take when executed in the EVM without. The estimation can differ from the actual gas used when later sending a transaction, as the state of the smart contract can be different at that time.
 
-调用：
+Method:
 
 ```
 myContract.methods.myMethod([param1[, param2[, ...]]]).estimateGas(options[, callback])
 ```
 
-参数：
+Parameter:
 
-*  `options` - Object : 选项，包括以下字段：
-   *  from - String : 可选，交易发送方地址
-   *  gas - Number : 可选，本次交易gas用量上限
-   *  value - Number|String|BN|BigNumber:  可选，交易转账金额，单位：wei
-   *  callback - Function : 可选的回调函数，触发时其第二个参数为gas估算量，第一个参数为错误对象。
+*  `options` - `Object`: (optional): The options used for calling.
+   - `from` - `String`: (optional): The address the call “transaction” should be made from.
+   - `gas` - `Number` : (optional): The maximum gas provided for this call “transaction” (gas limit). Setting a specific value helps to detect out of gas errors. If all gas is used it will return the same number.
+   - `value` - `Number|String|BN|BigNumber`:  (optional): The value transferred for the call “transaction” in von.
+   
+* `callback` - `Function` : (optional): This callback will be fired with the result of the gas estimation as the second argument, or with an error object as the first argument.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为估算的gas用量。
+Promise returns Number: The gas amount estimated.
 
-示例代码：
+Example:
 
 ```js
-// 使用回调函数
+// using the callback
 myContract.methods.myMethod(123).estimateGas({gas: 5000000}, function(error, gasAmount){
     if(gasAmount == 5000000)
         console.log('Method ran out of gas');
 });
 
-// 使用promise
+// using the promise
 myContract.methods.myMethod(123).estimateGas({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
 .then(function(gasAmount){
     ...
@@ -1919,25 +1908,25 @@ myContract.methods.myMethod(123).estimateGas({from: '0xde0B295669a9FD93d5F28D9Ec
 
 ***
 
-#### encodeABI - ABI编码合约方法
+#### encodeABI - methods.myMethod.encodeABI
 
-为指定的合约方法进行ABI编码，可用于发送交易、调用方法或向另一个合约方法传递参数。
+Encodes the ABI for this method. This can be used to send a transaction, call a method, or pass it into another smart contracts method as arguments.
 
-调用：
+Method:
 
 ```
 myContract.methods.myMethod([param1[, param2[, ...]]]).encodeABI()
 ```
 
-参数：
+Parameter:
 
-无
+none
 
-返回值：
+Returns:
 
-`String`: 编码后的ABI字节码，可用于交易发送或方法调用
+`String`: The encoded ABI byte code to send via a transaction or call.
 
-示例代码：
+Example:
 
 ```js
 myContract.methods.myMethod(123).encodeABI();
@@ -1946,47 +1935,48 @@ myContract.methods.myMethod(123).encodeABI();
 
 ***
 
-#### events - 订阅合约事件
+#### events
 
-订阅指定的合约事件。
+Subscribe to an event.
 
-调用：
+Method:
 
 ```
 myContract.events.MyEvent([options][, callback])
 ```
 
-参数：
+Parameter:
 
-*  options - Object: 可选，用于部署的选项，包含以下字段：
-   *  filter - Object : 可选，按索引参数过滤事件。例如 {filter: {myNumber: [12,13]}} 表示 “myNumber” 为12或13的所有事件
-   *  fromBlock - Number: 可选，仅监听该选项指定编号的块中发生的事件
-   *  topics - Array : 可选，用来手动为事件过滤器设定主题。如果设置过filter属性和事件签名，那么(topic[0])将不会自动设置
-*  callback - Function: 可选，该回调函数触发时，其第二给参数为事件对象，第一个参数为错误对象
+* `options` - `Object` (optional): The options used for deployment：
+   - `filter` - `Object` (optional): Let you filter events by indexed parameters, e.g. {filter: {myNumber: [12,13]}} means all events where “myNumber” is 12 or 13.
+   - `fromBlock` - `Number` (optional): The block number (greater than or equal to) from which to get events on. Pre-defined block numbers as "latest", "earlist", "pending", and "genesis" can also be used.
+   - `topics` - `Array` (optional): This allows to manually set the topics for the event filter. If given the filter property and event signature, (topic[0]) will not be set automatically.
 
-返回值：
+* `callback` - `Function` (optional): This callback will be fired for each event as the second argument, or an error as the first argument.
 
-EventEmitter: 事件发生器，声明有以下事件:
+Returns:
 
-*  "data" 返回 Object: 接收到新的事件时触发，参数为事件对象
-*  "changed" 返回 Object: 当事件从区块链上移除时触发，该事件对象将被添加额外的属性"removed: true"
-*  "error" 返回 Object: 当发生错误时触发
+EventEmitter: The event emitter has the following events:
 
-返回的事件对象结构如下：
+* `"data"` returns `Object`: Fires on each incoming event with the event object as argument.
+* `"changed"` returns `Object`: Fires on each event which was removed from the blockchain. The event will have the additional property "removed: true".
+* `"error"` returns `Object`: Fires when an error in the subscription occours.
 
-*  event - String: 事件名称
-*  signature - String|Null: 事件签名，如果是匿名事件，则为null
-*  address - String: 事件源地址
-*  returnValues - Object: 事件返回值，例如 {myVar: 1, myVar2: '0x234...'}.
-*  logIndex - Number: 事件在块中的索引位置
-*  transactionIndex - Number: 事件在交易中的索引位置
-*  transactionHash 32 Bytes - String: 事件所在交易的哈希值
-*  blockHash 32 Bytes - String: 事件所在块的哈希值，pending的块该值为 null
-*  blockNumber - Number: 事件所在块的编号，pending的块该值为null
-*  raw.data - String: 该字段包含未索引的日志参数
-*  raw.topics - Array: 最多可保存4个32字节长的主题字符串数组。主题1-3 包含事件的索引参数
+The structure of the returned event `Object` looks as follows:
 
-示例代码：
+* `event` - `String`: The event name.
+* `signature` - `String|Null`: The event signature, null if it’s an anonymous event.
+* `address` - `String`: Address this event originated from.
+* `returnValues` - `Object`: The return values coming from the event, e.g. {myVar: 1, myVar2: '0x234...'}.
+* `logIndex` - `Number`: Integer of the event index position in the block.
+* `transactionIndex` - `Number`: Integer of the transaction’s index position the event was created in.
+* `transactionHash` 32 Bytes - `String` Hash of the transaction this event was created in.
+* `blockHash` 32 Bytes - `String`: Hash of the block this event was created in. null when it’s still pending.
+* `blockNumber` - `Number`: The block number this log was created in. null when still pending.
+* `raw.data` - `String`: The data containing non-indexed log parameter.
+* `raw.topics` - `Array`: An array with max 4 32 Byte topics, topic 1-3 contains indexed parameters of the event.
+
+Example:
 
 ```js
 myContract.events.MyEvent({
@@ -2025,43 +2015,43 @@ myContract.events.MyEvent({
 
 ***
 
-#### events.allEvents - 订阅合约全部事件
+#### events.allEvents
 
-调用：
+Method:
 
 ```
 myContract.events.allEvents([options][, callback])
 ```
 
-与`events`相同，只是可以接收合约的全部事件。可以使用options.filter属性进行过滤。
+Same as `events` but receives all events from this smart contract. Optionally the filter property can filter those events.
 
 ***
 
-#### getPastEvents - 读取合约历史事件
+#### getPastEvents
 
-读取合约的历史事件。
+Gets past events for this contract.
 
-调用:
+Method:
 
 ```
 myContract.getPastEvents(event[, options][, callback])
 ```
 
-参数：
+Parameter:
 
-*  event - String: 事件名，或者使用 "allEvents" 来读取所有的事件
-*  options - Object: 用于部署的选项，包含以下字段：
-   *  filter - Object : 可选，按索引参数过滤事件，例如 {filter: {myNumber: [12,13]}} 表示所有“myNumber” 为12 或 13的事件
-   *  fromBlock - Number : 可选，仅读取从该编号开始的块中的历史事件。
-   *  toBlock - Number : 可选，仅读取截止到该编号的块中的历史事件，默认值为"latest"
-   *  topics - Array : 可选，用来手动设置事件过滤器的主题。如果设置了filter属性和事件签名，那么(topic[0])将不会自动设置
-*  callback - Function : 可选的回调参数，触发时其第一个参数为错误对象，第二个参数为历史事件数组
+* `event` - `String`: The name of the event in the contract, or "allEvents" to get all events.
+* `options` - `Object` (optional): The options used for deployment.
+	- `filter` - `Object` (optional): Lets you filter events by indexed parameters, e.g. {filter: {myNumber: [12,13]}} means all events where “myNumber” is 12 or 13.
+	- `fromBlock` - `Number|String|BN|BigNumber` (optional): The block number (greater than or equal to) from which to get events on. Pre-defined block numbers as "latest", "earlist", "pending", and "genesis" can also be used.
+	- `toBlock` - `Number|String|BN|BigNumber` (optional): The block number (less than or equal to) to get events up to (Defaults to "latest"). Pre-defined block numbers as "latest", "earlist", "pending", and "genesis" can also be used.
+	- `topics` - `Array` (optional): This allows manually setting the topics for the event filter. If given the filter property and event signature, (topic[0]) will not be set automatically.
+* `callback` - `Function` (optional): This callback will be fired with an array of event logs as the second argument, or an error as the first argument.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为历史事件对象数组
+Promise returns Array: An array with the past event Objects, matching the given event name and filter.
 
-示例代码：
+Example:
 
 ```js
 myContract.getPastEvents('MyEvent', {
@@ -2101,21 +2091,20 @@ myContract.getPastEvents('MyEvent', {
 
 #### web3.platon.personal
 
-使用web3-eth-personal包和以太坊节点账户进行交互。
+The web3-platon-personal package allows you to interact with the PlatON node’s accounts.
 
-注意，这个包中的许多函数包含敏感信息，例如密码，因此不要在未加密的
-websocket或http服务提供器上调用这些函数，因为你的密码是明文发送的！
+Notes: Many of these functions send sensitive information, like password. Never call these functions over a unsecured Websocket or HTTP provider, as your password will be sent in plain text!
 
-使用方法：
+Usage: 
 
 ```
 var Personal = require('web3.platon-personal');
 
-// 在以太坊兼容浏览器中，"Personal.providers.givenProvider"将自动被设置
+// "Personal.providers.givenProvider" will be set if in an PlatON supported browser.
 var personal = new Personal(Personal.givenProvider || 'ws://some.local-or-remote.node:8546');
 
 
-// 也可以使用web3包
+// or using the web3 umbrella package
 
 var Web3 = require('web3');
 var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
@@ -2127,24 +2116,25 @@ var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546')
 
 #### web3.platon.personal.newAccount
 
-创建一个新账户。注意，不要在未加密的websocket或http提供器上调用该函数，
-否则你的密码将泄漏！
+Creates a new account.
 
-调用：
+Notes: Never call this function over a unsecured Websocket or HTTP provider, as your password will be send in plain text!
+
+Method:
 
 ```
 web3.platon.personal.newAccount(password, [callback])
 ```
 
-参数：
+Parameter:
 
-password - String: 用来加密账户的密码
+password - String: The password to encrypt this account with.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为新创建的账户。
+Promise returns String: The address of the newly created account.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.personal.newAccount('!@superpassword')
@@ -2156,35 +2146,35 @@ web3.platon.personal.newAccount('!@superpassword')
 
 #### web3.platon.personal.sign
 
-使用指定账户对数据进行签名。
+The sign method calculates an Ethereum specific signature with:
 
-注意，在未加密的HTTP连接上发送账户密码极其不安全！
+Notes: Sending your account password over an unsecured HTTP RPC connection is highly unsecure.
 
-调用：
+Method:
 
 ```
 web3.platon.personal.sign(dataToSign, address, password [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `dataToSign`：String - 要签名的数据。会先使用web3.utils.utf8ToHex()将字符串转化为16进制
-*  `address`：String - 用来签名的账户地址
-*  `password`：String - 用来签名的账户密码
-*  `callback`：Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果签名
+*  `dataToSign`：String - Data to sign. If String it will be converted using web3.utils.utf8ToHex.
+*  `address`：String - Address to sign data with.
+*  `password`：String - The password of the account to sign data with.
+*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为签名结果字符串。
+Promise returns String - The signature.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.personal.sign("Hello world", "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe", "test password!")
 .then(console.log);
 > "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400"
 
-// 下面代码实现同样功能
+// the below is the same
 web3.platon.personal.sign(web3.utils.utf8ToHex("Hello world"), "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe", "test password!")
 .then(console.log);
 > "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400"
@@ -2194,25 +2184,25 @@ web3.platon.personal.sign(web3.utils.utf8ToHex("Hello world"), "0x11f4d0A3c12e86
 
 #### web3.platon.personal.ecRecover
 
-从签名的数据中提取进行签名的账户地址。
+Recovers the account that signed the data.
 
-调用：
+Method:
 
 ```
 web3.platon.personal.ecRecover(dataThatWasSigned, signature [, callback])
 ```
 
-参数：
+Parameter:
 
-*  `dataThatWasSigned`：String - 带有签名的数据，首先使用web3.utils.utf8ToHex()转化为16进制字符串
-*  `signature`：String - 签名
-*  Function - 可选的回调函数，其第一个参数为错误对象，第二个参数为结果
+* `dataThatWasSigned`：`String` -  Data that was signed. If String it will be converted using web3.utils.utf8ToHex.
+* `signature`：`String` - The signature.
+* `Function` - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为账户地址字符串
+Promise returns String - The account.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.personal.ecRecover("Hello world", "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400").then(console.log);
@@ -2223,27 +2213,27 @@ web3.platon.personal.ecRecover("Hello world", "0x30755ed65396facf86c53e6217c52b4
 
 #### web3.platon.personal.signTransaction
 
-对交易进行签名，账户必须先解锁。
+Signs a transaction. This account needs to be unlocked.
 
-注意：在未加密的HTTP连接上发送账户密码有巨大的风险！
+Notes: Sending your account password over an unsecured HTTP RPC connection is highly unsecure.
 
-调用：
+Method:
 
 ```
 web3.platon.personal.signTransaction(transaction, password [, callback])
 ```
 
-参数：
+Parameter:
 
 *  `transaction`：Object - The transaction data to sign web3.platon.sendTransaction() for more.
 *  `password`：String - The password of the from account, to sign the transaction with.
 *  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second.
 
-返回值：
+Returns:
 
-一个Promise对象，其解析值为RLP编码的交易对象，其raw属性可以使用web3.platon.sendSignedTransaction()发送交易。
+Promise returns Object - The RLP encoded transaction. The raw property can be used to send the transaction using web3.platon.sendSignedTransaction.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.signTransaction({
@@ -2275,10 +2265,9 @@ web3.platon.signTransaction({
 
 #### web3.platon.abi
 
-web3.platon.abi系列函数用来将参数编码为ABI (Application Binary Interface)，或者从ABI解码回来。
-以便在以太坊虚拟机EVM上执行函数函数调用。
+The web3.platon.abi functions let you de- and encode parameters to ABI (Application Binary Interface) for function calls to the EVM (Ethereum Virtual Machine).
 
-函数列表：
+Function List:
 
 *  web3.platon.abi.encodeFunctionSignature
 *  web3.platon.abi.encodeEventSignature
@@ -2293,27 +2282,26 @@ web3.platon.abi系列函数用来将参数编码为ABI (Application Binary Inter
 
 #### web3.platon.abi.encodeFunctionSignature
 
-将函数名编码为ABI签名，方法是取函数名及参数类型的sha3哈希值的头4个字节。
+Encodes the function name to its ABI signature, which are the first 4 bytes of the sha3 hash of the function name including types.
 
-调用：
+Method:
 
 ```
 web3.platon.abi.encodeFunctionSignature(functionName);
 ```
 
-参数：
+Parameter:
 
-`functionName` - String|Object: 要编码的函数名字符串，或者函数的JSON接口对象。当
-采用字符串时，必须采用`function(type,type,...)`的格式，例如: `myFunction(uint256,uint32[],bytes10,bytes)`。
+`functionName` - `String|Object`: The function name to encode. or the JSON interface object of the function. If string it has to be in the form function(type,type,...), e.g: myFunction(uint256,uint32[],bytes10,bytes)
 
-返回值：
+Returns:
 
-`String` - 函数的ABI签名
+`String` - The ABI signature of the function.
 
-示例代码：
+Example:
 
 ```js
-// 传入JSON接口对象
+// From a JSON interface object
 web3.platon.abi.encodeFunctionSignature({
     name: 'myMethod',
     type: 'function',
@@ -2327,7 +2315,7 @@ web3.platon.abi.encodeFunctionSignature({
 })
 > 0x24ee0097
 
-// 传入字符串
+// Or string
 web3.platon.abi.encodeFunctionSignature('myMethod(uint256,string)')
 > '0x24ee0097'
 ```
@@ -2336,31 +2324,30 @@ web3.platon.abi.encodeFunctionSignature('myMethod(uint256,string)')
 
 #### web3.platon.abi.encodeEventSignature
 
-将事件名编码为ABI签名，方法是取事件名及其参数类型的sha3哈希值。
+Encodes the event name to its ABI signature, which are the sha3 hash of the event name including input types.
 
-调用：
+Method:
 
 ```
 web3.platon.abi.encodeEventSignature(eventName);
 ```
 
-参数：
+Parameter:
 
-`eventName` - String|Object: 要编码的事件名字符串，或者事件的JSON接口对象。如果采用
-字符串参数，则需要符合格式`event(type,type,...)` ，例如`myEvent(uint256,uint32[],bytes10,bytes)`。
+`eventName` - `String|Object`: The event name to encode. or the JSON interface object of the event. If string it has to be in the form event(type,type,...), e.g: myEvent(uint256,uint32[],bytes10,bytes)
 
-返回值：
+Returns:
 
-`String` - 事件的ABI签名
+`String` - The ABI signature of the event.
 
-示例代码：
+Example:
 
 ```js
-// 使用字符串参数
+// use params of string.
 web3.platon.abi.encodeEventSignature('myEvent(uint256,bytes32)')
 > 0xf2eeb729e636a8cb783be044acf6b7b1e2c5863735b60d6daae84c366ee87d97
 
-// 使用json接口对象
+// or from a json interface object
 web3.platon.abi.encodeEventSignature({
     name: 'myEvent',
     type: 'event',
@@ -2379,24 +2366,24 @@ web3.platon.abi.encodeEventSignature({
 
 #### web3.platon.abi.encodeFunctionCall
 
-将函数调用根据其JSON接口对象和给定的参数进行ABI编码。
+Encodes a function call using its JSON interface object and given paramaters.
 
-调用：
+Method:
 
 ```
 web3.platon.abi.encodeFunctionCall(jsonInterface, parameters);
 ```
 
-参数：
+Parameter:
 
-*  `jsonInterface` - Object: 函数的JSON接口对象
-*  `parameters` - Array: 参数值数组
+* `jsonInterface` - Object: The JSON interface object of a function.
+* `parameters` - Array: The parameters to encode.
 
-返回值：
+Returns:
 
-*  `String` - ABI编码结果，包含函数签名和参数
+*  `String` - The ABI encoded function call. Means function signature + parameters.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.abi.encodeFunctionCall({
@@ -2417,24 +2404,24 @@ web3.platon.abi.encodeFunctionCall({
 
 #### web3.platon.abi.decodeParameter
 
-将ABI编码过的参数解码为其JavaScript形式。
+Decodes an ABI encoded parameter to its JavaScript type.
 
-调用：
+Method:
 
 ```
 web3.platon.abi.decodeParameter(type, hexString);
 ```
 
-参数：
+Parameter:
 
-*  `type` - String: 参数类型
-*  `hexString` - String: 要解码的ABI字节码
+*  `type` - `String`: The type of the parameter, see the solidity documentation for a list of types.
+*  `hexString` - `String`: The ABI byte code to decode.
 
-返回值：
+Returns:
 
-Mixed - 解码结果
+`Mixed` - The decoded parameter.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.abi.decodeParameter('uint256', '0x0000000000000000000000000000000000000000000000000000000000000010');
@@ -2448,24 +2435,24 @@ web3.platon.abi.decodeParameter('string', '0x00000000000000000000000000000000000
 
 #### web3.platon.abi.decodeParameters
 
-将ABI编码的参数解码为其JavaScript形式。
+Decodes ABI encoded parameters to its JavaScript types.
 
-调用：
+Method:
 
 ```
 web3.platon.abi.decodeParameters(typesArray, hexString);
 ```
 
-参数：
+Parameter:
 
-*  typesArray - Array|Object: 参数类型数组，或JSON接口输出数组
-*  hexString - String: 要解码的ABI字节码
+* `typesArray` - `Array|Object`: An array with types or a JSON interface outputs array. 
+* `hexString` - `String`: The ABI byte code to decode.
 
-返回值：
+Returns:
 
-Object - 包含解码后参数值的对象
+`Object` - The result object containing the decoded parameters.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.abi.decodeParameters(['string', 'uint256'], '0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000ea000000000000000000000000000000000000000000000000000000000000000848656c6c6f212521000000000000000000000000000000000000000000000000');
@@ -2490,25 +2477,25 @@ web3.platon.abi.decodeParameters([{
 
 #### web3.platon.abi.decodeLog
 
-对ABI编码后的日志数据和索引的主题数据进行解码。
+Decodes ABI encoded log data and indexed topic data.
 
-调用：
+Method:
 
 ```
 web3.platon.abi.decodeLog(inputs, hexString, topics);
 ```
 
-参数：
+Parameter:
 
 *  inputs - Object: A JSON interface inputs array. See the solidity documentation for a list of types.
 *  hexString - String: The ABI byte code in the data field of a log.
 *  topics - Array: An array with the index parameter topics of the log, without the topic[0] if its a non-anonymous event, otherwise with topic[0].
 
-返回值：
+Returns:
 
-`Object` - 包含解码后参数的对象
+`Object` - The result object containing the decoded parameters.
 
-示例代码：
+Example:
 
 ```js
 web3.platon.abi.decodeLog([{
@@ -2539,9 +2526,9 @@ web3.platon.abi.decodeLog([{
 
 #### web3.utils
 
-`web3.utils`属性包含一组辅助函数集。
+This package provides utility functions for PlatON dapps and other web3.js packages
 
-调用方法：
+Method:
 
 ```js
 Web3.utils
@@ -2552,23 +2539,23 @@ web3.utils
 
 #### web3.utils.randomHex
 
-生成指定长度的密码学强伪随机16进制字符串。
+The randomHex library to generate cryptographically strong pseudo-random HEX strings from a given byte size.
 
-调用：
+Method:
 
 ```
 web3.utils.randomHex(size)
 ```
 
-参数：
+Parameter:
 
-*  `size` - Number: 生成长度，例如32表示要生成32字节长的16进制字符串，即64个字符以及前缀“0x”
+* `size` - `Number`: The byte size for the HEX string, e.g. 32 will result in a 32 bytes HEX string with 64 characters preficed with “0x”.
 
-返回值：
+Returns:
 
-`String`: 生成的随机16进制字符串
+`String`: The generated random HEX string.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.randomHex(32)
@@ -2591,18 +2578,17 @@ web3.utils.randomHex(0)
 
 #### web3.utils._
 
-`web3.utils._`提供了访问underscore库的接口。`underscore`是一个
-非常流行的javascript工具库，提供了很多方便的js函数。
+The underscore library for many convenience JavaScript functions.
 
-请参考underscore的API文档查询更多细节信息。
+See the [underscore API](http://underscorejs.org/) reference for details.
 
-调用：
+Method:
 
 ```
 web3.utils._
 ```
 
-示例代码：
+Example:
 
 ```js
 var _ = web3.utils._;
@@ -2617,26 +2603,25 @@ _.each({my: 'object'}, function(value, key){ ... })
 
 #### web3.utils.BN
 
-`web3.utils.BN`提供了BN.js库的访问接口。`BN.js`库用来处理大数的计算。
-请参考BN.js的文档获取更详细的信息。
+The [BN.js](https://github.com/indutny/bn.js/) library for calculating with big numbers in JavaScript. See the [BN.js](https://github.com/indutny/bn.js/) documentation for details.
 
-注意，为了安全地进行类型转换，请使用utils.toBN。
+Notes: For safe conversion of many types, incl [BigNumber.js](http://mikemcl.github.io/bignumber.js/) use [utils.toBN](https://web3js.readthedocs.io/en/v1.2.6/web3-utils.html#utils-tobn)
 
-调用：
+Method:
 
 ```
 web3.utils.BN(mixed)
 ```
 
-参数：
+Parameter:
 
-*  `mixed` - String|Number: 数值字符串或16进制字符串
+*  `mixed` - `String|Number`: A number, number string or HEX string to convert to a BN object.
 
-返回值：
+Returns:
 
-Object: BN.js实例对象
+`Object`: The [BN.js](https://github.com/indutny/bn.js/) instance.
 
-实例：
+Example:
 
 ```
 var BN = web3.utils.BN;
@@ -2655,23 +2640,23 @@ new BN('0xea').toString();
 
 #### web3.utils.isBN
 
-`web3.utils.isBN()`方法用来检查给定的参数是否是一个BN.js实例对象。
+`web3.utils.isBN()` Checks if a given value is a [BN.js](https://github.com/indutny/bn.js/) instance.
 
-调用：
+Method:
 
 ```
 web3.utils.isBN(bn)
 ```
 
-参数：
+Parameter:
 
-`bn` - Object: 要检查的对象
+`bn` - `Object`: An [BN.js](https://github.com/indutny/bn.js/) instance.
 
-返回值
+Returns:
 
-`Boolean`：如果参数为BN对象则返回true，否则返回false
+`Boolean`
 
-实例代码：
+Example:
 
 ```
 var number = new BN(10);
@@ -2684,24 +2669,23 @@ web3.utils.isBN(number);
 
 #### web3.utils.isBigNumber
 
-使用`web3.utils.isBigNumber()`方法检查给定的参数是否是一个
-BigNumber.js对象表示的大数。
+Checks if a given value is a [BigNumber.js](http://mikemcl.github.io/bignumber.js/) instance.
 
-调用：
+Method:
 
 ```
 web3.utils.isBigNumber(bignumber)
 ```
 
-参数：
+Parameter:
 
-`bignumber` - Object: 要检查的对象
+`bignumber` - `Object`: A [BigNumber.js](http://mikemcl.github.io/bignumber.js/) instance.
 
-返回值：
+Returns:
 
-`Boolean`：如果参数是BigNumber.js对象则返回true，否则返回false
+`Boolean`
 
-实例代码：
+Example:
 
 ```
 var number = new BigNumber(10);
@@ -2714,41 +2698,41 @@ web3.utils.isBigNumber(number);
 
 #### web3.utils.sha3
 
-使用`web3.utils.sha3()`方法计算给定字符串的sha3哈希值。
+Will calculate the sha3 of the input.
 
-注意，如果要模拟solidity中的sha3，请使用soliditySha3函数。
+Notes: To mimic the sha3 behaviour of solidity use [soliditySha3](https://web3js.readthedocs.io/en/v1.2.6/web3-utils.html#utils-soliditysha3).
 
-调用：
+Method:
 
 ```
 web3.utils.sha3(string)
 web3.utils.keccak256(string) // ALIAS
 ```
 
-参数：
+Parameter:
 
-`string` - String: 要计算sha3哈希值的字符串
+`string` - String: A string to hash.
 
-返回值：
+Returns:
 
-`String`: 计算结果哈希值
+`String`:  the result hash.
 
-实例代码：
+Example:
 
 ```
-web3.utils.sha3('234'); // 字符串参数
+web3.utils.sha3('234'); // taken as string
 > "0xc1912fee45d61c87cc5ea59dae311904cd86b84fee17cc96966216f811ce6a79"
 
-web3.utils.sha3(new BN('234')); // BN对象参数
+web3.utils.sha3(new BN('234')); 
 > "0xbc36789e7a1e281436464229828f817d6612f7b477d66591ff96a9e064bcc98a"
 
 web3.utils.sha3(234); 
-> null // 不能计算数值类型的哈希值
+> null // can't calculate the has of a number
 
-web3.utils.sha3(0xea); // 同上，也不能计算16进制表示的数值
+web3.utils.sha3(0xea); // same as above, just the HEX representation of the number
 > null
 
-web3.utils.sha3('0xea'); // 首先转化为字节数组，然后再计算哈希值
+web3.utils.sha3('0xea'); // will be converted to a byte array first, and then hashed
 > "0x2f20677459120677484f7104c76deb6846a2c071f9b3152c103bb12cd54d1a4a"
 ```
 
@@ -2756,56 +2740,54 @@ web3.utils.sha3('0xea'); // 首先转化为字节数组，然后再计算哈希�
 
 #### web3.utils.soliditySha3
 
-采用和solidity同样的方式计算给定参数的sha3哈希值，也就是说，
-在计算哈希之前，需要首先对参数进行ABI编码，并进行字节紧凑化处理。
+Will calculate the sha3 of given input parameters in the same way solidity would. This means arguments will be ABI converted and tightly packed before being hashed.
 
-调用：
+Method:
 
 ```
 web3.utils.soliditySha3(param1 [, param2, ...])
 ```
 
-参数：
+Parameter:
 
-`paramX` - Mixed: 任意类型，或是一个具有如下结构的对象：{type: 'uint', value: '123456'} 或 {t: 'bytes', v: '0xfff456'}。
-可以自动识别基本数据类型并解析为对应的solidity类型：
+`paramX` - `Mixed`: Any type, or an object with `{type: 'uint', value: '123456'}` or `{t: 'bytes', v: '0xfff456'}`. Basic types are autodetected as follows:
 
-*  String 非数值的UTF-8字符串将解释为string
-*  String|Number|BN|HEX 正数将解释为uint256
-*  String|Number|BN 负数将解释为int256
-*  Boolean 解释为bool.
-*  String HEX 具有前缀0x的字符串将解释为bytes
-*  HEX 16进制表示的数值将解释为uint256.
+* `String` non numerical UTF-8 string is interpreted as `string`.
+* `String|Number|BN|HEX` positive number is interpreted as `uint256`.
+* `String|Number|BN` negative number is interpreted as `int256`.
+* `Boolean` as `bool`.
+* `String` HEX string with leading 0x is interpreted as `bytes`.
+* `HEX` HEX number representation is interpreted as `uint256`.
 
-返回值：
+Returns:
 
-`String`: 结果哈希值
+`String`: the result hash.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.soliditySha3('234564535', '0xfff23243', true, -10);
-// 自动检测:        uint256,      bytes,     bool,   int256
+// auto detects:        uint256,      bytes,     bool,   int256
 > "0x3e27a893dc40ef8a7f0841d96639de2f58a132be5ae466d40087a2cfa83b7179"
 
 
-web3.utils.soliditySha3('Hello!%'); // 自动检测: string
+web3.utils.soliditySha3('Hello!%'); // auto detects: string
 > "0x661136a4267dba9ccdf6bfddb7c00e714de936674c4bdb065a531cf1cb15c7fc"
 
 
-web3.utils.soliditySha3('234'); // 自动检测: uint256
+web3.utils.soliditySha3('234'); // auto detects: uint256
 > "0x61c831beab28d67d1bb40b5ae1a11e2757fa842f031a2d0bc94a7867bc5d26c2"
 
-web3.utils.soliditySha3(0xea); // 同上
+web3.utils.soliditySha3(0xea); // same as above
 > "0x61c831beab28d67d1bb40b5ae1a11e2757fa842f031a2d0bc94a7867bc5d26c2"
 
-web3.utils.soliditySha3(new BN('234')); // 同上
+web3.utils.soliditySha3(new BN('234')); // same as above
 > "0x61c831beab28d67d1bb40b5ae1a11e2757fa842f031a2d0bc94a7867bc5d26c2"
 
-web3.utils.soliditySha3({type: 'uint256', value: '234'})); // 同上
+web3.utils.soliditySha3({type: 'uint256', value: '234'})); // same as above
 > "0x61c831beab28d67d1bb40b5ae1a11e2757fa842f031a2d0bc94a7867bc5d26c2"
 
-web3.utils.soliditySha3({t: 'uint', v: new BN('234')})); // 同上
+web3.utils.soliditySha3({t: 'uint', v: new BN('234')})); // same as above
 > "0x61c831beab28d67d1bb40b5ae1a11e2757fa842f031a2d0bc94a7867bc5d26c2"
 
 
@@ -2813,15 +2795,15 @@ web3.utils.soliditySha3('0x407D73d8a49eeb85D32Cf465507dd71d507100c1');
 > "0x4e8ebbefa452077428f93c9520d3edd60594ff452a29ac7d2ccc11d47f3ab95b"
 
 web3.utils.soliditySha3({t: 'bytes', v: '0x407D73d8a49eeb85D32Cf465507dd71d507100c1'});
-> "0x4e8ebbefa452077428f93c9520d3edd60594ff452a29ac7d2ccc11d47f3ab95b" // 结果同上
+> "0x4e8ebbefa452077428f93c9520d3edd60594ff452a29ac7d2ccc11d47f3ab95b" // same result as above
 
 
 web3.utils.soliditySha3({t: 'address', v: '0x407D73d8a49eeb85D32Cf465507dd71d507100c1'});
-> "0x4e8ebbefa452077428f93c9520d3edd60594ff452a29ac7d2ccc11d47f3ab95b" // 同上，但首先会检查校验和
+> "0x4e8ebbefa452077428f93c9520d3edd60594ff452a29ac7d2ccc11d47f3ab95b" //same as above, but will do a checksum check, if its multi case
 
 
 web3.utils.soliditySha3({t: 'bytes32', v: '0x407D73d8a49eeb85D32Cf465507dd71d507100c1'});
-> "0x3c69a194aaf415ba5d6afca734660d0a3d45acdc05d54cd1ca89a8988e7625b4" // 不同的类型得到不同的哈希值
+> "0x3c69a194aaf415ba5d6afca734660d0a3d45acdc05d54cd1ca89a8988e7625b4" // different result as above
 
 
 web3.utils.soliditySha3({t: 'string', v: 'Hello!%'}, {t: 'int8', v:-23}, {t: 'address', v: '0x85F43D8a49eeB85d32Cf465507DD71d507100C1d'});
@@ -2832,23 +2814,23 @@ web3.utils.soliditySha3({t: 'string', v: 'Hello!%'}, {t: 'int8', v:-23}, {t: 'ad
 
 #### web3.utils.isHex
 
-检查指定的参数字符串是否是16进制字符串。
+Checks if a given string is a HEX string.
 
-调用：
+Method:
 
 ```
 web3.utils.isHex(hex)
 ```
 
-参数：
+Parameter:
 
-`hex` - String|HEX: 要检查的字符串
+`hex` - `String|HEX`: The given HEX string.
 
-返回值：
+Returns:
 
-`Boolean`：如果参数为16进制字符串则返回true，否则返回false
+`Boolean`：Returns true if the argument is a hexadecimal string, otherwise returns false.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.isHex('0xc1912');
@@ -2861,7 +2843,7 @@ web3.utils.isHex('c1912');
 > true
 
 web3.utils.isHex(345);
-> true // 345即可以是16进制表示，也可以是10进制表示，因此在没有前缀0x的情况下要小心！
+> true  // this is tricky, as 345 can be a a HEX representation or a number, be careful when not having a 0x in front!
 
 web3.utils.isHex('0xZ1912');
 > false
@@ -2874,24 +2856,23 @@ web3.utils.isHex('Hello');
 
 #### web3.utils.isHexStrict
 
-检查给定的字符串是否为16进制字符串。和`web3.utils.isHex()`的区别在于，`web3.utils.isHexStrict()`
-方法要求合法的16进制字符串必须具有0x前缀。
+Checks if a given string is a HEX string. Difference to `web3.utils.isHex()` is that it expects HEX to be prefixed with `0x`.
 
-调用：
+Method:
 
 ```
 web3.utils.isHexStrict(hex)
 ```
 
-参数：
+Parameter:
 
-`hex` - String|HEX: 要检查的字符串
+`hex` - `String|HEX`: The given HEX string.
 
-返回值：
+Returns:
 
-`Boolean`：参数为16进制字符串则返回true，否则返回false
+`Boolean`
 
-示例代码：
+Example:
 
 ```js
 web3.utils.isHexStrict('0xc1912');
@@ -2917,24 +2898,23 @@ web3.utils.isHex('Hello');
 
 #### web3.utils.isAddress
 
-检查指定的字符串是否是有效的以太坊地址。如果地址同时使用了大小写字符，
-`web3.utils.isAddress()`方法也会检查校验和。
+Checks if a given string is a valid PlatON address. It will also check the checksum, if the address has upper and lowercase letters.
 
-调用：
+Method:
 
 ```
 web3.utils.isAddress(address)
 ```
 
-参数：
+Parameter:
 
-`address` - String: 要检查的地址字符串
+`address` - `String`: An address string.
 
-返回值：
+Returns:
 
-`Boolean`：有效地址则返回true，否则返回false
+`Boolean`
 
-示例代码：
+Example:
 
 ```js
 web3.utils.isAddress('0xc1912fee45d61c87cc5ea59dae31190fffff232d');
@@ -2944,66 +2924,66 @@ web3.utils.isAddress('c1912fee45d61c87cc5ea59dae31190fffff232d');
 > true
 
 web3.utils.isAddress('0XC1912FEE45D61C87CC5EA59DAE31190FFFFF232D');
-> true // 由于都是大写字母，因此不检查校验和
+> true // as all is uppercase, no checksum will be checked
 
 web3.utils.isAddress('0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d');
 > true
 
 web3.utils.isAddress('0xC1912fEE45d61C87Cc5EA59DaE31190FFFFf232d');
-> false // 对于大小写混合的字符串，同时也检查校验和
+> false // wrong checksum
 ```
 
 ***
 
 #### web3.utils.toChecksumAddress
 
-将给定的大写或小写以太坊地址转换为校验和地址。
+Will convert an upper or lowercase Ethereum address to a checksum address.
 
-调用：
+Method:
 
 ```
 web3.utils.toChecksumAddress(address)
 ```
 
-参数：
+Parameter:
 
-`address` - String: 地址字符串
+`address` - `String`: An address string.
 
-返回值：
+Returns:
 
 `String`: The checksum address.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.toChecksumAddress('0xc1912fee45d61c87cc5ea59dae31190fffff2323');
 > "0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d"
 
 web3.utils.toChecksumAddress('0XC1912FEE45D61C87CC5EA59DAE31190FFFFF232D');
-> "0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d" // 同上
+> "0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d" // same as above
 ```
 
 ***
 
 #### web3.utils.checkAddressChecksum
 
-检查指定地址的校验和，对于非检验和地址将返回false。
+Checks the checksum of a given address. Will also return false on non-checksum addresses.
 
-调用：
+Method:
 
 ```
 web3.utils.checkAddressChecksum(address)
 ```
 
-参数：
+Parameter:
 
-`address` - String: 地址字符串
+`address` - `String`: An address string.
 
-返回值：
+Returns:
 
-`Boolean`: 如果地址的校验和有效则返回true，如果不是一个校验和地址、或者校验和无效，则返回false。
+`Boolean`: `true` when the checksum of the address is valid, `false` if its not a checksum address, or the checksum is invalid.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.checkAddressChecksum('0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d');
@@ -3014,23 +2994,23 @@ web3.utils.checkAddressChecksum('0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d');
 
 #### web3.utils.toHex
 
-将任意给定值转换为16进制字符串。数值字符串将解释为数值，文本字符串将解释为utf-8字符串。
+Will auto convert any given value to HEX. Number strings will interpreted as numbers. Text strings will be interpreted as UTF-8 strings.
 
-调用：
+Method:
 
 ```
 web3.utils.toHex(mixed)
 ```
 
-参数：
+Parameter:
 
-`mixed` - String|Number|BN|BigNumber: 要进行转换的输入
+`mixed` - `String|Number|BN|BigNumber`: The input to convert to HEX.
 
-返回值：
+Returns:
 
-String: 结果16进制字符串
+String: The resulting HEX string.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.toHex('234');
@@ -3053,23 +3033,23 @@ web3.utils.toHex('I have 100€');
 
 #### web3.utils.hexToNumberString
 
-将给定的16进制字符串转化为数值字符串。
+Returns the number representation of a given HEX value as a string.
 
-调用：
+Method:
 
 ```
 web3.utils.hexToNumberString(hex)
 ```
 
-参数：
+Parameter:
 
-`hexString` - String|HEX: 16进制字符串
+`hexString` - `String|HEX`: A string to hash.
 
-返回值：
+Returns:
 
-`String`: 数值字符串
+`String`: The number as a string.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.hexToNumberString('0xea');
@@ -3080,26 +3060,26 @@ web3.utils.hexToNumberString('0xea');
 
 #### web3.utils.hexToNumber
 
-返回给定16进制字符串的数值表示。
+Returns the number representation of a given HEX value.
 
-注意，该函数对大数无效，使用`utils.toBN`来处理大数。
+This is not useful for big numbers, rather use [utils.toBN](https://web3js.readthedocs.io/en/v1.2.6/web3-utils.html#utils-tobn) instead.
 
-调用：
+Method:
 
 ```
 web3.utils.hexToNumber(hex)
 web3.utils.toDecimal(hex) // ALIAS, deprecated
 ```
 
-参数：
+Parameter:
 
-`hexString` - String|HEX: 16进制字符串
+`hexString` - `String|HEX`: A string to hash.
 
-返回值：
+Returns:
 
-`Number`：10进制数值
+`Number`
 
-示例代码：
+Example:
 
 ```js
 web3.utils.hexToNumber('0xea');
@@ -3110,24 +3090,24 @@ web3.utils.hexToNumber('0xea');
 
 #### web3.utils.numberToHex
 
-返回指定数值的16进制表示。
+Returns the HEX representation of a given number value.
 
-调用：
+Method:
 
 ```
 web3.utils.numberToHex(number)
-web3.utils.fromDecimal(number) // 别名，已弃用
+web3.utils.fromDecimal(number) // ALIAS, deprecated
 ```
 
-参数：
+Parameter:
 
-`number` - String|Number|BN|BigNumber: 数值
+`number` - `String|Number|BN|BigNumber`: A number as string or number.
 
-返回值：
+Returns:
 
-`String`: 给定数值的16进制字符串表示
+`String`: The HEX value of the given number.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.numberToHex('234');
@@ -3138,25 +3118,25 @@ web3.utils.numberToHex('234');
 
 #### web3.utils.hexToUtf8
 
-返回指定16进制值的UTF-8字符串表示。
+Returns the UTF-8 string representation of a given HEX value.
 
-调用：
+Method:
 
 ```
 web3.utils.hexToUtf8(hex)
-web3.utils.hexToString(hex) // 别名
-web3.utils.toUtf8(hex) // 别名，已弃用
+web3.utils.hexToString(hex) // ALIAS
+web3.utils.toUtf8(hex) // ALIAS, deprecated
 ```
 
-参数：
+Parameter:
 
-`hex` - String: 16进制字符串
+`hex` - `String`: A HEX string to convert to a UTF-8 string.
 
-返回值：
+Returns:
 
-`String`: UTF-8字符串
+`String`: The UTF-8 string.
 
-示例代码：
+Example:
 
 ```js
 web3.utils.hexToUtf8('0x49206861766520313030e282ac');
@@ -3169,22 +3149,22 @@ web3.utils.hexToUtf8('0x49206861766520313030e282ac');
 
 返回指定16进制值的ASCII字符串表示。
 
-调用：
+Method:
 
 ```
 web3.utils.hexToAscii(hex)
 web3.utils.toAscii(hex) // 别名，已弃用
 ```
 
-参数：
+Parameter:
 
 `hex` - String: 16进制字符串
 
-返回值：
+Returns:
 
 String: ASCII字符串
 
-示例代码：
+Example:
 
 ```js
 web3.utils.hexToAscii('0x4920686176652031303021');
@@ -3197,7 +3177,7 @@ web3.utils.hexToAscii('0x4920686176652031303021');
 
 返回指定UTF-8字符串的16进制表示。
 
-调用：
+Method:
 
 ```
 web3.utils.utf8ToHex(string)
@@ -3205,15 +3185,15 @@ web3.utils.stringToHex(string) // 别名
 web3.utils.fromUtf8(string) // 别名，已弃用
 ```
 
-参数：
+Parameter:
 
 `string` - String: ·UTF-8字符串
 
-返回值：
+Returns:
 
 `String`: 16进制字符串
 
-示例代码：
+Example:
 
 ```js
 web3.utils.utf8ToHex('I have 100€');
@@ -3226,14 +3206,14 @@ web3.utils.utf8ToHex('I have 100€');
 
 返回指定ASCII字符串的16进制表示。
 
-调用：
+Method:
 
 ```
 web3.utils.asciiToHex(string)
 web3.utils.fromAscii(string) // 别名，已弃用
 ```
 
-参数：
+Parameter:
 
 `string` - String: ASCII字符串
 
@@ -3241,7 +3221,7 @@ web3.utils.fromAscii(string) // 别名，已弃用
 
 `String`: 16进制字符串
 
-示例代码：
+Example:
 
 ```js
 web3.utils.asciiToHex('I have 100!');
@@ -3254,21 +3234,21 @@ web3.utils.asciiToHex('I have 100!');
 
 返回指定16进制字符串的字节数组表示。
 
-调用：
+Method:
 
 ```
 web3.utils.hexToBytes(hex)
 ```
 
-参数：
+Parameter:
 
 `hex` - String|HEX: 16进制字符串
 
-返回值：
+Returns:
 
 `Array`: 字节数组
 
-示例代码：
+Example:
 
 ```js
 web3.utils.hexToBytes('0x000000ea');
@@ -3310,23 +3290,23 @@ web3.utils.hexToBytes(0x000000ea);
 'tlat':         '1000000000000000000000000000000'
 ```
 
-调用：
+Method:
 
 ```
 web3.utils.toVon(number [, unit])
 ```
 
-参数：
+Parameter:
 
 *  `number` - String|Number|BN: 金额 
 *  `unit` - String，可选，默认值为`ether`
 
 
-返回值：
+Returns:
 
 `String|BN`: 如果输入参数是数值或字符串，则返回字符串，否则返回BN.js对象
 
-示例代码：
+Example:
 
 ```js
 web3.utils.toVon('1', 'lat');
@@ -3339,7 +3319,7 @@ web3.utils.toVon('1', 'lat');
 
 将给定的以von为单位的值转换为其他单位的数值。
 
-调用：
+Method:
 
 ```
 web3.utils.fromVon(number [, unit])
@@ -3347,7 +3327,7 @@ web3.utils.fromVon(number [, unit])
 
 Converts any von value into a lat value.
 
-参数：
+Parameter:
 
 `number` - String|Number|BN: wei为单位的数值
 `unit` - String，可选，默认值为`lat`，可选的单位有：
@@ -3364,11 +3344,11 @@ Converts any von value into a lat value.
 * glat
 * tlat
 
-返回值：
+Returns:
 
 `String|BN`: 如果输入参数是数值或字符串，则返回字符串，否则返回BN.js对象
 
-示例代码：
+Example:
 
 ```js
 web3.utils.fromVon('1', 'lat');
@@ -3381,24 +3361,24 @@ web3.utils.fromVon('1', 'lat');
 
 将指定字符串使用0左补齐到指定长度。
 
-调用：
+Method:
 
 ```
 web3.utils.padLeft(string, characterAmount [, sign])
 web3.utils.leftPad(string, characterAmount [, sign]) // 别名
 ```
 
-参数：
+Parameter:
 
 *  `string` - String: 要进行左补齐的字符串
 *  `characterAmount` - Number: 补齐后的总长度
 *  `sign` - String，可选，补齐字符，默认为"0"
 
-返回值：
+Returns:
 
 `String`: 左补齐到指定长度的字符串
 
-示例代码：
+Example:
 
 ```js
 web3.utils.padLeft('0x3456ff', 20);

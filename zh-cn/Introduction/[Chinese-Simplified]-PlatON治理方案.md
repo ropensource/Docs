@@ -221,7 +221,7 @@
 
 | Key | 描述|范围| 
 | ---|---|---|
-| stakeThreshold|	成为备选节点候选人最低的质押Token数	[100W,1000w] LAT| 
+| stakeThreshold|	成为备选节点候选人最低的质押Token数 | [100W,1000w] LAT| 
 | operatingThreshold	|委托人每次委托及赎回的最低Token数|	[10, 10000] LAT| 
 | unStakeFreezeDuration |节点质押退回锁定周期	| (证据有效期,112] Epoch	| 
 | maxValidators| 备选节点数量|[25, 201]	| 

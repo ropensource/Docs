@@ -5,7 +5,7 @@ In the following example,we will use smart contract for a crowdfunding campaign.
 There are two roles in the contract
 
 - Crowdfunder
-- investor
+- Investor
 
 ## Crowdfunding process
 
@@ -140,16 +140,16 @@ contract CrowdFunding {
 }
 ```
 
-**compile CrowdFunding contract**
+Compile CrowdFunding contract**
 
-**step1.** creat new directory for CrowdFunding project 
+**Step1.** creat new directory for CrowdFunding project 
 
 ```
 mkdir myCrowdFunding && cd myCrowdFunding
 ```
 - The following commands are performed in the myCrowdFunding directory without special instructions
 
-**step2.** init project
+**Step2.** init project
 
 ```
 truffle init
@@ -162,20 +162,20 @@ After the command is executed,project directory structure is as follows:
 - test/: test script directory
 - truffle-config.js: platon-truffle config
 
-**step3.** move CrowdFunding contract compiled in to myCrowdFunding/contracts/
+**Step3.** move CrowdFunding contract compiled in to myCrowdFunding/contracts/
 
 ```
 ls myCrowdFunding/contracts/
 ```
-- CrowdFunding.sol
+- crowdFunding.sol
 
-**step4.** fix compile version same as the version setted  in truffle-config.js
+**Step4.** fix compile version same as the version setted  in truffle-config.js
 
 ```
 vim truffle-config.js
 ```
 
-truffle-config.js content is  as follows:
+Truffle-config.js content is  as follows:
 ```
 compilers: {
      solc: {
@@ -184,7 +184,7 @@ compilers: {
 }
 ```
 
-**step5.** compile contract
+**Step5.** compile contract
 
 ```
 truffle compile
@@ -195,15 +195,15 @@ After the command is executed, project directory structure is as follows:
 - build/: Solidity contract directory after compiled
 - build/contracts/CrowdFunding.json: the compiled file Corresponding with CrowdFunding.sol
 
-**deploly CrowdFunding contract**
+**Deploly CrowdFunding contract**
 
-**step1.** create deploy script 
+**Step1.** create deploy script 
 
 ```
 cd migrations/ && touch 2_initial_CrowdFunding.js
 ```
 
-deploy script 2_initial_crowdFunding.js,content is as follows：
+Deploy script 2_initial_crowdFunding.js,content is as follows：
 
 ```
 const CrowdFunding = artifacts.require("CrowdFunding"); //deployment contract class name
@@ -212,13 +212,13 @@ module.exports = function(deployer) {
 };
 ```
 
-**step2.** Setting config  information for blockchain in truffle-config.js
+**Step2.** Setting config  information for blockchain in truffle-config.js
 
 ```
 vim truffle-config.js
 ```
 
-set blockchain network  info
+Set blockchain network  info
 
 ```
 networks: {
@@ -233,13 +233,13 @@ networks: {
 }
 ```
 
-**step3.**  deploy contract
+**Step3.**  deploy contract
 
 ```
 truffle migrate
 ```
 
-if deploy success，you wil see log info as follows:
+If deploy success，you wil see log info as follows:
 ```
 Compiling your contracts...
  Everything is up to date, there is nothing to compile.
@@ -266,26 +266,29 @@ Compiling your contracts...
 
 **Crowdfunder query crowdfunding：**
 
-**step1.**  Enter the platon-truffle console
+**Step1.**  Enter the platon-truffle console
 
 ```
 truffle console
 ```
-- you can execute cmd in console
+- You can execute cmd in console
 
-**step2.**  create contract object
+**Step2.**  create contract object
+
 ```
 var abi = [...]; //ABI of CrowdFunding contract,can get from build/contracts/CrowdFunding.json
 var contractAddr = '0x02D04C6fD2b0C07c43AA1a329D667f1F1Fc7a907'; //CrowdFundsing contract address
 var crowdFunding = new web3.eth.Contract(abi,contractAddr); 
 ```
 
-**step3.**  Query the amount raised
+**Step3.**  Query the amount raised
+
 ```
 crowdFunding.methods.amountRaised().call(null,function(error,result){console.log("result:" + result);}); //query the amount raised
 ```
 
-**step4.**  Crowdfunder judge the success of crowdfunding
+**Step4.**  Crowdfunder judge the success of crowdfunding
+
 ```
 crowdFunding.methods.safeWithdrawal().send({from:'0xf644cfc3b0dc588116d6621211a82c1ef9c62e9e'}).on('data', function(event){ console.log(event);}).on('error', console.error); 
 ```

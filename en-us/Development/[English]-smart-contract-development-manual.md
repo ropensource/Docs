@@ -1,8 +1,8 @@
 ## Introduce
 
-smart contract ,is a program ,which can run in the blockchain. smart contract has the features below:
--  anybody can develop smart contract , which stored by the contract accout of blockchain. the accout controled by private key is called externel account.
-- contract account cannot run by itself, before executing a smart contract, it need externel account send transaction to contract account.
+Smart contract ,is a program ,which can run in the blockchain. smart contract has the features below:
+- Anybody can develop smart contract , which stored by the contract accout of blockchain. the accout controled by private key is called externel account.
+- Contract account cannot run by itself, before executing a smart contract, it need externel account send transaction to contract account.
 Solidity language is a contract-oriented high-level programming language created to implement smart contracts. Its syntax is similar to JavaScript's high-level programming language. It is designed to generate virtual machine code in a compiled manner. Using it is easy to create smart contracts. However, as a decentralized smart contract running on the Internet in the true sense, it has the following characteristics:
 - The PlatON is based on an account model,so Solidity provides a special Address type, which is used to locate user accounts, locate smart contracts, and locate smart contract codes.
 - Because Solidity embedded framework supports payment, and provides some keywords, such as payable, it can directly support payment at the Solidity language level, which is very simple to use.
@@ -14,13 +14,13 @@ This tutorial is mainly to guide users to create a simple HelloWorld smart contr
 
 ## Platon-truffle Introduce 
 
-platon-truffle is a tool provided by PlatON that can compile, deploy, and invoke smart contracts locally. For specific installation and usage manuals, refer to:
+Platon-truffle is a tool provided by PlatON that can compile, deploy, and invoke smart contracts locally. For specific installation and usage manuals, refer to:
 
-- platon-truffle develop tools[specific installation](https://github.com/PlatONnetwork/platon-truffle/tree/feature/evm)
-- platon-truffle develop tools[usage manuals](https://platon-truffle.readthedocs.io/en/v0.1.0/index.html)
+- Platon-truffle develop tools[specific installation](https://github.com/PlatONnetwork/platon-truffle/tree/feature/evm)
+- Platon-truffle develop tools[usage manuals](https://platon-truffle.readthedocs.io/en/v0.1.0/index.html)
 
 
-## create HelloWorld contract
+## Create HelloWorld contract
 
 ```
 pragma solidity ^0.5.13;
@@ -40,7 +40,7 @@ contract HelloWorld {
 }
 ```
 
-contract files description:
+Contract files description:
 
 - pragma solidity ^0.5.13
   -	pragma solidity: solidity version description
@@ -61,43 +61,43 @@ contract files description:
   -	name = _name：Assignment the local variable to state variable
 - function getName() public view returns(string memory)
   -	view:this keyword means the function cannot change the blockchain state，which Mainly used for query
-## compile HelloWorld contract 
+## Compile HelloWorld contract 
 
-**step1.**  creat new directory for HelloWorld project 
+**Step1.**  creat new directory for HelloWorld project 
 
 ```
 mkdir HelloWorld && cd HelloWorld
 ```
 
-**step2.**  init project
+**Step2.**  init project
 
 ```
 truffle init
 ```
 After the command is executed,project directory structure is as follows:
 
-- contracts/: Solidity contract directory
+- Contracts/: Solidity contract directory
 
-- migrations/:  depoly file directory
+- Migrations/:  depoly file directory
 
-- test/: test script directory
+- Test/: test script directory
 
-- truffle-config.js: platon-truffle config
+- Truffle-config.js: platon-truffle config
 
-**step3.**  move HelloWorld contract compiled in to HelloWorld/contracts/
+**Step3.**  move HelloWorld contract compiled in to HelloWorld/contracts/
 
 ```
 ls contracts/
 ```
 - HelloWorld.sol 
 
-**step4.**  fix compile version same as the version setted  in truffle-config.js
+**Step4.**  fix compile version same as the version setted  in truffle-config.js
 
 ```
 vim truffle-config.js
 ```
 
-truffle-config.js content is  as follows:
+Truffle-config.js content is  as follows:
 ```
 compilers: {
       solc: {
@@ -106,21 +106,21 @@ compilers: {
 }
 ```
 
-**step5.**  compile contract
+**Step5.**  compile contract
 
 ```
 truffle compile
 ```
 After the command is executed, project directory structure is as follows:
 
-- build/: Solidity contract directory after compiled
+- Build/: Solidity contract directory after compiled
 
-- build/contracts/HelloWorld.json :  the compiled file Corresponding with HelloWorld.sol  
+- Build/contracts/HelloWorld.json :  the compiled file Corresponding with HelloWorld.sol  
 
 
-## deploly HelloWorld contract
+## Deploly HelloWorld contract
 
-**step1.** create deploy script 
+**Step1.** create deploy script 
 
 ```
 cd migrations/ && touch 2_initial_helloword.js
@@ -133,12 +133,12 @@ const helloWorld = artifacts.require("HelloWorld"); //artifacts.require specify 
 };
 ```
 
-**step2.** Setting config  information for blockchain in truffle-config.js
+**Step2.** setting config  information for blockchain in truffle-config.js
 
 ```
 vim truffle-config.js
 ```
-set blockchain network  info
+Set blockchain network  info
 ```
 networks: {
 	development: {
@@ -152,13 +152,13 @@ networks: {
 }
 ```
 
-**step3.**  deploy contract
+**Step3.**  deploy contract
 
 ```
 truffle migrate
 ```
 
-if deploy success，you wil see log info as follows:
+If deploy success，you wil see log info as follows:
 ```
 2_initial_helloword.js
 Deploying 'HelloWorld'
@@ -178,16 +178,16 @@ Saving artifacts
 Total cost:     0.007462350000596988 LAT
 ```
 
-## call HelloWorld contract
+## Call HelloWorld contract
 
-**step1.**  Enter the platon-truffle console
+**Step1.**  enter the platon-truffle console
 
 ```
 truffle console
 ```
-- you can execute cmd in console
+- You can execute cmd in console
 
-**step2.**  create contract object
+**Step2.**  create contract object
 
 ```json
 var abi = [{"constant":false,"inputs":[{"internalType":"string","name":"_name","type":"string"}],"name":"setName","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getName","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}]; //you can refet to HelloWorld/build/contracts/HelloWorld.json
@@ -195,12 +195,12 @@ var abi = [{"constant":false,"inputs":[{"internalType":"string","name":"_name","
 var contractAddr = '0x9A5015F9A3728ff64f401b9B93E98078BdD48FD1';//contract address
 var helloWorld = new web3.eth.Contract(abi,contractAddr); 
 ```
-description： 
+Description： 
 - `abi` the interface provided by the contract to external calls，the abi  in the file compiled ：`HelloWorld/build/contracts/HelloWorld.json` 
 - `contractAddr` contract address
 - `helloWorld`  contract object created
 
-**step3.**  call contract
+**Step3.**  call contract
 
 ```javascript
 helloWorld.methods.setName("hello world").send({
@@ -211,7 +211,7 @@ helloWorld.methods.setName("hello world").send({
 
 ```
 
-description：
+Description：
 - `helloWorld` the contract object created
 - `methods`  specify the call method
 - `setName` the function of the HelloWorld contract，which has a parameter as `hello world`
@@ -236,12 +236,12 @@ description：
 }
 ```
 
-**step4.**  query contract
+**Step4.**  query contract
 
 ```javascript
 helloWorld.methods.getName().call(null,function(error,result){console.log("name is:" + result);})  
 ```
-description：
+Description：
 
 - `helloWorld` the contract object created
 - `methods` specify the call method
@@ -251,29 +251,31 @@ description：
 
 ## FAQ 
 
-> ask: how many commands in platon-truffle？
-> answer:refer to  platon-truffle develop guide[Reference here](https://platon-truffle.readthedocs.io/en/v0.1.0/index.html)
+> Ask: how many commands in platon-truffle？
+> Answer:refer to  platon-truffle develop guide[Reference here](https://platon-truffle.readthedocs.io/en/v0.1.0/index.html)
 
-> ask: why contract syntax cannot verify?
-> answer: solidity 0.4.x has a great different with 0.5.x，detail info refer to [Reference here](https://solidity.readthedocs.io/en/develop/)
+> Ask: why contract syntax cannot verify?
+> Answer: solidity 0.4.x has a great different with 0.5.x，detail info refer to [Reference here](https://solidity.readthedocs.io/en/develop/)
 
-> ask:  why truffle doesn't compile ?
-> answer:  
+> Ask:  why truffle doesn't compile ?
+> Answer:  
+>
 >  1. confirm the contract version same as the version specified in the truffle-config.js.
 >  2. contract syntax be writed in a wrong way
 
 
-> ask: why the contract can not deploy by truffle migrate ?
-> answer:
+> Ask: why the contract can not deploy by truffle migrate ?
+> Answer:
+>
 >  1. confrim the blockchain network info be  configured  correctly
 >  2. confirm the account address be configured correctly
 
-> ask: why the contract with contruct function which has parmas cannot deploy by truffle migrate
-> answer: 
-> for example: 
-> Take the contract A.sol as an example, at first confirm the constructor info in migrations/2_initial_A.js as follow:
-> the format of constructor:
-> constructor(uint256 a, string memory b, string memory c) public {}
+> Ask: why the contract with contruct function which has parmas cannot deploy by truffle migrate
+> Answer: 
+> For example: 
+> Take the contract A.sol as an example, at first confirm the constructor info in migrations/2_initial_A.js As follow:
+> The format of constructor:
+> Constructor(uint256 a, string memory b, string memory c) public {}
 
 >2_initial_A.js configured as follow：
 > 

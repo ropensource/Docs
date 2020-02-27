@@ -173,14 +173,14 @@ contract ERC200513Token {
 
 ##  Operation procedure
 
-**step1.** creat new directory for example project 
+**Step1.** creat new directory for example project 
 
 ```
 mkdir example && cd example
 ```
 - After the command is executed,project directory structure is as follows:
 
-**step2.**  init project
+**Step2.**  init project
 
 ```
 truffle init
@@ -196,7 +196,7 @@ After the command is executed,project directory structure is as follows:
 
 - truffle-config.js: platon-truffle config
 
-**step3.** move ERC200513Token contract compiled in to example/contracts
+**Step3.** move ERC200513Token contract compiled in to example/contracts
 
 ```
 ls contracts/
@@ -205,7 +205,7 @@ ls contracts/
 - ERC200513Token.sol
 - PlatON smart contract unit LAT,VON.To migrate the ethereum smart contract to PlatON,please change the ethereum denomination to PlatON denomination.also note the ether /LAT market rate（for this contract, we assume the market exchange rate1:1,uint256 public totalSupply = 10000000000000000000 ether; change to uint256 public totalSupply = 10000000000000000000 LAT; ）
 
-**step4.** modify the compilation version number and chain-dependent configuration in truffle-config.js
+**Step4.** modify the compilation version number and chain-dependent configuration in truffle-config.js
 
 ```
 module.exports = {
@@ -229,12 +229,12 @@ module.exports = {
 }
 ```
 
-**step5.** compile contract
+**Step5.** compile contract
 
 ```
 truffle compile
 ```
-the following is the output of the successful compilation：
+The following is the output of the successful compilation：
 ```
 Compiling your contracts...
 Compiling ./contracts/ERC200513Token.sol
@@ -247,13 +247,13 @@ Compiled successfully using:
   solc: 0.5.13-develop.2020.1.2+commit.9ff23752.mod.Emscripten.clang
 ```
 
-**step6.** create deploy script 
+**Step6.** create deploy script 
 
 ```
 cd migrations && touch 2_initial_ERC200513Token.js
 ```
 
-deploy script 2_initial_ERC200513Token.js content is as follows：
+Deploy script 2_initial_ERC200513Token.js content is as follows：
 ```
 const ERC200513Token = artifacts.require("ERC200513Token"); //contract class name
 module.exports = function(deployer) {
@@ -261,13 +261,13 @@ module.exports = function(deployer) {
 };  
 ```
 
-**step7.** deploy contract
+**Step7.** deploy contract
 
 ```
 truffle migratte
 ```
 
-if deploy success，you wil see log info as follows:
+If deploy success，you wil see log info as follows:
 
 ```
 Compiling your contracts...
@@ -292,3 +292,4 @@ Summary
  Total deployments:   2
  Final cost:          0.037844150003027532 LAT
 ```
+

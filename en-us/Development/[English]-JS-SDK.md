@@ -3581,38 +3581,35 @@ getCandidateList params array reply:  {
 
 #### updateSetting(setting)
 
-更新 ppos 对象的配置参数。如果你只需要发送call调用，那么只需要传入 provider 即可。如果你在实例化 web3 的时候已经传入了 provider。那么会ppos的provider默认就是你实例化web3传进来的provider。当然你也可以随时更新provider。
+Update the configuration parameters of the `ppos` object. If you only need to send a call, you only need to pass in the parameter `provider`. If you passed in the provider when instantiating web3. Then the `provider` of` ppos` is the provider that you instantiate from web3 by default. Of course you can also update the provider at any time.
 
-如果你要发送send交易，那么除了provider，还必须要传入发送交易所需要的私钥以及链id。当然，发送交易需要设置的gas, gasPrice, retry, interval这四个参数详细请见`async send(params, [other])`说明。
+If you want to send a transaction via send, you need to pass in the parameters `provider`, the private key, and the chain id. Of course, sending transactions requires setting four parameters: `gas`,` gasPrice`, `retry`, and` interval`. See the `async send (params, [other])` description for details.
 
-对传入的参数，你可以选择部分更新，比如你对一个ppos对象，发送某个交易时想使用私钥A，那么你在调用`send(params, [other])`之前执行 `ppos.updateSetting({privateKey: youPrivateKeyA})`更新私钥即可。一旦更新之后，将会覆盖当前配置，后面调用发送交易接口，将默认以最后一次更新的配置。
+For the parameters passed in, you can choose partial update. For example, if you want to use the private key A when sending a transaction to a ppos object, then you execute `ppos.updateSetting before calling` send (params, [other]) `({privateKey: youPrivateKeyA})` to update the private key. Once updated, the current configuration will be overwritten, and the send transaction interface will be called later, with the last updated configuration as the default.
 
 Parameters:
 
-* setting Object
-  * provider String 链接
-  * privateKey String 私钥
-  * chainId String 链id
-  * gas String 燃料最大消耗，请输入十六进制字符串，比如 '0x76c0000'
-  * gasPrice String 燃料价格，请输入十六进制字符串，比如 '0x9184e72a000000'
-  * retry Number 查询交易收据对象次数。
-  * interval Number 查询交易收据对象的间隔，单位为ms。
+* `setting` - `Object`:
+  * `provider` - `String`: network link.
+  * `privateKey` - `String`: pairvate key.
+  * `chainId` - `String`: id of chain.
+  * `gas` - `String`: Maximum gas consumption value, please enter a hexadecimal string, such as '0x76c0000'.
+  * `gasPrice` - `String`: Fuel price, please enter a hexadecimal string, such as '0x9184e72a000000'.
+  * `retry` - `Number`: The number of times to query the receipt.
+  * `interval` - `Number`: Time interval to query the transaction receipt, the unit is `ms`.
 
 Returns:
 
 none 
 
-
 Example:
 
 ```JavaScript
-// 同时更新 privateKey，chainId
 ppos.updateSetting({
     privateKey: 'acc73b693b79bbb56f89f63ccc3a0c00bf1b8380111965bfe8ab22e32045600c',
     chainId: 100,
 })
 
-// 只更新 privateKey
 ppos.updateSetting({
     privateKey: '9f9b18c72f8e5154a9c59af2a35f73d1bdad37b049387fc6cea2bac89804293b'
 })
@@ -3649,28 +3646,28 @@ let setting = ppos.getSetting();
 
 #### async rpc(method, [params])
 
-发起 rpc 请求。一个辅助函数，因为在调用ppos发送交易的过程中，有些参数需要通过rpc来获取，所以特意封装了一个rpc供调用。注意此接口为async函数，需要加await返回调用结果，否则返回一个Promise对象。
+Helper function to initiate rpc requests. Because some parameters need to be obtained through rpc during the process of calling ppos to send a transaction, an rpc is intentionally encapsulated for invocation. Note that this interface is an async function, you need to add await to return the result of the call, otherwise it returns a Promise object.
 
 Parameters:
 
-* `method` - `String`: 方法名
-* `params` - `Array`: 调用rpc接口需要的参数，如果调用此rpc端口不需要参数，则此参数可以省略。
+* `method` - `String`: method name.
+* `params` - `Array`: Parameter required for calling the rpc interface. If the rpc interface does not require parameters, this parameter can be omitted.
   
 
 Returns:
 
-* `reply`: rpc调用返回的结果
+* `reply`: Results returned by rpc call.
 
 Example:
 
 ```JavaScript
-// 获取程序版本
+// Get program version
 let reply = await ppos.rpc('admin_getProgramVersion'); 
 
-// 获取所有账号
+// Get all accounts
 let reply = await ppos.rpc('platon_accounts')
 
-// 获取一个账号的金额
+// Get the amount of the specified account.
 let reply = await ppos.rpc('platon_getBalance', ["0x714de266a0effa39fcaca1442b927e5f1053eaa3","latest"])
 ```
 
@@ -3678,15 +3675,15 @@ let reply = await ppos.rpc('platon_getBalance', ["0x714de266a0effa39fcaca1442b92
 
 #### bigNumBuf(intStr)
 
-将一个字符串的十进制大整数转为一个RLP编码能接受的buffer对象。一个辅助函数。因为JavaScript的正数范围只能最大表示为2^53，为了RLP能对大整数进行编码，需要将字符串的十进制大整数转换为相应的Buffer。注意，此接口暂时只能对十进制的大整数转为Buffer，如果是十六进制的字符串，您需要先将他转为十进制的字符串。
+Converts a large decimal integer into a buffer object that can be accepted by RLP encoding. A helper function. Because JavaScript's positive number range can only be expressed as a maximum of `2^53`, in order for RLP to encode large integers, you need to convert the decimal large integer of the string into the corresponding Buffer. Note that this interface can only convert large decimal integers to Buffer temporarily. If it is a hexadecimal string, you need to convert it to a decimal string first.
 
 Parameters:
 
-* `intStr` - `String`: 字符串十进制大整数。
+* `intStr` - `String`: String decimal large integer.
   
 Returns:
 
-* `buffer` - `Buffer`: 一个缓存区。
+* `buffer` - `Buffer`: A cache area.
 
 Example:
 
@@ -3698,17 +3695,17 @@ let buffer = ppos.bigNumBuf('1000000000000000000000000000000000000000000');
 
 #### hexStrBuf(hexStr)
 
-将一个十六进制的字符串转为一个RLP编码能接受的buffer对象。一个辅助函数。在ppos发送交易的过程中，我们很多参数需要作为bytes传送而不是string，比如 `nodeId 64bytes 被质押的节点Id(也叫候选人的节点Id)`。而写代码时候的nodeId只能以字符串的形式表现。需要将他转为一个 64 bytes 的 Buffer。
+Converts a hexadecimal string into a buffer object that can be accepted by RLP encoding, a helper function. In the process of sending transactions by ppos, many parameters need to be transmitted as `bytes` instead of` string`, such as `nodeId 64bytes` pledged node Id (also called candidate node Id)`. The nodeId when writing code can only be expressed as a string. It needs to be converted into a 64 bytes Buffer.
 
-注意：如果你传进去的字符串以 0x 或者 0X 开头，系统会默认为你是表示一个十六进制字符串不对开头的这两个字母进行编码。如果你确实要对 0x 或者 0X 编码，那你必须在字符串前面再加前缀 0x。比如，你要对全字符串 0x31c0e0 (4 bytes) 进行编码，那么必须传入 0x0x31c0e0 。
+Note: If the string you pass in starts with `0x` or` 0X`, the system will assume that you are a hexadecimal string that does not encode the first two letters. If you really want to encode `0x` or` 0X`, you must prefix the string with `0x`. For example, if you want to encode the full string `0x31c0e0 (4 bytes)`, you must pass in 0x0x31c0e0.
 
 Parameters:
 
-* `hexStr` - `String`: 一个十六进制的字符串。
+* `hexStr` - `String`: A hex string.
   
 Returns:
 
-* `buffer` - `Buffer`: 一个缓存区。
+* `buffer` - `Buffer`: A cache area.
 
 Example:
 
@@ -3721,43 +3718,43 @@ let buffer = ppos.hexStrBuf(nodeId);
 
 #### async call(params)
 
-发送一个 ppos 的call查询调用。不上链。所以你需要自行区分是否是查询或者是发送交易。入参可以选择对象或者数组。如果你选择传入对象，那么你需要使用规定的字符串key，但是对key要求不做顺序。你可以这样写`{a: 1, b: 'hello'}` 或者 `{b: 'hello', a: 1}`都没问题。
+Send a `call` query call to` PPOS` without changing the state. So you need to distinguish between querying and sending transactions. The input parameters can select objects or arrays. If you choose to pass in an object, then you need to use the specified string `key`, but the order of the` key` is not required. You can write `{a: 1, b: 'hello'}` or `{b: 'hello', a: 1}` without any problem.
 
-如果你选择以数组作为入参，那么你**必须严格按照入参的顺序依次将参数放到数组里面**。注意，对一些字符串大整数以及需要传入的bytes，请选择上面提供的接口`bigNumBuf(intStr)`跟`hexStrBuf(hexStr)`自行进行转换再传入。
+If you choose to use an array as the input parameter, you must put the parameters into the array in the order of the input parameters. Note that for some string large integers and `bytes' that need to be passed in, please choose the interfaces` bigNumBuf (intStr) `and` hexStrBuf (hexStr) `provided above to convert them by themselves.
 
-注意此接口为async函数，需要加await返回调用结果，否则返回一个Promise对象。
+Note that this interface is an async function, you need to add await to return the result of the call, otherwise it returns a Promise object.
 
 Parameters:
 
-* `params` - `Object|Array`: 调用参数。
+* `params` - `Object|Array`: Call parameters.
   
 Returns:
 
-* reply Object call调用的返回的结果。注意，我已将将返回的结果转为了Object对象。
-  * Code Number 调用返回码，0表示调用结果正常。
-  * Data Array | Object | String | Number... 根据调用结果返回相应类型
-  * ErrMsg String 调用提示信息。
+1. `reply` - `Object`: The result of the call. Note that I have turned the returned results into Object objects.
+  * `Code` - `Number`: Return code, 0 means the result of the call is normal.
+  * `Data` - `Array|Object|String|Number`: Return the corresponding type according to the result of the call.
+  * `ErrMsg` - `String`: Error message.
 
-以调用 `查询当前账户地址所委托的节点的NodeID和质押Id`这个接口，入参顺序从上到下，入参如下所示：
+`Query the NodeID and Pledged Id of the node entrusted by the current account address` The input parameters of this interface are from top to bottom. The input parameters are as follows:
 
-|名称|类型|说明|
+| name | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1103)|
-|addr|common.address(20bytes)|委托人的账户地址|
+|funcType|uint16(2bytes)| Method type code(1103) |
+|addr|common.address(20bytes)| Client's account address |
 
 Example:
 
 ```JavaScript
 let params, reply;
 
-// 以传进入对象进行调用(对于key不要求顺序)
+// Called by passing in an object (the order is not required for the key)
 params = {
     funcType: 1103,
     addr: ppos.hexStrBuf("0xe6F2ce1aaF9EBf2fE3fbA8763bABaDf25e3fb5FA")
 }
 reply = await ppos.call(params);
 
-// 以传入数组对象进行调用
+// Calling as an array object.
 params = [1103, ppos.hexStrBuf("0xe6F2ce1aaF9EBf2fE3fbA8763bABaDf25e3fb5FA")];
 reply = await ppos.call(params);
 ```
@@ -3766,48 +3763,48 @@ reply = await ppos.call(params);
 
 #### async send(params, [other])
 
-发送一个 ppos 的send发送交易调用。上链。所以你需要自行区分是否是查询或者是发送交易。入参可以选择对象或者数组。传入规则请看上述`async call(params)`调用。
+Send a transaction to `ppos`.
 
-由于是一个交易，将会涉及到调用交易需要的一些参数，比如gas，gasPrice。当交易发送出去之后，为了确认交易是否上链，需要不断的通过交易哈希去轮询链上的结果。这就有个轮询次数 retry 与每次轮询之间的间隔 interval。
+Trading will involve some parameters, such as `gas`,` gasPrice`. After the transaction is sent, in order to confirm whether the transaction is on the chain, you need to continuously poll the result on the chain through the transaction hash. There is an interval between the number of polls `retry` and each poll.
 
-对于上面提到的 gas, gasPrice, retry, interval 这四个参数，如果other入参有指定，则使用other指定的。如果other入参未指定，则使用调用函数时候`updateSetting(setting)`指定的参数，否则使用默认的数值。
+For the four parameters mentioned above, `gas`,` gasPrice`, `retry`,` interval`, if the `other` input parameter is specified, the` other` parameter is used. If the other parameter is not specified, the parameter specified by updateSetting (setting) is used when calling the function, otherwise the default value is used.
 
-注意此接口为async函数，需要加await返回调用结果，否则返回一个Promise对象。
+Note: This interface is an async function, you need to add await to return the result of the call, otherwise it returns a Promise object.
 
 Parameters:
 
-* params Object|Array 调用参数。
-* other Object 其他参数
-  * gas String 燃油限制，默认 '0x76c0000'。
-  * gasPrice String 燃油价格，默认 '0x9184e72a000000'。
-  * retry Number 查询交易收据对象次数，默认 600 次。
-  * interval Number 查询交易收据对象的间隔，单位为ms。默认 100 ms。
+* `params` - `Object|Array`: Transaction parameters.
+* `other` - `Object`(Optional): 
+  * `gas` - `String`: Gas limit, default '0x76c0000'.
+  * `gasPrice` - `String`: Gas price, default '0x9184e72a000000'.
+  * `retry` - `Number`: Query the number of transaction receipt objects. The default is 600 times.
+  * `interval` - `Number`: Query the interval of the transaction receipt object, the unit is ms. The default is 100 ms.
 
 Returns:
 
-1. `reply` - `Object`: 调用成功！send调用方法返回指定交易的收据对象
-	* `status` - `Boolean`: 成功的交易返回true，如果EVM回滚了该交易则返回false
-	* `blockHash` 32 Bytes - `String`: 交易所在块的哈希值
-	* `blockNumber` - `Number`: 交易所在块的编号
-	* `transactionHash` 32 Bytes - `String`: 交易的哈希值
-	* `transactionIndex` - `Number`: 交易在块中的索引位置
-	* `from` - `String`: 交易发送方的地址
-	* `to` - `String`: 交易接收方的地址，对于创建合约的交易，该值为null
-	* `contractAddress` - `String`: 对于创建合约的交易，该值为创建的合约地址，否则为null
-	* `cumulativeGasUsed` - `Number`: 该交易执行时所在块的gas累计总用量
-	* `gasUsed` - `Number`: 该交易的gas总量
-	* `logs` - `Array`: 该交易产生的日志对象数组
+1. `reply` - `Object`: Receipt object for the specified transaction hash.
+	* `status` - `Boolean`: Successful transaction returns true, false if EVM rolls back the transaction.
+	* `blockHash` 32 Bytes - `String`: The hash of the block
+	* `blockNumber` - `Number`: The number of the block
+	* `transactionHash` 32 Bytes - `String`: The hash of transaction.
+	* `transactionIndex` - `Number`: Index position of the transaction in the block.
+	* `from` - `String`: Address of the sender of the transaction.
+	* `to` - `String`: The address of the transaction receiver. For the transaction that created the contract, the value is null.
+	* `contractAddress` - `String`: For transactions that create a contract, the value is the contract address created, otherwise null.
+	* `cumulativeGasUsed` - `Number`: Cumulative total gas usage of the block where the transaction is executed.
+	* `gasUsed` - `Number`: Total gas consumed by this transaction.
+	* `logs` - `Array`: Array of log objects generated by this transaction.
 
-2. `errMsg` - `String`: 调用失败！如果发送交易返回之后没有回执，则返回错误信息`no hash`。如果发送交易之后有回执，但是在规定的时间内没有查到收据对象，则返回 `getTransactionReceipt txHash ${hash} interval ${interval}ms by ${retry} retry failed`
+2. `errMsg` - `String`: If the call fails and there is no receipt after the sending transaction returns, the error message `no hash` is returned. If there is a receipt after sending the transaction, but no receipt object is found within the specified time, then `getTransactionReceipt txHash ${hash} interval ${interval} ms by ${retry} retry failed`.
 
-以调用 `发起委托`这个接口，入参顺序从上到下，入参如下所示：
+Call the interface that initiates the delegation. The input parameters are: 
 
-|参数|类型|说明|
+| Parameter | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1004)|
-|typ|uint16(2bytes)|表示使用账户自由金额还是账户的锁仓金额做委托，0: 自由金额； 1: 锁仓金额|
-|nodeId|64bytes|被质押的节点的NodeId|
-|amount|big.Int(bytes)|委托的金额(按照最小单位算，1LAT = 10^18 von)|
+| funcType | uint16(2bytes) | type code of method. (1004)|
+| typ| uint16(2bytes) | Indicates whether to use the free amount of the account or the locked amount of the account as the commission, 0: free amount; 1: locked amount |
+| nodeId| 64bytes | NodeId of the pledged node |
+| amount| big.Int(bytes) | Amount entrusted (Calculated in the smallest unit，1LAT = 10^18 von)|
 
 Example:
 
@@ -3815,7 +3812,7 @@ Example:
 const nodeId = "f71e1bc638456363a66c4769284290ef3ccff03aba4a22fb60ffaed60b77f614bfd173532c3575abe254c366df6f4d6248b929cb9398aaac00cbcc959f7b2b7c";
 let params, others, reply;
 
-// 以传进入对象进行调用(对于key不要求顺序)
+// Objects as parameters (the order is not required for keys)
 params = {
     funcType: 1004,
     typ: 0,
@@ -3824,437 +3821,442 @@ params = {
 }
 reply = await ppos.send(params);
 
-// 以传入数组对象进行调用
+// Array as parameter.
 params = [1004, 0, ppos.hexStrBuf(nodeId), ppos.bigNumBuf("10000000000000000000000")];
 reply = await ppos.send(params);
 
-// 我不想默认的轮询
+// Default configuration
 other = {
-    retry: 300, // 只轮询300次
-    interval: 200 // 每次轮询间隔200ms
+    retry: 300, 
+    interval: 200 
 }
 params = [1004, 0, ppos.hexStrBuf(nodeId), ppos.bigNumBuf("10000000000000000000000")];
 reply = await ppos.send(params, other);
 ```
 
-### 质押模块
+### Pledge Module
 
-#### 发起质押
+#### Initiate Pledge
 
-send发送交易
+Pledge by sending transactions via send.
 
-|参数|类型|说明|
+| Parameter | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1000)|
-|typ|uint16(2bytes)|表示使用账户自由金额还是账户的锁仓金额做质押，0: 自由金额； 1: 锁仓金额|
-|benefitAddress|20bytes|用于接受出块奖励和质押奖励的收益账户|
-|nodeId|64bytes|被质押的节点Id(也叫候选人的节点Id)|
-|externalId|string|外部Id(有长度限制，给第三方拉取节点描述的Id)|
-|nodeName|string|被质押节点的名称(有长度限制，表示该节点的名称)|
-|website|string|节点的第三方主页(有长度限制，表示该节点的主页)|
-|details|string|节点的描述(有长度限制，表示该节点的描述)|
-|amount|*big.Int(bytes)|质押的von|
-|programVersion|uint32|程序的真实版本，治理rpc获取|
-|programVersionSign|65bytes|程序的真实版本签名，治理rpc获取|
-|blsPubKey|96bytes|bls的公钥|
-|blsProof|64bytes|bls的证明,通过拉取证明接口获取|
+|funcType|uint16(2bytes)|Type code of method(1000)|
+|typ|uint16(2bytes)|Indicates whether to use the account free amount or the account's locked amount as a pledge, 0: free amount; 1: locked amount|
+|benefitAddress|20bytes|Revenue account for receiving block rewards and pledged rewards|
+|nodeId|64bytes|The node ID of the pledged (also called the node ID of the candidate)|
+|externalId|string|External Id (with a length limit, the Id described by the third-party pull node)|
+|nodeName|string|The name of the node being pledged (there is a length limitation, indicating the name of the node)|
+|website|string|The third-party home page of the node (the length is limited, indicating the home page of the node)|
+|details|string|The description of the node (the length is limited, indicating the description of the node)|
+|amount|*big.Int(bytes)|Pledged von|
+|programVersion|uint32|Real version of the program, governance rpc acquisition|
+|programVersionSign|65bytes|The true version signature of the program and the rpc interface of the governance module|
+|blsPubKey|96bytes|bls public key|
+|blsProof|64bytes|Proof of bls, obtained by pulling the proof interface|
 
-#### 修改质押信息
+#### Update Pledge Information
 
-send 发送交易。
+Modify the pledge information by sending the transaction.
 
-|参数|类型|说明|
+| Parameter | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1001)|
-|benefitAddress|20bytes|用于接受出块奖励和质押奖励的收益账户|
-|nodeId|64bytes|被质押的节点Id(也叫候选人的节点Id)|
-|externalId|string|外部Id(有长度限制，给第三方拉取节点描述的Id)|
-|nodeName|string|被质押节点的名称(有长度限制，表示该节点的名称)|
-|website|string|节点的第三方主页(有长度限制，表示该节点的主页)|
-|details|string|节点的描述(有长度限制，表示该节点的描述)|
+|funcType|uint16(2bytes)|Method type code(1001)|
+|benefitAddress|20bytes|Revenue account for receiving block rewards and pledged rewards|
+|nodeId|64bytes|The node ID of the pledged (also called the node ID of the candidate)|
+|externalId|string| External Id (with a length limit, the Id described by the third-party pull node) |
+|nodeName|string| The name of the node being pledged (there is a length limitation, indicating the name of the node) |
+|website|string| The third-party home page of the node (the length is limited, indicating the home page of the node) |
+|details|string| The description of the node (the length is limited, indicating the description of the node) |
 
 
-#### 增持质押
+#### Increase Pledge
 
-send 发送交易。
+Increase pledge by sending transactions.
 
 Parameters:
 
-|参数|类型|说明|
+| Parameter | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1002)|
-|nodeId|64bytes|被质押的节点Id(也叫候选人的节点Id)|
-|typ|uint16(2bytes)|表示使用账户自由金额还是账户的锁仓金额做质押，0: 自由金额； 1: 锁仓金额|
-|amount|*big.Int(bytes)|增持的von|
+|funcType|uint16(2bytes)| Method type code(1002) |
+|nodeId|64bytes| The node ID of the pledged (also called the node ID of the candidate) |
+|typ|uint16(2bytes)| Indicates whether to use the account free amount or the account's locked amount as a pledge, 0: free amount; 1: locked amount |
+|amount|*big.Int(bytes)| Increased von |
 
 
-#### 撤销质押
+#### Cancellation Of Pledge
 
-(一次性发起全部撤销，多次到账)，send 发送交易。
+Send the transaction to cancel the pledge.
 
-|参数|类型|说明|
+Notes: All cancellations are initiated at once, and the amount is divided into multiple returns to the account.
+
+| Parameter | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1003)|
-|nodeId|64bytes|被质押的节点的NodeId|
+|funcType|uint16(2bytes)| Method type code(1003) |
+|nodeId|64bytes| NodeId of the pledged node |
 
-#### 发起委托
+#### Initiate Delegation
 
-send 发送交易。
+Initiate delegation by sending a transaction.
 
-|参数|类型|说明|
+| Parameter | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1004)|
-|typ|uint16(2bytes)|表示使用账户自由金额还是账户的锁仓金额做委托，0: 自由金额； 1: 锁仓金额|
-|nodeId|64bytes|被质押的节点的NodeId|
-|amount|*big.Int(bytes)|委托的金额(按照最小单位算，1LAT = 10**18 von)|
+|funcType|uint16(2bytes)| Method type code(1004) |
+|typ|uint16(2bytes)| Indicates whether to use the free amount of the account or the locked amount of the account as the commission, 0: free amount; 1: locked amount |
+|nodeId|64bytes| NodeId of the pledged node |
+|amount|*big.Int(bytes)| Amount entrusted (based on the smallest unit, 1LAT = 10 ** 18 von) |
 
-#### 减持/撤销委托
+#### Reduction/Revocation Delegation
 
-(全部减持就是撤销)，send 发送交易。
+Completed by sending a transaction(All reductions are cancelled).
 
-|参数|类型|说明|
+| Parameter | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1005)|
-|stakingBlockNum|uint64(8bytes)|代表着某个node的某次质押的唯一标示|
-|nodeId|64bytes|被质押的节点的NodeId|
-|amount|*big.Int(bytes)|减持委托的金额(按照最小单位算，1LAT = 10**18 von)|
+|funcType|uint16(2bytes)| Method type code(1005) |
+|stakingBlockNum|uint64(8bytes)| A unique identifier representing a pledge of a node |
+|nodeId|64bytes| NodeId of the pledged node |
+|amount|*big.Int(bytes) | Amount of reduction entrustment (calculated by the smallest unit, `1LAT = 10 ** 18 von`) |
 
-#### 查询当前结算周期的验证人队列
 
-call 查询
+#### Query Validators
+
+Query the validator of the current settlement cycle by calling.
 
 Parameters:
 
-|名称|类型|说明|
+| Parameter | Type | Desc |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1100)|
+|funcType|uint16(2bytes)| Method type code(1100) |
 
-**查询结果统一格式**
+**Unified query result format**
 
-|名称|类型|说明|
+| Field | Type | Desc |
 |---|---|---|
-|Code|uint32| 表示ppos内置合约返回的错误码|
-|Data|string| json字符串的查询结果，具体格式参见以下查询相关接口返回值 |
-|ErrMsg|string| 错误提示信息|
+|Code|uint32| Indicates the error code returned by the ppos built-in contract |
+|Data|string| Query result of json string |
+|ErrMsg|string| Error message |
 
-> 注：以下查询接口（platon_call调用的接口）如无特殊声明，返回参数都按照上述格式返回
-
-Returns: 
-
-List
-
-|名称|类型|说明|
-|---|---|---|
-|NodeId|64bytes|被质押的节点Id(也叫候选人的节点Id)|
-|StakingAddress|20bytes|发起质押时使用的账户(后续操作质押信息只能用这个账户，撤销质押时，von会被退回该账户或者该账户的锁仓信息中)|
-|BenefitAddress|20bytes|用于接受出块奖励和质押奖励的收益账户|
-|StakingTxIndex|uint32(4bytes)|发起质押时的交易索引|
-|ProgramVersion|uint32|被质押节点的PlatON进程的真实版本号(获取版本号的接口由治理提供)|
-|StakingBlockNum|uint64(8bytes)|发起质押时的区块高度|
-|Shares|*big.Int(bytes)|当前候选人总共质押加被委托的von数目|
-|ExternalId|string|外部Id(有长度限制，给第三方拉取节点描述的Id)|
-|NodeName|string|被质押节点的名称(有长度限制，表示该节点的名称)|
-|Website|string|节点的第三方主页(有长度限制，表示该节点的主页)|
-|Details|string|节点的描述(有长度限制，表示该节点的描述)|
-|ValidatorTerm|uint32(4bytes)|验证人的任期(在结算周期的101个验证人快照中永远是0，只有在共识轮的验证人时才会被有值，刚被选出来时也是0，继续留任时则+1)|
-
-#### 查询当前共识周期的验证人列表
-
-call 查询
-
-Parameters:
-
-|名称|类型|说明|
-|---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1101)|
+> Note: The following query interfaces (the interfaces called by `platon_call`) are returned in the above format unless otherwise specified
 
 Returns: List
 
-|名称|类型|说明|
+| Field | Type | Desc |
 |---|---|---|
-|NodeId|64bytes|被质押的节点Id(也叫候选人的节点Id)|
-|StakingAddress|20bytes|发起质押时使用的账户(后续操作质押信息只能用这个账户，撤销质押时，von会被退回该账户或者该账户的锁仓信息中)|
-|BenefitAddress|20bytes|用于接受出块奖励和质押奖励的收益账户|
-|StakingTxIndex|uint32(4bytes)|发起质押时的交易索引|
-|ProgramVersion|uint32(4bytes)|被质押节点的PlatON进程的真实版本号(获取版本号的接口由治理提供)|
-|StakingBlockNum|uint64(8bytes)|发起质押时的区块高度|
-|Shares|*big.Int(bytes)|当前候选人总共质押加被委托的von数目|
-|ExternalId|string|外部Id(有长度限制，给第三方拉取节点描述的Id)|
-|NodeName|string|被质押节点的名称(有长度限制，表示该节点的名称)|
-|Website|string|节点的第三方主页(有长度限制，表示该节点的主页)|
-|Details|string|节点的描述(有长度限制，表示该节点的描述)|
-|ValidatorTerm|uint32(4bytes)|验证人的任期(在结算周期的101个验证人快照中永远是0，只有在共识轮的验证人时才会被有值，刚被选出来时也是0，继续留任时则+1)|
+|NodeId|64bytes| The node ID of the pledged (also called the node ID of the candidate) |
+|StakingAddress|20bytes| The account used when initiating the pledge (this account can only be used for subsequent pledge information. When the pledge is cancelled, `von` will be returned to the account or the account lock information) |
+|BenefitAddress|20bytes| Revenue account for receiving block rewards and pledged rewards |
+|StakingTxIndex|uint32(4bytes)| Index of transactions when pledge is initiated |
+|ProgramVersion|uint32| The real version number of the PlatON process of the pledged node (the interface for obtaining the version number is provided by the governance) |
+|StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
+|Shares|*big.Int(bytes)| The current candidate's total pledge plus the number of `von` entrusted |
+|ExternalId|string| External Id (with a length limit, the Id described by the third-party pull node) |
+|NodeName|string| The name of the node being pledged (there is a length limitation, indicating the name of the node) |
+|Website|string| The third-party home page of the node (the length is limited, indicating the home page of the node) |
+|Details|string| The description of the node (the length is limited, indicating the description of the node) |
+|ValidatorTerm|uint32(4bytes)| Validator's term (it will always be 0 in the 101 validator snapshots of the settlement cycle, and will only be valued when the validator of the consensus round, it is also 0 when it is just selected, and +1 when it stays in office) |
 
-#### 查询所有实时的候选人列表
 
-call 查询
+#### Query Validator list
+
+Query the list of validators by call.
 
 Parameters:
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1102)|
+|funcType|uint16(2bytes)| Method type code(1101) |
+
+Returns: List
+
+| Field | Type | Remark |
+|---|---|---|
+|NodeId|64bytes| The node ID of the pledged (also called the node ID of the candidate). |
+|StakingAddress|20bytes| The account used when initiating the pledge (the pledge information can only be used for this operation in subsequent operations. When the pledge is cancelled, von will be returned to the account or the account lock information) |
+|BenefitAddress|20bytes| Revenue account for receiving block rewards and pledged rewards |
+|StakingTxIndex|uint32(4bytes)| Index of transactions when pledge is initiated |
+|ProgramVersion|uint32(4bytes)| The real version number of the PlatON process of the pledged node (the interface for obtaining the version number is provided by the governance)  |
+|StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
+|Shares|*big.Int(bytes)| The current candidate's total pledge plus the number of entrusted von |
+|ExternalId|string| External Id (with a length limit, the Id described by the third-party pull node) |
+|NodeName|string| The name of the node being pledged (there is a length limitation, indicating the name of the node) |
+|Website|string| The third-party home page of the node (the length is limited, indicating the home page of the node) |
+|Details|string| The description of the node (the length is limited, indicating the description of the node) |
+|ValidatorTerm|uint32(4bytes)| Validator's term (it will always be 0 in the 101 validator snapshots of the settlement cycle, and will only be valued when the validator of the consensus round, it is also 0 when it is just selected, and +1 when it stays in office) |
+
+#### Query Real-time Candidate List
+
+Query real-time candidate list by call.
+
+Parameters:
+
+| Field | Type | Remark |
+|---|---|---|
+|funcType|uint16(2bytes)|Method type code(1102)|
 
 Returns:List
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|NodeId|64bytes|被质押的节点Id(也叫候选人的节点Id)|
-|StakingAddress|20bytes|发起质押时使用的账户(后续操作质押信息只能用这个账户，撤销质押时，von会被退回该账户或者该账户的锁仓信息中)|
-|BenefitAddress|20bytes|用于接受出块奖励和质押奖励的收益账户|
-|StakingTxIndex|uint32(4bytes)|发起质押时的交易索引|
-|ProgramVersion|uint32(4bytes)|被质押节点的PlatON进程的真实版本号(获取版本号的接口由治理提供)|
+|NodeId|64bytes| The node ID of the pledged (also called the node ID of the candidate). |
+|StakingAddress|20bytes| The account used when initiating the pledge (the pledge information can only be used for this operation in subsequent operations. When the pledge is cancelled, von will be returned to the account or the account lock information) |
+|BenefitAddress|20bytes| Revenue account for receiving block rewards and pledged rewards |
+|StakingTxIndex|uint32(4bytes)| Index of transactions when pledge is initiated |
+|ProgramVersion|uint32(4bytes)| The real version number of the PlatON process of the pledged node (the interface for obtaining the version number is provided by the governance)  |
 |Status|uint32(4bytes)|候选人的状态(状态是根据uint32的32bit来放置的，可同时存在多个状态，值为多个同时存在的状态值相加【0: 节点可用 (32个bit全为0)； 1: 节点不可用 (只有最后一bit为1)； 2： 节点出块率低但没有达到移除条件的(只有倒数第二bit为1)； 4： 节点的von不足最低质押门槛(只有倒数第三bit为1)； 8：节点被举报双签(只有倒数第四bit为1)); 16: 节点出块率低且达到移除条件(倒数第五位bit为1); 32: 节点主动发起撤销(只有倒数第六位bit为1)】|
-|StakingEpoch|uint32(4bytes)|当前变更质押金额时的结算周期|
-|StakingBlockNum|uint64(8bytes)|发起质押时的区块高度|
-|Shares|string(0x十六进制字符串)|当前候选人总共质押加被委托的von数目|
-|Released|string(0x十六进制字符串)|发起质押账户的自由金额的锁定期质押的von|
-|ReleasedHes|string(0x十六进制字符串)|发起质押账户的自由金额的犹豫期质押的von|
-|RestrictingPlan|string(0x十六进制字符串)|发起质押账户的锁仓金额的锁定期质押的von|
-|RestrictingPlanHes|string(0x十六进制字符串)|发起质押账户的锁仓金额的犹豫期质押的von|
-|ExternalId|string|外部Id(有长度限制，给第三方拉取节点描述的Id)|
-|NodeName|string|被质押节点的名称(有长度限制，表示该节点的名称)|
-|Website|string|节点的第三方主页(有长度限制，表示该节点的主页)|
-|Details|string|节点的描述(有长度限制，表示该节点的描述)|
+|StakingEpoch|uint32(4bytes)| Settlement cycle when current pledge amount is changed |
+|StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
+|Shares|string(Hex string)| The current candidate's total pledge plus the number of entrusted von |
+|Released|string(Hex string)|Initiating a free amount locked period pledge of a pledged account `von`|
+|ReleasedHes|string(Hex string)| Freedom to initiate a pledge account with a hesitation period of von von |
+|RestrictingPlan|string(Hex string)| Initiating the lock-up period of the pledged account's lock-up amount `von` |
+|RestrictingPlanHes|string(Hex string)| Initiating the hedging period of the pledged account's hedging amount `von` |
+|ExternalId|string| External Id (with a length limit, the Id described by the third-party pull node) |
+|NodeName|string| The name of the node being pledged (there is a length limitation, indicating the name of the node) |
+|Website|string| The third-party home page of the node (the length is limited, indicating the home page of the node) |
+|Details|string| The description of the node (the length is limited, indicating the description of the node) |
 
-#### 查询当前账户地址所委托的节点的NodeID和质押Id
+#### Query The NodeID And Pledged Id of The Delegated Node
 
-call 查询
-
-Parameters:
-
-|名称|类型|说明|
-|---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(1103)|
-|addr|common.address(20bytes)|委托人的账户地址|
-
-Returns: List
-
-|名称|类型|说明|
-|---|---|---|
-|Addr|20bytes|委托人的账户地址|
-|NodeId|64bytes|验证人的节点Id|
-|StakingBlockNum|uint64(8bytes)|发起质押时的区块高度|
-
-
-#### 查询当前单个委托信息
-
-call 查询
+Query the NodeID and Pledged Id of the node entrusted by the current account address.
 
 Parameters:
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|funcType|uint16|代表方法类型码(1104)|
-|stakingBlockNum|uint64(8bytes)|发起质押时的区块高度|
-|delAddr|20bytes|委托人账户地址|
-|nodeId|64bytes|验证人的节点Id|
+|funcType|uint16(2bytes)|Method type code(1103)|
+|addr|common.address(20bytes)| Client's account address |
 
 Returns: List
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|Addr|20bytes|委托人的账户地址|
-|NodeId|64bytes|验证人的节点Id|
-|StakingBlockNum|uint64(8bytes)|发起质押时的区块高度|
-|DelegateEpoch|uint32(4bytes)|最近一次对该候选人发起的委托时的结算周期|
-|Released|string(0x十六进制字符串)|发起委托账户的自由金额的锁定期委托的von|
-|ReleasedHes|string(0x十六进制字符串)|发起委托账户的自由金额的犹豫期委托的von|
-|RestrictingPlan|string(0x十六进制字符串)|发起委托账户的锁仓金额的锁定期委托的von|
-|RestrictingPlanHes|string(0x十六进制字符串)|发起委托账户的锁仓金额的犹豫期委托的von|
-|Reduction|string(0x十六进制字符串)|处于撤销计划中的von|
+|Addr|20bytes| Client's account address |
+|NodeId|64bytes| Node ID of the validator |
+|StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
 
-#### 查询当前节点的质押信息
 
-call 查询
+#### Query Delegated Informations
+
+Query the current single delegate information, using the call method.
 
 Parameters:
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|funcType|uint16|代表方法类型码(1105)|
-|nodeId|64bytes|验证人的节点Id|
+|funcType|uint16|Method type code(1104)|
+|stakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
+|delAddr|20bytes|Client's account address|
+|nodeId|64bytes| Node ID of the validator |
 
 Returns: List
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|NodeId|64bytes|被质押的节点Id(也叫候选人的节点Id)|
-|StakingAddress|20bytes|发起质押时使用的账户(后续操作质押信息只能用这个账户，撤销质押时，von会被退回该账户或者该账户的锁仓信息中)|
-|BenefitAddress|20bytes|用于接受出块奖励和质押奖励的收益账户|
-|StakingTxIndex|uint32(4bytes)|发起质押时的交易索引|
-|ProgramVersion|uint32(4bytes)|被质押节点的PlatON进程的真实版本号(获取版本号的接口由治理提供)|
+|Addr|20bytes| Client's account address |
+|NodeId|64bytes| Node ID of the validator |
+|StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
+|DelegateEpoch|uint32(4bytes)| Settlement cycle at the time of the most recent commission for this candidate |
+|Released|string(Hex string)|The free amount of the account that initiated the commission, the `von` that was commissioned during the lock-up period. |
+|ReleasedHes|string(Hex string)|Number of von commissioned during the hesitation period of the free amount of the commission account |
+|RestrictingPlan|string(Hex string)|Number of von commissioned during the lock period that initiated the lockup amount of the commissioned account|
+|RestrictingPlanHes|string(Hex string)|Number of von commissioned during the hesitation period of the hedging amount of the commissioned account |
+|Reduction|string(Hex string)|`von` in revocation plan|
+
+#### Query Pledge Information
+
+Query the pledge information of the current node.
+
+Parameters:
+
+| Field | Type | Remark |
+|---|---|---|
+|funcType|uint16|Method type code(1105)|
+|nodeId|64bytes| Node ID of the validator |
+
+Returns: List
+
+| Field | Type | Remark |
+|---|---|---|
+|NodeId|64bytes| The node ID of the pledged (also called the node ID of the candidate). |
+|StakingAddress|20bytes| The account used when initiating the pledge (the pledge information can only be used for this operation in subsequent operations. When the pledge is cancelled, von will be returned to the account or the account lock information) |
+|BenefitAddress|20bytes| Revenue account for receiving block rewards and pledged rewards |
+|StakingTxIndex|uint32(4bytes)| Index of transactions when pledge is initiated |
+|ProgramVersion|uint32(4bytes)| The real version number of the PlatON process of the pledged node (the interface for obtaining the version number is provided by the governance)  |
 |Status|uint32(4bytes)|候选人的状态(状态是根据uint32的32bit来放置的，可同时存在多个状态，值为多个同时存在的状态值相加【0: 节点可用 (32个bit全为0)； 1: 节点不可用 (只有最后一bit为1)； 2： 节点出块率低但没有达到移除条件的(只有倒数第二bit为1)； 4： 节点的von不足最低质押门槛(只有倒数第三bit为1)； 8：节点被举报双签(只有倒数第四bit为1)); 16: 节点出块率低且达到移除条件(倒数第五位bit为1); 32: 节点主动发起撤销(只有倒数第六位bit为1)】|
-|StakingEpoch|uint32(4bytes)|当前变更质押金额时的结算周期|
-|StakingBlockNum|uint64(8bytes)|发起质押时的区块高度|
-|Shares|string(0x十六进制字符串)|当前候选人总共质押加被委托的von数目|
-|Released|string(0x十六进制字符串)|发起质押账户的自由金额的锁定期质押的von|
-|ReleasedHes|string(0x十六进制字符串)|发起质押账户的自由金额的犹豫期质押的von|
-|RestrictingPlan|string(0x十六进制字符串)|发起质押账户的锁仓金额的锁定期质押的von|
-|RestrictingPlanHes|string(0x十六进制字符串)|发起质押账户的锁仓金额的犹豫期质押的von|
-|ExternalId|string|外部Id(有长度限制，给第三方拉取节点描述的Id)|
-|NodeName|string|被质押节点的名称(有长度限制，表示该节点的名称)|
-|Website|string|节点的第三方主页(有长度限制，表示该节点的主页)|
-|Details|string|节点的描述(有长度限制，表示该节点的描述)|
+|StakingEpoch|uint32(4bytes)| Settlement cycle when current pledge amount is changed |
+|StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
+|Shares|string(Hex string)| The current candidate's total pledge plus the number of entrusted von |
+|Released|string(Hex string)|Initiating a free amount locked period pledge of a pledged account `von`|
+|ReleasedHes|string(Hex string)| Freedom to initiate a pledge account with a hesitation period of von von |
+|RestrictingPlan|string(Hex string)| Initiating the lock-up period of the pledged account's lock-up amount `von` |
+|RestrictingPlanHes|string(Hex string)| Initiating the hedging period of the pledged account's hedging amount `von` |
+|ExternalId|string| External Id (with a length limit, the Id described by the third-party pull node) |
+|NodeName|string| The name of the node being pledged (there is a length limitation, indicating the name of the node) |
+|Website|string| The third-party home page of the node (the length is limited, indicating the home page of the node) |
+|Details|string| The description of the node (the length is limited, indicating the description of the node) |
 
 
 
-### 治理模块
+### Governance Module
 
-#### 提交文本提案
+#### Submit Text Proposal
 
-send 发送交易。
+Submit a text proposal by send a transaction.
 
 Parameters:
 
-|参数|类型|说明|
+| Field| Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2000)|
-|verifier|discover.NodeID(64bytes)|提交提案的验证人|
+|funcType|uint16(2bytes)|Method type code(2000)|
+|verifier|discover.NodeID(64bytes)|Submit a validator|
 |pIDID|string(uint64)|PIPID|
 
-#### 提交升级提案
 
-send 发送交易。
+#### Submit Upgrade Proposal
+
+Submit an upgrade proposal by sending a transaction.
 
 Parameters:
 
-|参数|类型|说明|
+| Field| Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2001)|
-|verifier|discover.NodeID(64bytes)|提交提案的验证人|
+|funcType|uint16(2bytes)|Method type code(2001)|
+|verifier|discover.NodeID(64bytes)| Validator of proposal |
 |pIDID|string(uint64)|PIPID|
-|newVersion|uint32(4bytes)|升级版本|
+|newVersion|uint32(4bytes)| updated version |
 |endVotingRounds|uint64|投票共识轮数量。说明：假设提交提案的交易，被打包进块时的共识轮序号时round1，则提案投票截止块高，就是round1 + endVotingRounds这个共识轮的第230个块高（假设一个共识轮出块250，ppos揭榜提前20个块高，250，20都是可配置的 ），其中0 < endVotingRounds <= 4840（约为2周，实际论述根据配置可计算），且为整数）|
 
 
-#### 提交取消提案
+#### Submit Cancellation Proposal
 
-send 发送交易。
+Submit cancellation proposal by sending transaction.
 
 Parameters:
 
-|参数|类型|说明|
+| Field| Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2005)|
-|verifier|discover.NodeID(64bytes)|提交提案的验证人|
+|funcType|uint16(2bytes)|Method type code(2005)|
+|verifier|discover.NodeID(64bytes)| Validator of proposal |
 |pIDID|string(uint64)|PIPID|
-|endVotingRounds|uint64|投票共识轮数量。参考提交升级提案的说明，同时，此接口中此参数的值不能大于对应升级提案中的值|
-|tobeCanceledProposalID|common.hash(32bytes)|待取消的升级提案ID|
+|endVotingRounds|uint64| Number of voting consensus rounds. Refer to the description of submitting an upgrade proposal. At the same time, the value of this parameter in this interface cannot be greater than the value in the corresponding upgrade proposal.|
+|tobeCanceledProposalID|common.hash(32bytes)| Upgrade proposal ID to be canceled |
 
 
-#### 给提案投票
+#### Vote On Proposal
 
-send 发送交易。
+Vote on a proposal by sending a transaction.
 
 Parameters:
 
-|参数|类型|说明|
+| Field| Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2003)|
-|verifier|discover.NodeID(64bytes)|投票验证人|
-|proposalID|common.Hash(32bytes)|提案ID|
-|option|uint8(1byte)|投票选项|
-|programVersion|uint32(4bytes)|节点代码版本，有rpc的getProgramVersion接口获取|
-|versionSign|common.VesionSign(65bytes)|代码版本签名，有rpc的getProgramVersion接口获取|
+|funcType|uint16(2bytes)|Method type code(2003)|
+|verifier|discover.NodeID(64bytes)|Vote validator|
+|proposalID|common.Hash(32bytes)| Proposal ID |
+|option|uint8(1byte)| Voting options |
+|programVersion|uint32(4bytes)|The code version of the node, obtained by the `getProgramVersion` interface of rpc|
+|versionSign|common.VesionSign(65bytes)| Code version signature, obtained by rpc's getProgramVersion interface |
 
-#### 版本声明
 
-send 发送交易。
+#### Version Declaration
+
+Declaring the version by sending a transaction.
 
 Parameters:
 
-|参数|类型|说明|
+| Field| Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2004)|
-|verifier|discover.NodeID(64bytes)|声明的节点，只能是验证人/候选人|
-|programVersion|uint32(4bytes)|声明的版本，有rpc的getProgramVersion接口获取|
-|versionSign|common.VesionSign(65bytes)|声明的版本签名，有rpc的getProgramVersion接口获取|
+|funcType|uint16(2bytes)|Method type code(2004)|
+|verifier|discover.NodeID(64bytes)|The declared node can only be a validator/candidate|
+|programVersion|uint32(4bytes)|Declared version, obtained by rpc's getProgramVersion interface|
+|versionSign|common.VesionSign(65bytes)|Declared version signature, obtained by rpc's getProgramVersion interface|
 
-#### 查询提案
+#### Query Proposal
 
-call 查询
+Query proposal by call.
 
 Parameters:
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
 |funcType|uint16(2bytes)|2100)|
-|proposalID|common.Hash(32bytes)|提案ID|
+|proposalID|common.Hash(32bytes)| Proposal ID |
 
 Returns:
 
-Proposal接口实现对象的json字符串
+JSON string of object implementing interface Proposal.
 
-#### 查询提案结果
 
-call 查询
+#### Query Proposal Results
+
+Query proposal results through call operation.
 
 Parameters:
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2101)|
-|proposalID|common.Hash(32bytes)|提案ID|
+|funcType|uint16(2bytes)|Method type code(2101)|
+|proposalID|common.Hash(32bytes)| Proposal ID |
 
 Returns:
 
-TallyResult对象的json字符串
+`TallyResult`: Json string of TallyResult object.
 
 
-#### 查询提案列表
+#### Query Proposal List
 
-call 查询
+Query proposal list through call operation.
 
 Parameters:
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2102)|
+|funcType|uint16(2bytes)|Method type code(2102)|
 
 Returns: 
 
-Proposal接口实现对象列表的json字符串。
+`Proposal`: A json string of an object that implements the interface Proposal.
 
 
-#### 查询节点的链生效版本
+#### Query Version In Effect
 
-call 查询
+Query the version in effect through call operation.
 
 Parameters:
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2103)|
+|funcType|uint16(2bytes)|Method type code(2103)|
 
 Returns:
 
-版本号的json字符串，如{65536}，表示版本是：1.0.0。
-解析时，需要把ver转成4个字节。主版本：第二个字节；小版本：第三个字节，patch版本，第四个字节。
+`String`: The json string of the version number, such as `{65536}`, indicates that the version is: `1.0.0`.
+When parsing, ver needs to be converted into 4 bytes. Major version: second byte; minor version: third byte, patch version, fourth byte.
 
 
-#### 查询提案的累积可投票人数
+#### Query The Cumulative Voteable Number Of Proposals
 
-call 查询
+Query the cumulative voteable number of proposals through call operation.
 
 Parameters:
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-|funcType|uint16(2bytes)|代表方法类型码(2105)|
-|proposalID|common.Hash(32bytes)|提案ID|
+|funcType|uint16(2bytes)|Method type code(2105)|
+|proposalID|common.Hash(32bytes)| Proposal ID |
 |blockHash|common.Hash(32bytes)|块hash|
 
 Returns:
 
-是个[]uint16数组
+`Array` - `[]uint16`: An array.
 
-|名称|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
-||uint16|累积可投票人数|
-||uint16|赞成票数|
-||uint16|反对票数|
-||uint16|弃权票数|
+||uint16|Number of cumulative votes |
+||uint16|Number of in favour votes |
+||uint16|Number of negative votes |
+||uint16|Number of Abstained votes |
 
 **ProposalType 提案类型定义**
 
@@ -4295,7 +4297,7 @@ Returns:
 
 |字段|类型|说明|
 |---|---|---|
-|ProposalID|common.Hash(32bytes)|提案ID|
+|ProposalID|common.Hash(32bytes)| Proposal ID |
 |Proposer|common.NodeID(64bytes)|提案节点ID|
 |ProposalType|byte|提案类型， 0x01：文本提案； 0x02：升级提案；0x03参数提案；0x04取消提案。|
 |PIPID|string|提案PIPID|
@@ -4303,13 +4305,13 @@ Returns:
 |EndVotingBlock|8bytes|提案投票结束的块高，系统根据SubmitBlock|
 
 
-子类VersionProposal：升级提案
+子类 VersionProposal ：升级提案
 
 字段说明：
 
 |字段|类型|说明|
 |---|---|---|
-|ProposalID|common.Hash(32bytes)|提案ID|
+|ProposalID|common.Hash(32bytes)| Proposal ID |
 |Proposer|common.NodeID(64bytes)|提案节点ID|
 |ProposalType|byte|提案类型， 0x01：文本提案； 0x02：升级提案；0x03参数提案；0x04取消提案。|
 |PIPID|string|提案PIPID|
@@ -4317,16 +4319,16 @@ Returns:
 |EndVotingRounds|8bytes|投票持续的共识周期数量|
 |EndVotingBlock|8bytes|提案投票结束的块高，系统根据SubmitBlock，EndVotingRounds算出|
 |ActiveBlock|8bytes|提案生效块高，系统根据EndVotingBlock算出|
-|NewVersion|uint|升级版本|
+|NewVersion|uint| updated version |
 
 
-子类CancelProposal：取消提案
+子类 CancelProposal ：取消提案
 
 字段说明：
 
 |字段|类型|说明|
 |---|---|---|
-|ProposalID|common.Hash(32bytes)|提案ID|
+|ProposalID|common.Hash(32bytes)| Proposal ID |
 |Proposer|common.NodeID(64bytes)|提案节点ID|
 |ProposalType|byte|提案类型， 0x01：文本提案； 0x02：升级提案；0x03参数提案；0x04取消提案。|
 |PIPID|string|提案PIPID|
@@ -4339,15 +4341,15 @@ Returns:
 
 |字段|类型|说明|
 |---|---|---|
-|voter|64bytes|投票验证人|
-|proposalID|common.Hash(32bytes)|提案ID|
-|option|VoteOption|投票选项|
+|voter|64bytes|Vote validator|
+|proposalID|common.Hash(32bytes)| Proposal ID |
+|option|VoteOption| Voting options |
 
 **TallyResult 投票结果定义**
 
 |字段|类型|说明|
 |---|---|---|
-|proposalID|common.Hash(32bytes)|提案ID|
+|proposalID|common.Hash(32bytes)| Proposal ID |
 |yeas|uint16(2bytes)|赞成票|
 |nays|uint16(2bytes)|反对票|
 |abstentions|uint16(2bytes)|弃权票|
@@ -4355,80 +4357,81 @@ Returns:
 |status|byte|状态|
 |canceledBy|common.Hash(32bytes)|当status=0x06时，记录发起取消的ProposalID|
 
-### 举报惩罚模块
+### Exposure/Punishment Module
 
-#### 举报双签
+#### Report Double Sign
 
-send 发送交易。
+Report a double sign by sending a transaction.
 
 Parameters:
 
-| 参数     | 类型   | 描述                                    |
+| Field     | Type   | Remark                                    |
 | -------- | ------ | --------------------------------------- |
-| funcType | uint16(2bytes) | 代表方法类型码(3000)                    |
-| typ      | uint8         | 代表双签类型，<br />1：prepareBlock，2：prepareVote，3：viewChange |
-| data     | string | 单个证据的json值，格式参照[RPC接口Evidences][evidences_interface] |
+| funcType | uint16(2bytes) | Method type code(3000)                    |
+| typ      | uint8         | Stands for double sign type<br />1：prepareBlock，2：prepareVote，3：viewChange |
+| data     | string | The json value of a single evidence. The format is [RPC interface Evidences] [evidences_interface] |
 
-#### 查询节点是否已被举报过多签
+#### Query Whether Node Has Been Reported As Oversigned
 
-call 查询
+Query whether a node has been reported as oversigned by sending a transaction.
 
 Parameters:
 
-| 参数        | 类型           | 描述                                                         |
+| Field        | Type           | Remark                                                         |
 | ----------- | -------------- | ------------------------------------------------------------ |
-| funcType    | uint16(2bytes) | 代表方法类型码(3001)                                         |
-| typ         | uint32         | 代表双签类型，<br />1：prepareBlock，2：prepareVote，3：viewChange |
-| addr        | 20bytes        | 举报的节点地址                                               |
-| blockNumber | uint64         | 多签的块高                                                   |
+| funcType    | uint16(2bytes) | Method type code(3001)                                         |
+| typ         | uint32         | Stands for double sign type,<br />1：prepareBlock，2：prepareVote，3：viewChange |
+| addr        | 20bytes        | Reporting node address                                               |
+| blockNumber | uint64         | Multi-Signed BlockNumber                                                   |
 
 Returns:
 
-| 类型   | 描述           |
+| Type   | Remark           |
 | ------ | -------------- |
-| 16进制 | 举报的交易Hash |
+| String | Reported Transaction Hash |
 
 
 
-### 锁仓模块
+### Lockout Module
 
-#### 创建锁仓计划
+#### Create Hedging Plan
 
-send 发送交易。
+Create hedging plan by sending a transaction.
 
 Parameters:
 
-| 参数    | 类型           | 说明                                                         |
+| Field    | Type           | Remark                                                         |
 | ------- | -------------- | ------------------------------------------------------------ |
-| account | 20bytes | `锁仓释放到账账户`                                           |
+| account | 20bytes | `Lock release to account`                                           |
 | plan    | []RestrictingPlan | plan 为 RestrictingPlan 类型的列表（数组），RestrictingPlan 定义如下：<br>type RestrictingPlan struct { <br/>    Epoch uint64<br/>    Amount：\*big.Int<br/>}<br/>其中，Epoch：表示结算周期的倍数。与每个结算周期出块数的乘积表示在目标区块高度上释放锁定的资金。Epoch \* 每周期的区块数至少要大于最高不可逆区块高度。<br>Amount：表示目标区块上待释放的金额。 |
 
-#### 获取锁仓信息
 
-call 查询
+#### Get lock Information
 
-注：本接口支持获取历史数据，请求时可附带块高，默认情况下查询最新块的数据。
+Get lock information by call.
+
+Note: This interface supports the acquisition of historical data. The block height can be attached to the request. By default, the latest block data is queried.
 
 Parameters:
 
-| 参数    | 类型    | 说明               |
+| Field    | Type    | Remark               |
 | ------- | ------- | ------------------ |
-| account | 20bytes | `锁仓释放到账账户` |
+| account | 20bytes | `The account that was posted after the lockout was released` |
 
 Returns:
 
-返回参数为下面字段的 json 格式字符串
+Returns a json format string with the following fields:
 
-| 名称    | 类型            | 说明                                                         |
+| Field    | Type            | Remark                                                         |
 | ------- | --------------- | ------------------------------------------------------------ |
-| balance | string(0x十六进制字符串) | 总锁仓余额-已释放金额                                                     |
-| pledge    | string(0x十六进制字符串) |质押/抵押金额 |
-| debt  | string(0x十六进制字符串)            | 欠释放金额                                                 |
-| plans    | bytes           | 锁仓分录信息，json数组：[{"blockNumber":"","amount":""},...,{"blockNumber":"","amount":""}]。其中：<br/>blockNumber：\*big.Int，释放区块高度<br/>amount：\string(0x十六进制字符串)，释放金额 |
+| balance | string(Hex string) | Amount of remaining locked positions                                                   |
+| pledge    | string(Hex string) | Pledge / mortgage amount|
+| debt  | string(Hex string)            | 欠释放金额                                                 |
+| plans    | bytes           | 锁仓分录信息，json数组：[{"blockNumber":"","amount":""},...,{"blockNumber":"","amount":""}]。其中：<br/>blockNumber：\*big.Int，释放区块高度<br/>amount：\string(Hex string)，释放金额 |
 
-### 内置合约错误码说明
+### Error Code Description
 
-| 错误码    | 说明            |
+| ErrorCode    | Remark            |
 | ------- | --------------- |
 | 301000  | Wrong bls public key|
 | 301001  | Wrong bls public key proof|

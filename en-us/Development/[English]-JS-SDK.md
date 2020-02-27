@@ -4003,7 +4003,7 @@ Returns:List
 |BenefitAddress|20bytes| Revenue account for receiving block rewards and pledged rewards |
 |StakingTxIndex|uint32(4bytes)| Index of transactions when pledge is initiated |
 |ProgramVersion|uint32(4bytes)| The real version number of the PlatON process of the pledged node (the interface for obtaining the version number is provided by the governance)  |
-|Status|uint32(4bytes)|候选人的状态(状态是根据uint32的32bit来放置的，可同时存在多个状态，值为多个同时存在的状态值相加【0: 节点可用 (32个bit全为0)； 1: 节点不可用 (只有最后一bit为1)； 2： 节点出块率低但没有达到移除条件的(只有倒数第二bit为1)； 4： 节点的von不足最低质押门槛(只有倒数第三bit为1)； 8：节点被举报双签(只有倒数第四bit为1)); 16: 节点出块率低且达到移除条件(倒数第五位bit为1); 32: 节点主动发起撤销(只有倒数第六位bit为1)】|
+|Status|uint32(4bytes)|The status of the candidate (the status is placed according to the 32bit of uint32, there can be multiple states at the same time, and the value is the sum of multiple simultaneous state values [0: node available (32 bits are all 0); 1: node Not available (only the last bit is 1); 2: The node has a low block generation rate but does not meet the removal condition (only the penultimate bit is 1); 4: The node's von is not enough to meet the minimum pledge threshold (only the penultimate bit 1); 8: The node is reported with a double sign (only the penultimate bit is 1)); 16: the node's block generation rate is low and the removal condition is met (the penultimate bit is 1); 32: the node actively initiates the cancellation (Only the penultimate bit is 1)]|
 |StakingEpoch|uint32(4bytes)| Settlement cycle when current pledge amount is changed |
 |StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
 |Shares|string(Hex string)| The current candidate's total pledge plus the number of entrusted von |
@@ -4083,7 +4083,7 @@ Returns: List
 |BenefitAddress|20bytes| Revenue account for receiving block rewards and pledged rewards |
 |StakingTxIndex|uint32(4bytes)| Index of transactions when pledge is initiated |
 |ProgramVersion|uint32(4bytes)| The real version number of the PlatON process of the pledged node (the interface for obtaining the version number is provided by the governance)  |
-|Status|uint32(4bytes)|候选人的状态(状态是根据uint32的32bit来放置的，可同时存在多个状态，值为多个同时存在的状态值相加【0: 节点可用 (32个bit全为0)； 1: 节点不可用 (只有最后一bit为1)； 2： 节点出块率低但没有达到移除条件的(只有倒数第二bit为1)； 4： 节点的von不足最低质押门槛(只有倒数第三bit为1)； 8：节点被举报双签(只有倒数第四bit为1)); 16: 节点出块率低且达到移除条件(倒数第五位bit为1); 32: 节点主动发起撤销(只有倒数第六位bit为1)】|
+|Status|uint32(4bytes)|The status of the candidate (the status is placed according to the `32bit` of` uint32`, multiple states can exist at the same time, and the value of multiple simultaneous state values is added [`0`: the node is available (32 bits are all 0); `1`: The node is unavailable (only the last bit is 1);` 2`: The node has a low block rate but does not meet the removal condition (only the penultimate bit is 1); `4`: The node Von is lower than the minimum pledge threshold (only the penultimate bit is 1); `8`: the node is reported as a double sign (only the penultimate bit is 1);` 16`: the node block rate is low and the removal condition is met (The penultimate bit is 1); `32`: the node actively initiates the revocation (only the penultimate bit is 1)]|
 |StakingEpoch|uint32(4bytes)| Settlement cycle when current pledge amount is changed |
 |StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
 |Shares|string(Hex string)| The current candidate's total pledge plus the number of entrusted von |
@@ -4125,7 +4125,7 @@ Parameters:
 |verifier|discover.NodeID(64bytes)| Validator of proposal |
 |pIDID|string(uint64)|PIPID|
 |newVersion|uint32(4bytes)| updated version |
-|endVotingRounds|uint64|投票共识轮数量。说明：假设提交提案的交易，被打包进块时的共识轮序号时round1，则提案投票截止块高，就是round1 + endVotingRounds这个共识轮的第230个块高（假设一个共识轮出块250，ppos揭榜提前20个块高，250，20都是可配置的 ），其中0 < endVotingRounds <= 4840（约为2周，实际论述根据配置可计算），且为整数）|
+|endVotingRounds|uint64|Number of voting consensus rounds. Note: Assume that the number of the consensus round when the transaction that submitted the proposal is packaged into the block is `round1`. The` blockNumber` of the proposal voting deadline is `round1 + endVotingRounds`. The consensus round produced block 250, ppos was announced 20 blocks ahead of time, `250`, and` 20` are all configurable), of which `0 <endVotingRounds <= 4840` (about 2 weeks, the actual discussion can be calculated according to the configuration), And is an integer)|
 
 
 #### Submit Cancellation Proposal
@@ -4258,104 +4258,102 @@ Returns:
 ||uint16|Number of negative votes |
 ||uint16|Number of Abstained votes |
 
-**ProposalType 提案类型定义**
 
-|类型|定义|说明|
+### Definition
+
+#### ProposalType
+
+| Type | Definition | Description |
 |---|---|---|
-|TextProposal|0x01|文本提案|
-|VersionProposal|0x02|升级提案|
-|CancelProposal|0x04|取消提案|
+|TextProposal|0x01|Text proposal|
+|VersionProposal|0x02|Upgrade proposal|
+|CancelProposal|0x04|Cancel proposal|
 
-**ProposalStatus 提案状态定义**
+#### ProposalStatus
 
-对文本提案来说，有：0x01,0x02,0x03三种状态；
-对升级提案来说，有：0x01,0x03,0x04,0x05,0x06四种状态。
-对取消提案来说，有：0x01,0x02,0x03三种状态；
+For text proposals, there are three states: `0x01`, `0x02`, `0x03`;
+For the upgrade proposal, there are four states: `0x01`, `0x03`, `0x04`, `0x05`, `0x06`.
+For cancellation proposals, there are three states: `0x01`, `0x02`, `0x03`;
 
-|类型|定义|说明|
+| Type | Definition | Description |
 |---|---|---|
-|Voting|0x01|投票中|
-|Pass|0x02|投票通过|
-|Failed|0x03|投票失败|
-|PreActive|0x04|（升级提案）预生效|
-|Active|0x05|（升级提案）生效|
-|Canceled|0x06|（升级提案）被取消|
+|Voting|0x01|Voting|
+|Pass|0x02|Voted successfully|
+|Failed|0x03|Vote failed|
+|PreActive|0x04|(Upgrade Proposal) Pre-Effective|
+|Active|0x05|(Upgrade Proposal) Effective|
+|Canceled|0x06|(Upgrade proposal) cancelled|
 
-**VoteOption 投票选项定义**
+#### VoteOption
 
-|类型|定义|说明|
+| Type | Definition | Description |
 |---|---|---|
-|Yeas|0x01|支持|
-|Nays|0x02|反对|
-|Abstentions|0x03|弃权|
-
-**Proposal接口 提案定义**
-
-子类TextProposal：文本提案
-
-字段说明：
-
-|字段|类型|说明|
-|---|---|---|
-|ProposalID|common.Hash(32bytes)| Proposal ID |
-|Proposer|common.NodeID(64bytes)|提案节点ID|
-|ProposalType|byte|提案类型， 0x01：文本提案； 0x02：升级提案；0x03参数提案；0x04取消提案。|
-|PIPID|string|提案PIPID|
-|SubmitBlock|8bytes|提交提案的块高|
-|EndVotingBlock|8bytes|提案投票结束的块高，系统根据SubmitBlock|
+|Yeas|0x01|agree|
+|Nays|0x02|Against|
+|Abstentions|0x03|Abstain|
 
 
-子类 VersionProposal ：升级提案
+#### Proposal(TextProposal)
 
-字段说明：
-
-|字段|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
 |ProposalID|common.Hash(32bytes)| Proposal ID |
-|Proposer|common.NodeID(64bytes)|提案节点ID|
-|ProposalType|byte|提案类型， 0x01：文本提案； 0x02：升级提案；0x03参数提案；0x04取消提案。|
-|PIPID|string|提案PIPID|
-|SubmitBlock|8bytes|提交提案的块高|
-|EndVotingRounds|8bytes|投票持续的共识周期数量|
-|EndVotingBlock|8bytes|提案投票结束的块高，系统根据SubmitBlock，EndVotingRounds算出|
-|ActiveBlock|8bytes|提案生效块高，系统根据EndVotingBlock算出|
+|Proposer|common.NodeID(64bytes)|Proposal Node ID|
+|ProposalType|byte|Proposal type, `0x01`: text proposal; `0x02`: upgrade proposal; `0x03` parameter proposal; `0x04` cancel proposal.|
+|PIPID|string|Proposal PIPID|
+|SubmitBlock|8bytes|Submitted blockNumber|
+|EndVotingBlock|8bytes|BlockNumber of proposal voting ended, according to SubmitBlock|
+
+
+#### Proposal(VersionProposal)
+
+| Field | Type | Remark |
+|---|---|---|
+|ProposalID|common.Hash(32bytes)| Proposal ID |
+|Proposer|common.NodeID(64bytes)|Proposal Node ID|
+|ProposalType|byte|Proposal type, `0x01`: text proposal; `0x02`: upgrade proposal; `0x03` parameter proposal; `0x04` cancel proposal.|
+|PIPID|string|Proposal PIPID|
+|SubmitBlock|8bytes|Submitted blockNumber|
+|EndVotingRounds|8bytes|Number of voting consensus cycles|
+|EndVotingBlock|8bytes|The block height at the end of proposal voting is calculated by the system according to SubmitBlock, EndVotingRounds|
+|ActiveBlock|8bytes|Proposal effective block height, calculated by the system based on EndVotingBlock|
 |NewVersion|uint| updated version |
 
 
-子类 CancelProposal ：取消提案
+#### Proposal CancelProposal
 
-字段说明：
-
-|字段|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
 |ProposalID|common.Hash(32bytes)| Proposal ID |
-|Proposer|common.NodeID(64bytes)|提案节点ID|
-|ProposalType|byte|提案类型， 0x01：文本提案； 0x02：升级提案；0x03参数提案；0x04取消提案。|
-|PIPID|string|提案PIPID|
-|SubmitBlock|8bytes|提交提案的块高|
-|EndVotingRounds|8bytes|投票持续的共识周期数量|
-|EndVotingBlock|8bytes|提案投票结束的块高，系统根据SubmitBlock，EndVotingRounds算出|
-|TobeCanceled|common.Hash(32bytes)|提案要取消的升级提案ID|
+|Proposer|common.NodeID(64bytes)|Proposal Node ID|
+|ProposalType|byte|Proposal type, `0x01`: text proposal; `0x02`: upgrade proposal; `0x03` parameter proposal; `0x04` cancel proposal.|
+|PIPID|string|Proposal PIPID|
+|SubmitBlock|8bytes|Submitted blockNumber|
+|EndVotingRounds|8bytes|Number of voting consensus cycles|
+|EndVotingBlock|8bytes|The block height at the end of proposal voting is calculated by the system according to SubmitBlock, EndVotingRounds|
+|TobeCanceled|common.Hash(32bytes)|ID of the promotion proposal to cancel|
 
-**Vote 投票定义**
+#### Vote
 
-|字段|类型|说明|
+| Field | Type | Remark |
 |---|---|---|
 |voter|64bytes|Vote validator|
 |proposalID|common.Hash(32bytes)| Proposal ID |
 |option|VoteOption| Voting options |
 
-**TallyResult 投票结果定义**
 
-|字段|类型|说明|
+#### TallyResult
+
+| Field | Type | Remark |
 |---|---|---|
 |proposalID|common.Hash(32bytes)| Proposal ID |
-|yeas|uint16(2bytes)|赞成票|
-|nays|uint16(2bytes)|反对票|
-|abstentions|uint16(2bytes)|弃权票|
-|accuVerifiers|uint16(2bytes)|在整个投票期内有投票资格的验证人总数|
-|status|byte|状态|
-|canceledBy|common.Hash(32bytes)|当status=0x06时，记录发起取消的ProposalID|
+|yeas|uint16(2bytes)|Approve|
+|nays|uint16(2bytes)|Against|
+|abstentions|uint16(2bytes)|Abstention|
+|accuVerifiers|uint16(2bytes)|Total number of validators who have qualified to vote during the entire voting period|
+|status|byte|status|
+|canceledBy|common.Hash(32bytes)|When status = 0x06, the ProposalID of the record that initiated the cancellation|
+
 
 ### Exposure/Punishment Module
 
@@ -4403,10 +4401,10 @@ Parameters:
 | Field    | Type           | Remark                                                         |
 | ------- | -------------- | ------------------------------------------------------------ |
 | account | 20bytes | `Lock release to account`                                           |
-| plan    | []RestrictingPlan | plan 为 RestrictingPlan 类型的列表（数组），RestrictingPlan 定义如下：<br>type RestrictingPlan struct { <br/>    Epoch uint64<br/>    Amount：\*big.Int<br/>}<br/>其中，Epoch：表示结算周期的倍数。与每个结算周期出块数的乘积表示在目标区块高度上释放锁定的资金。Epoch \* 每周期的区块数至少要大于最高不可逆区块高度。<br>Amount：表示目标区块上待释放的金额。 |
+| plan    | []RestrictingPlan | plan is a list (array) of type RestrictingPlan. RestrictingPlan is defined as follows: <br> type RestrictingPlan struct {<br /> Epoch uint64 <br/> Amount: \ * big.Int <br/>} <br/> Among them, Epoch : Represents a multiple of the settlement cycle. The product of the number of blocks per settlement cycle indicates the release of locked funds at the height of the target block. Epoch \ * The number of blocks per cycle must be at least greater than the highest irreversible block height. <br> Amount: indicates the amount to be released on the target block. |
 
 
-#### Get lock Information
+#### Get Lock Information
 
 Get lock information by call.
 
@@ -4424,10 +4422,10 @@ Returns a json format string with the following fields:
 
 | Field    | Type            | Remark                                                         |
 | ------- | --------------- | ------------------------------------------------------------ |
-| balance | string(Hex string) | Amount of remaining locked positions                                                   |
-| pledge    | string(Hex string) | Pledge / mortgage amount|
-| debt  | string(Hex string)            | 欠释放金额                                                 |
-| plans    | bytes           | 锁仓分录信息，json数组：[{"blockNumber":"","amount":""},...,{"blockNumber":"","amount":""}]。其中：<br/>blockNumber：\*big.Int，释放区块高度<br/>amount：\string(Hex string)，释放金额 |
+| balance | string(Hex) | Amount of remaining locked positions                                                   |
+| pledge    | string(Hex) | Pledge / mortgage amount|
+| debt  | string(Hex) | Amount due for release |
+| plans    | bytes           | Locked entry information, json array：[{"blockNumber":"","amount":""},...,{"blockNumber":"","amount":""}]. among:<br/>blockNumber：\*big.Int，Release blockNumber <br/>amount：\string(Hex string), Release amount |
 
 ### Error Code Description
 

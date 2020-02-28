@@ -234,7 +234,7 @@ networks: {
 }
 ```
 
-**Step3.**  deploy contract
+**Step3.** Deploy contract
 
 ```
 truffle migrate
@@ -265,14 +265,15 @@ Compiling your contracts...
 ```
 
 
-**Crowdfunder query crowdfunding：**
+**Crowdfunder Query Crowdfunding：**
 
 **Step1.**  Enter the platon-truffle console
 
 ```
 truffle console
 ```
-- You can execute cmd in console
+
+> Then you can execute cmd in console.
 
 **Step2.**  create contract object
 

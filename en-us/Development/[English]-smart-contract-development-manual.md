@@ -1,24 +1,25 @@
 ## Introduce
 
-Smart contract ,is a program ,which can run in the blockchain. smart contract has the features below:
+Smart contract, is a program, which can run in the blockchain. smart contracts have the following characteristics:
 
 * Anybody can develop smart contract , which stored by the contract accout of blockchain. the accout controled by private key is called externel account.
 
 * Contract account cannot run by itself, before executing a smart contract, it need externel account send transaction to contract account.
 	
-Solidity language is a contract-oriented high-level programming language created to implement smart contracts. Its syntax is similar to JavaScript's high-level programming language. It is designed to generate virtual machine code in a compiled manner. Using it is easy to create smart contracts. However, as a decentralized smart contract running on the Internet in real sense, it has the following features:
 
-* The PlatON is based on an account model,so Solidity provides a special Address type, which is used to locate user accounts, locate smart contracts, and locate smart contract codes.
+Solidity language is a contract-oriented high-level programming language created to implement smart contracts. Its syntax is similar to JavaScript's high-level programming language. It is designed to generate virtual machine code in a compiled manner. using it is easy to create smart contracts. however, as a decentralized smart contract running on the Internet in real sense, it has the following features:
 
-* Because Solidity embedded framework supports payment, and provides some keywords, such as payable, it can directly support payment at the Solidity language level, which is very simple to use.
+* The PlatON is based on an account model,so solidity provides a special address type, which is used to locate user accounts, locate smart contracts, and locate smart contract codes.
 
-* Data storage uses the blockchain on the network, and every state of the data can be stored permanently, so when developing the Solidity Contract, it is necessary to determine whether the variable uses memory or the blockchain.
+* Because solidity embedded framework supports payment, and provides some keywords, such as payable, it can directly support payment at the Solidity language level, which is very simple to use.
 
-* The Solidity operating environment is on a decentralized network, with special emphasis on the way Ethereum smart contracts or function execution is called. Because a simple function call turned into a node code execution on the network, it is a completely distributed programming environment.
+* Data storage uses the blockchain on the network, and every state of the data can be stored permanently, so when developing the solidity contract, it is necessary to determine whether the variable uses memory or the blockchain.
 
-* The abnormality mechanism of the Solidity language is also very different. Once an exception occurs, all executions will be retracted. This is mainly to ensure the atomicity of smart contract execution to avoid data inconsistencies in the intermediate state.
+* The solidity operating environment is on a decentralized network, with special emphasis on the way ethereum smart contracts or function execution is called. because a simple function call turned into a node code execution on the network, it is a completely distributed programming environment.
 
-This tutorial is mainly to guide users to create a simple HelloWorld smart contract using solidity language on PlatON, compile, deploy, and call this contract through platon-truffle. If you want to use a richer API you can refer to [Java SDK ](/zh-cn/Development/[Chinese-Simplified]-Java-SDK.md) and  [JS SDK](/zh-cn/Development/[Chinese-Simplified]-JS-SDK.md)
+* The abnormality mechanism of the solidity language is also very different. once an exception occurs, all executions will be retracted. this is mainly to ensure the atomicity of smart contract execution to avoid data inconsistencies in the intermediate state.
+
+This tutorial is mainly to guide users to create a simple HelloWorld smart contract using solidity language on PlatON, compile, deploy, and call this contract through platon-truffle. if you want to use a richer API you can refer to [Java SDK ](/zh-cn/Development/[Chinese-Simplified]-Java-SDK.md) and  [JS SDK](/zh-cn/Development/[Chinese-Simplified]-JS-SDK.md)
 
 ## Platon-truffle Introduce 
 
@@ -123,9 +124,9 @@ truffle compile
 ```
 After the command is executed, project directory structure is as follows:
 
-- `Build/`: Solidity contract directory after compiled
+- `Build/`: solidity contract directory after compiled
 
-- `Build/contracts/HelloWorld.json`: the compiled file Corresponding with HelloWorld.sol  
+- `Build/contracts/HelloWorld.json`: the compiled file corresponding with HelloWorld.sol  
 
 
 ## Deploly HelloWorld Contract

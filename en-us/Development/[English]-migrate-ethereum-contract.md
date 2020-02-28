@@ -1,8 +1,8 @@
 ## Introduce 
 
-If you want to migrate ethereum's smart contract to PlatON,you can do this with the platon-truffle development tool.first make sure you have platon-truffle installed correctly,just follow these steps.
+If you want to migrate ethereum's smart contract to PlatON, you can do this with the platon-truffle development tool. First make sure you have `platon-truffle` installed correctly, just follow these steps.
 
-The migration of ethereum's ERC200513Token contract to PlatON is demonstrated below，ERC200513Token.sol contract are as follows
+The migration of ethereum's ERC200513Token contract to PlatON is demonstrated below，`ERC200513Token.sol` contract are as follows:
 ```
 pragma solidity 0.5.13;
 
@@ -171,14 +171,15 @@ contract ERC200513Token {
 }
 ```
 
-##  Operation procedure
+## Operation Procedure
 
-**Step1.** creat new directory for example project 
+**Step1.** Create new directory for example project 
 
 ```
 mkdir example && cd example
 ```
-- After the command is executed,project directory structure is as follows:
+
+> After the command is executed,project directory structure is as follows:
 
 **Step2.**  init project
 
@@ -188,15 +189,15 @@ truffle init
 
 After the command is executed,project directory structure is as follows:
 
-- contracts/: Solidity contract directory
+- `contracts/`: Solidity contract directory
 
-- migrations/: depoly file directory
+- `migrations/`: depoly file directory
 
-- test/: test script directory
+- `test/`: test script directory
 
-- truffle-config.js: platon-truffle config
+- `truffle-config.js`: platon-truffle config
 
-**Step3.** move ERC200513Token contract compiled in to example/contracts
+**Step3.** Move ERC200513Token contract compiled in to example/contracts
 
 ```
 ls contracts/
@@ -205,7 +206,7 @@ ls contracts/
 - ERC200513Token.sol
 - PlatON smart contract unit LAT,VON.To migrate the ethereum smart contract to PlatON,please change the ethereum denomination to PlatON denomination.also note the ether /LAT market rate（for this contract, we assume the market exchange rate1:1,uint256 public totalSupply = 10000000000000000000 ether; change to uint256 public totalSupply = 10000000000000000000 LAT; ）
 
-**Step4.** modify the compilation version number and chain-dependent configuration in truffle-config.js
+**Step4.** Modify the compilation version number and chain-dependent configuration in truffle-config.js
 
 ```
 module.exports = {

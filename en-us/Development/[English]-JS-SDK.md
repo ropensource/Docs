@@ -4,7 +4,7 @@ Interact with nodes through web3 objects provided by web3.js. On the underlying 
 
 ### Usage
 
-First, make sure the nodeJS environment is successfully installed locally. `WEB3.JS` uses the [lerna](https://github.com/lerna/lerna) management tool to optimize the workflow of the multi-package code base hosted on `git\ npm`, so you make sure before installing The lerna package has been installed globally. If not, execute the command `npm i lerna -g` for global installation. 
+First, make sure the nodeJS environment is successfully installed locally. `WEB3.JS` uses the [lerna](https://github.com/lerna/lerna) management tool to optimize the workflow of the multi-package code base hosted on `git/npm`, so you make sure before installing The lerna package has been installed globally. If not, execute the command `npm i lerna -g` for global installation. 
 
 Then you can integrate client-sdk-js into the project project through package management tools such as npm or yarn, the steps are as follows:
 
@@ -4006,11 +4006,11 @@ Returns:List
 |Status|uint32(4bytes)|The status of the candidate (the status is placed according to the 32bit of uint32, there can be multiple states at the same time, and the value is the sum of multiple simultaneous state values [0: node available (32 bits are all 0); 1: node Not available (only the last bit is 1); 2: The node has a low block generation rate but does not meet the removal condition (only the penultimate bit is 1); 4: The node's von is not enough to meet the minimum pledge threshold (only the penultimate bit 1); 8: The node is reported with a double sign (only the penultimate bit is 1)); 16: the node's block generation rate is low and the removal condition is met (the penultimate bit is 1); 32: the node actively initiates the cancellation (Only the penultimate bit is 1)]|
 |StakingEpoch|uint32(4bytes)| Settlement cycle when current pledge amount is changed |
 |StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
-|Shares|string(Hex string)| The current candidate's total pledge plus the number of entrusted von |
-|Released|string(Hex string)|Initiating a free amount locked period pledge of a pledged account `von`|
-|ReleasedHes|string(Hex string)| Freedom to initiate a pledge account with a hesitation period of von von |
-|RestrictingPlan|string(Hex string)| Initiating the lock-up period of the pledged account's lock-up amount `von` |
-|RestrictingPlanHes|string(Hex string)| Initiating the hedging period of the pledged account's hedging amount `von` |
+|Shares|string| The current candidate's total pledge plus the number of entrusted von |
+|Released|string|Initiating a free amount locked period pledge of a pledged account `von`|
+|ReleasedHes|string| Freedom to initiate a pledge account with a hesitation period of von von |
+|RestrictingPlan|string| Initiating the lock-up period of the pledged account's lock-up amount `von` |
+|RestrictingPlanHes|string| Initiating the hedging period of the pledged account's hedging amount `von` |
 |ExternalId|string| External Id (with a length limit, the Id described by the third-party pull node) |
 |NodeName|string| The name of the node being pledged (there is a length limitation, indicating the name of the node) |
 |Website|string| The third-party home page of the node (the length is limited, indicating the home page of the node) |
@@ -4057,11 +4057,11 @@ Returns: List
 |NodeId|64bytes| Node ID of the validator |
 |StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
 |DelegateEpoch|uint32(4bytes)| Settlement cycle at the time of the most recent commission for this candidate |
-|Released|string(Hex string)|The free amount of the account that initiated the commission, the `von` that was commissioned during the lock-up period. |
-|ReleasedHes|string(Hex string)|Number of von commissioned during the hesitation period of the free amount of the commission account |
-|RestrictingPlan|string(Hex string)|Number of von commissioned during the lock period that initiated the lockup amount of the commissioned account|
-|RestrictingPlanHes|string(Hex string)|Number of von commissioned during the hesitation period of the hedging amount of the commissioned account |
-|Reduction|string(Hex string)|`von` in revocation plan|
+|Released|string|The free amount of the account that initiated the commission, the `von` that was commissioned during the lock-up period. |
+|ReleasedHes|string|Number of von commissioned during the hesitation period of the free amount of the commission account |
+|RestrictingPlan|string|Number of von commissioned during the lock period that initiated the lockup amount of the commissioned account|
+|RestrictingPlanHes|string|Number of von commissioned during the hesitation period of the hedging amount of the commissioned account |
+|Reduction|string|`von` in revocation plan|
 
 #### Query Pledge Information
 
@@ -4086,11 +4086,11 @@ Returns: List
 |Status|uint32(4bytes)|The status of the candidate (the status is placed according to the `32bit` of` uint32`, multiple states can exist at the same time, and the value of multiple simultaneous state values is added [`0`: the node is available (32 bits are all 0); `1`: The node is unavailable (only the last bit is 1);` 2`: The node has a low block rate but does not meet the removal condition (only the penultimate bit is 1); `4`: The node Von is lower than the minimum pledge threshold (only the penultimate bit is 1); `8`: the node is reported as a double sign (only the penultimate bit is 1);` 16`: the node block rate is low and the removal condition is met (The penultimate bit is 1); `32`: the node actively initiates the revocation (only the penultimate bit is 1)]|
 |StakingEpoch|uint32(4bytes)| Settlement cycle when current pledge amount is changed |
 |StakingBlockNum|uint64(8bytes)| Block height when pledge is initiated |
-|Shares|string(Hex string)| The current candidate's total pledge plus the number of entrusted von |
-|Released|string(Hex string)|Initiating a free amount locked period pledge of a pledged account `von`|
-|ReleasedHes|string(Hex string)| Freedom to initiate a pledge account with a hesitation period of von von |
-|RestrictingPlan|string(Hex string)| Initiating the lock-up period of the pledged account's lock-up amount `von` |
-|RestrictingPlanHes|string(Hex string)| Initiating the hedging period of the pledged account's hedging amount `von` |
+|Shares|string| The current candidate's total pledge plus the number of entrusted von |
+|Released|string|Initiating a free amount locked period pledge of a pledged account `von`|
+|ReleasedHes|string| Freedom to initiate a pledge account with a hesitation period of von von |
+|RestrictingPlan|string| Initiating the lock-up period of the pledged account's lock-up amount `von` |
+|RestrictingPlanHes|string| Initiating the hedging period of the pledged account's hedging amount `von` |
 |ExternalId|string| External Id (with a length limit, the Id described by the third-party pull node) |
 |NodeName|string| The name of the node being pledged (there is a length limitation, indicating the name of the node) |
 |Website|string| The third-party home page of the node (the length is limited, indicating the home page of the node) |

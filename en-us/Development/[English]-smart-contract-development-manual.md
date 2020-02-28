@@ -1,14 +1,22 @@
 ## Introduce
 
 Smart contract ,is a program ,which can run in the blockchain. smart contract has the features below:
-- Anybody can develop smart contract , which stored by the contract accout of blockchain. the accout controled by private key is called externel account.
-- Contract account cannot run by itself, before executing a smart contract, it need externel account send transaction to contract account.
-Solidity language is a contract-oriented high-level programming language created to implement smart contracts. Its syntax is similar to JavaScript's high-level programming language. It is designed to generate virtual machine code in a compiled manner. Using it is easy to create smart contracts. However, as a decentralized smart contract running on the Internet in the true sense, it has the following characteristics:
-- The PlatON is based on an account model,so Solidity provides a special Address type, which is used to locate user accounts, locate smart contracts, and locate smart contract codes.
-- Because Solidity embedded framework supports payment, and provides some keywords, such as payable, it can directly support payment at the Solidity language level, which is very simple to use.
-- Data storage uses the blockchain on the network, and every state of the data can be stored permanently, so when developing the Solidity Contract, it is necessary to determine whether the variable uses memory or the blockchain.
-- The Solidity operating environment is on a decentralized network, with special emphasis on the way Ethereum smart contracts or function execution is called. Because a simple function call turned into a node code execution on the network, it is a completely distributed programming environment.
-- The abnormality mechanism of the Solidity language is also very different. Once an exception occurs, all executions will be retracted. This is mainly to ensure the atomicity of smart contract execution to avoid data inconsistencies in the intermediate state.
+
+* Anybody can develop smart contract , which stored by the contract accout of blockchain. the accout controled by private key is called externel account.
+
+* Contract account cannot run by itself, before executing a smart contract, it need externel account send transaction to contract account.
+	
+Solidity language is a contract-oriented high-level programming language created to implement smart contracts. Its syntax is similar to JavaScript's high-level programming language. It is designed to generate virtual machine code in a compiled manner. Using it is easy to create smart contracts. However, as a decentralized smart contract running on the Internet in real sense, it has the following features:
+
+* The PlatON is based on an account model,so Solidity provides a special Address type, which is used to locate user accounts, locate smart contracts, and locate smart contract codes.
+
+* Because Solidity embedded framework supports payment, and provides some keywords, such as payable, it can directly support payment at the Solidity language level, which is very simple to use.
+
+* Data storage uses the blockchain on the network, and every state of the data can be stored permanently, so when developing the Solidity Contract, it is necessary to determine whether the variable uses memory or the blockchain.
+
+* The Solidity operating environment is on a decentralized network, with special emphasis on the way Ethereum smart contracts or function execution is called. Because a simple function call turned into a node code execution on the network, it is a completely distributed programming environment.
+
+* The abnormality mechanism of the Solidity language is also very different. Once an exception occurs, all executions will be retracted. This is mainly to ensure the atomicity of smart contract execution to avoid data inconsistencies in the intermediate state.
 
 This tutorial is mainly to guide users to create a simple HelloWorld smart contract using solidity language on PlatON, compile, deploy, and call this contract through platon-truffle. If you want to use a richer API you can refer to [Java SDK ](/zh-cn/Development/[Chinese-Simplified]-Java-SDK.md) and  [JS SDK](/zh-cn/Development/[Chinese-Simplified]-JS-SDK.md)
 
@@ -20,7 +28,8 @@ Platon-truffle is a tool provided by PlatON that can compile, deploy, and invoke
 - Platon-truffle develop tools[usage manuals](https://platon-truffle.readthedocs.io/en/v0.1.0/index.html)
 
 
-## Create HelloWorld contract
+
+## Create HelloWorld Contract
 
 ```
 pragma solidity ^0.5.13;
@@ -40,28 +49,29 @@ contract HelloWorld {
 }
 ```
 
-Contract files description:
+Contract Files Description:
 
 - pragma solidity ^0.5.13
-  -	pragma solidity: solidity version description
-  -	0.5.13：solidity version
-  -	^ ：Indicates upward compatibility, that is, it can be compiled with a compiler above 0.5.13
+  -	`pragma solidity`: solidity version description
+  -	`0.5.13`：solidity version
+  -	`^` ：Indicates upward compatibility, that is, it can be compiled with a compiler above 0.5.13
 - contract HelloWorld
-  -	contract：contract keyword
-  -	HelloWorld：contract name
+  -	`contract`：contract keyword
+  -	`HelloWorld`：contract name
 - string name
-  -	name：contract state variables
-  -	string：the type of contract state variables 
+  -	`name`：contract state variables
+  -	`string`：the type of contract state variables 
 - function setName(string memory _name) public returns(string memory)
-  -	function：function keyword
-  -	setName：function name
-  -	memory：declare the storage location of param name（ function input parameters and output parameters  must be declared as memory when the parameters type is string）
-  -	_name：the  local variables
-  -	public：declare the visibility of the function
-  -	name = _name：Assignment the local variable to state variable
+  -	`function`：function keyword
+  -	`setName`：function name
+  -	`memory`：declare the storage location of param name（ function input parameters and output parameters  must be declared as memory when the parameters type is string）
+  -	`_name`：the  local variables
+  -	`public`：declare the visibility of the function
+  -	`name` = _name：Assignment the local variable to state variable
 - function getName() public view returns(string memory)
-  -	view:this keyword means the function cannot change the blockchain state，which Mainly used for query
-## Compile HelloWorld contract 
+  -	`view`:this keyword means the function cannot change the blockchain state，which Mainly used for query
+
+## Compile HelloWorld Contract 
 
 **Step1.**  creat new directory for HelloWorld project 
 
@@ -74,15 +84,15 @@ mkdir HelloWorld && cd HelloWorld
 ```
 truffle init
 ```
-After the command is executed,project directory structure is as follows:
+After the command is executed, project directory structure is as follows:
 
-- Contracts/: Solidity contract directory
+- `Contracts/`: Solidity contract directory
 
-- Migrations/:  depoly file directory
+- `Migrations/`:  depoly file directory
 
-- Test/: test script directory
+- `Test/`: test script directory
 
-- Truffle-config.js: platon-truffle config
+- `Truffle-config.js`: platon-truffle config
 
 **Step3.**  move HelloWorld contract compiled in to HelloWorld/contracts/
 
@@ -113,12 +123,12 @@ truffle compile
 ```
 After the command is executed, project directory structure is as follows:
 
-- Build/: Solidity contract directory after compiled
+- `Build/`: Solidity contract directory after compiled
 
-- Build/contracts/HelloWorld.json :  the compiled file Corresponding with HelloWorld.sol  
+- `Build/contracts/HelloWorld.json`: the compiled file Corresponding with HelloWorld.sol  
 
 
-## Deploly HelloWorld contract
+## Deploly HelloWorld Contract
 
 **Step1.** create deploy script 
 
@@ -178,7 +188,7 @@ Saving artifacts
 Total cost:     0.007462350000596988 LAT
 ```
 
-## Call HelloWorld contract
+## Call HelloWorld Contract
 
 **Step1.**  enter the platon-truffle console
 
@@ -195,7 +205,9 @@ var abi = [{"constant":false,"inputs":[{"internalType":"string","name":"_name","
 var contractAddr = '0x9A5015F9A3728ff64f401b9B93E98078BdD48FD1';//contract address
 var helloWorld = new web3.eth.Contract(abi,contractAddr); 
 ```
+
 Description： 
+
 - `abi` the interface provided by the contract to external calls，the abi  in the file compiled ：`HelloWorld/build/contracts/HelloWorld.json` 
 - `contractAddr` contract address
 - `helloWorld`  contract object created
@@ -212,6 +224,7 @@ helloWorld.methods.setName("hello world").send({
 ```
 
 Description：
+
 - `helloWorld` the contract object created
 - `methods`  specify the call method
 - `setName` the function of the HelloWorld contract，which has a parameter as `hello world`
@@ -251,35 +264,39 @@ Description：
 
 ## FAQ 
 
-> Ask: how many commands in platon-truffle？
-> Answer:refer to  platon-truffle develop guide[Reference here](https://platon-truffle.readthedocs.io/en/v0.1.0/index.html)
+* Q. How many commands in platon-truffle？
 
-> Ask: why contract syntax cannot verify?
-> Answer: solidity 0.4.x has a great different with 0.5.x，detail info refer to [Reference here](https://solidity.readthedocs.io/en/develop/)
+> Refer to  platon-truffle develop guide[Reference here](https://platon-truffle.readthedocs.io/en/v0.1.0/index.html)
 
-> Ask:  why truffle doesn't compile ?
-> Answer:  
->
->  1. confirm the contract version same as the version specified in the truffle-config.js.
->  2. contract syntax be writed in a wrong way
+* Q. Why contract syntax cannot verify?
+
+> Solidity 0.4.x has a great different with 0.5.x，detail info refer to [Reference here](https://solidity.readthedocs.io/en/develop/)
+
+* Q.  Why truffle doesn't compile?
+
+> 1. Confirm the contract version same as the version specified in the truffle-config.js.
+> 2. Contract syntax be writed in a wrong way.
 
 
-> Ask: why the contract can not deploy by truffle migrate ?
-> Answer:
->
->  1. confrim the blockchain network info be  configured  correctly
->  2. confirm the account address be configured correctly
+* Q. Why the contract can not deploy by truffle migrate?
 
-> Ask: why the contract with contruct function which has parmas cannot deploy by truffle migrate
-> Answer: 
-> For example: 
-> Take the contract A.sol as an example, at first confirm the constructor info in migrations/2_initial_A.js As follow:
-> The format of constructor:
-> Constructor(uint256 a, string memory b, string memory c) public {}
+> 1. Confrim the blockchain network info be configured correctly.
+> 2. Confirm the account address be configured correctly.
 
->2_initial_A.js configured as follow：
-> 
-> const A = artifacts.require("A");  
-> module.exports = function(deployer) {
->         deployer.deploy(ERC200513Token,100,'PLA','PLAT');//pass the corresponding construction parameters
-> };
+* Q. Deploying a contract with a parameter constructor using the command `truffle migrate` failed.
+
+> For example, A.sol 
+
+```
+...
+Constructor(uint256 a, string memory b, string memory c) public {}
+...
+
+```
+> 2_initial_A.js configured as follow：
+```
+const A = artifacts.require("A");  
+module.exports = function(deployer) {
+        deployer.deploy(ERC200513Token,100,'PLA','PLAT');//pass the corresponding construction parameters
+};
+```

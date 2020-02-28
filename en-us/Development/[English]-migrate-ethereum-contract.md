@@ -1,6 +1,6 @@
 ## Introduce 
 
-If you want to migrate ethereum's smart contract to PlatON, you can do this with the platon-truffle development tool. First make sure you have `platon-truffle` installed correctly, just follow these steps.
+If you want to migrate ethereum's smart contract to PlatON, you can do this with the `platon-truffle` development tool. first make sure you have `platon-truffle` installed correctly, just follow these steps.
 
 The migration of ethereum's ERC200513Token contract to PlatON is demonstrated below，`ERC200513Token.sol` contract are as follows:
 ```
@@ -181,7 +181,7 @@ mkdir example && cd example
 
 > After the command is executed,project directory structure is as follows:
 
-**Step2.**  init project
+**Step2.**  Init project
 
 ```
 truffle init
@@ -204,7 +204,7 @@ ls contracts/
 ```
 
 - ERC200513Token.sol
-- PlatON smart contract unit LAT,VON.To migrate the ethereum smart contract to PlatON,please change the ethereum denomination to PlatON denomination.also note the ether /LAT market rate（for this contract, we assume the market exchange rate1:1,uint256 public totalSupply = 10000000000000000000 ether; change to uint256 public totalSupply = 10000000000000000000 LAT; ）
+- PlatON smart contract unit LAT,VON. To migrate the ethereum smart contract to PlatON,please change the ethereum denomination to PlatON denomination.also note the ether /LAT market rate（for this contract, we assume the market exchange rate1:1,uint256 public totalSupply = 10000000000000000000 ether; change to uint256 public totalSupply = 10000000000000000000 LAT; ）
 
 **Step4.** Modify the compilation version number and chain-dependent configuration in truffle-config.js
 
@@ -230,7 +230,7 @@ module.exports = {
 }
 ```
 
-**Step5.** compile contract
+**Step5.** Compile contract
 
 ```
 truffle compile
@@ -248,7 +248,7 @@ Compiled successfully using:
   solc: 0.5.13-develop.2020.1.2+commit.9ff23752.mod.Emscripten.clang
 ```
 
-**Step6.** create deploy script 
+**Step6.** Create deploy script 
 
 ```
 cd migrations && touch 2_initial_ERC200513Token.js
@@ -262,7 +262,7 @@ module.exports = function(deployer) {
 };  
 ```
 
-**Step7.** deploy contract
+**Step7.** Deploy contract
 
 ```
 truffle migratte

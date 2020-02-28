@@ -74,20 +74,20 @@ Contract Files Description:
 
 ## Compile HelloWorld Contract 
 
-**Step1.**  creat new directory for HelloWorld project 
+**Step1.**  Creat new directory for HelloWorld project 
 
 ```
 mkdir HelloWorld && cd HelloWorld
 ```
 
-**Step2.**  init project
+**Step2.**  Init project
 
 ```
 truffle init
 ```
 After the command is executed, project directory structure is as follows:
 
-- `Contracts/`: Solidity contract directory
+- `Contracts/`: solidity contract directory
 
 - `Migrations/`:  depoly file directory
 
@@ -95,14 +95,14 @@ After the command is executed, project directory structure is as follows:
 
 - `Truffle-config.js`: platon-truffle config
 
-**Step3.**  move HelloWorld contract compiled in to HelloWorld/contracts/
+**Step3.**  Move HelloWorld contract compiled in to HelloWorld/contracts/
 
 ```
 ls contracts/
 ```
 - HelloWorld.sol 
 
-**Step4.**  fix compile version same as the version setted  in truffle-config.js
+**Step4.**  Fix compile version same as the version setted  in truffle-config.js
 
 ```
 vim truffle-config.js
@@ -117,7 +117,7 @@ compilers: {
 }
 ```
 
-**Step5.**  compile contract
+**Step5.**  Compile contract
 
 ```
 truffle compile
@@ -126,12 +126,12 @@ After the command is executed, project directory structure is as follows:
 
 - `Build/`: solidity contract directory after compiled
 
-- `Build/contracts/HelloWorld.json`: the compiled file corresponding with HelloWorld.sol  
+- `Build/contracts/HelloWorld.json`:the compiled file corresponding with HelloWorld.sol  
 
 
 ## Deploly HelloWorld Contract
 
-**Step1.** create deploy script 
+**Step1.** Create deploy script 
 
 ```
 cd migrations/ && touch 2_initial_helloword.js
@@ -144,7 +144,7 @@ const helloWorld = artifacts.require("HelloWorld"); //artifacts.require specify 
 };
 ```
 
-**Step2.** setting config  information for blockchain in truffle-config.js
+**Step2.** Setting config  information for blockchain in truffle-config.js
 
 ```
 vim truffle-config.js
@@ -163,7 +163,7 @@ networks: {
 }
 ```
 
-**Step3.**  deploy contract
+**Step3.**  Deploy contract
 
 ```
 truffle migrate
@@ -191,14 +191,14 @@ Total cost:     0.007462350000596988 LAT
 
 ## Call HelloWorld Contract
 
-**Step1.**  enter the platon-truffle console
+**Step1.**  Enter the platon-truffle console
 
 ```
 truffle console
 ```
 - You can execute cmd in console
 
-**Step2.**  create contract object
+**Step2.**  Create contract object
 
 ```json
 var abi = [{"constant":false,"inputs":[{"internalType":"string","name":"_name","type":"string"}],"name":"setName","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getName","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}]; //you can refet to HelloWorld/build/contracts/HelloWorld.json
@@ -213,7 +213,7 @@ Description：
 - `contractAddr` contract address
 - `helloWorld`  contract object created
 
-**Step3.**  call contract
+**Step3.**  Call contract
 
 ```javascript
 helloWorld.methods.setName("hello world").send({
@@ -230,7 +230,7 @@ Description：
 - `methods`  specify the call method
 - `setName` the function of the HelloWorld contract，which has a parameter as `hello world`
 - `from` the address of caller 
-- `on` listen on the result of the contract method executed. if fail, it will print the error info.if success ,the console will print the receipt as belows:
+- `on` listen on the result of the contract method executed. if fail, it will print the error info. if success ,the console will print the receipt as belows:
 
 ```
 { 
@@ -250,7 +250,7 @@ Description：
 }
 ```
 
-**Step4.**  query contract
+**Step4.**  Query contract
 
 ```javascript
 helloWorld.methods.getName().call(null,function(error,result){console.log("name is:" + result);})  

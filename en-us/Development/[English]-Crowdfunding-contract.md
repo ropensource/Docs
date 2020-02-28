@@ -1,6 +1,6 @@
 ## Introduce
 
-In the following example, we will use smart contract for a crowdfunding campaign. The creator of the contract started crowdfunding, and initializes the number of tokens and the duration of the crowdfunding. If the crowdfunding is completed within the specified time, the crowdfunding will be successful. If the crowdfunding switch is turned off, a certain number of tokens based on a fixed exchange rate will be cast and credited to the name of the investor. Otherwise, the crowdfunding fails and the amount of the crowdfunding is returned to the investors.
+In the following example, we will use smart contract for a crowdfunding campaign. the creator of the contract started crowdfunding, and initializes the number of tokens and the duration of the crowdfunding. if the crowdfunding is completed within the specified time, the crowdfunding will be successful. if the crowdfunding switch is turned off, a certain number of tokens based on a fixed exchange rate will be cast and credited to the name of the investor. otherwise, the crowdfunding fails and the amount of the crowdfunding is returned to the investors.
 
 There are two roles in the contract
 
@@ -13,9 +13,9 @@ There are two roles in the contract
 - 2.Deployment crowdfunding contract initializes the number and duration of crowdfunding tokens.
 - 3.Investors invest.
 - 4.Determine if crowdfunding is over.
-	- If the crowdfunding time is not up and the number of crowdfunding tokens has been completed, turn off the crowdfunding switch. Investors are allocated tokens proportionally. Crowdfunding success.
-	- If the crowdfunding time is up and the amount of crowdfunding tokens has been completed, investors will be allocated tokens in proportion. Crowdfunding success.
-	- If the crowdfunding time is up and the number of crowdfunding tokens is not completed, the investor tokens will be returned. Crowdfunding failure.
+	- If the crowdfunding time is not up and the number of crowdfunding tokens has been completed, turn off the crowdfunding switch. investors are allocated tokens proportionally. crowdfunding success.
+	- If the crowdfunding time is up and the amount of crowdfunding tokens has been completed, investors will be allocated tokens in proportion. crowdfunding success.
+	- If the crowdfunding time is up and the number of crowdfunding tokens is not completed, the investor tokens will be returned. crowdfunding failure.
 
 ## CrowdFunding Contract
 
@@ -150,7 +150,7 @@ mkdir myCrowdFunding && cd myCrowdFunding
 
 > The following commands are performed in the myCrowdFunding directory without special instructions.
 
-**Step2.** init project
+**Step2.** Init project
 
 ```
 truffle init
@@ -158,7 +158,7 @@ truffle init
 
 After the command is executed, project directory structure is as follows:
 
-- `contracts/`: Solidity contract directory
+- `contracts/`: solidity contract directory
 - `migrations/`: depoly file directory
 - `test/`: test script directory
 - `truffle-config.js`: platon-truffle config
@@ -193,12 +193,12 @@ truffle compile
 
 After the command is executed, project directory structure is as follows:
 
-- `build/`: Solidity contract directory after compiled
+- `build/`: solidity contract directory after compiled
 - `build/contracts/CrowdFunding.json`: the compiled file Corresponding with CrowdFunding.sol
 
 **Deploly CrowdFunding Contract**
 
-**Step1.** create deploy script 
+**Step1.** Create deploy script 
 
 ```
 cd migrations/ && touch 2_initial_CrowdFunding.js
@@ -275,7 +275,7 @@ truffle console
 
 > Then you can execute cmd in console.
 
-**Step2.**  create contract object
+**Step2.**  Create contract object
 
 ```
 var abi = [...]; //ABI of CrowdFunding contract,can get from build/contracts/CrowdFunding.json
@@ -297,8 +297,8 @@ crowdFunding.methods.safeWithdrawal().send({from:'0xf644cfc3b0dc588116d6621211a8
 
 Call contract command description:
 
-- `crowdFunding` Is the contract object we built earlier
+- `crowdFunding` is the contract object we built earlier
 - `methods` Fixed syntax specifying that methods in the contract will be obtained
-- `safeWithdrawal` Is a method in our Crowdfunding contract to recover funds
-- `from` Caller's contract address
-- `on` Listen for contract processing result events, and output error logs for failures
+- `safeWithdrawal` is a method in our Crowdfunding contract to recover funds
+- `from` caller's contract address
+- `on`listen for contract processing result events, and output error logs for failures

@@ -2,7 +2,7 @@ In Solidity, you can use smart contracts to handle tokens or, possibly, even mor
 
 ## Compiler Bug
 
-First, you must understand the bugs in the Solidity compiler itself, and try to avoid problematic compiler versions or problematic usage. Solidity compiler bug list: https://solidity.readthedocs.io/en/latest/bugs.html .
+First, you must understand the bugs of the Solidity compiler itself, and try to avoid the version of the compiler in question or the use of the problem. Solidity compiler bug list: https://solidity.readthedocs.io/en/latest/bugs.html.
 
 ## Standard Contract Development Process
 
@@ -10,7 +10,7 @@ If you want to solve the security problem of smart contracts, you must develop c
 
 1. The detailed design must be completed first, taking into account various scenarios and abnormal situations. Avoid unclear and incompletely introduced bugs.
 2. During development, to be modular and concise, complexity will increase the risk of errors.
-3. The contract must be sufficiently reviewed and tested before it can be published to the main network.
+3. Before the contract is deployed to the mainnet, the contract must be adequately reviewed and tested.
 4. Keep an eye on the operation status of the contract. In an emergency, you can destroy the contract or provide a similar emergency freeze function.
 
 ## Common Pitfalls
@@ -233,7 +233,7 @@ Always use the latest version of the compiler to be notified about all recently 
 
 Restrict the amount of Ether (or other tokens) that can be stored in a smart contract. If your source code, the compiler or the platform has a bug, these funds may be lost. If you want to limit your loss, limit the amount of Ether.
 
-### Keep it Small and Modular
+### Simple and Modular 
 
 Keep your contracts small and easily understandable. Single out unrelated functionality in other contracts or into libraries. General recommendations about source code quality of course apply: Limit the amount of local variables, the length of functions and so on. Document your functions so that others can see what your intention was and whether it is different than what the code does.
 

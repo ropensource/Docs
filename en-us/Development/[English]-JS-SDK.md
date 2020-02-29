@@ -3217,7 +3217,7 @@ Parameter:
 
 `string` - `String`: A ASCII string to convert to a HEX string.
 
-返回值
+Returns: 
 
 `String`: The HEX string.
 

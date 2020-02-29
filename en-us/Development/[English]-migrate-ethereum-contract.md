@@ -1,6 +1,6 @@
 ## Introduce 
 
-If you want to migrate ethereum's smart contract to PlatON, you can do this with the `platon-truffle` development tool. first make sure you have `platon-truffle` installed correctly, just follow these steps.
+If you want to migrate ethereum's smart contract to PlatON, you can do this with the `platon-truffle` development tool. First make sure you have `platon-truffle` installed correctly, just follow these steps.
 
 The migration of ethereum's ERC200513Token contract to PlatON is demonstrated below，`ERC200513Token.sol` contract are as follows:
 ```
@@ -189,7 +189,7 @@ truffle init
 
 After the command is executed,project directory structure is as follows:
 
-- `contracts/`: Solidity contract directory
+- `contracts/`: solidity contract directory
 
 - `migrations/`: depoly file directory
 

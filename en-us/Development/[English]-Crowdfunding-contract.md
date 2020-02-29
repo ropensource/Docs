@@ -1,6 +1,6 @@
 ## Introduce
 
-In the following example, we will use smart contract for a crowdfunding campaign. the creator of the contract started crowdfunding, and initializes the number of tokens and the duration of the crowdfunding. if the crowdfunding is completed within the specified time, the crowdfunding will be successful. if the crowdfunding switch is turned off, a certain number of tokens based on a fixed exchange rate will be cast and credited to the name of the investor. otherwise, the crowdfunding fails and the amount of the crowdfunding is returned to the investors.
+In the following example, we will use smart contract for a crowdfunding campaign. The creator of the contract started crowdfunding, and initializes the number of tokens and the duration of the crowdfunding. If the crowdfunding is completed within the specified time, the crowdfunding will be successful. If the crowdfunding switch is turned off, a certain number of tokens based on a fixed exchange rate will be cast and credited to the name of the investor. Otherwise, the crowdfunding fails and the amount of the crowdfunding is returned to the investors.
 
 There are two roles in the contract
 
@@ -13,7 +13,7 @@ There are two roles in the contract
 - 2.Deployment crowdfunding contract initializes the number and duration of crowdfunding tokens.
 - 3.Investors invest.
 - 4.Determine if crowdfunding is over.
-	- If the crowdfunding time is not up and the number of crowdfunding tokens has been completed, turn off the crowdfunding switch. investors are allocated tokens proportionally. crowdfunding success.
+	- If the crowdfunding time is not up and the number of crowdfunding tokens has been completed, turn off the crowdfunding switch. Investors are allocated tokens proportionally. Crowdfunding success.
 	- If the crowdfunding time is up and the amount of crowdfunding tokens has been completed, investors will be allocated tokens in proportion. crowdfunding success.
 	- If the crowdfunding time is up and the number of crowdfunding tokens is not completed, the investor tokens will be returned. crowdfunding failure.
 
@@ -209,7 +209,7 @@ Deploy script 2_initial_crowdFunding.js,content is as follows：
 ```
 const CrowdFunding = artifacts.require("CrowdFunding"); //deployment contract class name
 module.exports = function(deployer) {
-  ​    deployer.deploy(CrowdFunding);
+      deployer.deploy(CrowdFunding);
 };
 ```
 
@@ -240,7 +240,7 @@ networks: {
 truffle migrate
 ```
 
-If deploy success，you wil see log info as follows:
+If deploy success, you wil see log info as follows:
 ```
 Compiling your contracts...
  Everything is up to date, there is nothing to compile.
@@ -273,7 +273,7 @@ Compiling your contracts...
 truffle console
 ```
 
-> Then you can execute cmd in console.
+> You can execute command in platon-truffle console
 
 **Step2.**  Create contract object
 
@@ -298,7 +298,8 @@ crowdFunding.methods.safeWithdrawal().send({from:'0xf644cfc3b0dc588116d6621211a8
 Call contract command description:
 
 - `crowdFunding` is the contract object we built earlier
-- `methods` Fixed syntax specifying that methods in the contract will be obtained
+- `methods` fixed syntax specifying that methods in the contract will be obtained
 - `safeWithdrawal` is a method in our Crowdfunding contract to recover funds
 - `from` caller's contract address
-- `on`listen for contract processing result events, and output error logs for failures
+- `on` listen for contract processing result events, and output error logs for failures
+

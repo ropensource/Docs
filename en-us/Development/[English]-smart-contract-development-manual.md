@@ -1,13 +1,13 @@
 ## Introduce
 
-Smart contract, is a program, which can run in the blockchain. smart contracts have the following characteristics:
+Smart contract, is a program, which can run in the blockchain.Smart contracts have the following characteristics:
 
-* Anybody can develop smart contract , which stored by the contract accout of blockchain. the accout controled by private key is called externel account.
+* Anybody can develop smart contract , which stored by the contract accout of blockchain.The accout controled by private key is called externel account.
 
 * Contract account cannot run by itself, before executing a smart contract, it need externel account send transaction to contract account.
 	
 
-Solidity language is a contract-oriented high-level programming language created to implement smart contracts. Its syntax is similar to JavaScript's high-level programming language. It is designed to generate virtual machine code in a compiled manner. using it is easy to create smart contracts. however, as a decentralized smart contract running on the Internet in real sense, it has the following features:
+Solidity language is a contract-oriented high-level programming language created to implement smart contracts. Its syntax is similar to JavaScript's high-level programming language. It is designed to generate virtual machine code in a compiled manner. Using it is easy to create smart contracts. However, as a decentralized smart contract running on the Internet in real sense, it has the following features:
 
 * The PlatON is based on an account model,so solidity provides a special address type, which is used to locate user accounts, locate smart contracts, and locate smart contract codes.
 
@@ -17,9 +17,9 @@ Solidity language is a contract-oriented high-level programming language created
 
 * The solidity operating environment is on a decentralized network, with special emphasis on the way ethereum smart contracts or function execution is called. because a simple function call turned into a node code execution on the network, it is a completely distributed programming environment.
 
-* The abnormality mechanism of the solidity language is also very different. once an exception occurs, all executions will be retracted. this is mainly to ensure the atomicity of smart contract execution to avoid data inconsistencies in the intermediate state.
+* The abnormality mechanism of the solidity language is also very different. Once an exception occurs, all executions will be retracted. This is mainly to ensure the atomicity of smart contract execution to avoid data inconsistencies in the intermediate state.
 
-This tutorial is mainly to guide users to create a simple HelloWorld smart contract using solidity language on PlatON, compile, deploy, and call this contract through platon-truffle. if you want to use a richer API you can refer to [Java SDK ](/zh-cn/Development/[Chinese-Simplified]-Java-SDK.md) and  [JS SDK](/zh-cn/Development/[Chinese-Simplified]-JS-SDK.md)
+This tutorial is mainly to guide users to create a simple HelloWorld smart contract using solidity language on PlatON, compile, deploy, and call this contract through platon-truffle. If you want to use a richer API you can refer to [Java SDK ](/zh-cn/Development/[Chinese-Simplified]-Java-SDK.md) and  [JS SDK](/zh-cn/Development/[Chinese-Simplified]-JS-SDK.md)
 
 ## Platon-truffle Introduce 
 
@@ -70,7 +70,7 @@ Contract Files Description:
   -	`public`：declare the visibility of the function
   -	`name` = _name：Assignment the local variable to state variable
 - function getName() public view returns(string memory)
-  -	`view`:this keyword means the function cannot change the blockchain state，which Mainly used for query
+  -	`view`: this keyword means the function cannot change the blockchain state，which Mainly used for query
 
 ## Compile HelloWorld Contract 
 
@@ -196,7 +196,7 @@ Total cost:     0.007462350000596988 LAT
 ```
 truffle console
 ```
-- You can execute cmd in console
+- You can execute command in platon-truffle console
 
 **Step2.**  Create contract object
 
@@ -230,7 +230,7 @@ Description：
 - `methods`  specify the call method
 - `setName` the function of the HelloWorld contract，which has a parameter as `hello world`
 - `from` the address of caller 
-- `on` listen on the result of the contract method executed. if fail, it will print the error info. if success ,the console will print the receipt as belows:
+- `on` listen on the result of the contract method executed. if fail, it will print the error info. If success ,the console will print the receipt as belows:
 
 ```
 { 

@@ -104,7 +104,7 @@ Notes: When called on the umbrella package web3 it will also set the provider fo
 
 Parameter:
 
-`Object` - myProvider: a valid provider.
+`Object` - `myProvider`: a valid provider.
 
 Returns:
 
@@ -142,8 +142,8 @@ Returns:
 
 `Object`， with the following providers:
 
-*  Object - HttpProvider: The HTTP provider is deprecated, as it won’t work for subscriptions.
-*  Object - WebsocketProvider: The Websocket provider is the standard for usage in legacy browsers.
+* `Object` - `HttpProvider`: The HTTP provider is deprecated, as it won’t work for subscriptions.
+* `Object` - `WebsocketProvider`: The Websocket provider is the standard for usage in legacy browsers.
 
 Example:
 
@@ -211,7 +211,7 @@ none
 
 Returns:
 
-Object: With the following methods:
+`Object`: With the following methods:
 
 *  `add(request)`: To add a request object to the batch call.
 *  `execute()`: Will execute the batch request.
@@ -283,10 +283,10 @@ Property:
 
 Default block parameters can be one of the following:
 
-*  Number: A block number
-*  "genesis" - String: The genesis block
-*  "latest" - String: The latest block (current head of the blockchain)
-*  "pending" - String: The currently mined block (including pending transactions)
+*  `Number`: A block number
+*  `"genesis"` - `String`: The genesis block
+*  `"latest"` - `String`: The latest block (current head of the blockchain)
+*  `"pending"` - `String`: The currently mined block (including pending transactions)
 
 Default is "latest"
 
@@ -314,7 +314,7 @@ web3.platon.getProtocolVersion([callback])
 
 Returns:
 
-Promise returns String: the protocol version.
+`Promise` returns `String`: the protocol version.
 
 Example:
 
@@ -337,13 +337,13 @@ web3.platon.isSyncing([callback])
 
 Returns:
 
-Promise returns Object|Boolean - A sync object when the node is currently syncing or false:
+`Promise` returns `Object|Boolean` - A sync object when the node is currently syncing or false:
 
-*  startingBlock - Number: The block number where the sync started.
-*  currentBlock - Number: The block number where at which block the node currently synced to already.
-*  highestBlock - Number: The estimated block number to sync to.
-*  knownStates - Number: The estimated states to download.
-*  pulledStates - Number: The already downloaded states.
+* `startingBlock` - `Number`: The block number where the sync started.
+* `currentBlock` - `Number`: The block number where at which block the node currently synced to already.
+* `highestBlock` - `Number`: The estimated block number to sync to.
+* `knownStates` - `Number`: The estimated states to download.
+* `pulledStates` - `Number`: The already downloaded states.
 
 Example:
 
@@ -372,7 +372,7 @@ web3.platon.getGasPrice([callback])
 
 Returns:
 
-Promise returns String - Number string of the current gas price in von.
+`Promise` returns `String` - Number string of the current gas price in von.
 
 Example:
 
@@ -395,7 +395,7 @@ web3.platon.getAccounts([callback])
 
 Returns:
 
-Promise returns Array - An array of addresses controlled by node.
+`Promise` returns `Array` - An array of addresses controlled by node.
 
 Example:
 
@@ -418,7 +418,7 @@ web3.platon.getBlockNumber([callback])
 
 Returns:
 
-Promise returns Number - The number of the most recent block.
+`Promise` returns `Number` - The number of the most recent block.
 
 Example:
 
@@ -447,7 +447,7 @@ Parameter:
 
 Returns:
 
-Promise returns String - The current balance for the given address in von.
+`Promise` returns `String` - The current balance for the given address in von.
 
 Example:
 
@@ -471,14 +471,14 @@ web3.platon.getStorageAt(address, position [, defaultBlock] [, callback])
 
 Parameter:
 
-*  `address`：String - The address to get the storage from.
-*  `position`：Number - The index position of the storage.
-*  `defaultBlock`：Number|String -  (optional) If you pass this parameter it will not use the default block set with web3.platon.defaultBlock. Pre-defined block numbers as "latest", "earliest", "pending", and "genesis" can also be used.
-*  `callback`：Function - (optional) Optional callback, returns an error object as first parameter and the result as second.
+*  `address` - `String`: The address to get the storage from.
+*  `position` - `Number`: The index position of the storage.
+*  `defaultBlock` -`Number|String` (optional) If you pass this parameter it will not use the default block set with web3.platon.defaultBlock. Pre-defined block numbers as "latest", "earliest", "pending", and "genesis" can also be used.
+*  `callback` -`Function`: (optional) Optional callback, returns an error object as first parameter and the result as second.
 
 Returns:
 
-Promise returns String - The value in storage at the given position.
+`Promise` returns `String` - The value in storage at the given position.
 
 Example:
 
@@ -502,13 +502,13 @@ web3.platon.getCode(address [, defaultBlock] [, callback])
 
 Parameter:
 
-*  `address`：String - The address to get the code from.
-*  `defaultBlock`：Number|String - (optional) If you pass this parameter it will not use the default block set with web3.platon.defaultBlock. Pre-defined block numbers as "latest", "earliest", "pending", and "genesis" can also be used.
-*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
+*  `address` - `String`: The address to get the code from.
+*  `defaultBlock` - `Number|String`: (optional) If you pass this parameter it will not use the default block set with web3.platon.defaultBlock. Pre-defined block numbers as "latest", "earliest", "pending", and "genesis" can also be used.
+*  `callback` - `Function`: (optional) Optional callback, returns an error object as first parameter and the result as second.
 
 Returns:
 
-Promise returns String - The data at given address address.
+`Promise` returns `String` - The data at given address address.
 
 Example:
 
@@ -532,9 +532,9 @@ web3.platon.getBlock(blockHashOrBlockNumber [, returnTransactionObjects] [, call
 
 Parameter:
 
-*  `blockHashOrBlockNumber`：String|Number - The block number or block hash. Or the string "genesis", "latest", "earliest", or "pending" as in the default block parameter.
-*  `returnTransactionObjects`：Boolean -   (optional, default false) If specified true, the returned block will contain all transactions as objects. By default it is false so, there is no need to explictly specify false. And, if false it will only contains the transaction hashes.
-*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
+*  `blockHashOrBlockNumber` - `String|Number`: The block number or block hash. Or the string "genesis", "latest", "earliest", or "pending" as in the default block parameter.
+*  `returnTransactionObjects` - `Boolean`: (optional, default false) If specified true, the returned block will contain all transactions as objects. By default it is false so, there is no need to explictly specify false. And, if false it will only contains the transaction hashes.
+*  `callback` - `Function`: (optional) Optional callback, returns an error object as first parameter and the result as second.
 
 Returns:
 
@@ -603,8 +603,8 @@ web3.platon.getBlockTransactionCount(blockHashOrBlockNumber [, callback])
 
 Parameter:
 
-*  `blockHashOrBlockNumber`：String|Number - The block number or hash. Or the string "genesis", "latest", "earliest", or "pending" as in the default block parameter.
-*  `callback`：Function -  (optional) Optional callback, returns an error object as first parameter and the result as second.
+*  `blockHashOrBlockNumber` - `String|Number`: The block number or hash. Or the string "genesis", "latest", "earliest", or "pending" as in the default block parameter.
+*  `callback` - `Function`: (optional) Optional callback, returns an error object as first parameter and the result as second.
 
 Returns:
 
@@ -632,8 +632,8 @@ web3.platon.getTransaction(transactionHash [, callback])
 
 Parameter:
 
-*  `transactionHash`：`String` - The transaction hash.
-*  `callback`：`Function` -  (optional) Optional callback, returns an error object as first parameter and the result as second.
+*  `transactionHash` - `String`: The transaction hash.
+*  `callback` - `Function`:  (optional) Optional callback, returns an error object as first parameter and the result as second.
 
 Returns:
 
@@ -935,7 +935,7 @@ Parameter:
 
 Returns:
 
-Promise returns String - The signature.
+`Promise` returns `String` - The signature.
 
 Example:
 
@@ -1365,7 +1365,7 @@ Returns:
 EventEmitter: An subscription instance as an event emitter with the following events:
 
 * `"data"` returns `Object`: Fires on each incoming log with the log object as argument.
-* `"changed"` 返回 `Object`: returns Object: Fires on each log which was removed from the blockchain. The log will have the additional property "removed: true".
+* `"changed"` returns `Object`: returns Object: Fires on each log which was removed from the blockchain. The log will have the additional property "removed: true".
 * `"error"`  returns `Object`: Fires when an error in the subscription occurs.
 
 For the structure of a returned event Object see web3.platon.getPastEvents return values.
@@ -2132,7 +2132,7 @@ password - String: The password to encrypt this account with.
 
 Returns:
 
-Promise returns String: The address of the newly created account.
+`Promise` returns `String`: The address of the newly created account.
 
 Example:
 
@@ -2165,7 +2165,7 @@ Parameter:
 
 Returns:
 
-Promise returns String - The signature.
+`Promise` returns `String` - The signature.
 
 Example:
 
@@ -2200,7 +2200,7 @@ Parameter:
 
 Returns:
 
-Promise returns String - The account.
+`Promise` returns `String` - The account.
 
 Example:
 

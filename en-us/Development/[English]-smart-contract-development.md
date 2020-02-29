@@ -1,5 +1,5 @@
 
-This guide introduces the development process of smart contracts and issues that need attention in the development process from the perspective of the developer. Guide developers to quickly develop high-quality smart contracts on the PlatON network.
+This guide introduces the development process of smart contracts and issues should be noticed during development process from the perspective of the developer. It guides developers to quickly develop high-quality smart contracts on the PlatON network.
 
 ### Smart Contract
 
@@ -14,5 +14,5 @@ In fact, participants in smart contracts are usually strangers on the Internet, 
 
 Decentralized application (DApp) is an application software that runs on a decentralized point-to-point network. Similar to current mobile applications, DApps are also a type of App. But it does not run on the IOS and Android platforms, but on the operating system of the blockchain network.
 
-DApps are combined with the blockchain through smart contracts. Common DApps are composed of front-end, back-end, and smart contracts. The back-end of DApps can also be implemented through smart contracts. DAPP can communicate with PlatON network through PlatON SDK, and SDK can also interact with smart contracts.
+DApps are combined with the blockchain through smart contracts. Common DApps are composed of front-end, back-end, and smart contracts. The back-end of DApps can also be implemented through smart contracts. DAPP can connect with PlatON network through PlatON SDK, and SDK can also interact with smart contracts.
 

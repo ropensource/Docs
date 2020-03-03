@@ -29,8 +29,8 @@ This article will use a table to compare the different development costs of smal
 
 | Platform | Contract Level | Size | GasUsed | GasPrice | Amount | Remark |
 |:---|:---|:---|:---|:---|:---|:---|
-| PlatON  | Large-sized | 4.45 kb | 85849 | 5,000,000,000 `VON` | 2764115  `gVON` | 0.002764115 `LAT` |
-| Ethereum  | Large-sized | 4.45 kb | 155149 | 5,000,000,000 `wei` | 6410855  `Gwei` | 0.006410855 `ETH` |
+| PlatON  | Large-sized | 4.45 kb | 552823 | 5,000,000,000 `VON` | 2764115  `gVON` | 0.002764115 `LAT` |
+| Ethereum  | Large-sized | 4.45 kb | 1282171 | 5,000,000,000 `wei` | 6410855  `Gwei` | 0.006410855 `ETH` |
 
 
 ## Small-sized Contract

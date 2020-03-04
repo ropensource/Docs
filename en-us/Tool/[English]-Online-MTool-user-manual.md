@@ -36,7 +36,7 @@ wget http://47.91.153.183/mtool/0.8.0.0/mtool-client.zip
 **step2.** Extract the mtool toolkit
 
 ```bash
-unzip mtool-client.zip && cd mtool-client
+(if ! command -v unzip;then sudo apt install unzip; fi;) && unzip mtool-client.zip && mv mtool-client*/ mtool-client && cd mtool-client
 ```
 
 **step3.** Download script

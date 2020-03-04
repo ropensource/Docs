@@ -21,7 +21,7 @@ Ubuntu编译环境要求：
 ##### 获取源码
 
 ```
-git clone  -b release-0.9.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive 
+git clone -b release-0.10.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive 
 ```
 
 ##### 编译
@@ -83,7 +83,7 @@ Windows编译环境需要符合以下条件：
 
 ```
 cd src/github.com/PlatONnetwork/;
-git clone -b release-0.9.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive
+git clone -b release-0.10.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive
 ```
 
 ##### 编译
@@ -142,7 +142,7 @@ sudo apt-get update
 安装PlatON：
 
 ```bash
-sudo apt-get install platon0.9.0
+sudo apt-get install platon0.10.0
 ```
 
 安装完成后，可执行程序将安装到： `/usr/bin/`。

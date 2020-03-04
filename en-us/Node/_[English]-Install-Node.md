@@ -27,7 +27,7 @@ Ubuntu compilation environment requirements:
 
 
 ```
-git clone -b release-0.9.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive 
+git clone -b release-0.10.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive 
 ```
 
 
@@ -95,7 +95,7 @@ Create `src/github.com/PlatONnetwork/` and `bin` directories under the current`%
 
 ```
 cd src/github.com/PlatONnetwork/;
-git clone -b release-0.9.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive
+git clone -b release-0.10.0 https://github.com/PlatONnetwork/PlatON-Go.git --recursive
 ```
 
 ##### Compile
@@ -158,7 +158,7 @@ sudo apt-get update
 Install PlatON:
 
 ```bash
-sudo apt-get install platon0.9.0
+sudo apt-get install platon0.10.0
 ```
 
 

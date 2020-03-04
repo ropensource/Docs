@@ -62,10 +62,10 @@ If the download script fails, set the DNS server to 8.8.8.8.
   Note: xxx is the version number of the designated upgrade. For the actual version number, please refer to the relevant announcement issued by the community. **nostart** means that the node will not start (the default start). The password of the current user; when the Do you want to continue? Prompt appears, enter: **y**; the execution result is as follows: the version upgrade was successful:
 
   ```
-  Currently installed version：0.9.0==========
+  Currently installed version：0.10.0==========
   Begin to install platon version：0.10.0==========
   Do you want to continue? [Y/n] y
-  Uninstall current platon version：platon0.9.0 successfully==========
+  Uninstall current platon version：platon0.10.0 successfully==========
   Install platon version：platon0.10.0 successfully==========
   ```
   

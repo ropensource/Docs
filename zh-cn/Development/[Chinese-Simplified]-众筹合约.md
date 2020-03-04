@@ -278,7 +278,7 @@ truffle console
 ```
 var abi = [...]; //众筹合约的ABI，从编译后的文件获取
 var contractAddr = '0x02D04C6fD2b0C07c43AA1a329D667f1F1Fc7a907'; //众筹合约地址
-var crowdFunding = new web3.eth.Contract(abi,contractAddr); 
+var crowdFunding = new web3.platon.Contract(abi,contractAddr); 
 ```
 
 **step3.**  查询已筹集金额

@@ -37,7 +37,7 @@ PlatON是实行民主治理的区块链项目，验证节点由所有Energon持�
 
 ### 如何成为验证节点
 
-![成为验证节点](PlatON验证节点介绍.assets/成为验证节点.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Node/PlatON验证节点介绍.assets/成为验证节点.png" alt="成为验证节点"/>
 
 - 备选节点候选人
 
@@ -54,7 +54,7 @@ PlatON是实行民主治理的区块链项目，验证节点由所有Energon持�
 - 提议人
   
 一个共识周期生产250（25个验证节点 * 每个验证节点连续出10块）个区块，25个验证节点轮流成为提议人，每个验证节点的出块时间为20秒。 
-  
+
 - 委托人
 
   把自己的Energon委托给备选节点候选人的Energon持有者。验证节点不能相互委托，也不能自委托。
@@ -63,7 +63,7 @@ PlatON是实行民主治理的区块链项目，验证节点由所有Energon持�
 
 角色关系示意图如下，**为方便描述和理解，备选节点候选人包含备选节点和验证节点。备选节点包含验证节点。**
 
-![角色说明](PlatON验证节点介绍.assets/角色说明.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Node/PlatON验证节点介绍.assets/角色说明.png" alt="角色说明"/>
 
 ### 如何参与治理
 
@@ -87,7 +87,7 @@ PlatON中，通过链上提案投票的方式进行治理，有以下几类提�
 
 ### 能获得哪些奖励
 
-![验证节点奖励](PlatON验证节点介绍.assets/验证节点奖励.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Node/PlatON验证节点介绍.assets/验证节点奖励.png" alt="验证节点奖励"/>
 
 #### 奖励池
 

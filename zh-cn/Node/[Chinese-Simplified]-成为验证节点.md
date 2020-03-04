@@ -14,7 +14,7 @@ PlatON 是实行民主治理的区块链项目，验证节点由所有 Energon �
 
 安装ntp，并且设置开机自启
 ```bash
-sudo apt-get -y install ntp  &&  sudo systemctl enable ntp
+sudo apt-get -y install ntp  &&  sudo systemctl enable ntp && sudo systemctl start ntp
 ```
 
 #### 查看同步情况
@@ -24,8 +24,7 @@ ntpq -p
 ```
 返回
 
-![ntpq返回](时钟同步.assets/ntpq.png)
-
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Node/时钟同步.assets/ntpq.png" alt="时钟同步"/>
 
 属性说明：
 
@@ -58,11 +57,11 @@ remote前面符号的说明:
 
 ### 生成节点密钥与共识密钥
 节点在启动时需要节点公私钥与BLS公私钥，BLS公私钥在共识协议中将被使用。
-密钥生成方式参照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥#节点密钥),将生成的密钥转移到节点所在目录。
+密钥生成方式参照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥#节点密钥),将生成的密钥转移到节点所在的data目录。
 
 > [!NOTE|style:flat|label:注意]
 >
->  如果没有预先生成密钥，节点在启动时自动在节点的data目录下生成。
+>  如果没有预先生成密钥，节点在启动时自动在节点的data目录下生成。如果采用自动生成的形式，将只会生成节点私钥与BLS私钥，相关公钥不会自动生成。
 
 ### 启动节点加入网络
 根据用户自身需要，启动节点，选择加入公有网络，或者加入私有网络，操作见文档：

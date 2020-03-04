@@ -39,7 +39,7 @@ Error: missing trie node f7e7f0f53eb6dc23d18f8285553c916fdd410e484b611d53883e2a0
 
 安装ntp，并且设置开机自启
 ```bash
-sudo apt-get -y install ntp  &&  sudo systemctl enable ntp
+sudo apt-get -y install ntp  &&  sudo systemctl enable ntp && sudo systemctl start ntp
 ```
 
 #### 查看同步情况
@@ -49,8 +49,7 @@ ntpq -p
 ```
 返回
 
-![ntpq返回](时钟同步.assets/ntpq.png)
-
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Node/时钟同步.assets/ntpq.png" alt="时钟同步"/>
 
 属性说明：
 

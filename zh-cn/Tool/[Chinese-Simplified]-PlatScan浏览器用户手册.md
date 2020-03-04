@@ -14,7 +14,7 @@
 
 PlatScan当前支持NewBaleyword拉力赛活动网络，后续将支持主网及其他测试网。 您可以在搜索框内输入区块高度/地址/区块hash/交易hash/节点名称查询具体需要浏览的信息。也可以点击导航菜单-首页/区块/交易/验证节点/治理提案浏览PlatON Network区块链更多信息。
 
-![image-20200211115542500](./PlatScan浏览器用户手册.assets/image-20200211115542500.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211115542500.png" alt="image-20200211115542500" style="zoom: 25%;" />
 
 
 
@@ -24,9 +24,9 @@ PlatScan当前支持NewBaleyword拉力赛活动网络，后续将支持主网及
 
 同时展示了PlatON Network的基本情况，包括链的运行状态，交易数据，流通及质押信息，区块列表，当前参与共识的验证节点等。方便您快速了解PlatON Network。
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps1.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps1.png" style="zoom: 38%;" />
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps2.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps2.png" style="zoom:38%;" />
 
 如果您想了解更多PlatON Network信息，您可以点击“关于PlatON”，进入PlatON Network官网查看了解更多详细信息。
 
@@ -34,7 +34,7 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 在页面底部，提供了PlatON Network官方社区网站，欢迎您的访问和关注。
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps3.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps3.png" style="zoom: 38%;" />
 
  
 
@@ -42,11 +42,11 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 区块，展示所有已生产，的区块列表。从列表中可以了解区块的出块节点，区块包含的交易数，区块的出块奖励等。您可以点击蓝色链接查看对应的区块详细信息，出块节点详细信息。
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps4.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps4.png" style="zoom:38%;" />
 
 在区块详情内，可以查看到当前区块的区块信息以及区块中包含的交易信息。
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps5.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps5.png" style="zoom:38%;" />
 
  
 
@@ -54,11 +54,11 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 交易，展示所有已写入区块链的交易信息。从列表中可以了解交易的所在区块，执行交易的操作地址，交易类型，交易费用等。您可以点击蓝色链接查看对应的交易详细信息，区块详细信息以及地址详细信息。
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps6.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps6.png" style="zoom:38%;" />
 
 在交易详情，可以查看到不同交易类型的详细交易内容及基础的交易信息。
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps7.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps7.png" style="zoom:38%;" />
 
 
 
@@ -68,11 +68,13 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 在地址详情中，您可以了解账户地址的基本信息，包含账户地址的余额，地址关联的交易数、质押/委托量、待领取委托奖励，待赎回委托量（指节点退出，委托关系解除，处于无效状态的委托量。该委托不会产生委托奖励，需要您主动赎回）。
 
-![image-20200211151754582](./PlatScan浏览器用户手册.assets/image-20200211151754582.png) 
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211151754582.png" alt="image-20200211151754582" style="zoom: 25%;" />
+
+ 
 
 如果当前账户地址有参与锁仓，则在余额处展示锁仓余额，点击锁仓余额可查看详细的锁仓信息：
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps23.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps23.png" style="zoom: 38%;" />
 
 
 
@@ -80,15 +82,15 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 **交易信息**，支持根据交易分类进行浏览和交易信息下载。您可以点击交易hash的蓝色链接查看详细的交易信息。注意交易信息下载需要进行Google安全验证，每次最多可下载最近的3万条数据。
 
-![image-20200211154932977](./PlatScan浏览器用户手册.assets/image-20200211154932977.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211154932977.png" alt="image-20200211154932977" style="zoom:25%;" />
 
 **委托信息**，您可以查看到当前账户地址委托统计信息，包含总计委托量，已委托的验证节点数，委托已锁定数量，委托未锁定的数量。同时基于已委托节点，详细展示了各节点的委托信息，包含：委托的节点，已委托数量（锁定+未锁定的委托数量）、已锁定委托（该账户地址在该节点下已锁定的委托量，锁定的委托可获得委托奖励）、未锁定委托数量、待赎回的委托数量，以及待领取委托奖励数量。
 
-![image-20200211155024460](./PlatScan浏览器用户手册.assets/image-20200211155024460.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211155024460.png" alt="image-20200211155024460" style="zoom:25%;" />
 
  **奖励明细**，基于委托奖励领取交易记录，详细的展示了委托奖励领取的明细，方便您清晰的了解委托奖励来源。
 
-![image-20200211155725569](./PlatScan浏览器用户手册.assets/image-20200211155725569.png) 
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211155725569.png" alt="image-20200211155725569" style="zoom:25%;" /> 
 
  
 
@@ -100,9 +102,9 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 您还可以详细的浏览合约关联的交易信息以及合约类型与合约上链字节码，后续我们将不断优化，提供更多数据和分析信息。
 
-![image-20200211160413429](./PlatScan浏览器用户手册.assets/image-20200211160413429.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211160413429.png" alt="image-20200211160413429" style="zoom:25%;" />
 
-![image-20200211161347325](./PlatScan浏览器用户手册.assets/image-20200211161347325.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211161347325.png" alt="image-20200211161347325" style="zoom: 25%;" />
 
 
 
@@ -117,31 +119,31 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 从列表中您可以直观的了解各节点的状态，质押委托数据，委托者数、节点的稳定性（包含低出块率次数、双签次数）、已产生区块数、预计节点年化收益率、以及预计委托的年化收益率。
 
-![image-20200211162916792](./PlatScan浏览器用户手册.assets/image-20200211162916792.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211162916792.png" alt="image-20200211162916792" style="zoom:25%;" />
 
 **验证节点详情**，通过点击验证节点列表中节点名称链接进入。在验证节点详情里，您可以查看到节点详细的指标统计信息，节点信息，已出块列表，节点的行为记录，委托记录，奖励领取明细等。
 
-![image-20200211165503083](./PlatScan浏览器用户手册.assets/image-20200211165503083.png) 
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211165503083.png" alt="image-20200211165503083" style="zoom:25%;" /> 
 
 **节点信息**，展示了该验证节点提交的节点基本信息。包括节点ID（同节点公钥）、操作地址（即节点质押的账户地址）、奖励账户（即验证节点接收奖励的账户地址），节点官网、身份认证ID（keybase网站64位的公钥，点击可进入用户keybase个人主页）、节点描述信息。
 
-![image-20200211165803147](./PlatScan浏览器用户手册.assets/image-20200211165803147.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211165803147.png" alt="image-20200211165803147" style="zoom:25%;" />
 
 **已出区块**，展示了验证节点所出区块列表。
 
-![image-20200211165849281](./PlatScan浏览器用户手册.assets/image-20200211165849281.png) 
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211165849281.png" alt="image-20200211165849281" style="zoom:25%;" /> 
 
 **节点行为**，展示了验证节点的所有主动或被进行的行为记录。包含节点信息变更，提案投票，被处罚等记录。
 
-![image-20200211170102180](./PlatScan浏览器用户手册.assets/image-20200211170102180.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211170102180.png" alt="image-20200211170102180" style="zoom:25%;" />
 
  **委托**，展示了该节点接收到的委托信息。
 
-![image-20200211170145979](./PlatScan浏览器用户手册.assets/image-20200211170145979.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211170145979.png" alt="image-20200211170145979" style="zoom:25%;" />
 
  **奖励领取明细**，展示了从该节点领取到的委托奖励领取信息。
 
-![image-20200211170229088](./PlatScan浏览器用户手册.assets/image-20200211170229088.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211170229088.png" alt="image-20200211170229088" style="zoom:25%;" />
 
  
 
@@ -149,13 +151,13 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 治理提案显示了当前PlatON Network网络所有提交的提案信息，您可以在这里详细的了解提案相关的提案内容，投票进度，提案状态等信息。列表中展示了PIP编号（GitHub提案库分配的PIP编号，点击进入GitHub中的该提案详情）、提案标题（点击进入PlatScan展示的提案详情）、提案类型（包含：升级提案、取消提案、文本提案、参数提案）、状态、投票结束区块（投票进度）等。
 
-![image-20200211170849989](./PlatScan浏览器用户手册.assets/image-20200211170849989.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211170849989.png" alt="image-20200211170849989" style="zoom:25%;" />
 
 点击提案标题的蓝色链接进入到提案详情。在提案详情中，您可以查看提案的基本信息，投票信息以及投票记录。不同的提案类型，展示的提案基本信息稍微有些差异。
 
 例如，参数提案：
 
-![image-20200211171508956](./PlatScan浏览器用户手册.assets/image-20200211171508956.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan浏览器用户手册.assets/image-20200211171508956.png" alt="image-20200211171508956" style="zoom:25%;" />
 
 
 
@@ -165,5 +167,5 @@ ATON是PlatON Network的移动钱包客户端，允许您存储和转移PlatON N
 
 >  注：您可以通过提交参数提案修改参数值，注意浏览器上方的模块名和参数名实际提交时，首字母小写。
 
-![](PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps38.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Tool/PlatScan%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.assets/wps38.png" style="zoom: 38%;" />
 

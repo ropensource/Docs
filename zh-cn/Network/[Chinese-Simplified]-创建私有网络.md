@@ -155,7 +155,7 @@ mkdir data0 data1
 
 **2.生成密钥对**
 
-按照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点密钥)章节生成了2对节点私钥和节点BLS私钥。
+按照[节点密钥](/zh-cn/Node/_[Chinese-Simplified]-钱包文件与节点密钥.md#节点密钥)章节生成2对节点私钥和节点BLS私钥。
 
 分别将2个节点的nodekey和blskey保存到'data0'和'data1'
 

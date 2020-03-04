@@ -22,7 +22,7 @@ Proposal details：
   ProposalID：0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3
 
   Target version ：0.9.0
-  Voting cycle：起始区块高度533681, 截止区块高度619980
+  Voting epoch：Start block height 533681, cut-off block height 619980
 
    Code address：
   Code&Branch：https://github.com/PlatONnetwork/PlatON-Go/tree/pip_v0.7.3
@@ -42,7 +42,7 @@ The upgrade proposal can also be queried directly in the blockchain browser [Pla
 
 According to the new version number (assuming 0.9.0) in the upgrade proposal obtained from the community announcement or blockchain browser, then download the official script provided by PlatON for node upgrade. Perform the following steps on **the machine where the node is deployed**:
 
-> If the download script fails, set the DNS server to 8.8.8.8。
+> If the download script fails, set the DNS server to 8.8.8.8.
 
 - Download the script first (the script can be stored anywhere)
 
@@ -64,41 +64,40 @@ According to the new version number (assuming 0.9.0) in the upgrade proposal obt
   chmod u+x update_platon.sh && ./update_platon.sh 0.9.0 --xxxnet
   ```
   
-  **Notice：**
+    **Notice：**
   
-  0.9.0 is the specified version number that needs to be upgraded (the version number can be obtained from the relevant announcement issued by the community or from the chain through the blockchain browser).
+    0.9.0 is the specified version number that needs to be upgraded (the version number can be obtained from the relevant announcement issued by the community or from the chain through the blockchain browser).
 
+    ​--xxxnet specifies a certain network. If you leave this field blank, it will default to the main network.
   
-  ​--xxxnet specifies a certain network. If you leave this field blank, it will default to the main network.
-  
-  When the prompt **”[sudo] password for platon:“** appears, you need to enter the user password of the currently logged in machine.
+    When the prompt **”[sudo] password for platon:“** appears, you need to enter the user password of the currently logged in machine.
 
-  When the prompt **”Do you want to continue?“** Appears, enter:  **y**  (to continue execution, otherwise vice versa).
+    When the prompt **”Do you want to continue?“** Appears, enter:  **y**  (to continue execution, otherwise vice versa).
 
-  When the execution result is as follows, the version upgrade is successful:
+    When the execution result is as follows, the version upgrade is successful:
   
-  ```
-  当前已安装版本：0.8.0==========
-  开始安装：0.9.0版本==========
-  节点暂停成功==========
-  Do you want to continue? [Y/n] y
-  卸载当前版本：platon0.8.0成功==========
-  安装版本：platon0.9.0成功==========
-  重启节点成功============ 
-  ```
+    ```
+     Currently installed version: 0.8.0==========
+     Begin to install platon version: 0.9.0==========
+     Node paused successfully==========
+     Do you want to continue? [Y/n] y
+     Uninstall current platon version: 0.8.0 successfully==========
+     Install platon version: platon0.9.0 successfully==========
+     Restart node succeeded============ 
+    ```
   
-  >When the following situations occur, no version upgrade is performed, and the node will continue to run with the previously installed version：
-  >
-  >- The specified version does not exist。
-  >- Specifies that the version to be upgraded is not higher than the installed version。
-  >
+    >When the following situations occur, no version upgrade is performed, and the node will continue to run with the previously installed version：
+    >
+    >- The specified version does not exist.
+    >- Specifies that the version to be upgraded is not higher than the installed version.
+    >
 
 ### Vote
 
 The following voting operations need to be implemented with the help of the MTool tool. The tool is divided into offline and online methods. You can choose the version to use as required. For details, please refer to:
 
-- [在线MTool](/zh-cn/Tool/[Chinese-Simplified]-在线MTool使用手册.md)
-- [离线MTool](/zh-cn/Tool/[Chinese-Simplified]-离线MTool使用手册.md)
+- [Online MTool](/en-us/Tool/[English]-Online-MTool-user-manual.md)
+- [Offline MTool](/zh-cn/Tool/[English]-Offline-MTool-user-manual.md)
 
 >  The commands and directories of MTool are different due to different systems, so the following commands and directories use Ubuntu as an example (please replace with the actual command and directory of the user's actual system and installation)：
 >
@@ -162,9 +161,9 @@ This command returns the current block height, which can be used to determine wh
   After the script is executed, if the following message appears, it means that the upgrade proposal vote was successful, otherwise the upgrade proposal vote failed.
   
   ```bash
-  获取交易回执成功==========
-  解析交易回执中==========
-  交易成功！！！
+  Transaction receipt obtained successfully==========
+  Analyzing transaction receipt==========
+  Transaction succeed.
   ```
 
 #### Version declaration
@@ -204,15 +203,14 @@ This command returns the current block height, which can be used to determine wh
   chmod u+x verify_transaction.sh && ./verify_transaction.sh 0x776d5be7363451540b7113771cf4263de6a18973ed8904796a561acf37e58ff2
   ```
   
-    **Note:**  where 0x776d5be7363451540b7113771cf4263de6a18973ed8904796a561acf37e58ff2 is the transaction hash returned by the version declaration operation, please modify it according to the actual return value.
+  **Note:**  where 0x776d5be7363451540b7113771cf4263de6a18973ed8904796a561acf37e58ff2 is the transaction hash returned by the version declaration operation, please modify it according to the actual return value.
 
-  
   After executing the script, if the following message appears, the version declaration was successful, otherwise the version declaration failed.
   
   ```bash
-  获取交易回执成功==========
-  解析交易回执中==========
-  交易成功！！！·
+   Transaction receipt obtained successfully==========
+   Analyzing transaction receipt==========
+   Transaction succeed.
   ```
 
 ## Verify node upgrade results
@@ -260,17 +258,17 @@ After performing all the operations above, you need to verify whether the operat
   When the script is executed, the following print results indicate that the upgrade was successful:
   
   ```bash
-  获取提案成功==========
-  提案生效块高为：620980
-  当前块高为：621010
-  区块高度已到达提案生效区块高度，开始验证==========
-  开始验证升级提案投票结果==========
-  升级提案投票结果验证成功==========
-  开始验证提案版本号==二进制的版本号==链上生效版本号==========
-  升级提案版本验证成功==============
-  开始验证节点的质押状态=============
-  获取节点质押信息成功==========
-  节点未退出验证人列表，升级版本成功，当前链生效版本为：2304
+  Get proposal success ==========
+  The effective block of the proposal is: 620980
+  Current block height is: 621010
+  The height of the block has reached the height of the effective block of the proposal, and the verification begins ==========
+  Start to verify upgrade proposal voting results ==========
+  Upgrade proposal voting result verified successfully ==========
+  Start to verify that the proposal version number equals the binary version number equals the effective version number on the chain ==========
+  Upgrade proposal version Verification succeeded ==============
+  Start to verify the pledge status of the node =============
+  Node pledge information obtained successfully ==========
+  The node did not exit the verifier list. The upgrade version succeeded. The effective version of the current chain is: 2304
   ```
   
   > The verification script does the following checks：

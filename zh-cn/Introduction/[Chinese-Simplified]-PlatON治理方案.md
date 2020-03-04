@@ -57,7 +57,7 @@
 
 ### 治理流程
 
-![governace-flow](PlatON%E6%B2%BB%E7%90%86%E6%96%B9%E6%A1%88.assets/governace-flow.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON治理方案.assets/governace-flow.png" alt="governace-flow"/>
 
 **1)** **发起提案**
 
@@ -149,7 +149,7 @@
 
 **3)** **升级提案投票结果统计**
 
-![upgrade-statistics](PlatON%E6%B2%BB%E7%90%86%E6%96%B9%E6%A1%88.assets/upgrade-statistics.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON治理方案.assets/upgrade-statistics.png" alt="upgrade-statistics"/>
 
 在投票截止块高统计对升级提案的投票结果，若投票周期内投票情况如上图所示：
 
@@ -175,7 +175,7 @@
 
 只有候选节点和验证节点才可以发起版本声明。新加入的节点需要先成为候选人后才能发起版本声明。各个阶段版本声明条件如下：
 
-![1568087984010](PlatON%E6%B2%BB%E7%90%86%E6%96%B9%E6%A1%88.assets/version-declare.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON治理方案.assets/version-declare.png" alt="version-declare"/>
 
 当节点版本和链上版本不一致（版本号前两位不同）时，该节点不会被选入参与共识，即使质押很高，此时节点可以通过发起版本声明交易来声明自己节点与链版本一致，才能在后续结算周期中正常参与共识。当链上存在正在投票中的软件升级提案时，可以发起和升级版本一致的版本声明，版本声明不代表投票，在升级提案投票通过后，声明了与升级目的版本号一致的节点即使没有投票也可以正常参与共识。
 

@@ -71,7 +71,7 @@ PoS矿工有两个显著特点。第一，矿工的链外身份和信用很重�
 
 每种共识算法都在不同程度上依赖基于技术的信任以及基于制度的信任，并因此分别产生技术成本和制度成本，共识成本则是技术成本和制度成本之和。对基于技术的信任的依赖程度越高，技术成本越高，反之则反是。这一关系对基于制度的信任和制度成本亦然。完全依赖基于技术的信任，或完全依赖基于制度的信任，都会造成比较高的共识成本。我们认为，**存在两种信任基础之间的最佳配比，使得共识成本最小**（图1）。
 
-![共识成本](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/共识成本.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/共识成本.png" alt="共识成本"/>
 
 <center>图1 共识成本</center>
 
@@ -92,7 +92,7 @@ PoS矿工有两个显著特点。第一，矿工的链外身份和信用很重�
 
 ### PlatON中的经济周期
 
-![经济周期](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E7%BB%8F%E6%B5%8E%E5%91%A8%E6%9C%9F.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/经济周期.png" alt="经济周期"/>
 
 在介绍PlatON的经济方案前，为了方便后续理解，先对PlatON经济模型中的几个基本经济周期进行介绍：
 
@@ -132,7 +132,7 @@ Energon初始发行按一定比例分配给创始团队、PlatON基金会、学�
 
 则解锁处理流程如下图所示：
 
-![正常解锁锁仓LAT](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E6%AD%A3%E5%B8%B8%E8%A7%A3%E9%94%81%E9%94%81%E4%BB%93LAT.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/正常解锁锁仓LAT.png" alt="正常解锁锁仓LAT"/>
 
 
 由于存在锁仓Energon用于质押或委托，而质押或委托未到期退回，导致到达解锁区块，锁仓合约内该账户锁仓余额不足解锁数量，此时的处理方法是全部解锁，并记录一个“欠账数”，并在每个结算区块检查是否存在“欠账数”，以及锁仓合约内该账户锁仓余额是否有入账，有的话继续解锁，直到“欠账数”归零。
@@ -152,7 +152,7 @@ PlatON采用批量增发模式，即每年（一个增发周期）一次性增�
 
 按照年度预期出块数为增发周期进行Energon增发。**相对于上一年底的Energon总发行量**，**每年固定增发2.5%**，在增发区块（上个增发周期最后一个区块）进行增发，将其中增发的2%转入到由智能合约控制的奖励池，并由PPoS共识算法的运行逐轮释放奖励给验证节点。余下的0.5%转入到一个信托基金，由PlatON基金会作为信托人用来奖励未来的PlatON基础协议开发者。
 
-![增发周期](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E5%A2%9E%E5%8F%91%E5%91%A8%E6%9C%9F.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/增发周期.png" alt="增发周期"/>
 
 因此当前增发周期Energon增发量用公式可表示为：
 
@@ -195,10 +195,9 @@ PlatON采取在小规模的备选节点中随机选取节点参与BFT共识，�
 
   把自己的Energon委托给备选节点候选人的Energon持有者。验证节点不能相互委托，也不能自委托。
 
-
 角色关系示意图如下，**为方便后续描述，备选节点候选人包含备选节点和验证节点。备选节点包含验证节点。**
 
-![角色说明](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E8%A7%92%E8%89%B2%E8%AF%B4%E6%98%8E.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/角色说明.png" alt="角色说明"/>
 
 
 
@@ -244,7 +243,7 @@ PlatON采取在小规模的备选节点中随机选取节点参与BFT共识，�
 
 - 系统将发起质押交易区块到当前结算周期的结算区块的区间为犹豫期，在犹豫期发起撤销，节点立即退出备选节点候选人列表，质押Energon立即返回用户质押账户。
 
-  ![质押犹豫期](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E8%B4%A8%E6%8A%BC%E7%8A%B9%E8%B1%AB%E6%9C%9F.png)
+  <img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/质押犹豫期.png" alt="质押犹豫期"/>
 
 - 节点的版本号低于当前链版本号或预生效版本号时，质押失败。
 
@@ -264,7 +263,7 @@ PlatON采取在小规模的备选节点中随机选取节点参与BFT共识，�
 
 备选节点总数最多是101，每个结算周期最后一个区块（结算区块）会重新选取。
 
-![选举验证人](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E9%80%89%E4%B8%BE%E9%AA%8C%E8%AF%81%E4%BA%BA.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/选举验证人.png" alt="选举验证人"/>
 
 选取的规则主要是根据节点的排名取前101，排名规则如下：
 
@@ -340,15 +339,15 @@ PlatON采取在小规模的备选节点中随机选取节点参与BFT共识，�
 
 **申请退出验证节点处理流程：**
 
-![退出验证人流程](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E9%80%80%E5%87%BA%E9%AA%8C%E8%AF%81%E4%BA%BA%E6%B5%81%E7%A8%8B.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/退出验证人流程.png" alt="退出验证人流程"/>
 
 （1）从申请退出验证节点的区块开始，该节点即时被移出备选节点候选人列表，该节点将不可接收委托和增加质押金。如果节点为当前结算周期备选节点，节点可继续参与VRF共识轮验证节点的选举，同时在结算区块可获得Staking奖励。
 
-![申请退出1](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E7%94%B3%E8%AF%B7%E9%80%80%E5%87%BA1.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/申请退出1.png" alt="申请退出1"/>
 
 （2）当前结算周期的备选节点被系统处罚退出或者扣除节点自有质押金后不满足备选节点候选人所需的最低质押门槛时，则该处罚区块实时将节点移出当前结算周期的备选节点名单和备选节点候选人列表，节点不再继续参与VRF共识轮验证节点选举，当前结算周期这个节点无Staking奖励。
 
-![系统处罚退出1](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E7%B3%BB%E7%BB%9F%E5%A4%84%E7%BD%9A%E9%80%80%E5%87%BA1.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/系统处罚退出1.png" alt="系统处罚退出1"/>
 
 （3）退出验证节点命令执行后，节点自有质押Energon退回到质押账户时间：
 
@@ -356,7 +355,7 @@ PlatON采取在小规模的备选节点中随机选取节点参与BFT共识，�
 
 - 已锁定的质押Energon，退出命令执行后，继续冻结锁定28结算周期（不包含当前结算周期）
 
-  ![退出冻结锁定期](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E9%80%80%E5%87%BA%E5%86%BB%E7%BB%93%E9%94%81%E5%AE%9A%E6%9C%9F.png)
+  <img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/退出冻结锁定期.png" alt="退出冻结锁定期"/>
 
 
 >[!NOTE|style:flat|label:注意]
@@ -367,11 +366,11 @@ PlatON采取在小规模的备选节点中随机选取节点参与BFT共识，�
 
 - 备选节点候选人主动申请，在当前结算周期的结算区块，节点接收到的委托Energon全部解除锁定，需要由委托人主动申请赎回，提交赎回后，委托的Energon即时退回到委托人账户。
 
-  ![主动退出委托解除](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E4%B8%BB%E5%8A%A8%E9%80%80%E5%87%BA%E5%A7%94%E6%89%98%E8%A7%A3%E9%99%A4.png)
+  <img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/主动退出委托解除.png" alt="主动退出委托解除"/>
 
 - 备选节点候选人被动处罚退出，从处罚区块开始，节点接收到的委托Energon全部解除锁定，需要由委托人主动申请赎回，提交赎回后，委托的Energon即时退回到委托人账户。
 
-![系统处罚退出委托解除](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E7%B3%BB%E7%BB%9F%E5%A4%84%E7%BD%9A%E9%80%80%E5%87%BA%E5%A7%94%E6%89%98%E8%A7%A3%E9%99%A4.png)
+  <img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/系统处罚退出委托解除.png" alt="系统处罚退出委托解除"/>
 
 （5）退出申请必须由节点原质押账户发起。
 
@@ -440,7 +439,7 @@ Energon持有者可以通过把手中的Energon委托给备选节点候选人，
 
 - 委托的Energon在下个结算周期开始锁定，锁定的Energon，赎回委托，委托Energon在该结算周期的结算区块退回到用户委托账户（原路返回）。
 
-  ![赎回委托1](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E8%B5%8E%E5%9B%9E%E5%A7%94%E6%89%981.png)
+  <img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/赎回委托1.png" alt="赎回委托1"/>
 
 - 当委托的Energon包含未锁定和锁定状态的Energon，优先赎回未锁定的Energon，剩下的部分从锁定的Energon赎回。
 
@@ -493,7 +492,7 @@ PlatON网络激励金来源包含以下几个方面：
 
 #### 激励规则
 
-![奖励发放](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E5%A5%96%E5%8A%B1%E5%8F%91%E6%94%BE.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/奖励发放.png" alt="奖励发放"/>
 
 在PlatON中，对验证节点有以下三类激励方式：
 
@@ -571,7 +570,7 @@ PlatON目前支持两种处罚方式：
 
    备选节点候选人遭受惩罚被动退出，不再参与备选节点和验证节点选举，并立即被撤销质押，退出备选节点候选人列表。委托给该节点的Energon全部失效并解除锁定，委托解除的Energon需要用户自己申请赎回（委托人太多，自动退回非常影响系统性能）。节点剩余的自有质押金继续锁定28个结算周期后自动退回到节点质押账户。
 
-   ![移出候选验证人名单](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E7%A7%BB%E5%87%BA%E5%80%99%E9%80%89%E9%AA%8C%E8%AF%81%E4%BA%BA%E5%90%8D%E5%8D%95.png)
+   <img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/移出候选验证人名单.png" alt="移出候选验证人名单"/>
 
    - 被强制退出的节点，不参与该结算周期结算区块的Staking奖励分配。
 
@@ -598,7 +597,7 @@ PlatON目前支持两种处罚方式：
 
 - 双签举报有一个有效期，双签超过28个结算周期后的举报为无效举报。
 
-![举报有效期](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E4%B8%BE%E6%8A%A5%E6%9C%89%E6%95%88%E6%9C%9F.png)
+  <img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/举报有效期.png" alt="举报有效期"/>
 
 - 举报遵循先后顺序原则，仅最先举报的用户可获得惩罚金。后续相同举报为无效举报。因此在举报前最好查询一下是否已被举报过双签。
 
@@ -615,7 +614,7 @@ PlatON目前支持两种处罚方式：
 
 PlatON基于出块率的高低来判断节点是否在线以及节点软硬件及网络环境是否满足要求。在每个共识轮（一个共识轮250区块）的230区块判断上个共识轮验证节点的出块率情况。
 
-![低出块率验证](PlatON%E7%BB%8F%E6%B5%8E%E6%96%B9%E6%A1%88.assets/%E4%BD%8E%E5%87%BA%E5%9D%97%E7%8E%87%E9%AA%8C%E8%AF%81.png)
+<img src="https://platonnetwork.github.io/Docs/zh-cn/Introduction/PlatON经济方案.assets/低出块率验证.png" alt="低出块率验证"/>
 
 当出块数量为零时，系统将节点强制退出备选节点候选人，不再参与验证节点选举，当前结算周期没有Staking奖励。
 

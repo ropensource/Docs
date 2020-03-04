@@ -1,4 +1,4 @@
-- [总体方案](/zh-cn/Introduction/[Chinese-Simplified]-PlatON总体方案.md)
-- [共识方案](/zh-cn/Introduction/[Chinese-Simplified]-PlatON共识方案.md)
-- [经济模型](/zh-cn/Introduction/[Chinese-Simplified]-PlatON经济方案.md)
-- [治理方案](/zh-cn/Introduction/[Chinese-Simplified]-PlatON治理方案.md)
+- [Overall Solution](/en-us/Introduction/[English]-PlatON_overall_solution.md)
+- [Consensus Solution](/en-us/Introduction/[English]-PlatON_consensus_solution.md)
+- [Economic Model](/en-us/Introduction/[English]-economic_model.md)
+- [Governance Solution](/en-us/Introduction/[English]-PlatON_governance_solution.md)

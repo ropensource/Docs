@@ -121,6 +121,12 @@ go run build/ci.go install ./cmd/keytool
 
 目前只支持Ubuntu 18.04.1以上版本的PPA，请选择正确的Ubuntu版本。
 
+添加PPA源工具：
+
+```bash
+if ! command -v add-apt-repository >/dev/null 2>&1; then  sudo apt-get update && sudo apt-get install -y software-properties-common; fi;
+```
+
 添加PPA：
 
 ```bash

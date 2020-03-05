@@ -58,7 +58,7 @@ wget http://47.91.153.183/opensource/scripts/mtool_install.sh
 **step4.** execute command
 
 ```bash
-chmod + x mtool_install.sh && ./mtool_install.sh
+chmod +x mtool_install.sh && ./mtool_install.sh
 ```
 
 > [!NOTE|style:flat|label:Note]
@@ -168,7 +168,7 @@ wget http://47.91.153.183/opensource/scripts/validator_conf.sh
 **step2.** Execute the command:
 
 ```bash
-chmod + x validator_conf.sh && ./validator_conf.sh
+chmod +x validator_conf.sh && ./validator_conf.sh
 ```
 
 > [!NOTE|style:flat|label:Note]

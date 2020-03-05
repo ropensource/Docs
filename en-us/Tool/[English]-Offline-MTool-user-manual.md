@@ -60,7 +60,7 @@ wget http://47.91.153.183/opensource/scripts/mtool_install.sh
 **step4.** execute command
 
 ```bash
-chmod + x mtool_install.sh && ./mtool_install.sh
+chmod +x mtool_install.sh && ./mtool_install.sh
 ```
 
 > [!NOTE|style:flat|label:Note]
@@ -157,7 +157,7 @@ tar -xzvf jdk-8u221-linux-x64.tar.gz
 Perform the installation steps:
 
 ```bash
-unzip mtool-client.zip && mv mtool-client*/ mtool-client && chmod + x install_off_line_mtool.sh && ./install_off_line_mtool.sh
+unzip mtool-client.zip && mv mtool-client*/ mtool-client && chmod +x install_off_line_mtool.sh && ./install_off_line_mtool.sh
 ```
 
 > [!NOTE|style:flat|label:Note]
@@ -303,7 +303,7 @@ wget http://47.91.153.183/opensource/scripts/validator_conf.sh
 **step2.** Execute the command:
 
 ```bash
-chmod + x validator_conf.sh && ./validator_conf.sh
+chmod +x validator_conf.sh && ./validator_conf.sh
 ```
 
 > [!NOTE|style:flat|label:Note]

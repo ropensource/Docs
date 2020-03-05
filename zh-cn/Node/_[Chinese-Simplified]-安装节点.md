@@ -29,6 +29,7 @@ git clone -b release-0.10.0 https://github.com/PlatONnetwork/PlatON-Go.git --rec
 ```bash
 cd PlatON-Go;
 find ./build -name "*.sh" -exec chmod u+x {} \;
+sudo apt install llvm g++ libgmp-dev libssl-dev ;
 make all;
 ```
 

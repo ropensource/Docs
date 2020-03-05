@@ -74,14 +74,14 @@ PlatON网络在运行期间为保证网络能够不断迭代完善，需要所�
   
   当执行的结果如下时表示版本升级成功：
   
-  ```
-  当前已安装版本：0.9.0==========
-  开始安装：0.10.0版本==========
-  节点暂停成功==========
+  ```bash
+  Currently installed version: 0.9.0==========
+  Begin to install platon version: 0.10.0==========
+  Node paused successfully==========
   Do you want to continue? [Y/n] y
-  卸载当前版本：platon0.9.0成功==========
-  安装版本：platon0.10.0成功==========
-  重启节点成功============ 
+  Uninstall current platon version: 0.9.0 successfully==========
+  Install platon version: platon0.10.0 successfully==========
+  Restart node succeeded============ 
   ```
   
   >当出现如下情况时，不进行版本升级，节点将以之前安装的版本继续运行：
@@ -158,9 +158,9 @@ cd ~/platon-node/data && platon attach ipc:platon.ipc -exec platon.blockNumber
   当执行完脚本之后，如果出现如下信息，则表示升级提案投票成功，否则升级提案投票失败。
   
   ```bash
-  获取交易回执成功==========
-  解析交易回执中==========
-  交易成功！！！
+	 Transaction receipt obtained successfully==========
+	 Analyzing transaction receipt==========
+	 Transaction succeed.
   ```
 
 #### 版本声明
@@ -206,9 +206,9 @@ cd ~/platon-node/data && platon attach ipc:platon.ipc -exec platon.blockNumber
   当执行完脚本后，如果出现如下信息，则表示版本声明成功，否则版本声明失败。
   
   ```bash
-  获取交易回执成功==========
-  解析交易回执中==========
-  交易成功！！！·
+   Transaction receipt obtained successfully==========
+   Analyzing transaction receipt==========
+   Transaction succeed.
   ```
 
 ## 验证节点升级结果
@@ -256,17 +256,17 @@ cd ~/platon-node/data && platon attach ipc:platon.ipc -exec platon.blockNumber
   当执行脚本后，打印结果如下则表示升级成功：
   
   ```bash
-  获取提案成功==========
-  提案生效块高为：1166480
-  当前块高为：1166666
-  区块高度已到达提案生效区块高度，开始验证==========
-  开始验证升级提案投票结果==========
-  升级提案投票结果验证成功==========
-  开始验证提案版本号==二进制的版本号==链上生效版本号==========
-  升级提案版本验证成功==============
-  开始验证节点的质押状态=============
-  获取节点质押信息成功==========
-  节点未退出验证人列表，升级版本成功，当前链生效版本为：2560
+  Get proposal success ==========
+  The effective block of the proposal is: 1166480
+  Current block height is: 1166666
+  The height of the block has reached the height of the effective block of the proposal, and the verification begins ==========
+  Start to verify upgrade proposal voting results ==========
+  Upgrade proposal voting result verified successfully ==========
+  Start to verify that the proposal version number equals the binary version number equals the effective version number on the chain ==========
+  Upgrade proposal version Verification succeeded ==============
+  Start to verify the pledge status of the node =============
+  Node pledge information obtained successfully ==========
+  The node did not exit the verifier list. The upgrade version succeeded. The effective version of the current chain is: 2560
   ```
   
   > 该验证脚本会进行以下检查：

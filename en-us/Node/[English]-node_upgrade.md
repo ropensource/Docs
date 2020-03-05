@@ -16,17 +16,17 @@ You can get the information of the upgrade proposal in time by following the ann
 
 ```bash
 Proposal details：
-  PIPID：100
-  Proposal address：https://platscan.test.platon.network/proposal-detail?proposalHash=0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3
+  PIPID：2
+  Proposal address：https://platscan.test.platon.network/proposal-detail?proposalHash=0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0
 
-  ProposalID：0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3
+  ProposalID：0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0
 
   Target version ：0.10.0
-  Voting epoch：Start block height 533681, cut-off block height 619980
+  Voting epoch：Start block height 1079136, cut-off block height 1165480
 
    Code address：
-  Code&Branch：https://github.com/PlatONnetwork/PlatON-Go/tree/pip_v0.7.3
-  commit ID: d2b7bf51a68158bfa61d622ffde3841c55634a18
+  Code&Branch：https://github.com/PlatONnetwork/PlatON-Go/tree/release-0.10.0
+  commit ID: 0130bce6cb6fc4d45590053957214a7a229550ff
 ```
 
 
@@ -56,7 +56,7 @@ According to the new version number (assuming 0.10.0) in the upgrade proposal ob
   wget http://47.91.153.183/opensource/scripts/update_platon.sh
   ```
 
-    **Note: If the default directory address of node data storage is modified when the node of the PlatON network is installed, you need to change the node_dir = ~ / platon-node attribute value in the update_platon.sh script to the modified node data directory address.**
+    **Note: If the default directory address of node data storage is modified when the node of the PlatON network is installed, you need to change the node_dir = ~/platon-node attribute value in the update_platon.sh script to the modified node data directory address.**
 
 - Execute the command to update the node version
 
@@ -113,18 +113,18 @@ The following voting operations need to be implemented with the help of the MToo
 cd ~/platon-node/data && platon attach ipc:platon.ipc -exec platon.blockNumber
 ```
 
-This command returns the current block height, which can be used to determine whether it is within the range of the voting period of the proposal. Link address reference: [Focus on community governance announcements](#Focus-on-community-governance-announcements ). For example, the voting period published by the community is [533681, 619980]. If the current block height is 600,000, it is within the voting period; if the current block height is greater than 619980, it indicates that the voting period has passed. Only when it is within the voting period, the following voting operations for the promotion proposal are performed.
+This command returns the current block height, which can be used to determine whether it is within the range of the voting period of the proposal. Link address reference: [Focus on community governance announcements](#Focus-on-community-governance-announcements ). For example, the voting period published by the community is [1079136, 1165480]. If the current block height is 1160000, it is within the voting period; if the current block height is greater than 1165480, it indicates that the voting period has passed. Only when it is within the voting period, the following voting operations for the promotion proposal are performed.
 
 #### Upgrade Proposal Vote
 
 - If it is within the voting period, you need to vote for the upgrade proposal, otherwise skip this section.
 
   ```bash
-  mtool-client vote_versionproposal --proposalid 0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3 --keystore ~/MTool/keystore/staking.json --config ~/MTool/validator/validator_config.json
+  mtool-client vote_versionproposal --proposalid 0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0 --keystore ~/MTool/keystore/staking.json --config ~/MTool/validator/validator_config.json
   ```
 
   **Notice:**
-  0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3 is the ProposalID of the upgrade proposal provided by the community announcement. For details, please refer to:[Focus on community governance announcements](#Focus-on-community-governance-announcements ).
+  0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0 is the ProposalID of the upgrade proposal provided by the community announcement. For details, please refer to:[Focus on community governance announcements](#Focus-on-community-governance-announcements ).
 
   If after the execution of the above command, the voting transaction is successfully sent back to the **voting transaction hash**. For example, when the following information appears, the voting transaction was sent successfully, otherwise the upgrade proposal failed to vote:
 
@@ -250,17 +250,17 @@ After performing all the operations above, you need to verify whether the operat
   The order needs to pass 1000 blocks after the proposal voting cut-off block height (a consensus round is 250 blocks, 1000 blocks is the number of blocks of four consensus rounds, assuming the cut-off block height is 610,000, then 611,000 is Deadline) Then execute the following script to check the upgrade result:
   
   ```bash
-  chmod u+x verify_votResult.sh && chmod u+x ppos_tool && ./verify_votResult.sh 0x85083f1d4f3e5e1aeafbd29df1db9764c25216e94fa0b446caa36f89ffa8f26f
+  chmod u+x verify_votResult.sh && chmod u+x ppos_tool && ./verify_votResult.sh 0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0
   ```
 
-  > Among them 0x85083f1d4f3e5e1aeafbd29df1db9764c25216e94fa0b446caa36f89ffa8f26f is **the ProposalID of the upgrade proposal**, please replace it according to the proposal ID in the actual announcement, the link address reference: [Focus on community governance announcements](#Focus-on-community-governance-announcements )
+  > Among them 0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0 is **the ProposalID of the upgrade proposal**, please replace it according to the proposal ID in the actual announcement, the link address reference: [Focus on community governance announcements](#Focus-on-community-governance-announcements )
   
   When the script is executed, the following print results indicate that the upgrade was successful:
   
   ```bash
   Get proposal success ==========
-  The effective block of the proposal is: 620980
-  Current block height is: 621010
+  The effective block of the proposal is: 1166480
+  Current block height is: 1166666
   The height of the block has reached the height of the effective block of the proposal, and the verification begins ==========
   Start to verify upgrade proposal voting results ==========
   Upgrade proposal voting result verified successfully ==========
@@ -268,7 +268,7 @@ After performing all the operations above, you need to verify whether the operat
   Upgrade proposal version Verification succeeded ==============
   Start to verify the pledge status of the node =============
   Node pledge information obtained successfully ==========
-  The node did not exit the verifier list. The upgrade version succeeded. The effective version of the current chain is: 2304
+  The node did not exit the verifier list. The upgrade version succeeded. The effective version of the current chain is: 2560
   ```
   
   > The verification script does the following checks：

@@ -7,5 +7,5 @@
 <ul>
 
 * Language
-  * [ÖÐÎÄ](zh-cn/)
+  * [ä¸­æ–‡](zh-cn/)
   * [English](en-us/)

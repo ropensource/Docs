@@ -22,14 +22,14 @@ PlatON目前有2个公有网络，一个是还未正式上线的、独立运行�
 
 任何人、任何组织都可以加入PlatON测试网络贝莱世界。
 
-执行以下命令即可启动验证节点加入贝莱世界：
+执行以下命令即可`启动验证节点`加入贝莱世界：
 
 ```bash
-./platon --identity platon --datadir ./data --port 16789 --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full"
+nohup ./platon --identity platon --datadir ./data --port 16789 --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full" > ./data/platon.log 2>&1 &
 ```
-如果要启动归档节点加入贝莱世界，请执行以下命令：
+如果要`启动归档节点加`入贝莱世界，请执行以下命令：
 ```bash
-./platon --identity platon --datadir ./data --port 16789 --db.nogc --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full"
+nohup ./platon --identity platon --datadir ./data --port 16789 --db.nogc --testnet --rpcport 6789 --rpcnohup api "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full" > ./data/platon.log 2>&1 &
 ```
 
 ***提示：***

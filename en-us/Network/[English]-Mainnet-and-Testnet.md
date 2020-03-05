@@ -12,7 +12,7 @@ Before joining the PlatON public network, please ensure that the server has the 
 1. You have installed the PlatON environment or compiled the PlatON executable files `platon` and `keytool` according to [PlatON Installation Guide](/en-us/Node/_[English]-Install-Node.md).
 
 2. According to [NodeKey](/en-us/Node/_[English]-WalletFile-and-KeyPair.md#Node-key) chapter in the '~/platon-node/data' directory node private key and node BLS private key are generated.
- 
+
 This section assumes that the server is Ubuntu 18.04 and the working directory where the executable file is located in `~/platon-node`. Note that all subsequent command line operations are performed in the working directory.
 
 
@@ -28,13 +28,13 @@ Anyone can join the testnet.
 Execute the following command to start the PlatON node to join the testnet:
 
 ```bash
-./platon --identity platon --datadir ./data --port 16789 --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full"
+nohup ./platon --identity platon --datadir ./data --port 16789 --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full" > ./data/platon.log 2>&1 &
 ```
 
 If you want to start the node in archive mode, execute the following command:
 
 ```bash
-./platon --identity platon --datadir ./data --port 16789 --db.nogc --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full"
+nohup ./platon --identity platon --datadir ./data --port 16789 --db.nogc --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full" > ./data/platon.log 2>&1 &
 ```
 
 ***prompt:***

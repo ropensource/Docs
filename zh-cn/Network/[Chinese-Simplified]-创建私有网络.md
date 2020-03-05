@@ -122,7 +122,7 @@ Successfully wrote genesis state
 Ubuntu下可以以nohup方式启动程序：
 
 ```
-nohup ./platon --identity "platon" --datadir ./data --port 16789 --rpcaddr 0.0.0.0 --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodiscover --nodekey ./data/nodekey --cbft.blskey ./data/blskey &
+nohup ./platon --identity "platon" --datadir ./data --port 16789 --rpcaddr 0.0.0.0 --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodiscover --nodekey ./data/nodekey --cbft.blskey ./data/blskey & > ./data/platon.log 2>&1 &
 ```
 
 当shell中提示nohup成功后再按下一次回车，确保不会因为误关闭终端引起进程退出。

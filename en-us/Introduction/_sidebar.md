@@ -1,4 +1,4 @@
 - [Overall Solution](/en-us/Introduction/[English]-PlatON_overall_solution.md)
 - [Consensus Solution](/en-us/Introduction/[English]-PlatON_consensus_solution.md)
-- [Economic Model](/en-us/Introduction/[English]-economic_model.md)
+- [Economic Model](/en-us/[English]-ComingSoon.md)
 - [Governance Solution](/en-us/Introduction/[English]-PlatON_governance_solution.md)

@@ -5,3 +5,7 @@
 <li><a href="#/en-us/Tool/">Tool</a></li>
 <li><a href="#/en-us/Development/">Development</a></li>
 <ul>
+
+* Language
+  * [жпнд](zh-cn/)
+  * [English](en-us/)

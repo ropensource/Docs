@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="./my-theme.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
+  <link rel="stylesheet" href="//unpkg.com/mermaid/dist/mermaid.min.css">
 </head>
 <body>
   <div id="app">  </div>
@@ -36,24 +37,42 @@
           readyTransition : true, // default
           responsiveTables: true  // default
       },
+	  
+	  markdown: {
+		renderer: {
+		  code: function(code, lang) {
+			if (lang === "mermaid") {
+			  return (
+				'<div class="mermaid">' + mermaid.render(lang, code) + "</div>"
+			  );
+			}
+			return this.origin.code.apply(this, arguments);
+		  }
+		}
+	  },
     
 	  alias: {
-	  '/_navbar.md': '/zh-cn/_navbar.md',
-	  '/_sidebar.md': '/zh-cn/Introduction/_sidebar.md',
-	  
-	  '/': '/zh-cn/',
+	  '/_navbar.md': '/en-us/_navbar.md',
+	  '/_sidebar.md': '/en-us/Introduction/_sidebar.md',
 	  '/zh-cn/_sidebar.md':'/zh-cn/Introduction/_sidebar.md',
 
 
+      '/': '/en-us/',
+	  '/en-us': '/en-us/Introduction/',
+	  '/en-us/':'/en-us/Introduction/',
+	  '/en-us/Introduction/':'/en-us/Introduction/[English]-PlatON_overall_solution.md',
+	  '/en-us/Development/':'/en-us/Development/[English]-smart-contract-development.md',
+	  '/en-us/Node/':'/en-us/Node/[English]-PlatON_verification_node_introduction.md',
+	  '/en-us/Network/':'/en-us/Network/[English]-Mainnet-and-Testnet.md',
+	  '/en-us/Tool/':'/en-us/Tool/[English]-MTool-user-manual.md',
+	  
+	  '/zh-cn':'/zh-cn/Introduction/',
 	  '/zh-cn/':'/zh-cn/Introduction/',
 	  '/zh-cn/Introduction/':'/zh-cn/Introduction/[Chinese-Simplified]-PlatON总体方案.md',
 	  '/zh-cn/Development/':'/zh-cn/Development/[Chinese-Simplified]-智能合约开发.md',
 	  '/zh-cn/Node/':'/zh-cn/Node/[Chinese-Simplified]-PlatON验证节点介绍.md',
 	  '/zh-cn/Network/':'/zh-cn/Network/[Chinese-Simplified]-连接公有网络.md',
 	  '/zh-cn/Tool/':'/zh-cn/Tool/[Chinese-Simplified]-MTool使用手册.md',
-
-
-
 	 },
 
 	"flexible-alerts": {
@@ -68,8 +87,6 @@
     },
 	
 	pagination: {
-		previousText: '上一章节',
-		nextText: '下一章节',
 		crossChapter: true,
 		crossChapterText: true,
 	},
@@ -118,5 +135,6 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
   <script src="//unpkg.com/docsify-plugin-flexible-alerts"></script>
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </body>
 </html>

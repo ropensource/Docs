@@ -6,3 +6,6 @@
 <li><a href="#/zh-cn/Development/">开发</a></li>
 <ul>
 
+* 语言
+  * [中文](zh-cn/)
+  * [English](en-us/)

@@ -11,21 +11,21 @@ PlatON网络在运行期间为保证网络能够不断迭代完善，需要所�
 
 ### 关注社区治理相关的公告
 
-可以通过关注社区的公告及时获取升级提案的信息。当需要节点对升级提案进行投票时，社区会发布相关的[公告](https://forum.latticex.foundation/c/PlatON-EN/20)。例如：
+可以通过关注社区的公告及时获取升级提案的信息。当需要节点对升级提案进行投票时，社区会发布相关的[公告](https://forum.latticex.foundation/t/topic/1085)。例如：
 
 ```bash
 提案详情：
-  PIPID：100
-  提案地址：https://platscan.test.platon.network/proposal-detail?proposalHash=0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3
+  PIPID：2
+  提案地址：https://platscan.test.platon.network/trade-detail?txHash=0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0
 
-  ProposalID：0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3
+  ProposalID：0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0
 
   目标版本号：0.10.0
-  投票周期：起始区块高度533681, 截止区块高度619980
+  投票周期：起始区块高度1079136, 截止区块高度1165480
 
   本次链上升级代码地址：
-  代码分支：https://github.com/PlatONnetwork/PlatON-Go/tree/pip_v0.7.3
-  commit ID: d2b7bf51a68158bfa61d622ffde3841c55634a18
+  代码分支：https://github.com/PlatONnetwork/PlatON-Go/tree/release-0.10.0
+  commit ID: 0130bce6cb6fc4d45590053957214a7a229550ff
 ```
 
 如上提案详情例子所示：发布的升级提案信息中会描述此次提案的ID、新的版本号、投票周期以及新版本的代码。
@@ -111,17 +111,17 @@ PlatON网络在运行期间为保证网络能够不断迭代完善，需要所�
 cd ~/platon-node/data && platon attach ipc:platon.ipc -exec platon.blockNumber
 ```
 
-该命令返回当前区块高度，可用于判断是否在提案投票期的范围内，链接地址参考：[关注社区治理相关的公告](#关注社区治理相关的公告)，例如社区发布的投票期为[533681, 619980]，如果当前区块高度为600000，则在投票期范围内；如果当前区块高度大于619980，则表示过了投票期。只有当处于投票期范围内时则进行如下升级提案的投票操作。
+该命令返回当前区块高度，可用于判断是否在提案投票期的范围内，链接地址参考：[关注社区治理相关的公告](#关注社区治理相关的公告)，例如社区发布的投票期为[1079136, 1165480]，如果当前区块高度为1160000，则在投票期范围内；如果当前区块高度大于1165480，则表示过了投票期。只有当处于投票期范围内时则进行如下升级提案的投票操作。
 
 #### 升级提案投票
 
 - 如果在投票期内，则需要进行升级提案投票操作，否则跳过本节操作。
 
   ```bash
-  mtool-client vote_versionproposal --proposalid 0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3 --keystore ~/MTool/keystore/staking.json --config ~/MTool/validator/validator_config.json
+  mtool-client vote_versionproposal --proposalid 0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0 --keystore ~/MTool/keystore/staking.json --config ~/MTool/validator/validator_config.json
   ```
 
-  **注：**0xad330d8a5fddf3526a8622dab22454f8861fee968b6482eebbd360c8d15691c3为社区公告提供的升级提案的ProposalID，详情请参考：[关注社区治理相关的公告](#关注社区治理相关的公告)。
+  **注：**0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0为社区公告提供的升级提案的ProposalID，详情请参考：[关注社区治理相关的公告](#关注社区治理相关的公告)。
 
   如果执行以上命令后，投票交易发送成功会返回**投票交易hash**。例如，当出现如下信息时表示投票交易发送成功，否则表示升级提案投票失败：
 
@@ -245,20 +245,20 @@ cd ~/platon-node/data && platon attach ipc:platon.ipc -exec platon.blockNumber
   
 - 执行验证脚本
 
-  该命令需要在提案投票截止区块高度后再过1000个块（一个共识轮为250个区块，则为四个共识轮的区块数，假设截止块高为610000，则在611000块）之后执行以下脚本检查升级结果：
+  该命令需要在提案投票截止区块高度后再过1000个块（一个共识轮为250个区块，则为四个共识轮的区块数，假设截止块高为1165480，则在1166480块）之后执行以下脚本检查升级结果：
   
   ```bash
-  chmod u+x verify_votResult.sh && chmod u+x ppos_tool && ./verify_votResult.sh 0x85083f1d4f3e5e1aeafbd29df1db9764c25216e94fa0b446caa36f89ffa8f26f
+  chmod u+x verify_votResult.sh && chmod u+x ppos_tool && ./verify_votResult.sh 0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0
   ```
   
-  > 其中0x85083f1d4f3e5e1aeafbd29df1db9764c25216e94fa0b446caa36f89ffa8f26f为**升级提案的ProposalID**，请根据实际公告中的提案ID进行替换，链接地址参考：[关注社区治理相关的公告](#关注社区治理相关的公告)。
+  > 其中0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0为**升级提案的ProposalID**，请根据实际公告中的提案ID进行替换，链接地址参考：[关注社区治理相关的公告](#关注社区治理相关的公告)。
   
   当执行脚本后，打印结果如下则表示升级成功：
   
   ```bash
   获取提案成功==========
-  提案生效块高为：620980
-  当前块高为：621010
+  提案生效块高为：1166480
+  当前块高为：1166666
   区块高度已到达提案生效区块高度，开始验证==========
   开始验证升级提案投票结果==========
   升级提案投票结果验证成功==========
@@ -266,7 +266,7 @@ cd ~/platon-node/data && platon attach ipc:platon.ipc -exec platon.blockNumber
   升级提案版本验证成功==============
   开始验证节点的质押状态=============
   获取节点质押信息成功==========
-  节点未退出验证人列表，升级版本成功，当前链生效版本为：2304
+  节点未退出验证人列表，升级版本成功，当前链生效版本为：2560
   ```
   
   > 该验证脚本会进行以下检查：

@@ -29,7 +29,7 @@ nohup ./platon --identity platon --datadir ./data --port 16789 --testnet --rpcpo
 ```
 如果要`启动归档节点加`入贝莱世界，请执行以下命令：
 ```bash
-nohup ./platon --identity platon --datadir ./data --port 16789 --db.nogc --testnet --rpcport 6789 --rpcnohup api "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full" > ./data/platon.log 2>&1 &
+nohup ./platon --identity platon --datadir ./data --port 16789 --db.nogc --testnet --rpcport 6789 --rpcapi "db,platon,net,web3,admin,personal" --rpc --nodekey ./data/nodekey --cbft.blskey ./data/blskey --verbosity 3 --rpcaddr 127.0.0.1 --syncmode "full" > ./data/platon.log 2>&1 &
 ```
 
 ***提示：***

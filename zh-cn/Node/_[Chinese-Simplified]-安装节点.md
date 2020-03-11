@@ -143,7 +143,7 @@ sudo apt-get update
 安装PlatON：
 
 ```bash
-sudo apt-get install platon0.10.0
+sudo apt-get install platon0.10.1
 ```
 
 安装完成后，可执行程序将安装到： `/usr/bin/`。

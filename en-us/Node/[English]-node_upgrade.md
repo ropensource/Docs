@@ -4,7 +4,7 @@ During the operation of the PlatON network, to ensure that the network can conti
 
 - Each alternative validator  can only vote once for each proposal
 
-- If you miss the voting period and are reduced to a alternative validator	 candidate, you can send a version declaration transaction after upgrading to the specified version locally to become a alternative validator again
+	 If you miss the voting period and are reduced to a alternative validator	 candidate, you can send a version declaration transaction after upgrading to the specified version locally to become a alternative validator again
 
 ## Get upgrade proposal information
 
@@ -21,12 +21,12 @@ Proposal details：
 
   ProposalID：0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0
 
-  Target version ：0.10.0
+  Target version ：0.10.1
   Voting epoch：Start block height 1079136, cut-off block height 1165480
 
    Code address：
   Code&Branch：https://github.com/PlatONnetwork/PlatON-Go/tree/release-0.10.0
-  commit ID: 0130bce6cb6fc4d45590053957214a7a229550ff
+  commit ID: 1bc1d754bbc4ac338559cdd0622884a17eec110c
 ```
 
 
@@ -61,7 +61,7 @@ According to the new version number (assuming 0.10.0) in the upgrade proposal ob
 - Execute the command to update the node version
 
   ```bash
-  chmod u+x update_platon.sh && ./update_platon.sh 0.10.0 --xxxnet
+  chmod u+x update_platon.sh && ./update_platon.sh 0.10.1 --xxxnet
   ```
   
     **Notice：**
@@ -77,12 +77,12 @@ According to the new version number (assuming 0.10.0) in the upgrade proposal ob
     When the execution result is as follows, the version upgrade is successful:
   
     ```
-     Currently installed version: 0.9.0==========
-     Begin to install platon version: 0.10.0==========
+     Currently installed version: 0.10.0==========
+     Begin to install platon version: 0.10.1==========
      Node paused successfully==========
      Do you want to continue? [Y/n] y
      Uninstall current platon version: 0.9.0 successfully==========
-     Install platon version: platon0.10.0 successfully==========
+     Install platon version: platon0.10.1 successfully==========
      Restart node succeeded============ 
     ```
   
@@ -141,25 +141,25 @@ This command returns the current block height, which can be used to determine wh
   ```bash
   wget https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/opensource/scripts/verify_transaction.sh
   ```
-  
+
   or
 
   ```bash
   wget http://47.91.153.183/opensource/scripts/verify_transaction.sh
   ```
-  
+
   **Note: If the default directory address of node data storage is modified when installing a node of the PlatON network, you need to change the node_dir=~/platon-node attribute value in the verify_transaction.sh script to the modified node data directory address.**
 
   After downloading the script, you need to modify the execution permissions before executing the script:
-  
+
   ```bash
   chmod u+x verify_transaction.sh && ./verify_transaction.sh 0x344d5c916a070453567fe95c6b79cd86bb70c248f96da98fb0ec3aa6617cc9a3
   ```
-  
+
   **Note:** where 0x344d5c916a070453567fe95c6b79cd86bb70c248f96da98fb0ec3aa6617cc9a3 is **the hash of the voting transaction** returned by the voting operation of the upgrade proposal, please replace it according to the actual return value.
 
   After the script is executed, if the following message appears, it means that the upgrade proposal vote was successful, otherwise the upgrade proposal vote failed.
-  
+
   ```bash
   Transaction receipt obtained successfully==========
   Analyzing transaction receipt==========
@@ -197,7 +197,7 @@ This command returns the current block height, which can be used to determine wh
   ```
   
   **Note: If the default directory address of node data storage is modified when installing a node of the PlatON network, you need to change the node_dir=~/platon-node attribute value in the verify_transaction.sh script to the modified node data directory address.**
-    
+  
   After downloading the script, you need to modify the execution permissions before executing the script:
   ```bash
   chmod u+x verify_transaction.sh && ./verify_transaction.sh 0x776d5be7363451540b7113771cf4263de6a18973ed8904796a561acf37e58ff2

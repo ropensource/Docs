@@ -159,7 +159,7 @@ sudo apt-get update
 Install PlatON:
 
 ```bash
-sudo apt-get install platon0.10.0
+sudo apt-get install platon0.10.1
 ```
 
 

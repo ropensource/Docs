@@ -4,7 +4,7 @@ During the operation of the PlatON network, to ensure that the network can conti
 
 - Each alternative validator  can only vote once for each proposal
 
-	 If you miss the voting period and are reduced to a alternative validator	 candidate, you can send a version declaration transaction after upgrading to the specified version locally to become a alternative validator again
+- If you miss the voting period and are reduced to a alternative validator	 candidate, you can send a version declaration transaction after upgrading to the specified version locally to become a alternative validator again
 
 ## Get upgrade proposal information
 

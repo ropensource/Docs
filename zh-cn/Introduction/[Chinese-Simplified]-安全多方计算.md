@@ -2,7 +2,7 @@
 
 <style>
  hr { color:  !important; background-color: skyblue !important; }
- </style>
+</style>
 
 隐私问题是目前区块链技术所要解决的其中一重要问题，隐私保护不仅在区块链领域成为了重点研究内容之一，而且近几年不断出现的数据隐私泄露问题，也让公众对隐私保护有日益深入的认知。
 

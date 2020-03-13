@@ -2,3 +2,5 @@
 - [Consensus Solution](/en-us/Introduction/[English]-PlatON_consensus_solution.md)
 - [Economic Model](/en-us/[English]-ComingSoon.md)
 - [Governance Solution](/en-us/Introduction/[English]-PlatON_governance_solution.md)
+- [Secure Multi-Party Computation](/en-us/Introduction/[English]-Secure-Multi-Party-Computation.md)
+- [Verifiable Computation](/en-us/Introduction/[English]-Verifiable-Computation.md)

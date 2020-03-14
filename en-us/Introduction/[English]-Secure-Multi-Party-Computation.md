@@ -121,8 +121,6 @@ Figure 9 demonstrates the computing architecture of Secure Two-party Computation
 \
 Programming of secret contracts in PlatON is compatible with high-level programming languages. Instead of being compiled into redundant boolean circuit file, secret contracts will be compiled into more efficient LLVM IRs. And then LLVM IRs will be deployed onto PlatON network to be executed by JIT in MPC-VM on computing nodes. Input data of secret contracts are kept by data nodes in local, while computing nodes do MPC computation off-chain, and publish the output result onchain.
 
-If you would like to know more about secret contracts, please refer to these two pages - [Privacy Contract Development Guide](https://platonnetwork.github.io/Docs/#/en-us/development/[English]-PlatON-Privacy-Contract-Guide) and [Deep Privacy Contract](https://platonnetwork.github.io/Docs/#/en-us/development/[English]-Deep-Understanding-Privacy-Contract-Dev)
-
 ### Future plans
 
 PlatON will optimize the current implemented MPC architecture in order to extend it to more innovational and efficient MPC protocols. PlatON will improve it in the following several ways.

@@ -131,8 +131,6 @@ PlatON的两方安全计算架构如下：
 
 PlatON的隐私合约同样支持高级语言编程，但不是编译成庞大的布尔电路文件，而是编译成更高效的LLVM IR字节码，并部署到PlatON网络上，在MPC计算节点内置的MPC虚拟机中以JIT方式执行。隐私合约的输入数据保存在数据节点本地，由数据节点在链下以安全多方计算方式进行隐私计算，并提交计算结果到链上。
 
-关于隐私合约详细使用，请参考：[隐私合约开发指南](https://platonnetwork.github.io/Docs/#/zh-cn/development/[Chinese-Simplified]-%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97)，[深入理解隐私合约编程](https://platonnetwork.github.io/Docs/#/zh-cn/development/[Chinese-Simplified]-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E9%9A%90%E7%A7%81%E5%90%88%E7%BA%A6)
-
 PlatON会持续优化当前已实现版本的MPC性能，并实现更先进的MPC协议，在以下几个方面进行改进：
 
 - 结合同态加密（HE）来降低MPC的通信复杂度

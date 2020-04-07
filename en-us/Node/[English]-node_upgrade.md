@@ -21,11 +21,11 @@ Proposal details：
 
   ProposalID：0x44c2b07551e3195acfc6ef674d78992bfeb445c7804f198c964ae6113af5a0e0
 
-  Target version ：0.10.1
+  Target version ：0.11.0
   Voting epoch：Start block height 1079136, cut-off block height 1165480
 
    Code address：
-  Code&Branch：https://github.com/PlatONnetwork/PlatON-Go/tree/release-0.10.0
+  Code&Branch：https://github.com/PlatONnetwork/PlatON-Go/tree/release-0.11.0
   commit ID: 1bc1d754bbc4ac338559cdd0622884a17eec110c
 ```
 
@@ -40,7 +40,7 @@ The upgrade proposal can also be queried directly in the blockchain browser [Pla
 
 ### Upgrade the node to the specified version
 
-According to the new version number (assuming 0.10.0) in the upgrade proposal obtained from the community announcement or blockchain browser, then download the official script provided by PlatON for node upgrade. Perform the following steps on **the machine where the node is deployed**:
+According to the new version number (assuming 0.11.0) in the upgrade proposal obtained from the community announcement or blockchain browser, then download the official script provided by PlatON for node upgrade. Perform the following steps on **the machine where the node is deployed**:
 
 > If the download script fails, set the DNS server to 8.8.8.8.
 
@@ -66,7 +66,7 @@ According to the new version number (assuming 0.10.0) in the upgrade proposal ob
   
     **Notice：**
   
-    0.10.0 is the specified version number that needs to be upgraded (the version number can be obtained from the relevant announcement issued by the community or from the chain through the blockchain browser).
+    0.11.0 is the specified version number that needs to be upgraded (the version number can be obtained from the relevant announcement issued by the community or from the chain through the blockchain browser).
 
     ​--xxxnet specifies a certain network. If you leave this field blank, it will default to the main network.
   
@@ -77,11 +77,11 @@ According to the new version number (assuming 0.10.0) in the upgrade proposal ob
     When the execution result is as follows, the version upgrade is successful:
   
     ```
-     Currently installed version: 0.10.0==========
+     Currently installed version: 0.11.0==========
      Begin to install platon version: 0.10.1==========
      Node paused successfully==========
      Do you want to continue? [Y/n] y
-     Uninstall current platon version: 0.9.0 successfully==========
+     Uninstall current platon version: 0.10.0 successfully==========
      Install platon version: platon0.10.1 successfully==========
      Restart node succeeded============ 
     ```

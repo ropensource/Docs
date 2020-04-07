@@ -12,7 +12,7 @@
 
 - 下载MTool安装包
 
-  在在线机器上，复制链接<https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/mtool-setup/0.8.0.0/mtool-setup.exe>或者 <http://47.91.153.183/mtool/mtool-setup/0.8.0.0/mtool-setup.exe> 到浏览器下载MTool安装包。
+  在在线机器上，复制链接<https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/mtool-setup/0.11.0/mtool-setup.exe>或者 <http://47.91.153.183/mtool/mtool-setup/0.11.0/mtool-setup.exe> 到浏览器下载MTool安装包。
 
 - 安装MTool
 
@@ -25,13 +25,13 @@
 **step1.** 下载mtool工具包
 
 ``` bash
-wget https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/0.8.0.0/mtool-client.zip
+wget https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/0.11.0/mtool-client.zip
 ```
 
 或者
 
 ``` bash
-wget http://47.91.153.183/mtool/0.8.0.0/mtool-client.zip
+wget http://47.91.153.183/mtool/0.11.0/mtool-client.zip
 ```
 
 **step2.** 解压mtool工具包
@@ -79,7 +79,7 @@ chmod +x mtool_install.sh && ./mtool_install.sh
 
 - 下载MTool安装包
 
-  在有网络的机器上，复制链接<https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/mtool-setup/0.8.0.0/mtool-setup.exe>或者 <http://47.91.153.183/mtool/mtool-setup/0.8.0.0/mtool-setup.exe> 到浏览器下载MTool安装包。
+  在有网络的机器上，复制链接<https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/mtool-setup/0.11.0/mtool-setup.exe>或者 <http://47.91.153.183/mtool/mtool-setup/0.11.0/mtool-setup.exe> 到浏览器下载MTool安装包。
 
 - 通过安全存储介质（移动U盘或者移动硬盘）将安装文件mtool-setup.exe转到**离线机器**下。
 
@@ -96,13 +96,13 @@ chmod +x mtool_install.sh && ./mtool_install.sh
   在有网络的机器上，下载mtool安装包，执行命令：
 
 ``` bash
-wget https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/0.8.0.0/mtool-client.zip
+wget https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/0.11.0/mtool-client.zip
 ```
 
 或者
 
 ``` bash
-wget http://47.91.153.183/mtool/0.8.0.0/mtool-client.zip
+wget http://47.91.153.183/mtool/0.11.0/mtool-client.zip
 ```
 
 - 在**离线机器**上执行命令：

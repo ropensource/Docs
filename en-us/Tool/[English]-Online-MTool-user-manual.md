@@ -11,7 +11,7 @@ Proceed as follows:
 
 - Download MTool installation package
 
-  On the online machine, copy the link <https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/mtool-setup/0.8.0.0/mtool-setup.exe> or <http://47.91.153.183/mtool/mtool-setup/0.8.0.0/mtool-setup.exe> go to the browser and download the MTool installation package.
+  On the online machine, copy the link <https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/mtool-setup/0.11.0/mtool-setup.exe> or <http://47.91.153.183/mtool/mtool-setup/0.11.0/mtool-setup.exe> go to the browser and download the MTool installation package.
 
 - Install MTool
 
@@ -24,13 +24,13 @@ Proceed as follows:
 **step1.** Download mtool toolkit
 
 ```bash
-wget https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/0.8.0.0/mtool-client.zip
+wget https://7w6qnuo9se.s3.eu-central-1.amazonaws.com/mtool/0.11.0/mtool-client.zip
 ```
 
 or
 
 ```bash
-wget http://47.91.153.183/mtool/0.8.0.0/mtool-client.zip
+wget http://47.91.153.183/mtool/0.11.0/mtool-client.zip
 ```
 
 **step2.** Extract the mtool toolkit
